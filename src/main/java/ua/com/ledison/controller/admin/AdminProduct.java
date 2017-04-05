@@ -23,10 +23,6 @@ public class AdminProduct {
 	@GetMapping("/addProduct")
 	public String addProduct(Model model) {
 		Product product = new Product();
-		product.setProductCategory("instrument");
-		product.setProductCondition("new");
-		product.setProductStatus("active");
-
 		model.addAttribute("product", product);
 
 		return "addProduct";
@@ -94,13 +90,7 @@ public class AdminProduct {
 		String rootDirectory = request.getSession().getServletContext().getRealPath("/");
 		String path = rootDirectory + "/WEB-INF/resources/images/" + id + ".png";
 
-		//        if(Files.exists(path)){
-		//            try {
-		//                Files.delete(path);
-		//            } catch (Exception ex){
-		//                ex.printStackTrace();
-		//            }
-		//        }
+		//!!!
 
 		Product product = productService.getProductById(id);
 		productService.deleteProduct(product);

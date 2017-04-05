@@ -2,8 +2,8 @@ package ua.com.ledison.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
 import ua.com.ledison.entity.Cart;
 import ua.com.ledison.entity.Customer;
 import ua.com.ledison.entity.CustomerOrder;
@@ -19,7 +19,7 @@ public class OrderController {
     @Autowired
     private CustomerOrderService customerOrderService;
 
-    @RequestMapping("/order/{cartId}")
+    @GetMapping("/order/{cartId}")
     public String createOrder(@PathVariable("cartId") int cartId){
         CustomerOrder customerOrder = new CustomerOrder();
         Cart cart = cartService.getCartById(cartId);
@@ -31,7 +31,7 @@ public class OrderController {
 
         customerOrderService.addCustomerOrder(customerOrder);
 
-        return "redirect:/checkout?cartId=" + cartId;
+        return "redirect:/thankCustomer";
 
     }
 

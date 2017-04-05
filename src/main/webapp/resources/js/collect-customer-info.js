@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    console.log("hello");
+
     var customer = {};
 
     $("#registerCustomer").click(function () {
@@ -16,7 +16,7 @@ $(document).ready(function () {
         var jCustomer = JSON.stringify(customer);
 
         $.ajax({
-            url: '/createCustomer',
+            url: '/addCustomerInfo',
             type: 'POST',
             data: jCustomer,
             contentType: 'application/json',

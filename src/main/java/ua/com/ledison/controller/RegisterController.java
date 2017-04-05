@@ -21,30 +21,30 @@ public class RegisterController {
 	@Autowired
 	private ShippingAddressService shippingAddressService;
 
-	@GetMapping("/register")
+	@GetMapping("/registerUser")
 	public String registerUser() {
 		return "registerUser";
 	}
 
-	@GetMapping("/registerCustomer")
-	public String registerCustomer() {
-		return "registerCustomer";
+	@GetMapping("/collectCustomerInfo")
+	public String collectCustomerInfo() {
+		return "collectCustomerInfo";
 	}
 
-	@PostMapping("/createUser")
-	public User createUser(@RequestBody User user) {
+	@PostMapping("/addUser")
+	public User addUser(@RequestBody User user) {
 		userService.addUser(user);
 		return user;
 	}
 
-	@PostMapping("/createCustomer")
-	public Customer createCustomer(@RequestBody Customer customer) {
+	@PostMapping("/addCustomerInfo")
+	public Customer addCustomerInfo(@RequestBody Customer customer) {
 		customerService.addCustomer(customer);
 		return customer;
 	}
 
-	@PostMapping("/createShippingAddress")
-	public ShippingAddress createShippingAddress(@RequestBody ShippingAddress shippingAddress) {
+	@PostMapping("/addShippingAddress")
+	public ShippingAddress addShippingAddress(@RequestBody ShippingAddress shippingAddress) {
 		shippingAddressService.addShippingAddress(shippingAddress);
 		return shippingAddress;
 	}
