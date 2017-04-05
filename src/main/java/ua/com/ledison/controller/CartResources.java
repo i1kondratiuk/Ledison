@@ -67,7 +67,7 @@ public class CartResources {
 		cartItemService.removeCartItem(cartItem);
 	}
 
-	@GetMapping("/{cartId}")
+	@PutMapping("/{cartId}")
 	public void clearCart(@PathVariable(value = "cartId") int cartId) {
 		Cart cart = cartService.getCartById(cartId);
 		cartItemService.removeAllCartItems(cart);
