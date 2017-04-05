@@ -19,7 +19,6 @@ public class Cart {
 
     @OneToOne
     @JoinColumn(name = "customerId")
-    @JsonIgnore
     private Customer customer;
 
     private double grandTotal;
