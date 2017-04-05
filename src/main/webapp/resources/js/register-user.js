@@ -2,7 +2,7 @@ $(document).ready(function () {
     console.log("hello");
 
     var user = {};
-    $('#createUser').click(function () {
+    $('#addUser').click(function () {
         var username = $("#username").val();
         var password = $('#password').val();
         console.log(username + " " + password);
@@ -13,7 +13,7 @@ $(document).ready(function () {
         console.log(jUser);
 
         $.ajax({
-            url: '/createUser',
+            url: '/addUser',
             type: 'POST',
             data: jUser,
             contentType: 'application/json',

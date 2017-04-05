@@ -2,6 +2,7 @@ package ua.com.ledison.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import ua.com.ledison.entity.Cart;
 import ua.com.ledison.entity.CartItem;
@@ -14,7 +15,7 @@ import ua.com.ledison.service.ProductService;
 
 import java.util.List;
 
-@RestController
+@Controller
 @RequestMapping("/rest/cart")
 public class CartResources {
 

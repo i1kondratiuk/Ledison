@@ -6,17 +6,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class HomeController {
 
-	@GetMapping("/")
+	@GetMapping({"/", "/home"})
 	public String home() {
 		return "home";
 	}
 
-	@GetMapping("home")
-	public String toHome() {
-		return "home";
-	}
-
-	@GetMapping("login")
+	@GetMapping("/login")
 	public String toLogin() {
 		return "login";
 	}

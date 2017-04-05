@@ -1,6 +1,7 @@
 package ua.com.ledison.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import ua.com.ledison.entity.Customer;
 import ua.com.ledison.entity.ShippingAddress;
@@ -9,7 +10,7 @@ import ua.com.ledison.service.CustomerService;
 import ua.com.ledison.service.ShippingAddressService;
 import ua.com.ledison.service.UserService;
 
-@RestController
+@Controller
 public class RegisterController {
 
 	@Autowired
