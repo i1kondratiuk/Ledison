@@ -10,43 +10,33 @@ import ua.com.ledison.service.CustomerService;
 import ua.com.ledison.service.ShippingAddressService;
 import ua.com.ledison.service.UserService;
 
-@Controller
+@RestController
 public class RegisterController {
 
-	@Autowired
-	private UserService userService;
+    @Autowired
+    private UserService userService;
 
-	@Autowired
-	private CustomerService customerService;
+    @Autowired
+    private CustomerService customerService;
 
-	@Autowired
-	private ShippingAddressService shippingAddressService;
+    @Autowired
+    private ShippingAddressService shippingAddressService;
 
-	@GetMapping("/registerUser")
-	public String registerUser() {
-		return "registerUser";
-	}
+    @PostMapping("/addUser")
+    public User addUser(@RequestBody User user) {
+        userService.addUser(user);
+        return user;
+    }
 
-	@GetMapping("/collectCustomerInfo")
-	public String collectCustomerInfo() {
-		return "collectCustomerInfo";
-	}
+    @PostMapping("/addCustomerInfo")
+    public Customer addCustomerInfo(@RequestBody Customer customer) {
+        customerService.addCustomer(customer);
+        return customer;
+    }
 
-	@PostMapping("/addUser")
-	public User addUser(@RequestBody User user) {
-		userService.addUser(user);
-		return user;
-	}
-
-	@PostMapping("/addCustomerInfo")
-	public Customer addCustomerInfo(@RequestBody Customer customer) {
-		customerService.addCustomer(customer);
-		return customer;
-	}
-
-	@PostMapping("/addShippingAddress")
-	public ShippingAddress addShippingAddress(@RequestBody ShippingAddress shippingAddress) {
-		shippingAddressService.addShippingAddress(shippingAddress);
-		return shippingAddress;
-	}
+    @PostMapping("/addShippingAddress")
+    public ShippingAddress addShippingAddress(@RequestBody ShippingAddress shippingAddress) {
+        shippingAddressService.addShippingAddress(shippingAddress);
+        return shippingAddress;
+    }
 }
