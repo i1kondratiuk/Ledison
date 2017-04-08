@@ -21,7 +21,7 @@ public class ProductController {
     public String getProducts(Model model){
         List<Product> products = productService.getProductList();
         model.addAttribute("products", products);
-
+        System.out.println(products);
         return "productList";
     }
 
@@ -32,6 +32,7 @@ public class ProductController {
 
         return "viewProduct";
     }
+
 
     @PostMapping("/productList")
     public String getProductByCategory(@RequestParam String searchCondition, Model model){

@@ -23,6 +23,12 @@ public class AdminProduct {
 	@GetMapping("/addProduct")
 	public String addProduct(Model model) {
 		Product product = new Product();
+		product.setProductName("Lamp-1");
+		product.setProductManufacturer("LG");
+		product.setProductPrice(20.1);
+		product.setProductCategory("ledBulbs");
+		product.setCapType("E27");
+		product.setDiffuserType("frosted");
 		model.addAttribute("product", product);
 
 		return "addProduct";

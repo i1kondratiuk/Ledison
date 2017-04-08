@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Ledison</title>
 
-    <link href="../../resources/css/bootstrap.css" rel="stylesheet"/>
+    <link href="../../resources/css/bootstrap.css" rel="stylesheet" />
     <link href="../../resources/css/style.css" rel="stylesheet">
     <link href="../../resources/css/font-awesome.css" rel="stylesheet">
 
@@ -16,56 +16,43 @@
     <!-- JQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
-    <script src="../resources/js/bootstrap.js"></script>
-    <script src="../resources/js/app.js"></script>
-
+    <script src="../../resources/js/bootstrap.js"></script>
 </head>
+
 <body>
-<div class="navbar navbar-default navbar-fixed-top">
+<div class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#responsive-menu"><span
-                    class="sr-only">Пункти</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span
-                    class="icon-bar"></span></button>
-            <a class="navbar-brand" href="home">LEDISON</a></div>
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#responsive-menu">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="home">LEDISON</a>
+        </div>
         <div class="collapse navbar-collapse" id="responsive-menu">
-            <ul class="nav navbar-nav">
-                <li class="dropdown"><a class="dropdowm-toggle" href="#" data-toggle="dropdown">Каталог <b
+            <div class="nav navbar-nav">
+                <li class="dropdown"><a class="dropdowm-toggle" href="#" data-toggle="dropdown"><b
                         class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Пункт 1</a></li>
-                        <li><a href="#">Пункт 2</a></li>
-                        <li><a href="#">Пункт 3</a></li>
+                        <li><a href="productList/all">Каталог</a></li>
+                        <li><a href="#">Передзвоніть мені</a></li>
+                        <li><a href="#">Зворотній зв’язок</a></li>
+                        <li><a href="#">Новинки індустрії</a></li>
                         <li class="divider"></li>
-                        <li><a href="#">Пункт 4</a></li>
+                        <li><a href="#">Про компанію</a></li>
                     </ul>
                 </li>
-                <li>
-                    <form action="" class="navbar-form navbar-left">
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Search" value=""></div>
-                        <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
-                    </form>
-                </li>
-                <li>
-                    <form action="" class="navbar-form navbar-left">
-                        <div class="form-group">
-                            <input type="text" class="form-control hidden" placeholder="000 000 00 00" value=""></div>
-                        <button type="submit" class="btn btn-default"><i class="fa fa-phone"></i> Передзвоніть мені
-                        </button>
-                    </form>
-                </li>
-                <li class="hidden-sm"><a href="#">Про компанію</a></li>
-            </ul>
-            <form action="" class="navbar-form navbar-right hidden-sm hidden-md">
-                <div class="form-group hidden">
-                    <input type="text" class="form-control" placeholder="E-mail" value=""></div>
+            </div>
+            <form action="" class="navbar-form navbar-left">
                 <div class="form-group">
-                    <input type="text" class="form-control hidden" placeholder="Password" value=""></div>
-                <button type="submit" class="btn hidden"><i class="fa fa-sign-in"></i> Вхід/Реєстрація</button>
+                    <input type="text" class="form-control" placeholder="Пошук" value="">
+                    <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                </div>
             </form>
             <div class="navbar-form navbar-right">
-                <a href="login" class="btn btn-default"><i class="fa fa-sign-in"></i> Вхід/Реєстрація</a>
+                <a href="login" class="btn btn-primary"><i class="fa fa-sign-in"></i> Вхід/Реєстрація</a>
+                <a href="login" class="btn btn-danger"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
             </div>
         </div>
     </div>
