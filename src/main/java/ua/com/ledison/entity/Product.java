@@ -5,6 +5,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import java.util.List;
 
@@ -18,8 +19,11 @@ public class Product {
     @NotEmpty(message = "The product name must not be empty")
     private String productName;
 
+	@NotEmpty(message = "The product category name must not be empty")
+	private String productCategory;
+
     @NotEmpty(message = "The product brand name must not be empty")
-    private String productBrand;
+    private String productManufacturer;
 
     @Min(value = 0, message = "The product price must not be less then zero")
     private double productPrice;
@@ -33,19 +37,20 @@ public class Product {
     @NotEmpty(message = "The lamp shape must not be empty")
     private String lampShape;
 
-    @NotEmpty(message = "The power must not be empty")
+    @Min(value = 0, message = "The power must not be less then zero")
+    @Max(value = 200, message = "The power must not be more then 200")
     private int power;
 
     @NotEmpty(message = "The operating voltage name must not be empty")
-    private int operatingVoltage;
+    private String operatingVoltage;
 
     @NotEmpty(message = "The diffuser type must not be empty")
     private String diffuserType;
 
-    @NotEmpty(message = "The service life must not be empty")
+    @Min(value = 0, message = "The service period must not be less then zero")
     private int serviceLife;
 
-    @NotEmpty(message = "The warranty period must not be empty")
+    @Min(value = 0, message = "The warranty period must not be less then zero")
     private int warrantyPeriod;
 
     @Min(value = 0, message = "The product unit must not be less then zero")
@@ -54,7 +59,7 @@ public class Product {
     @Transient
     private MultipartFile productImage;
 
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JsonIgnore
     private List<CartItem> cartItemList;
 
@@ -77,12 +82,20 @@ public class Product {
 		this.productName = productName;
 	}
 
-	public String getProductBrand() {
-		return productBrand;
+	public String getProductCategory() {
+		return productCategory;
 	}
 
-	public void setProductBrand(String productBrand) {
-		this.productBrand = productBrand;
+	public void setProductCategory(String productCategory) {
+		this.productCategory = productCategory;
+	}
+
+	public String getProductManufacturer() {
+		return productManufacturer;
+	}
+
+	public void setProductManufacturer(String productManufacturer) {
+		this.productManufacturer = productManufacturer;
 	}
 
 	public double getProductPrice() {
@@ -125,11 +138,11 @@ public class Product {
 		this.power = power;
 	}
 
-	public int getOperatingVoltage() {
+	public String getOperatingVoltage() {
 		return operatingVoltage;
 	}
 
-	public void setOperatingVoltage(int operatingVoltage) {
+	public void setOperatingVoltage(String operatingVoltage) {
 		this.operatingVoltage = operatingVoltage;
 	}
 
@@ -186,7 +199,7 @@ public class Product {
 		return "Product{" +
 				"productId=" + productId +
 				", productName='" + productName + '\'' +
-				", productBrand='" + productBrand + '\'' +
+				", productBrand='" + productManufacturer + '\'' +
 				", productPrice=" + productPrice +
 				", capType='" + capType + '\'' +
 				", glowColor='" + glowColor + '\'' +
