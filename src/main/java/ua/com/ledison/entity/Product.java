@@ -18,14 +18,35 @@ public class Product {
     @NotEmpty(message = "The product name must not be empty")
     private String productName;
 
-    private String productCategory;
-    private String productManufacturer;
-    private String productCondition;
-    private String productStatus;
-    private String productDescription;
+    @NotEmpty(message = "The product brand name must not be empty")
+    private String productBrand;
 
     @Min(value = 0, message = "The product price must not be less then zero")
     private double productPrice;
+
+    @NotEmpty(message = "The cap type must not be empty")
+    private String capType;
+
+    @NotEmpty(message = "The color of glow must not be empty")
+    private String glowColor;
+
+    @NotEmpty(message = "The lamp shape must not be empty")
+    private String lampShape;
+
+    @NotEmpty(message = "The power must not be empty")
+    private int power;
+
+    @NotEmpty(message = "The operating voltage name must not be empty")
+    private int operatingVoltage;
+
+    @NotEmpty(message = "The diffuser type must not be empty")
+    private String diffuserType;
+
+    @NotEmpty(message = "The service life must not be empty")
+    private int serviceLife;
+
+    @NotEmpty(message = "The warranty period must not be empty")
+    private int warrantyPeriod;
 
     @Min(value = 0, message = "The product unit must not be less then zero")
     private int unitInStock;
@@ -37,94 +58,147 @@ public class Product {
     @JsonIgnore
     private List<CartItem> cartItemList;
 
-
-    public int getProductId() {
-        return productId;
+    public Product() {
     }
 
-    public void setProductId(int productId) {
-        this.productId = productId;
-    }
+	public int getProductId() {
+		return productId;
+	}
 
-    public String getProductName() {
-        return productName;
-    }
+	public void setProductId(int productId) {
+		this.productId = productId;
+	}
 
-    public void setProductName(String productName) {
-        this.productName = productName;
-    }
+	public String getProductName() {
+		return productName;
+	}
 
-    public String getProductCategory() {
-        return productCategory;
-    }
+	public void setProductName(String productName) {
+		this.productName = productName;
+	}
 
-    public void setProductCategory(String productCategory) {
-        this.productCategory = productCategory;
-    }
+	public String getProductBrand() {
+		return productBrand;
+	}
 
-    public String getProductDescription() {
-        return productDescription;
-    }
+	public void setProductBrand(String productBrand) {
+		this.productBrand = productBrand;
+	}
 
-    public void setProductDescription(String productDescription) {
-        this.productDescription = productDescription;
-    }
+	public double getProductPrice() {
+		return productPrice;
+	}
 
-    public double getProductPrice() {
-        return productPrice;
-    }
+	public void setProductPrice(double productPrice) {
+		this.productPrice = productPrice;
+	}
 
-    public void setProductPrice(double productPrice) {
-        this.productPrice = productPrice;
-    }
+	public String getCapType() {
+		return capType;
+	}
 
-    public String getProductCondition() {
-        return productCondition;
-    }
+	public void setCapType(String capType) {
+		this.capType = capType;
+	}
 
-    public void setProductCondition(String productCondition) {
-        this.productCondition = productCondition;
-    }
+	public String getGlowColor() {
+		return glowColor;
+	}
 
-    public String getProductStatus() {
-        return productStatus;
-    }
+	public void setGlowColor(String glowColor) {
+		this.glowColor = glowColor;
+	}
 
-    public void setProductStatus(String productStatus) {
-        this.productStatus = productStatus;
-    }
+	public String getLampShape() {
+		return lampShape;
+	}
 
-    public int getUnitInStock() {
-        return unitInStock;
-    }
+	public void setLampShape(String lampShape) {
+		this.lampShape = lampShape;
+	}
 
-    public void setUnitInStock(int unitInStock) {
-        this.unitInStock = unitInStock;
-    }
+	public int getPower() {
+		return power;
+	}
 
-    public String getProductManufacturer() {
-        return productManufacturer;
-    }
+	public void setPower(int power) {
+		this.power = power;
+	}
 
-    public void setProductManufacturer(String productManufacturer) {
-        this.productManufacturer = productManufacturer;
-    }
+	public int getOperatingVoltage() {
+		return operatingVoltage;
+	}
 
+	public void setOperatingVoltage(int operatingVoltage) {
+		this.operatingVoltage = operatingVoltage;
+	}
 
-    public MultipartFile getProductImage() {
-        return productImage;
-    }
+	public String getDiffuserType() {
+		return diffuserType;
+	}
 
-    public void setProductImage(MultipartFile productImage) {
-        this.productImage = productImage;
-    }
+	public void setDiffuserType(String diffuserType) {
+		this.diffuserType = diffuserType;
+	}
 
+	public int getServiceLife() {
+		return serviceLife;
+	}
 
-    public List<CartItem> getCartItemList() {
-        return cartItemList;
-    }
+	public void setServiceLife(int serviceLife) {
+		this.serviceLife = serviceLife;
+	}
 
-    public void setCartItemList(List<CartItem> cartItemList) {
-        this.cartItemList = cartItemList;
-    }
+	public int getWarrantyPeriod() {
+		return warrantyPeriod;
+	}
+
+	public void setWarrantyPeriod(int warrantyPeriod) {
+		this.warrantyPeriod = warrantyPeriod;
+	}
+
+	public int getUnitInStock() {
+		return unitInStock;
+	}
+
+	public void setUnitInStock(int unitInStock) {
+		this.unitInStock = unitInStock;
+	}
+
+	public MultipartFile getProductImage() {
+		return productImage;
+	}
+
+	public void setProductImage(MultipartFile productImage) {
+		this.productImage = productImage;
+	}
+
+	public List<CartItem> getCartItemList() {
+		return cartItemList;
+	}
+
+	public void setCartItemList(List<CartItem> cartItemList) {
+		this.cartItemList = cartItemList;
+	}
+
+	@Override
+	public String toString() {
+		return "Product{" +
+				"productId=" + productId +
+				", productName='" + productName + '\'' +
+				", productBrand='" + productBrand + '\'' +
+				", productPrice=" + productPrice +
+				", capType='" + capType + '\'' +
+				", glowColor='" + glowColor + '\'' +
+				", lampShape='" + lampShape + '\'' +
+				", power=" + power +
+				", operatingVoltage=" + operatingVoltage +
+				", diffuserType='" + diffuserType + '\'' +
+				", serviceLife=" + serviceLife +
+				", warrantyPeriod=" + warrantyPeriod +
+				", unitInStock=" + unitInStock +
+				", productImage=" + productImage +
+				", cartItemList=" + cartItemList +
+				'}';
+	}
 }
