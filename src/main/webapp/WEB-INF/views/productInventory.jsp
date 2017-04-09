@@ -1,3 +1,4 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ include file="/WEB-INF/views/template/header.jsp" %>
@@ -14,10 +15,10 @@
             <thead>
             <tr class="bg-success">
                 <th>Proto</th>
-                <th>Product Name</th>
-                <th>Category</th>
-                <th>Condition</th>
-                <th>Price</th>
+                <th>Найменування</th>
+                <th>Категорія</th>
+                <th>Виробник</th>
+                <th>Ціна</th>
                 <th></th>
             </tr>
             </thead>
@@ -26,7 +27,7 @@
                     <td><img src="<c:url value="/resources/images/${product.productId}.png" />" alt="image"/></td>
                     <td>${product.productName}</td>
                     <td>${product.productCategory}</td>
-                    <td>${product.productCondition}</td>
+                    <td>${product.productManufacturer}</td>
                     <td>${product.productPrice} USD </td>
                     <td>
                         <a href="<spring:url value="/product/viewProduct/${product.productId}" />"><span class="glyphicon glyphicon-info-sign"></span></a>
