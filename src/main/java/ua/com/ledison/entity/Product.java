@@ -56,8 +56,7 @@ public class Product {
     @Min(value = 0, message = "The product unit must not be less then zero")
     private int unitInStock;
 
-    @Transient
-    private MultipartFile productImage;
+	private String productImage;
 
 	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JsonIgnore
@@ -178,11 +177,11 @@ public class Product {
 		this.unitInStock = unitInStock;
 	}
 
-	public MultipartFile getProductImage() {
+	public String getProductImage() {
 		return productImage;
 	}
 
-	public void setProductImage(MultipartFile productImage) {
+	public void setProductImage(String productImage) {
 		this.productImage = productImage;
 	}
 
