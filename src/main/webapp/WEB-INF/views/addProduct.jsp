@@ -9,8 +9,7 @@
             <p class="lead">Fill the below information to add a product:</p>
         </div>
 
-        <form:form action="${pageContext.request.contextPath}/admin/product/addProduct"
-                   modelAttribute="product" enctype="multipart/form-data" method="post">
+        <form:form method="POST" action="/admin/product/addProduct" modelAttribute="product">
 
         <div class="form-group">
             <label for="productName">Назва</label>
@@ -19,21 +18,21 @@
         </div>
 
         <div class="form-group">
-            <label for="category">Категорія</label>
-            <label class="checkbox-inline"><form:radiobutton path="productCategory" id="category" value="ledBulbs"/>Світлодіодні лампи</label>
-            <label class="checkbox-inline"><form:radiobutton path="productCategory" id="category" value="ledLuminaires"/>Світильники</label>
+            <label for="productCategory">Категорія</label>
+            <label class="checkbox-inline"><form:radiobutton path="productCategory" id="productCategory" value="ledBulbs"/>Світлодіодні лампи</label>
+            <label class="checkbox-inline"><form:radiobutton path="productCategory" id="productCategory" value="ledLuminaires"/>Світильники</label>
         </div>
 
         <div class="form-group">
-            <label for="manufacturer">Виробник</label>
+            <label for="productManufacturer">Виробник</label>
             <form:errors path="productManufacturer" cssStyle="color:#ff0000;"/>
-            <form:input path="productManufacturer" id="manufacturer" class="form-control"/>
+            <form:input path="productManufacturer" id="productManufacturer" class="form-control"/>
         </div>
 
         <div class="form-group">
-            <label for="price">Ціна</label>
+            <label for="productPrice">Ціна</label>
             <form:errors path="productPrice" cssStyle="color:#ff0000;"/>
-            <form:input path="productPrice" id="price" class="form-control"/>
+            <form:input path="productPrice" id="productPrice" class="form-control"/>
         </div>
 
         <div class="form-group">
@@ -70,7 +69,7 @@
 
         <div class="form-group">
             <label for="power">Потужність, W</label>
-            <form:errors path="productPrice" cssStyle="color:#ff0000;"/>
+            <form:errors path="power" cssStyle="color:#ff0000;"/>
             <form:input path="power" id="power" class="form-control"/>
         </div>
 
@@ -107,8 +106,13 @@
 
         <div class="form-group">
             <label class="control-label" for="productImage">Завантажити зображення</label>
-            <form:input id="productImage" path="productImage" type="file" class="form:input-large"/>
+            <form:input path="productImage" id="productImage" class="form-control"/>
         </div>
+
+        <%--<div class="form-group">--%>
+            <%--<label class="control-label" for="productImage">Завантажити зображення</label>--%>
+            <%--<form:input path="productImage" id="productImage" type="file" class="form:input-large"/>--%>
+        <%--</div>--%>
 
         <br>
 
