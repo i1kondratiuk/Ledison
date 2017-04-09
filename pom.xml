@@ -7,6 +7,7 @@
     <version>1.0-SNAPSHOT</version>
 
     <properties>
+        <failOnMissingWebXml>false</failOnMissingWebXml>
         <spring.version>4.3.7.RELEASE</spring.version>
         <spring-security.version>4.2.2.RELEASE</spring-security.version>
         <spring-data.version>1.11.1.RELEASE</spring-data.version>
@@ -21,6 +22,7 @@
         <javax-mail.version>1.4.7</javax-mail.version>
         <mysql-connector-java.version>6.0.6</mysql-connector-java.version>
         <log4j.version>1.2.17</log4j.version>
+        <jdk.version>1.8</jdk.version>
     </properties>
 
     <dependencies>
@@ -206,22 +208,16 @@
     </dependencies>
 
     <build>
-        <pluginManagement>
-            <plugins>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-war-plugin</artifactId>
-                    <version>2.4</version>
-                    <configuration>
-                        <warSourceDirectory>src/main/webapp</warSourceDirectory>
-                        <warName>Ledison</warName>
-                        <failOnMissingWebXml>false</failOnMissingWebXml>
-                    </configuration>
-                </plugin>
-            </plugins>
-        </pluginManagement>
-
-        <finalName>Ledison</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+        </plugins>
     </build>
 
 </project>
