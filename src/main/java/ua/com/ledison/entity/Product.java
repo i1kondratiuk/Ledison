@@ -7,10 +7,11 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
+import java.io.Serializable;
 import java.util.List;
 
 @Entity
-public class Product {
+public class Product implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -56,7 +57,8 @@ public class Product {
     @Min(value = 0, message = "The product unit must not be less then zero")
     private int unitInStock;
 
-	private String productImage;
+	@Transient
+	private MultipartFile productImage;
 
 	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JsonIgnore
@@ -177,11 +179,11 @@ public class Product {
 		this.unitInStock = unitInStock;
 	}
 
-	public String getProductImage() {
+	public MultipartFile getProductImage() {
 		return productImage;
 	}
 
-	public void setProductImage(String productImage) {
+	public void setProductImage(MultipartFile productImage) {
 		this.productImage = productImage;
 	}
 

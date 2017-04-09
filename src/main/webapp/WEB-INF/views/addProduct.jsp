@@ -9,7 +9,7 @@
             <p class="lead">Fill the below information to add a product:</p>
         </div>
 
-        <form:form method="POST" action="/admin/product/addProduct" modelAttribute="product">
+        <form:form method="POST" action="/admin/product/addProduct" modelAttribute="product" enctype="multipart/form-data">
 
         <div class="form-group">
             <label for="productName">Назва</label>
@@ -106,13 +106,8 @@
 
         <div class="form-group">
             <label class="control-label" for="productImage">Завантажити зображення</label>
-            <form:input path="productImage" id="productImage" class="form-control"/>
+            <form:input id="productImage" path="productImage" type="file" />
         </div>
-
-        <%--<div class="form-group">--%>
-            <%--<label class="control-label" for="productImage">Завантажити зображення</label>--%>
-            <%--<form:input path="productImage" id="productImage" type="file" class="form:input-large"/>--%>
-        <%--</div>--%>
 
         <br>
 
