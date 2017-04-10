@@ -14,7 +14,7 @@
         <table class="table table-striped table-hover">
             <thead>
             <tr class="bg-success">
-                <th>Proto</th>
+                <th>Фото</th>
                 <th>Найменування</th>
                 <th>Категорія</th>
                 <th>Виробник</th>

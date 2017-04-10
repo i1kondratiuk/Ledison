@@ -1,6 +1,4 @@
 $(document).ready(function () {
-    console.log("hello");
-
     var user = {};
     $('#addUser').click(function () {
         var username = $("#username").val();

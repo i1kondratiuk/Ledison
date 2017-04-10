@@ -21,6 +21,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
     <script src="../../resources/js/bootstrap.js"></script>
+    <script src="../../resources/js/image-preview-input.js"></script>
 </head>
 
 <body>

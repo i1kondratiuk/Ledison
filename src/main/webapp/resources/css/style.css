@@ -5,7 +5,7 @@
 }
 
 .col-menu-item {
-    
+
     height: 50px;
     display: block;
     font-family: "Oswald", sans-serif;
@@ -103,6 +103,7 @@
     transition: all 0.1s ease-in-out;
     text-shadow: rgba(0, 0, 0, 0.3) 1px 1px;
 }
+
 /*---------------------------------------*/
 
 a.spoiler:after {
@@ -117,7 +118,7 @@ a.spoiler.collapsed:after {
     margin-top: 15px;
 }
 
-.breadcrumb>li+li:before {
+.breadcrumb > li + li:before {
     content: '\f105';
     font-family: 'FontAwesome';
 }
@@ -157,4 +158,30 @@ a.spoiler.collapsed:after {
 
 .well-bottom {
     height: 280px;
+}
+
+/*image-preview-input*/
+.image-preview-input {
+    position: relative;
+    overflow: hidden;
+    margin: 0px;
+    color: #333;
+    background-color: #fff;
+    border-color: #ccc;
+}
+
+.image-preview-input input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0;
+    filter: alpha(opacity=0);
+}
+
+.image-preview-input-title {
+    margin-left: 2px;
 }
