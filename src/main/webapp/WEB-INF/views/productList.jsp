@@ -1,8 +1,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<jsp:include page="template/header.jsp"/>
+<%@ include file="/WEB-INF/views/template/header.jsp" %>
+
 <div class="container">
     <div class="col-md-3 col-lg-3 col-lg-3">
         <br>
@@ -269,7 +271,7 @@
                     <div class="col-xs-6 col-sm-4">
                         <a href="">
                             <div class="thumbnail">
-                                <img src="http://placehold.it/300x240" alt="">
+                                <img src="<c:url value="../resources/images/${product.productId}.jpg" />" width="400" alt="${product.productName} ${product.productId}"/>
                                 <div class="caption">
                                     <h3><a href="">${product.productName}</a></h3>
                                     <span style="font-size: 24px;">${product.productPrice}</span>
