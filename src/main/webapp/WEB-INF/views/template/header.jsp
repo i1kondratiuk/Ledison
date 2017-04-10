@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <html>
@@ -57,7 +58,7 @@
             </form>
             <div class="navbar-form navbar-right">
                 <a href="login" class="btn btn-primary"><i class="fa fa-sign-in"></i> Вхід/Реєстрація</a>
-                <a href="login" class="btn btn-danger"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
+                <a href="cart" class="btn btn-danger"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
             </div>
         </div>
     </div>
