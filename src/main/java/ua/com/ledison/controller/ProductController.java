@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import ua.com.ledison.entity.Product;
 import ua.com.ledison.service.ProductService;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
@@ -20,7 +21,9 @@ public class ProductController {
     @GetMapping("/productList/all")
     public String getProducts(Model model){
         List<Product> products = productService.getProductList();
+        String homePath = System.getProperty("user.home") + File.separator + "images" + File.separator;
         model.addAttribute("products", products);
+        model.addAttribute("homePath", homePath);
         System.out.println(products);
         return "productList";
     }

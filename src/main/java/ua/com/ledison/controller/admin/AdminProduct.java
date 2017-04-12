@@ -45,6 +45,7 @@ public class AdminProduct {
 	@PostMapping("/addProduct")
 	public String addProductPost(@Valid @ModelAttribute("product") Product product, BindingResult result, HttpServletRequest request)  throws IOException {
 
+
 		if (result.hasErrors()) {
 			return "addProduct";
 		}
@@ -53,11 +54,8 @@ public class AdminProduct {
 
 		MultipartFile multipartFile = product.getProductImage();
 
-//		String rootDirectory = request.getSession().getServletContext().getRealPath("");
-//		System.out.println("rootDirectory" + rootDirectory);
 
 		String homePath = System.getProperty("user.home") + File.separator + "IdeaProjects" + File.separator +"Ledison" + File.separator + "src" + File.separator + "main" + File.separator + "webapp" + File.separator + "resources" + File.separator + "images" + File.separator + product.getProductId() + ".jpg";
-//		String realPath = rootDirectory + File.separator + "src" + File.separator + "main" + File.separator + "webapp" + File.separator + "resources" + File.separator + "images" + File.separator + product.getProductId() + ".jpg";
 
 		if (multipartFile != null && !multipartFile.isEmpty()) {
 			try {

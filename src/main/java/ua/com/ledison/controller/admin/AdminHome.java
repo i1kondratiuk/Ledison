@@ -10,6 +10,7 @@ import ua.com.ledison.entity.Product;
 import ua.com.ledison.service.CustomerService;
 import ua.com.ledison.service.ProductService;
 
+import java.io.File;
 import java.util.List;
 
 @Controller
@@ -30,7 +31,9 @@ public class AdminHome {
     @GetMapping("/productInventory")
     public String productInventory(Model model){
         List<Product> products = productService.getProductList();
+        String homePath = System.getProperty("user.home") + File.separator + "images" + File.separator;
         model.addAttribute("products", products);
+        model.addAttribute("homePath", homePath);
 
         return "productInventory";
     }

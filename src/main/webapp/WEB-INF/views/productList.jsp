@@ -271,7 +271,7 @@
                     <div class="col-xs-6 col-sm-4">
                         <a href="">
                             <div class="thumbnail">
-                                <img src="<c:url value="../resources/images/${product.productId}.jpg" />" width="400" alt="${product.productName} ${product.productId}"/>
+                                <img src="${homePath}${product.productId}.jpg" width="400" alt="${product.productName} ${product.productId}"/>
                                 <div class="caption">
                                     <h3><a href="">${product.productName}</a></h3>
                                     <span style="font-size: 24px;">${product.productPrice}</span>

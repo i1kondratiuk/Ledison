@@ -1,3 +1,4 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="/WEB-INF/views/template/header.jsp" %>
 
 <div class="container-wrapper">
@@ -21,7 +22,7 @@
             </thead>
             <c:forEach items="${products}" var="product">
                 <tr>
-                    <td><img src="<c:url value="../resources/images/${product.productId}.jpg" />" alt="${product.productName}"/></td>
+                    <td><img src="<c:url value="../resources/images/${product.productId}.jpg" />" width="200" alt="${product.productName}"/></td>
                     <td>${product.productName}</td>
                     <td>${product.productCategory}</td>
                     <td>${product.productManufacturer}</td>
