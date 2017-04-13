@@ -15,19 +15,16 @@ import java.util.List;
 @Service
 public class ProductServiceImpl implements ProductService {
 
-
-//    {
-//
-//        Page<Product> productPage = productDao.findAll(new PageRequest(1, 6));
-//
-//
-//
-//    }
     @Autowired
     private ProductDao productDao;
 
     public Product getProductById(int productId){
         return productDao.findOne(productId);
+    }
+
+    @Override
+    public Page<Product> findPaginated(int page, int size) {
+        return productDao.findAll(new PageRequest(page, size));
     }
 
     public List<Product> getProductList(){
