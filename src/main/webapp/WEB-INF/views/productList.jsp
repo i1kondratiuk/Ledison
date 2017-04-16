@@ -5,6 +5,7 @@
 
 <%@ include file="/WEB-INF/views/template/header.jsp" %>
 
+<script src="../../resources/js/pagination.js"></script>
 <div class="container">
     <div class="col-md-3 col-lg-3 col-lg-3">
         <br>
@@ -283,23 +284,50 @@
                     </div>
                 </c:forEach>
             </div>
-            <nav class="text-center">
-                <ul class="pagination pagination-sm">
-                    <li class="disabled"><a href="#"><i class="fa fa-chevron-left"></i> <i
-                            class="fa fa-chevron-left"></i> </a></li>
-                    <li class="disabled"><a href="#"><i class="fa fa-chevron-left"></i> </a></li>
-                    <li class="active"><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li>
-                        <a href="#"> <i class="fa fa-chevron-right"></i> </a>
-                    </li>
-                    <li>
-                        <a href="#"> <i class="fa fa-chevron-right"></i> <i class="fa fa-chevron-right"></i> </a>
-                    </li>
-                </ul>
-            </nav>
+            <%--<nav class="text-center">--%>
+                <%--<ul class="pagination pagination-sm">--%>
+                    <%--<li class="disabled"><a href="#"><i class="fa fa-chevron-left"></i> <i--%>
+                            <%--class="fa fa-chevron-left"></i> </a></li>--%>
+                    <%--<li class="disabled"><a href="#"><i class="fa fa-chevron-left"></i> </a></li>--%>
+                    <%--<li><a class="active" href="/product/productList/all?page=1&size=6">1</a></li>--%>
+                    <%--<li><a class="active" href="/product/productList/all?page=2&size=6">2</a></li>--%>
+                    <%--<li><a href="#">3</a></li>--%>
+                    <%--<li>--%>
+                        <%--<a href="#"> <i class="fa fa-chevron-right"></i> </a>--%>
+                    <%--</li>--%>
+                    <%--<li>--%>
+                        <%--<a href="#"> <i class="fa fa-chevron-right"></i> <i class="fa fa-chevron-right"></i> </a>--%>
+                    <%--</li>--%>
+                <%--</ul>--%>
+            <%--</nav>--%>
+            <div id="pagination"></div>
+
+            <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+
+            <script>
+
+                $("#pagination").paging(1337, {
+                    format: '[< ncnnn >]',
+                    onSelect: function (page) {
+                        // add code which gets executed when user selects a page
+                    },
+                    onFormat: function (type) {
+                        switch (type) {
+                            case 'block': // n and c
+                                return '<a>' + this.value + '</a>';
+                            case 'next': // >
+                                return '<a>&gt;</a>';
+                            case 'prev': // <
+                                return '<a>&lt;</a>';
+                            case 'first': // [
+                                return '<a>first</a>';
+                            case 'last': // ]
+                                return '<a>last</a>';
+                        }
+                    }
+                });
+
+            </script>
         </div>
     </div>
 
