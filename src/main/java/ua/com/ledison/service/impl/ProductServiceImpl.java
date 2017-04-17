@@ -2,7 +2,6 @@ package ua.com.ledison.service.impl;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import ua.com.ledison.dao.ProductDao;
 import ua.com.ledison.entity.Product;
@@ -15,32 +14,33 @@ import java.util.List;
 @Service
 public class ProductServiceImpl implements ProductService {
 
-    @Autowired
-    private ProductDao productDao;
+	private static final int PAGE_SIZE = 9;
 
-    public Product getProductById(int productId){
-        return productDao.findOne(productId);
-    }
+	@Autowired
+	private ProductDao productDao;
 
-    @Override
-    public Page<Product> findPaginated(int page, int size) {
-        return productDao.findAll(new PageRequest(page, size));
-    }
+	public Product getProductById(int productId) {
+		return productDao.findOne(productId);
+	}
 
-    public List<Product> getProductList(){
-        return productDao.findAll();
-    }
+	@Override
+	public Page<Product> findPaginated(int pageNumber) {
+		return productDao.findAll(new PageRequest(pageNumber - 1, PAGE_SIZE, Sort.Direction.DESC, "productId"));
+	}
 
-    public void addProduct(Product product){
-        productDao.save(product);
-    }
+	public List<Product> getProductList() {
+		return productDao.findAll();
+	}
 
-    public void editProduct(Product product){
-        productDao.save(product);
-    }
+	public void addProduct(Product product) {
+		productDao.save(product);
+	}
 
-    public void deleteProduct(Product product){
-        productDao.delete(product);
-    }
+	public void editProduct(Product product) {
+		productDao.save(product);
+	}
 
+	public void deleteProduct(Product product) {
+		productDao.delete(product);
+	}
 }

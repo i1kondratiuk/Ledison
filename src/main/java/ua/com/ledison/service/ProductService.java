@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface ProductService {
 
-    Page<Product> findPaginated(int page, int size);
+    Page<Product> findPaginated(int pageNumber);
 
     List<Product> getProductList();
 
