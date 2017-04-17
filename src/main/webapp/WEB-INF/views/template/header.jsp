@@ -12,17 +12,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Ledison</title>
 
-    <link href="../../resources/css/bootstrap.css" rel="stylesheet" />
-    <link href="../../resources/css/style.css" rel="stylesheet">
-    <link href="../../resources/css/font-awesome.css" rel="stylesheet">
+    <link href="/resources/css/bootstrap.css" rel="stylesheet" />
+    <link href="/resources/css/style.css" rel="stylesheet">
+    <link href="/resources/css/font-awesome.css" rel="stylesheet">
 
     <!-- Angular.JS -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.1/angular.min.js"></script>
     <!-- JQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
-    <script src="../../resources/js/bootstrap.js"></script>
-    <script src="../../resources/js/image-preview-input.js"></script>
+    <script src="/resources/js/bootstrap.js"></script>
+    <script src="/resources/js/image-preview-input.js"></script>
 </head>
 
 <body>
@@ -41,7 +41,7 @@
                 <li class="dropdown"><a class="dropdowm-toggle" href="#" data-toggle="dropdown"><b
                         class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li><a href="<spring:url value="product/productList/all" />">Каталог</a></li>
+                        <li><a href="<spring:url value="product/productList/all/1" />">Каталог</a></li>
                         <li><a href="#">Передзвоніть мені</a></li>
                         <li><a href="#">Зворотній зв’язок</a></li>
                         <li><a href="#">Новинки індустрії</a></li>
