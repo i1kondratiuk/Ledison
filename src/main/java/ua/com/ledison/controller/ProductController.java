@@ -6,7 +6,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ua.com.ledison.entity.Product;
-import ua.com.ledison.exception.MyResourceNotFoundException;
 import ua.com.ledison.service.ProductService;
 
 import java.io.File;
@@ -22,28 +21,33 @@ public class ProductController {
 
     // read - all
 
-    @GetMapping("/productList/all")
-    public String getProducts(Model model){
-        List<Product> products = productService.getProductList();
-        String homePath = System.getProperty("user.home") + File.separator + "images" + File.separator;
-        model.addAttribute("products", products);
-        model.addAttribute("homePath", homePath);
-        System.out.println(products);
-
-        return "productList";
-    }
+//    @GetMapping("/productList/all")
+//    public String getProducts(Model model){
+//        List<Product> products = productService.getProductList();
+//        String homePath = System.getProperty("user.home") + File.separator + "images" + File.separator;
+//        model.addAttribute("products", products);
+//        model.addAttribute("homePath", homePath);
+//        System.out.println(products);
+//
+//        return "productList";
+//    }
 
     // read - all paginated
 
-    @RequestMapping(value = "/productList/all", params = { "page", "size" }, method = RequestMethod.GET)
-    @ResponseBody
-    public List<Product> findPaginated(@RequestParam("page") final int page, @RequestParam("size") final int size) {
-        final Page<Product> resultPage = productService.findPaginated(page, size);
-        if (page > resultPage.getTotalPages()) {
-            throw new MyResourceNotFoundException();
-        }
+    @GetMapping("/productList/all/{pageNumber}")
+    public String getProducts(@PathVariable Integer pageNumber, Model model) {
+        Page<Product> page = productService.findPaginated(pageNumber);
 
-        return resultPage.getContent();
+        int current = page.getNumber() + 1;
+        int begin = Math.max(1, current - 5);
+        int end = Math.min(begin + 10, page.getTotalPages());
+
+        model.addAttribute("products", page);
+        model.addAttribute("beginIndex", begin);
+        model.addAttribute("currentIndex", current);
+        model.addAttribute("endIndex", end);
+
+        return "productList";
     }
 
     @GetMapping("/viewProduct/{productId}")
