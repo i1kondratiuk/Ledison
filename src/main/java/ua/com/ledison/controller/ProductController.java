@@ -19,30 +19,20 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
-    // read - all
-
-//    @GetMapping("/productList/all")
-//    public String getProducts(Model model){
-//        List<Product> products = productService.getProductList();
-//        String homePath = System.getProperty("user.home") + File.separator + "images" + File.separator;
-//        model.addAttribute("products", products);
-//        model.addAttribute("homePath", homePath);
-//        System.out.println(products);
-//
-//        return "productList";
-//    }
-
     // read - all paginated
 
     @GetMapping("/productList/all/{pageNumber}")
     public String getProducts(@PathVariable Integer pageNumber, Model model) {
         Page<Product> page = productService.findPaginated(pageNumber);
+        String homePath = System.getProperty("user.home") + File.separator + "images" + File.separator;
 
         int current = page.getNumber() + 1;
         int begin = Math.max(1, current - 5);
         int end = Math.min(begin + 10, page.getTotalPages());
 
-        model.addAttribute("products", page);
+        model.addAttribute("productList", page);
+        model.addAttribute("products", page.getContent());
+        model.addAttribute("homePath", homePath);
         model.addAttribute("beginIndex", begin);
         model.addAttribute("currentIndex", current);
         model.addAttribute("endIndex", end);
