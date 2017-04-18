@@ -266,35 +266,38 @@
     </div>
     <div class="container">
         <div class="col-md-9 col-lg-9">
-            <%--<div class="row">--%>
-            <%--<c:forEach items="${products}" var="product">--%>
-            <%--<div class="col-xs-6 col-sm-4">--%>
-            <%--<a href="">--%>
-            <%--<div class="thumbnail">--%>
-            <%--<img src="${homePath}${product.productId}.jpg" width="400"--%>
-            <%--alt="${product.productName} ${product.productId}"/>--%>
-            <%--<div class="caption">--%>
-            <%--<h3><a href="">${product.productName}</a></h3>--%>
-            <%--<span style="font-size: 24px;">${product.productPrice}</span>--%>
-            <%--<a href="#" class="btn btn-success pull-right">Купити <i class="fa fa-cart-plus"--%>
-            <%--aria-hidden="true"></i></a>--%>
-            <%--</div>--%>
-            <%--</div>--%>
-            <%--</a>--%>
-            <%--</div>--%>
-            <%--</c:forEach>--%>
-
+            <div class="row">
+                <c:forEach items="${products}" var="product">
+                    <div class="col-xs-6 col-sm-4">
+                        <a href="">
+                            <div class="thumbnail">
+                                <img src="${homePath}${product.productId}.jpg" width="400"
+                                     alt="${product.productName} ${product.productId}"/>
+                                <div class="caption">
+                                    <h3><a href="">${product.productName}</a></h3>
+                                    <span style="font-size: 24px;">${product.productPrice}</span>
+                                    <a href="#" class="btn btn-success pull-right">Купити
+                                        <i class="fa fa-cart-plus" aria-hidden="true"></i></a>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </c:forEach>
+            </div>
             <nav class="text-center">
                 <ul class="pagination pagination-sm">
                     <c:url var="firstUrl" value="/product/productList/all/${1}"/>
-                    <c:url var="lastUrl" value="/product/productList/all/${products.totalPages}"/>
+                    <c:url var="lastUrl" value="/product/productList/all/${productList.totalPages}"/>
                     <c:url var="prevUrl" value="/product/productList/all/${currentIndex - 1}"/>
                     <c:url var="nextUrl" value="/product/productList/all/${currentIndex + 1}"/>
                     <c:choose>
                         <c:when test="${currentIndex == 1}">
-                            <li class="disabled"><a href="#"><i class="fa fa-chevron-left"></i><i
-                                    class="fa fa-chevron-left"></i></a></li>
-                            <li class="disabled"><a href="#"><i class="fa fa-chevron-left"></i></a></li>
+                            <li class="disabled">
+                                <a href="#"><i class="fa fa-chevron-left"></i><i class="fa fa-chevron-left"></i></a>
+                            </li>
+                            <li class="disabled">
+                                <a href="#"><i class="fa fa-chevron-left"></i></a>
+                            </li>
                         </c:when>
                         <c:otherwise>
                             <li><a href="${firstUrl}"><i class="fa fa-chevron-left"></i><i
@@ -303,33 +306,42 @@
                         </c:otherwise>
                     </c:choose>
                     <c:forEach var="i" begin="${beginIndex}" end="${endIndex}">
-                        <c:url var="pageUrl" value="/pages/${i}"/>
+                        <c:url var="pageUrl" value="/product/productList/all/${i}"/>
                         <c:choose>
                             <c:when test="${i == currentIndex}">
-                                <li class="active"><a href="${pageUrl}"><c:out value="${i}"/></a></li>
+                                <li class="active">
+                                    <a href="${pageUrl}"><c:out value="${i}"/></a>
+                                </li>
                             </c:when>
                             <c:otherwise>
-                                <li><a href="${pageUrl}"><c:out value="${i}"/></a></li>
+                                <li>
+                                    <a href="${pageUrl}"><c:out value="${i}"/></a>
+                                </li>
                             </c:otherwise>
                         </c:choose>
                     </c:forEach>
                     <c:choose>
                         <c:when test="${currentIndex == productList.totalPages}">
-                            <li class="disabled"><a href="#"><i class="fa fa-chevron-right"></i></a></li>
-                            <li class="disabled"><a href="#"><i class="fa fa-chevron-right"></i><i
-                                    class="fa fa-chevron-right"></i></a></li>
+                            <li class="disabled"><a href="#">
+                                <i class="fa fa-chevron-right"></i></a>
+                            </li>
+                            <li class="disabled"><a href="#">
+                                <i class="fa fa-chevron-right"></i><i class="fa fa-chevron-right"></i></a>
+                            </li>
                         </c:when>
                         <c:otherwise>
-                            <li><a href="${nextUrl}"><i class="fa fa-chevron-right"></i></a></li>
-                            <li><a href="${lastUrl}"><i class="fa fa-chevron-right"></i><i
-                                    class="fa fa-chevron-right"></i></a></li>
+                            <li><a href="${nextUrl}">
+                                <i class="fa fa-chevron-right"></i></a>
+                            </li>
+                            <li><a href="${lastUrl}">
+                                <i class="fa fa-chevron-right"></i><i class="fa fa-chevron-right"></i></a>
+                            </li>
                         </c:otherwise>
                     </c:choose>
                 </ul>
             </nav>
         </div>
     </div>
-</div>
 </div>
 
 <br>
