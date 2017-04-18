@@ -6,7 +6,7 @@
 <%@ include file="/WEB-INF/views/template/header.jsp" %>
 
 <div class="container">
-    <div class="col-md-3 col-lg-3 col-lg-3">
+    <div id="filter" class="col-md-3 col-lg-3 col-lg-3">
         <br>
         <div class="panel-group" id="accordion">
             <div class="panel panel-default">
@@ -17,20 +17,21 @@
                 </div>
                 <div id="brand" class="panel-collapse collapse in">
                     <div class="panel-body">
-                        <table class="table">
-                            <tr>
-                                <td><a href="#">Sub-Item 1</a></td>
-                            </tr>
-                            <tr>
-                                <td><a href="#">Sub-Item 2</a></td>
-                            </tr>
-                            <tr>
-                                <td><a href="#">Sub-Item 3</a></td>
-                            </tr>
-                            <tr>
-                                <td><a href="#">Sub-Item 4</a> <span class="badge">99</span></td>
-                            </tr>
-                        </table>
+                        <input type="checkbox" onselect="" name="checkbox"/>
+                        <label>First Option default</label><br>
+                        <input type="checkbox" name="checkbox"/>
+                        <label>First Option default</label><br>
+
+                        <c:forEach items="${productNameSet}" var="productName">
+                           <p>${productName}</p>
+                        </c:forEach>
+                        <%--<tr>--%>
+                            <%--<td><a href="#"><input type="checkbox" name="brand" value="LG"> LG</a> <span class="badge">99</span>--%>
+                            <%--</td>--%>
+                        <%--</tr>--%>
+                        <%--<tr>--%>
+                            <%--<td><a href="#">Sub-Item 4</a> <span class="badge">99</span></td>--%>
+                        <%--</tr>--%>
                     </div>
                 </div>
             </div>
@@ -343,6 +344,7 @@
         </div>
     </div>
 </div>
-
 <br>
+<script src="../../resources/js/ajax-product-filter.js"></script>
+
 <%@ include file="/WEB-INF/views/template/footer.jsp" %>
