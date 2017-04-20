@@ -11,6 +11,8 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
+import java.io.File;
+
 @Configuration
 @EnableWebMvc
 @ComponentScan("ua.com.ledison.*")
@@ -35,6 +37,8 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 		        .addResourceLocations("/resources/css/");
 		registry.addResourceHandler("/scripts/**")
 		        .addResourceLocations("/resources/js/");
+		registry.addResourceHandler("/images/**")
+		        .addResourceLocations(System.getProperty("user.home") + "/images/");
 	}
 
 	@Override
