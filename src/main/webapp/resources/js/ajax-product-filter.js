@@ -18,16 +18,18 @@ $(document).ready(function () {
                 opts.push(this.name + ":" + this.value);
             }
         });
+
+        console.log(opts);
         return opts;
     }
 
     function updateProducts(opts) {
         $.ajax({
             type: "POST",
-            contentType: "application/json",
-            url: "/product/productList/all/1",
+            // url: "/product/productList/all/1",
+            url: "/a",
             data: JSON.stringify(opts),
-            dataType: 'json',
+            contentType: 'text/plain',
             timeout: 100000,
             success: function (data) {
                 console.log("SUCCESS: ", data);
@@ -39,5 +41,5 @@ $(document).ready(function () {
     }
 
 
-    updateProducts();
+    // updateProducts(getProductFilterOptions());
 });
