@@ -13,21 +13,17 @@ public class ProductRestController {
 	@Autowired
 	private ProductService productService;
 
-	@PostMapping("/a")
+	@PostMapping("/")
 	public Page<Product> getProductResult(@RequestBody String str) {
-		System.out.println(" !!!!!!!!!!!!!!!!!!!!!!");
 		System.out.println(str);
-//		Gson gson = new Gson();
-//		String search = gson.fromJson(searchParams.toString(), String.class);
 
-//		System.out.println("searchParams!!! : " + searchParams);
+		System.out.println("searchParams: " + str);
 //		ProductSpecificationsBuilder productSpecificationsBuilder = new ProductSpecificationsBuilder();
-//
+
 		int pageNumber = 1;
 		Specification<Product> spec = null;
 
 		Page<Product> page = productService.findPaginated(spec, pageNumber);
-		System.out.println( " +++++++++");
 
 		return page;
 	}

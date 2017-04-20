@@ -21,9 +21,9 @@ public class ProductController {
 
     // read - all paginated
 
-    @GetMapping("/productList/all/1")
-    public String getProducts(/*@PathVariable Integer pageNumber,*/ Model model) {
-        Page<Product> page = productService.findPaginated(1);
+    @GetMapping("/productList/all/{pageNumber}")
+    public String getProducts(@PathVariable Integer pageNumber, Model model) {
+        Page<Product> page = productService.findPaginated(pageNumber);
         String homePath = System.getProperty("user.home") + File.separator + "images" + File.separator;
 
         int current = page.getNumber() + 1;

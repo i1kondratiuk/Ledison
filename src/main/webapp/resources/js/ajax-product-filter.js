@@ -26,8 +26,7 @@ $(document).ready(function () {
     function updateProducts(opts) {
         $.ajax({
             type: "POST",
-            // url: "/product/productList/all/1",
-            url: "/a",
+            url: "/",
             data: JSON.stringify(opts),
             contentType: 'text/plain',
             timeout: 100000,
@@ -39,7 +38,6 @@ $(document).ready(function () {
             },
         });
     }
-
 
     // updateProducts(getProductFilterOptions());
 });
