@@ -13,59 +13,59 @@ import java.util.List;
 @Entity
 public class Product implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int productId;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int productId;
 
-    @NotEmpty(message = "The product name must not be empty")
-    private String productName;
+	@NotEmpty(message = "The product name must not be empty")
+	private String productName;
 
 	@NotEmpty(message = "The product category name must not be empty")
 	private String productCategory;
 
-    @NotEmpty(message = "The product brand name must not be empty")
-    private String productManufacturer;
+	@NotEmpty(message = "The product brand name must not be empty")
+	private String productManufacturer;
 
-    @Min(value = 0, message = "The product price must not be less then zero")
-    private double productPrice;
+	@Min(value = 0, message = "The product price must not be less then zero")
+	private double productPrice;
 
-    @NotEmpty(message = "The cap type must not be empty")
-    private String capType;
+	@NotEmpty(message = "The cap type must not be empty")
+	private String capType;
 
-    @NotEmpty(message = "The color of glow must not be empty")
-    private String glowColor;
+	@NotEmpty(message = "The color of glow must not be empty")
+	private String glowColor;
 
-    @NotEmpty(message = "The lamp shape must not be empty")
-    private String lampShape;
+	@NotEmpty(message = "The lamp shape must not be empty")
+	private String lampShape;
 
-    @Min(value = 0, message = "The power must not be less then zero")
-    @Max(value = 200, message = "The power must not be more then 200")
-    private int power;
+	@Min(value = 0, message = "The power must not be less then zero")
+	@Max(value = 200, message = "The power must not be more then 200")
+	private int power;
 
-    @NotEmpty(message = "The operating voltage name must not be empty")
-    private String operatingVoltage;
+	@NotEmpty(message = "The operating voltage name must not be empty")
+	private String operatingVoltage;
 
-    @NotEmpty(message = "The diffuser type must not be empty")
-    private String diffuserType;
+	@NotEmpty(message = "The diffuser type must not be empty")
+	private String diffuserType;
 
-    @Min(value = 0, message = "The service period must not be less then zero")
-    private int serviceLife;
+	@Min(value = 0, message = "The service period must not be less then zero")
+	private int serviceLife;
 
-    @Min(value = 0, message = "The warranty period must not be less then zero")
-    private int warrantyPeriod;
+	@Min(value = 0, message = "The warranty period must not be less then zero")
+	private int warrantyPeriod;
 
-    @Min(value = 0, message = "The product unit must not be less then zero")
-    private int unitInStock;
+	@Min(value = 0, message = "The product unit must not be less then zero")
+	private int unitInStock;
 
 	@Transient
 	private MultipartFile productImage;
 
 	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JsonIgnore
-    private List<CartItem> cartItemList;
+	@JsonIgnore
+	private List<CartItem> cartItemList;
 
-    public Product() {
-    }
+	public Product() {
+	}
 
 	public int getProductId() {
 		return productId;

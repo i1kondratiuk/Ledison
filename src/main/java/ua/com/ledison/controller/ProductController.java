@@ -10,10 +10,7 @@ import ua.com.ledison.service.ProductService;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Set;
 
 @Controller
 @RequestMapping("/product")
@@ -33,13 +30,6 @@ public class ProductController {
         int begin = Math.max(1, current - 5);
         int end = Math.min(begin + 10, page.getTotalPages());
 
-        Set<String> productNameSet = null;
-	    for (Product product: productService.getProductList()) {
-		    productNameSet.add(product.getProductName());
-	    }
-
-
-	    model.addAttribute("productNameSet", productNameSet);
 	    model.addAttribute("productList", page);
         model.addAttribute("products", page.getContent());
         model.addAttribute("homePath", homePath);
@@ -57,15 +47,14 @@ public class ProductController {
 
         return "viewProduct";
     }
-
-
-    @PostMapping("/productList")
-    public String getProductByCategory(@RequestParam String searchCondition, Model model){
-        List<Product> products = productService.getProductList();
-        model.addAttribute("products", products);
-        model.addAttribute("searchCondition", searchCondition);
-
-        return "productList";
-    }
+//
+//    @PostMapping("/productList")
+//    public String getProductByCategory(@RequestParam String searchCondition, Model model){
+//        List<Product> products = productService.getProductList();
+//        model.addAttribute("products", products);
+//        model.addAttribute("searchCondition", searchCondition);
+//
+//        return "productList";
+//    }
 
 }
