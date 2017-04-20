@@ -3,6 +3,7 @@ package ua.com.ledison.service.impl;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
 import ua.com.ledison.dao.ProductDao;
 import ua.com.ledison.entity.Product;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,8 +25,14 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public Page<Product> findPaginated(int pageNumber) {
-		return productDao.findAll(new PageRequest(pageNumber - 1, PAGE_SIZE, Sort.Direction.DESC, "productId"));
+	public Page<Product> findPaginated(Specification<Product> spec, Integer pageNumber) {
+		Page requestedPage = productDao.findAll(spec, new PageRequest(pageNumber - 1, PAGE_SIZE,Sort.Direction.DESC,  "productId"));
+		return requestedPage;
+	}
+
+	@Override
+	public Page<Product> findPaginated(Integer pageNumber) {
+		return productDao.findAll(new PageRequest(pageNumber - 1, PAGE_SIZE,Sort.Direction.DESC,  "productId"));
 	}
 
 	public List<Product> getProductList() {
