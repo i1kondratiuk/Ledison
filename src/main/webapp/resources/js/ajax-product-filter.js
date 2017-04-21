@@ -29,14 +29,31 @@ $(document).ready(function () {
             url: "/",
             data: JSON.stringify(opts),
             contentType: 'text/plain',
-            timeout: 100000,
+            timeout: 50000,
             success: function (data) {
                 console.log("SUCCESS: ", data);
+                displayProducts(data)
             },
             error: function (e) {
                 console.log("ERROR: ", e);
             },
         });
+    }
+
+    function displayProducts(data) {
+        $('#products').empty();
+        $.each(data.content, function (i, product) {
+            console.log(i);
+            drawProduct(product);
+        });
+        function drawProduct(product) {
+            var className = "col-xs-6 col-sm-4";
+            $('#products').append($('<div>', {
+                    class: className,
+                    text: product
+                })
+            );
+        }
     }
 
     // updateProducts(getProductFilterOptions());
