@@ -6,6 +6,12 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.web.bind.annotation.*;
 import ua.com.ledison.entity.Product;
 import ua.com.ledison.service.ProductService;
+import ua.com.ledison.util.SearchCriteria;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @RestController
 public class ProductRestController {
@@ -14,17 +20,22 @@ public class ProductRestController {
 	private ProductService productService;
 
 	@PostMapping("/")
-	public Page<Product> getProductResult(@RequestBody String str) {
-		System.out.println(str);
+	public Page<Product> getProductResult(@RequestBody String search) {
 
-		System.out.println("searchParams: " + str);
-//		ProductSpecificationsBuilder productSpecificationsBuilder = new ProductSpecificationsBuilder();
+		ArrayList<SearchCriteria> params = new ArrayList<>();
+		System.out.println(search);
+		Pattern pattern = Pattern.compile("\"(\\w+?)(:|>|<)(\\w+?)\"");
+		Matcher matcher = pattern.matcher(search + ",");
 
-		int pageNumber = 1;
-		Specification<Product> spec = null;
+		while (matcher.find()) {
+			params.add(new SearchCriteria(matcher.group(1), matcher.group(2), matcher.group(3)));
+		}
 
-		Page<Product> page = productService.findPaginated(spec, pageNumber);
+		for (SearchCriteria param :
+				params) {
+			System.out.println(param.toString());
+		}
 
-		return page;
+		return productService.findPaginated(1);
 	}
 }
