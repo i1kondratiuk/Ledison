@@ -1,6 +1,12 @@
 $(document).ready(function () {
 
-    console.log("Hello from filter");
+    init();
+
+    function init() {
+        var opts = [];
+        opts.push('page' + ":" + 1);
+        updateProducts(opts);
+    }
 
     var $checkboxes = $("input:checkbox");
     $checkboxes.on("change", function () {
@@ -16,11 +22,13 @@ $(document).ready(function () {
             }
         });
 
-        console.log(opts);
         return opts;
     }
 
+
+    var initCounter = 0;
     function updateProducts(opts) {
+        initCounter++;
         $.ajax({
             type: "POST",
             url: "/",
@@ -29,7 +37,22 @@ $(document).ready(function () {
             timeout: 50000,
             success: function (data) {
                 console.log("SUCCESS: ", data);
-                displayProducts(data)
+                displayProducts(data);
+                $('#pagination').twbsPagination({
+                    startPage: 1,
+                    first: '<i class="fa fa-chevron-left"></i><i class="fa fa-chevron-left"></i>',
+                    prev: '<i class="fa fa-chevron-left"></i>',
+                    next: '<i class="fa fa-chevron-right"></i>',
+                    last: '<i class="fa fa-chevron-right"></i><i class="fa fa-chevron-right"></i>',
+                    totalPages: data.totalPages,
+                    visiblePages: 7,
+                    onPageClick: function (event, page) {
+                        var opts = [];
+                        opts.push('page' + ":" + page);
+                        if (initCounter > 0) updateProducts(opts);
+                        $('#page-content').text('Page ' + page);
+                    }
+                });
             },
             error: function (e) {
                 console.log("ERROR: ", e);
@@ -43,20 +66,7 @@ $(document).ready(function () {
         $.each(products, function (i, product) {
             drawProduct(product);
         });
-        $('#pagination').twbsPagination({
-            first: '<i class="fa fa-chevron-left"></i><i class="fa fa-chevron-left"></i>',
-            prev: '<i class="fa fa-chevron-left"></i>',
-            next: '<i class="fa fa-chevron-right"></i>',
-            last: '<i class="fa fa-chevron-right"></i><i class="fa fa-chevron-right"></i>',
-            totalPages: data.totalPages,
-            visiblePages: 7,
-            onPageClick: function (event, page) {
-                var opts = [];
-                opts.push(page + ":" + page);
-                updateProducts(opts);
-                $('#page-content').text('Page ' + page);
-            }
-        });
+
         function drawProduct(product) {
             var className = "col-xs-6 col-sm-4";
             var imagePath = "/images/" + product.productId + ".jpg";
