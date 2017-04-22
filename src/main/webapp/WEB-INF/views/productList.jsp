@@ -268,60 +268,7 @@
                 <%--</c:forEach>--%>
             </div>
             <nav class="text-center">
-                <ul class="pagination pagination-sm">
-                    <c:url var="firstUrl" value="/product/productList/all/${1}"/>
-                    <c:url var="lastUrl" value="/product/productList/all/${productList.totalPages}"/>
-                    <c:url var="prevUrl" value="/product/productList/all/${currentIndex - 1}"/>
-                    <c:url var="nextUrl" value="/product/productList/all/${currentIndex + 1}"/>
-                    <c:choose>
-                        <c:when test="${currentIndex == 1}">
-                            <li class="disabled">
-                                <a href="#"><i class="fa fa-chevron-left"></i><i class="fa fa-chevron-left"></i></a>
-                            </li>
-                            <li class="disabled">
-                                <a href="#"><i class="fa fa-chevron-left"></i></a>
-                            </li>
-                        </c:when>
-                        <c:otherwise>
-                            <li><a href="${firstUrl}"><i class="fa fa-chevron-left"></i><i
-                                    class="fa fa-chevron-left"></i></a></li>
-                            <li><a href="${prevUrl}"><i class="fa fa-chevron-left"></i></a></li>
-                        </c:otherwise>
-                    </c:choose>
-                    <c:forEach var="i" begin="${beginIndex}" end="${endIndex}">
-                        <c:url var="pageUrl" value="/product/productList/all/${i}"/>
-                        <c:choose>
-                            <c:when test="${i == currentIndex}">
-                                <li class="active">
-                                    <a href="${pageUrl}"><c:out value="${i}"/></a>
-                                </li>
-                            </c:when>
-                            <c:otherwise>
-                                <li>
-                                    <a href="${pageUrl}"><c:out value="${i}"/></a>
-                                </li>
-                            </c:otherwise>
-                        </c:choose>
-                    </c:forEach>
-                    <c:choose>
-                        <c:when test="${currentIndex == productList.totalPages}">
-                            <li class="disabled"><a href="#">
-                                <i class="fa fa-chevron-right"></i></a>
-                            </li>
-                            <li class="disabled"><a href="#">
-                                <i class="fa fa-chevron-right"></i><i class="fa fa-chevron-right"></i></a>
-                            </li>
-                        </c:when>
-                        <c:otherwise>
-                            <li><a href="${nextUrl}">
-                                <i class="fa fa-chevron-right"></i></a>
-                            </li>
-                            <li><a href="${lastUrl}">
-                                <i class="fa fa-chevron-right"></i><i class="fa fa-chevron-right"></i></a>
-                            </li>
-                        </c:otherwise>
-                    </c:choose>
-                </ul>
+                <ul id="pagination" class="pagination-lg"></ul>
             </nav>
         </div>
     </div>

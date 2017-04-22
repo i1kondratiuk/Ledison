@@ -21,6 +21,9 @@
     <!-- JQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
+    <%-- twbsPagination --%>
+    <script src="/resources/js/esimakin-twbs-pagination/jquery.twbsPagination.js"></script>
+
     <script src="/resources/js/bootstrap.js"></script>
     <script src="/resources/js/image-preview-input.js"></script>
 </head>

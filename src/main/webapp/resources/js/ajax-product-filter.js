@@ -4,10 +4,7 @@ $(document).ready(function () {
 
     var $checkboxes = $("input:checkbox");
     $checkboxes.on("change", function () {
-
         var opts = getProductFilterOptions();
-        console.log(JSON.stringify(opts));
-
         updateProducts(opts);
     });
 
@@ -44,9 +41,21 @@ $(document).ready(function () {
         $('#products').empty();
         var products = data.content;
         $.each(products, function (i, product) {
-            console.log(i);
             drawProduct(product);
-            $('firstUrl');
+        });
+        $('#pagination').twbsPagination({
+            first: '<i class="fa fa-chevron-left"></i><i class="fa fa-chevron-left"></i>',
+            prev: '<i class="fa fa-chevron-left"></i>',
+            next: '<i class="fa fa-chevron-right"></i>',
+            last: '<i class="fa fa-chevron-right"></i><i class="fa fa-chevron-right"></i>',
+            totalPages: data.totalPages,
+            visiblePages: 7,
+            onPageClick: function (event, page) {
+                var opts = [];
+                opts.push(page + ":" + page);
+                updateProducts(opts);
+                $('#page-content').text('Page ' + page);
+            }
         });
         function drawProduct(product) {
             var className = "col-xs-6 col-sm-4";
