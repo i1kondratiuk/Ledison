@@ -16,45 +16,34 @@ import java.util.List;
 @RequestMapping("/product")
 public class ProductController {
 
-    @Autowired
-    private ProductService productService;
+	@Autowired
+	private ProductService productService;
 
-    // read - all paginated
+	// read - all paginated
 
-    @GetMapping("/productList/all/{pageNumber}")
-    public String getProducts(@PathVariable Integer pageNumber, Model model) {
-        Page<Product> page = productService.findPaginated(pageNumber);
-        String homePath = System.getProperty("user.home") + File.separator + "images" + File.separator;
+	@GetMapping("/productList/all")
+	public String getProducts(Model model) {
+		Page<Product> page = productService.findPaginated(1);
 
-        int current = page.getNumber() + 1;
-        int begin = Math.max(1, current - 5);
-        int end = Math.min(begin + 10, page.getTotalPages());
+		int current = page.getNumber() + 1;
+		int begin = Math.max(1, current - 5);
+		int end = Math.min(begin + 10, page.getTotalPages());
 
-	    model.addAttribute("productList", page);
-        model.addAttribute("products", page.getContent());
-        model.addAttribute("homePath", homePath);
-        model.addAttribute("beginIndex", begin);
-        model.addAttribute("currentIndex", current);
-        model.addAttribute("endIndex", end);
+		model.addAttribute("productList", page);
+		model.addAttribute("products", page.getContent());
+		model.addAttribute("beginIndex", begin);
+		model.addAttribute("currentIndex", current);
+		model.addAttribute("endIndex", end);
 
-        return "productList";
-    }
+		return "productList";
+	}
 
-    @GetMapping("/viewProduct/{productId}")
-    public String viewProduct(@PathVariable int productId, Model model) throws IOException{
-        Product product = productService.getProductById(productId);
-        model.addAttribute("product", product);
+	@GetMapping("/viewProduct/{productId}")
+	public String viewProduct(@PathVariable int productId, Model model) throws IOException {
+		Product product = productService.getProductById(productId);
+		model.addAttribute("product", product);
 
-        return "viewProduct";
-    }
-//
-//    @PostMapping("/productList")
-//    public String getProductByCategory(@RequestParam String searchCondition, Model model){
-//        List<Product> products = productService.getProductList();
-//        model.addAttribute("products", products);
-//        model.addAttribute("searchCondition", searchCondition);
-//
-//        return "productList";
-//    }
+		return "viewProduct";
+	}
 
 }
