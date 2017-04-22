@@ -251,22 +251,21 @@
     <div class="container">
         <div class="col-md-9 col-lg-9">
             <div id="products" class="row">
-                <c:forEach items="${products}" var="product">
-                    <div class="col-xs-6 col-sm-4">
-                        <a href="">
-                            <div class="thumbnail">
-                                <img <c:url value="images/${product.productId}.jpg"/> width="400"
-                                                                                      alt="${product.productName} ${product.productId}"/>
-                                <div class="caption">
-                                    <h3><a href="">${product.productName}</a></h3>
-                                    <span style="font-size: 24px;">${product.productPrice}</span>
-                                    <a href="#" class="btn btn-success pull-right">Купити
-                                        <i class="fa fa-cart-plus" aria-hidden="true"></i></a>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </c:forEach>
+                <%--<c:forEach items="${products}" var="product">--%>
+                    <%--<div class="col-xs-6 col-sm-4">--%>
+                        <%--<a href="">--%>
+                            <%--<div class="thumbnail">--%>
+                                <%--<img src="/images/${product.productId}.jpg" width="400" alt="${product.productName} ${product.productId}"/>--%>
+                                <%--<div class="caption">--%>
+                                    <%--<h3><a href="">${product.productName}</a></h3>--%>
+                                    <%--<span style="font-size: 24px;">${product.productPrice}</span>--%>
+                                    <%--<a href="#" class="btn btn-success pull-right">Купити--%>
+                                        <%--<i class="fa fa-cart-plus" aria-hidden="true"></i></a>--%>
+                                <%--</div>--%>
+                            <%--</div>--%>
+                        <%--</a>--%>
+                    <%--</div>--%>
+                <%--</c:forEach>--%>
             </div>
             <nav class="text-center">
                 <ul class="pagination pagination-sm">

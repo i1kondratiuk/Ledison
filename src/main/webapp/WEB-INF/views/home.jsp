@@ -7,7 +7,7 @@
     <div class="container">
         <div class="col-md-4 col-lg-4 col-lg-4">
             <ul class="col-menu">
-                <li class="col-menu-item"><a href="product/productList/all/1">Каталог</a></li>
+                <li class="col-menu-item"><a href="/product/productList/all">Каталог</a></li>
                 <li class="col-menu-item"><a href="#">Передзвоніть мені</a></li>
                 <li class="col-menu-item"><a href="#">Зворотній зв’язок</a></li>
                 <li class="col-menu-item"><a href="#">Новинки індустрії</a></li>

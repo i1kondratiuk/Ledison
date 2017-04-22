@@ -34,14 +34,14 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="<spring:url value="home" />">LEDISON</a>
+            <a class="navbar-brand" href="/home">LEDISON</a>
         </div>
         <div class="collapse navbar-collapse" id="responsive-menu">
             <div class="nav navbar-nav">
                 <li class="dropdown"><a class="dropdowm-toggle" href="#" data-toggle="dropdown"><b
                         class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li><a href="<spring:url value="product/productList/all/1" />">Каталог</a></li>
+                        <li><a href="/product/productList/all">Каталог</a></li>
                         <li><a href="#">Передзвоніть мені</a></li>
                         <li><a href="#">Зворотній зв’язок</a></li>
                         <li><a href="#">Новинки індустрії</a></li>
