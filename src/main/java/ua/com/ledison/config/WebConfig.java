@@ -38,7 +38,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 		registry.addResourceHandler("/scripts/**")
 		        .addResourceLocations("/resources/js/");
 		registry.addResourceHandler("/images/**")
-		        .addResourceLocations(System.getProperty("user.home") + "/images/");
+		        .addResourceLocations("file:///" + System.getProperty("user.home") + "/images/");
 	}
 
 	@Override
