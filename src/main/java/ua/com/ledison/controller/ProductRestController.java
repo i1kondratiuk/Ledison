@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.web.bind.annotation.*;
+import ua.com.ledison.dao.ProductSpecificationsBuilder;
 import ua.com.ledison.entity.Product;
 import ua.com.ledison.service.ProductService;
 import ua.com.ledison.util.SearchCriteria;
@@ -36,8 +37,19 @@ public class ProductRestController {
 			System.out.println(param.toString());
 		}
 
-		int pageNumber = Integer.parseInt(params.get(0).getValue());
+		int pageNumber = Integer.parseInt((String) params.get(0).getValue());
 
-		return productService.findPaginated(pageNumber);
+		params.remove(0);
+
+		for (SearchCriteria param :
+				params) {
+			System.out.println(param.toString());
+		}
+
+		ProductSpecificationsBuilder builder = new ProductSpecificationsBuilder(params);
+		Specification<Product> spec = builder.build();
+		System.out.println(spec);
+
+		return productService.findPaginated(spec, pageNumber);
 	}
 }
