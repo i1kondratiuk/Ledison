@@ -17,9 +17,9 @@
                 </div>
                 <div id="brand" class="panel-collapse collapse in">
                     <div name="brand" class="panel-body">
-                        <input name="brand" type="checkbox" value="LG"/><label>LG</label><br>
-                        <input name="brand" type="checkbox" value="Sony"/><label>Sony</label><br>
-                        <input name="brand" type="checkbox" value="Philips"/><label>Philips</label><br>
+                        <input name="productManufacturer" type="checkbox" value="LG"/><label>LG</label><br>
+                        <input name="productManufacturer" type="checkbox" value="Sony"/><label>Sony</label><br>
+                        <input name="productManufacturer" type="checkbox" value="Philips"/><label>Philips</label><br>
                     </div>
                 </div>
             </div>
@@ -35,7 +35,7 @@
                         <input type="checkbox" name="capType" value="E14"/><label>E14</label><br>
                         <input type="checkbox" name="capType" value="G4"/><label>G4</label><br>
                         <input type="checkbox" name="capType" value="G9"/><label>G9</label><br>
-                        <input type="checkbox" name="capType" value="GU5.3"/><label>GU5.3</label><br>
+                        <input type="checkbox" name="capType" value="GU53"/><label>GU5.3</label><br>
                         <input type="checkbox" name="capType" value="T8"/><label>T8</label><br>
                     </div>
                 </div>
@@ -46,24 +46,24 @@
             <%--<a data-toggle="collapse" data-parent="#accordion" href="#price">Ціна</a>--%>
             <%--</h4>--%>
             <%--</div>--%>
-            <%--&lt;%&ndash;<div id="price" class="panel-collapse collapse">&ndash;%&gt;--%>
-            <%--&lt;%&ndash;<div class="panel-body">&ndash;%&gt;--%>
-            <%--&lt;%&ndash;<table class="table">&ndash;%&gt;--%>
-            <%--&lt;%&ndash;<tr>&ndash;%&gt;--%>
-            <%--&lt;%&ndash;<td><a href="#">Sub-Item 1</a> <span class="label label-success">$ 1320</span></td>&ndash;%&gt;--%>
-            <%--&lt;%&ndash;</tr>&ndash;%&gt;--%>
-            <%--&lt;%&ndash;<tr>&ndash;%&gt;--%>
-            <%--&lt;%&ndash;<td><a href="#">Sub-Item 2</a></td>&ndash;%&gt;--%>
-            <%--&lt;%&ndash;</tr>&ndash;%&gt;--%>
-            <%--&lt;%&ndash;<tr>&ndash;%&gt;--%>
-            <%--&lt;%&ndash;<td><a href="#">Sub-Item 1</a></td>&ndash;%&gt;--%>
-            <%--&lt;%&ndash;</tr>&ndash;%&gt;--%>
-            <%--&lt;%&ndash;<tr>&ndash;%&gt;--%>
-            <%--&lt;%&ndash;<td><a href="#">Sub-Item 1</a></td>&ndash;%&gt;--%>
-            <%--&lt;%&ndash;</tr>&ndash;%&gt;--%>
-            <%--&lt;%&ndash;</table>&ndash;%&gt;--%>
-            <%--&lt;%&ndash;</div>&ndash;%&gt;--%>
-            <%--&lt;%&ndash;</div>&ndash;%&gt;--%>
+                <%--<div id="price" class="panel-collapse collapse">--%>
+                    <%--<div class="panel-body">--%>
+                        <%--<table class="table">--%>
+                            <%--<tr>--%>
+                                <%--<td><a href="#">Sub-Item 1</a> <span class="label label-success">$ 1320</span></td>--%>
+                            <%--</tr>--%>
+                            <%--<tr>--%>
+                                <%--<td><a href="#">Sub-Item 2</a></td>--%>
+                            <%--</tr>--%>
+                            <%--<tr>--%>
+                                <%--<td><a href="#">Sub-Item 1</a></td>--%>
+                            <%--</tr>--%>
+                            <%--<tr>--%>
+                                <%--<td><a href="#">Sub-Item 1</a></td>--%>
+                            <%--</tr>--%>
+                        <%--</table>--%>
+                    <%--</div>--%>
+                <%--</div>--%>
             <%--</div>--%>
 
             <%--<div class="panel panel-default">--%>

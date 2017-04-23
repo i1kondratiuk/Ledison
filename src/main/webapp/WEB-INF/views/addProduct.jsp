@@ -50,7 +50,7 @@
                 <label class="checkbox-inline"><form:radiobutton path="capType" id="capType" value="G4"/>G4</label>
                 <label class="checkbox-inline"><form:radiobutton path="capType" id="capType" value="G9"/>G9</label>
                 <label class="checkbox-inline"><form:radiobutton path="capType" id="capType"
-                                                                 value="GU5.3"/>GU5.3</label>
+                                                                 value="GU53"/>GU5.3</label>
                 <label class="checkbox-inline"><form:radiobutton path="capType" id="capType" value="T8"/>T8</label>
             </div>
 
