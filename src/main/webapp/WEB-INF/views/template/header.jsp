@@ -26,6 +26,7 @@
 
     <script src="/resources/js/bootstrap.js"></script>
     <script src="/resources/js/image-preview-input.js"></script>
+    <script src="/resources/js/register-user.js"></script>
 </head>
 
 <body>
@@ -60,8 +61,9 @@
                 </div>
             </form>
             <div class="navbar-form navbar-right">
-                <a href="login" class="btn btn-primary"><i class="fa fa-sign-in"></i> Вхід/Реєстрація</a>
-                <a href="cart" class="btn btn-danger"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
+                <a href="/admin"> Адміністратор </a>
+                <a href="/login" class="btn btn-primary"><i class="fa fa-sign-in"></i> Вхід/Реєстрація</a>
+                <a href="/cart" class="btn btn-danger"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
             </div>
         </div>
     </div>
