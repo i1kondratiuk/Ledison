@@ -31,7 +31,6 @@ $(document).ready(function () {
         return opts;
     }
 
-
     function updateProducts(opts) {
         $.ajax({
             type: "POST",
@@ -43,7 +42,7 @@ $(document).ready(function () {
                 console.log("SUCCESS: ", data);
                 displayProducts(data);
                 doPagination(data);
-                },
+            },
             error: function (e) {
                 console.log("ERROR: ", e);
             },

@@ -4,13 +4,13 @@ public class SearchCriteria {
 
 	private String key;
 	private String operation;
-	private Object value;
+	private String value;
 
 	public SearchCriteria() {
 
 	}
 
-	public SearchCriteria(final String key, final String operation, final Object value) {
+	public SearchCriteria(final String key, final String operation, final String value) {
 		this.key = key;
 		this.operation = operation;
 		this.value = value;
@@ -32,11 +32,11 @@ public class SearchCriteria {
 		this.operation = operation;
 	}
 
-	public Object getValue() {
+	public String getValue() {
 		return value;
 	}
 
-	public void setValue(final Object value) {
+	public void setValue(final String value) {
 		this.value = value;
 	}
 

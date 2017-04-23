@@ -19,21 +19,8 @@ public class ProductController {
 	@Autowired
 	private ProductService productService;
 
-	// read - all paginated
-
 	@GetMapping("/productList/all")
-	public String getProducts(Model model) {
-		Page<Product> page = productService.findPaginated(1);
-
-		int current = page.getNumber() + 1;
-		int begin = Math.max(1, current - 5);
-		int end = Math.min(begin + 10, page.getTotalPages());
-
-		model.addAttribute("productList", page);
-		model.addAttribute("products", page.getContent());
-		model.addAttribute("beginIndex", begin);
-		model.addAttribute("currentIndex", current);
-		model.addAttribute("endIndex", end);
+	public String getProducts() {
 
 		return "productList";
 	}
