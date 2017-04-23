@@ -36,6 +36,8 @@ public class ProductRestController {
 			System.out.println(param.toString());
 		}
 
-		return productService.findPaginated(1);
+		int pageNumber = Integer.parseInt(params.get(0).getValue());
+
+		return productService.findPaginated(pageNumber);
 	}
 }

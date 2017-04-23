@@ -4,13 +4,19 @@ $(document).ready(function () {
 
     function init() {
         var opts = [];
-        opts.push('page' + ":" + 1);
+        opts.push('page' + ":" + '1');
         updateProducts(opts);
     }
 
+    var checker = true;
+
     var $checkboxes = $("input:checkbox");
     $checkboxes.on("change", function () {
-        var opts = getProductFilterOptions();
+        checker = true;
+        var opts = [];
+        opts.push('page' + ":" + '1');
+        opts.push(getProductFilterOptions());
+        $('#pagination').twbsPagination('destroy');
         updateProducts(opts);
     });
 
@@ -26,39 +32,48 @@ $(document).ready(function () {
     }
 
 
-    var initCounter = 0;
     function updateProducts(opts) {
-        initCounter++;
         $.ajax({
             type: "POST",
             url: "/",
             data: JSON.stringify(opts),
             contentType: 'text/plain',
-            timeout: 50000,
+            timeout: 100000,
             success: function (data) {
                 console.log("SUCCESS: ", data);
                 displayProducts(data);
-                $('#pagination').twbsPagination({
-                    startPage: 1,
-                    first: '<i class="fa fa-chevron-left"></i><i class="fa fa-chevron-left"></i>',
-                    prev: '<i class="fa fa-chevron-left"></i>',
-                    next: '<i class="fa fa-chevron-right"></i>',
-                    last: '<i class="fa fa-chevron-right"></i><i class="fa fa-chevron-right"></i>',
-                    totalPages: data.totalPages,
-                    visiblePages: 7,
-                    onPageClick: function (event, page) {
-                        var opts = [];
-                        opts.push('page' + ":" + page);
-                        if (initCounter > 0) updateProducts(opts);
-                        $('#page-content').text('Page ' + page);
-                    }
-                });
-            },
+                doPagination(data);
+                },
             error: function (e) {
                 console.log("ERROR: ", e);
             },
         });
     }
+
+    function doPagination(data) {
+        $('#pagination').twbsPagination({
+            first: '<i class="fa fa-chevron-left"></i><i class="fa fa-chevron-left"></i>',
+            prev: '<i class="fa fa-chevron-left"></i>',
+            next: '<i class="fa fa-chevron-right"></i>',
+            last: '<i class="fa fa-chevron-right"></i><i class="fa fa-chevron-right"></i>',
+            totalPages: data.totalPages,
+            visiblePages: 7,
+            onPageClick: function (event, page) {
+                var opts = [];
+                opts.push('page' + ':' + page);
+                var filterOpts = getProductFilterOptions();
+                if (filterOpts != null) {
+                    opts.push(filterOpts);
+                }
+                if (checker == false) {
+                    checker = false;
+                    updateProducts(opts);
+                } else checker = false;
+            }
+        });
+    }
+
+    $('#pagination').twbsPagination('destroy');
 
     function displayProducts(data) {
         $('#products').empty();
@@ -82,5 +97,4 @@ $(document).ready(function () {
         }
     }
 
-    // updateProducts(getProductFilterOptions());
 });
