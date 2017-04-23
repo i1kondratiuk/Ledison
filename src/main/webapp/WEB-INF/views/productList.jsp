@@ -18,7 +18,7 @@
                 <div id="brand" class="panel-collapse collapse in">
                     <div name="brand" class="panel-body">
                         <input name="brand" type="checkbox" value="LG"/><label>LG</label><br>
-                        <input name="brand" type="checkbox" value="Samsung"/><label>Sony</label><br>
+                        <input name="brand" type="checkbox" value="Sony"/><label>Sony</label><br>
                         <input name="brand" type="checkbox" value="Philips"/><label>Philips</label><br>
                     </div>
                 </div>
@@ -251,21 +251,6 @@
     <div class="container">
         <div class="col-md-9 col-lg-9">
             <div id="products" class="row">
-                <%--<c:forEach items="${products}" var="product">--%>
-                    <%--<div class="col-xs-6 col-sm-4">--%>
-                        <%--<a href="">--%>
-                            <%--<div class="thumbnail">--%>
-                                <%--<img src="/images/${product.productId}.jpg" width="400" alt="${product.productName} ${product.productId}"/>--%>
-                                <%--<div class="caption">--%>
-                                    <%--<h3><a href="">${product.productName}</a></h3>--%>
-                                    <%--<span style="font-size: 24px;">${product.productPrice}</span>--%>
-                                    <%--<a href="#" class="btn btn-success pull-right">Купити--%>
-                                        <%--<i class="fa fa-cart-plus" aria-hidden="true"></i></a>--%>
-                                <%--</div>--%>
-                            <%--</div>--%>
-                        <%--</a>--%>
-                    <%--</div>--%>
-                <%--</c:forEach>--%>
             </div>
             <nav class="text-center">
                 <ul id="pagination" class="pagination-lg"></ul>

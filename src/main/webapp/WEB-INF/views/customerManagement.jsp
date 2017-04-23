@@ -30,5 +30,14 @@
                 </tr>
             </c:forEach>
         </table>
+        <script>
+            $(function () {
+                $('[data-toggle="tooltip"]').tooltip();
+                $('[data-toggle="popover"]').popover();
+            });
+        </script>
+    </div>
+</div>
+</body>
 
-        <%@ include file="/WEB-INF/views/template/footer.jsp" %>
+</html>
