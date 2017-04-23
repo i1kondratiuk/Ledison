@@ -38,7 +38,7 @@ public class AdminHome {
         return "productInventory";
     }
 
-    @GetMapping("/customerManagement")
+    @GetMapping("/customer")
     public String customerManagement(Model model){
 
         List<Customer> customerList = customerService.getAllCustomers();
