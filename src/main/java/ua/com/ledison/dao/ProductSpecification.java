@@ -29,17 +29,14 @@ public class ProductSpecification implements Specification<Product> {
 					root.get(criteria.getKey()), criteria.getValue().toString());
 		}
 		else if (criteria.getOperation().equalsIgnoreCase(":")) {
-			if (root.get(criteria.getKey()).getJavaType() == String.class) {
-				if (criteria.getValue().toString().contains(";")) {
-					String[] values = criteria.getValue().toString().split(";");
-					for (String value : values) {
-						return builder.and(builder.equal(root.get(criteria.getKey()), value));
-					}
+			if (criteria.getValue().toString().contains(";")) {
+				String[] values = criteria.getValue().toString().split(";");
+				for (String value : values) {
+					return builder.and(builder.equal(root.get(criteria.getKey()), value));
 				}
-				System.out.println("builder*******************" + builder);
-				return builder.like(root.get(criteria.getKey()), "%" + criteria.getValue() + "%");
 			} else {
-				return builder.equal(root.get(criteria.getKey()), criteria.getValue());
+				return builder.like(root.get(criteria.getKey()), "%" + criteria.getValue() + "%");
+//				return builder.equal(root.get(criteria.getKey()), criteria.getValue());
 			}
 		}
 		return null;
