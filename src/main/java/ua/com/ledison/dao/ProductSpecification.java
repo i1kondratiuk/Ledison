@@ -31,9 +31,11 @@ public class ProductSpecification implements Specification<Product> {
 		else if (criteria.getOperation().equalsIgnoreCase(":")) {
 			if (criteria.getValue().toString().contains(";")) {
 				String[] values = criteria.getValue().toString().split(";");
+				Predicate predicate = null;
 				for (String value : values) {
-					return builder.and(builder.equal(root.get(criteria.getKey()), value));
+					predicate = builder.and(builder.equal(root.get(criteria.getKey()), value));
 				}
+				return predicate;
 			} else {
 				return builder.like(root.get(criteria.getKey()), "%" + criteria.getValue() + "%");
 //				return builder.equal(root.get(criteria.getKey()), criteria.getValue());
