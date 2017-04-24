@@ -32,14 +32,20 @@ public class ProductRestController {
 			params.add(new SearchCriteria(matcher.group(1), matcher.group(2), matcher.group(3)));
 		}
 
-		for (SearchCriteria param :
-				params) {
-			System.out.println(param.toString());
-		}
-
 		int pageNumber = Integer.parseInt((String) params.get(0).getValue());
 
 		params.remove(0);
+
+		int j = 0;
+		for (int i = 1; i < params.size(); i++) {
+			if (params.get(j).getKey().equals(params.get(i).getKey())) {
+				params.get(j).setValue(params.get(j).getValue() + ";" + params.get(i).getValue());
+				params.remove(i);
+				i--;
+			} else {
+				j++;
+			}
+		}
 
 		for (SearchCriteria param :
 				params) {
