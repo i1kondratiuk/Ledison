@@ -11,36 +11,39 @@ import javax.persistence.criteria.Root;
 
 public class ProductSpecification implements Specification<Product> {
 
-	private SearchCriteria criteria;
+    private SearchCriteria criteria;
 
-	public ProductSpecification(final SearchCriteria criteria) {
-		this.criteria = criteria;
-	}
+    public ProductSpecification(final SearchCriteria criteria) {
+        this.criteria = criteria;
+    }
 
-	@Override
-	public Predicate toPredicate(Root<Product> root, CriteriaQuery<?> query, CriteriaBuilder builder) {
+    @Override
+    public Predicate toPredicate(Root<Product> root, CriteriaQuery<?> query, CriteriaBuilder builder) {
 
-		if (criteria.getOperation().equalsIgnoreCase(">")) {
-			return builder.greaterThanOrEqualTo(
-					root.get(criteria.getKey()), criteria.getValue().toString());
-		}
-		else if (criteria.getOperation().equalsIgnoreCase("<")) {
-			return builder.lessThanOrEqualTo(
-					root.get(criteria.getKey()), criteria.getValue().toString());
-		}
-		else if (criteria.getOperation().equalsIgnoreCase(":")) {
-			if (criteria.getValue().toString().contains(";")) {
-				String[] values = criteria.getValue().toString().split(";");
-				Predicate predicate = null;
-				for (String value : values) {
-					predicate = builder.and(builder.equal(root.get(criteria.getKey()), value));
-				}
-				return predicate;
-			} else {
-				return builder.like(root.get(criteria.getKey()), "%" + criteria.getValue() + "%");
-//				return builder.equal(root.get(criteria.getKey()), criteria.getValue());
-			}
-		}
-		return null;
-	}
+        if (criteria.getOperation().equalsIgnoreCase(">")) {
+            return builder.greaterThanOrEqualTo(
+                    root.get(criteria.getKey()), criteria.getValue().toString());
+        } else if (criteria.getOperation().equalsIgnoreCase("<")) {
+            return builder.lessThanOrEqualTo(
+                    root.get(criteria.getKey()), criteria.getValue().toString());
+        } else if (criteria.getOperation().equalsIgnoreCase(":")) {
+            if (criteria.getValue().toString().contains(";")) {
+                String[] values = criteria.getValue().toString().split(";");
+                Predicate predicate = null;
+                for (String value : values) {
+                    System.out.println("!!!! --- " + value);
+                    if (predicate == null) {
+                        predicate = builder.equal(root.get(criteria.getKey()), value);
+                    } else {
+                        predicate = builder.and(builder.equal(root.get(criteria.getKey()), value), predicate);
+                        System.out.println("@@@@@" + predicate.getExpressions());
+                    }
+                }
+                return predicate;
+            } else {
+                return builder.like(root.get(criteria.getKey()), "%" + criteria.getValue() + "%");
+            }
+        }
+        return null;
+    }
 }
