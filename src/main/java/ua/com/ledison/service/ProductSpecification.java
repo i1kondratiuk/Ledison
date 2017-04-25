@@ -1,4 +1,4 @@
-package ua.com.ledison.dao;
+package ua.com.ledison.service;
 
 import org.springframework.data.jpa.domain.Specification;
 import ua.com.ledison.entity.Product;

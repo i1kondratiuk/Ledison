@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.web.bind.annotation.*;
-import ua.com.ledison.dao.ProductSpecificationsBuilder;
+import ua.com.ledison.service.ProductSpecificationsBuilder;
 import ua.com.ledison.entity.Product;
 import ua.com.ledison.service.ProductService;
 import ua.com.ledison.util.SearchCriteria;
