@@ -10,7 +10,6 @@ import ua.com.ledison.service.ProductService;
 import ua.com.ledison.util.SearchCriteria;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -54,7 +53,6 @@ public class ProductRestController {
 
 		ProductSpecificationsBuilder builder = new ProductSpecificationsBuilder(params);
 		Specification<Product> spec = builder.build();
-		System.out.println(spec);
 
 		return productService.findPaginated(spec, pageNumber);
 	}
