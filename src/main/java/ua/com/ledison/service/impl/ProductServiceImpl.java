@@ -30,11 +30,6 @@ public class ProductServiceImpl implements ProductService {
 		return requestedPage;
 	}
 
-	@Override
-	public Page<Product> findPaginated(Integer pageNumber) {
-		return productDao.findAll(new PageRequest(pageNumber - 1, PAGE_SIZE,Sort.Direction.DESC,  "productId"));
-	}
-
 	public List<Product> getProductList() {
 		return productDao.findAll();
 	}

@@ -16,11 +16,6 @@ public final class ProductSpecificationsBuilder {
 		this.params = params;
 	}
 
-	public ProductSpecificationsBuilder with(String key, String operation, Object value) {
-		params.add(new SearchCriteria());
-		return this;
-	}
-
 	public Specification<Product> build() {
 		if (params.size() == 0) {
 			return null;
