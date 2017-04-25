@@ -8,6 +8,8 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ProductSpecification implements Specification<Product> {
 
@@ -29,17 +31,12 @@ public class ProductSpecification implements Specification<Product> {
         } else if (criteria.getOperation().equalsIgnoreCase(":")) {
             if (criteria.getValue().toString().contains(";")) {
                 String[] values = criteria.getValue().toString().split(";");
-                Predicate predicate = null;
+                List<Predicate> predicates = new ArrayList<>();
                 for (String value : values) {
-                    System.out.println("!!!! --- " + value);
-                    if (predicate == null) {
-                        predicate = builder.equal(root.get(criteria.getKey()), value);
-                    } else {
-                        predicate = builder.and(builder.equal(root.get(criteria.getKey()), value), predicate);
-                        System.out.println("@@@@@" + predicate.getExpressions());
-                    }
+                    predicates.add(builder.equal(root.get(criteria.getKey()), value));
                 }
-                return predicate;
+                Predicate[] p = predicates.toArray(new Predicate[predicates.size()]);
+                return builder.or(p);
             } else {
                 return builder.like(root.get(criteria.getKey()), "%" + criteria.getValue() + "%");
             }
