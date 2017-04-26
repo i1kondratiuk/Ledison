@@ -37,215 +37,218 @@
                         <input type="checkbox" name="capType" value="G9"/><label>G9</label><br>
                         <input type="checkbox" name="capType" value="GU53"/><label>GU5.3</label><br>
                         <input type="checkbox" name="capType" value="T8"/><label>T8</label><br>
+                        <c:forEach items="${capType}" var="capType">
+                            <input type="checkbox" name="capType" value="${capType.capTypeName}"/><label>${capType.capTypeName}</label><br>
+                        </c:forEach>
                     </div>
                 </div>
             </div>
-            <%--<div class="panel panel-default">--%>
-            <%--<div class="panel-heading">--%>
-            <%--<h4 class="panel-title">--%>
-            <%--<a data-toggle="collapse" data-parent="#accordion" href="#price">Ціна</a>--%>
-            <%--</h4>--%>
-            <%--</div>--%>
-                <%--<div id="price" class="panel-collapse collapse">--%>
-                    <%--<div class="panel-body">--%>
-                        <%--<table class="table">--%>
-                            <%--<tr>--%>
-                                <%--<td><a href="#">Sub-Item 1</a> <span class="label label-success">$ 1320</span></td>--%>
-                            <%--</tr>--%>
-                            <%--<tr>--%>
-                                <%--<td><a href="#">Sub-Item 2</a></td>--%>
-                            <%--</tr>--%>
-                            <%--<tr>--%>
-                                <%--<td><a href="#">Sub-Item 1</a></td>--%>
-                            <%--</tr>--%>
-                            <%--<tr>--%>
-                                <%--<td><a href="#">Sub-Item 1</a></td>--%>
-                            <%--</tr>--%>
-                        <%--</table>--%>
-                    <%--</div>--%>
-                <%--</div>--%>
-            <%--</div>--%>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#price">Ціна</a>
+                    </h4>
+                </div>
+                <div id="price" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <table class="table">
+                            <tr>
+                                <td><a href="#">Sub-Item 1</a> <span class="label label-success">$ 1320</span></td>
+                            </tr>
+                            <tr>
+                                <td><a href="#">Sub-Item 2</a></td>
+                            </tr>
+                            <tr>
+                                <td><a href="#">Sub-Item 1</a></td>
+                            </tr>
+                            <tr>
+                                <td><a href="#">Sub-Item 1</a></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
 
-            <%--<div class="panel panel-default">--%>
-            <%--<div class="panel-heading">--%>
-            <%--<h4 class="panel-title">--%>
-            <%--<a data-toggle="collapse" data-parent="#accordion" href="#glowColor">Колір світіння</a>--%>
-            <%--</h4>--%>
-            <%--</div>--%>
-            <%--<div id="glowColor" class="panel-collapse collapse">--%>
-            <%--<div class="panel-body">--%>
-            <%--<table class="table">--%>
-            <%--<tr>--%>
-            <%--<td><a href="#">Sub-Item 1</a></td>--%>
-            <%--</tr>--%>
-            <%--<tr>--%>
-            <%--<td><a href="#">Sub-Item 2</a> <span class="label label-info">5</span></td>--%>
-            <%--</tr>--%>
-            <%--<tr>--%>
-            <%--<td><a href="#">Sub-Item 2</a></td>--%>
-            <%--</tr>--%>
-            <%--<tr>--%>
-            <%--<td><a href="#">Sub-Item 3</a></td>--%>
-            <%--</tr>--%>
-            <%--<tr>--%>
-            <%--<td><a href="#">Sub-Item 4</a></td>--%>
-            <%--</tr>--%>
-            <%--</table>--%>
-            <%--</div>--%>
-            <%--</div>--%>
-            <%--</div>--%>
-            <%--<div class="panel panel-default">--%>
-            <%--<div class="panel-heading">--%>
-            <%--<h4 class="panel-title">--%>
-            <%--<a data-toggle="collapse" data-parent="#accordion" href="#lampShape">Форма лампи</a>--%>
-            <%--</h4>--%>
-            <%--</div>--%>
-            <%--<div id="lampShape" class="panel-collapse collapse">--%>
-            <%--<div class="panel-body">--%>
-            <%--<table class="table">--%>
-            <%--<tr>--%>
-            <%--<td><a href="#">Sub-Item 1</a></td>--%>
-            <%--</tr>--%>
-            <%--<tr>--%>
-            <%--<td><a href="#">Sub-Item 2</a></td>--%>
-            <%--</tr>--%>
-            <%--<tr>--%>
-            <%--<td><a href="#">Sub-Item 3</a></td>--%>
-            <%--</tr>--%>
-            <%--<tr>--%>
-            <%--<td><a href="#">Sub-Item 4</a></td>--%>
-            <%--</tr>--%>
-            <%--</table>--%>
-            <%--</div>--%>
-            <%--</div>--%>
-            <%--</div>--%>
-            <%--<div class="panel panel-default">--%>
-            <%--<div class="panel-heading">--%>
-            <%--<h4 class="panel-title">--%>
-            <%--<a data-toggle="collapse" data-parent="#accordion" href="#power">Потужність, W</a>--%>
-            <%--</h4>--%>
-            <%--</div>--%>
-            <%--<div id="power" class="panel-collapse collapse">--%>
-            <%--<div class="panel-body">--%>
-            <%--<table class="table">--%>
-            <%--<tr>--%>
-            <%--<td><a href="#">Sub-Item 1</a></td>--%>
-            <%--</tr>--%>
-            <%--<tr>--%>
-            <%--<td><a href="#">Sub-Item 2</a></td>--%>
-            <%--</tr>--%>
-            <%--<tr>--%>
-            <%--<td><a href="#">Sub-Item 3</a></td>--%>
-            <%--</tr>--%>
-            <%--<tr>--%>
-            <%--<td><a href="#">Sub-Item 4</a></td>--%>
-            <%--</tr>--%>
-            <%--</table>--%>
-            <%--</div>--%>
-            <%--</div>--%>
-            <%--</div>--%>
-            <%--<div class="panel panel-default">--%>
-            <%--<div class="panel-heading">--%>
-            <%--<h4 class="panel-title">--%>
-            <%--<a data-toggle="collapse" data-parent="#accordion" href="#operatingVoltage">Робоча напруга,--%>
-            <%--V</a>--%>
-            <%--</h4>--%>
-            <%--</div>--%>
-            <%--<div id="operatingVoltage" class="panel-collapse collapse">--%>
-            <%--<div class="panel-body">--%>
-            <%--<table class="table">--%>
-            <%--<tr>--%>
-            <%--<td><a href="#">Sub-Item 1</a></td>--%>
-            <%--</tr>--%>
-            <%--<tr>--%>
-            <%--<td><a href="#">Sub-Item 2</a></td>--%>
-            <%--</tr>--%>
-            <%--<tr>--%>
-            <%--<td><a href="#">Sub-Item 3</a></td>--%>
-            <%--</tr>--%>
-            <%--<tr>--%>
-            <%--<td><a href="#">Sub-Item 4</a></td>--%>
-            <%--</tr>--%>
-            <%--</table>--%>
-            <%--</div>--%>
-            <%--</div>--%>
-            <%--</div>--%>
-            <%--<div class="panel panel-default">--%>
-            <%--<div class="panel-heading">--%>
-            <%--<h4 class="panel-title">--%>
-            <%--<a data-toggle="collapse" data-parent="#accordion" href="#diffuserType">Тип розсіювача</a>--%>
-            <%--</h4>--%>
-            <%--</div>--%>
-            <%--<div id="diffuserType" class="panel-collapse collapse">--%>
-            <%--<div class="panel-body">--%>
-            <%--<table class="table">--%>
-            <%--<tr>--%>
-            <%--<td><a href="#">Sub-Item 1</a></td>--%>
-            <%--</tr>--%>
-            <%--<tr>--%>
-            <%--<td><a href="#">Sub-Item 2</a></td>--%>
-            <%--</tr>--%>
-            <%--<tr>--%>
-            <%--<td><a href="#">Sub-Item 3</a></td>--%>
-            <%--</tr>--%>
-            <%--<tr>--%>
-            <%--<td><a href="#">Sub-Item 4</a></td>--%>
-            <%--</tr>--%>
-            <%--</table>--%>
-            <%--</div>--%>
-            <%--</div>--%>
-            <%--</div>--%>
-            <%--<div class="panel panel-default">--%>
-            <%--<div class="panel-heading">--%>
-            <%--<h4 class="panel-title">--%>
-            <%--<a data-toggle="collapse" data-parent="#accordion" href="#serviceLife">Термін служби, год</a>--%>
-            <%--</h4>--%>
-            <%--</div>--%>
-            <%--<div id="serviceLife" class="panel-collapse collapse">--%>
-            <%--<div class="panel-body">--%>
-            <%--<table class="table">--%>
-            <%--<tr>--%>
-            <%--<td><a href="#">Sub-Item 1</a></td>--%>
-            <%--</tr>--%>
-            <%--<tr>--%>
-            <%--<td><a href="#">Sub-Item 2</a></td>--%>
-            <%--</tr>--%>
-            <%--<tr>--%>
-            <%--<td><a href="#">Sub-Item 3</a></td>--%>
-            <%--</tr>--%>
-            <%--<tr>--%>
-            <%--<td><a href="#">Sub-Item 4</a></td>--%>
-            <%--</tr>--%>
-            <%--</table>--%>
-            <%--</div>--%>
-            <%--</div>--%>
-            <%--</div>--%>
-            <%--<div class="panel panel-default">--%>
-            <%--<div class="panel-heading">--%>
-            <%--<h4 class="panel-title">--%>
-            <%--<a data-toggle="collapse" data-parent="#accordion" href="#warrantyPeriod">Гарантійний термін,--%>
-            <%--м</a>--%>
-            <%--</h4>--%>
-            <%--</div>--%>
-            <%--<div id="warrantyPeriod" class="panel-collapse collapse">--%>
-            <%--<div class="panel-body">--%>
-            <%--<table class="table">--%>
-            <%--<tr>--%>
-            <%--<td><a href="#">Sub-Item 1</a></td>--%>
-            <%--</tr>--%>
-            <%--<tr>--%>
-            <%--<td><a href="#">Sub-Item 2</a></td>--%>
-            <%--</tr>--%>
-            <%--<tr>--%>
-            <%--<td><a href="#">Sub-Item 3</a></td>--%>
-            <%--</tr>--%>
-            <%--<tr>--%>
-            <%--<td><a href="#">Sub-Item 4</a></td>--%>
-            <%--</tr>--%>
-            <%--</table>--%>
-            <%--</div>--%>
-            <%--</div>--%>
-            <%--</div>--%>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#glowColor">Колір світіння</a>
+                    </h4>
+                </div>
+                <div id="glowColor" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <table class="table">
+                            <tr>
+                                <td><a href="#">Sub-Item 1</a></td>
+                            </tr>
+                            <tr>
+                                <td><a href="#">Sub-Item 2</a> <span class="label label-info">5</span></td>
+                            </tr>
+                            <tr>
+                                <td><a href="#">Sub-Item 2</a></td>
+                            </tr>
+                            <tr>
+                                <td><a href="#">Sub-Item 3</a></td>
+                            </tr>
+                            <tr>
+                                <td><a href="#">Sub-Item 4</a></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#lampShape">Форма лампи</a>
+                    </h4>
+                </div>
+                <div id="lampShape" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <table class="table">
+                            <tr>
+                                <td><a href="#">Sub-Item 1</a></td>
+                            </tr>
+                            <tr>
+                                <td><a href="#">Sub-Item 2</a></td>
+                            </tr>
+                            <tr>
+                                <td><a href="#">Sub-Item 3</a></td>
+                            </tr>
+                            <tr>
+                                <td><a href="#">Sub-Item 4</a></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#power">Потужність, W</a>
+                    </h4>
+                </div>
+                <div id="power" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <table class="table">
+                            <tr>
+                                <td><a href="#">Sub-Item 1</a></td>
+                            </tr>
+                            <tr>
+                                <td><a href="#">Sub-Item 2</a></td>
+                            </tr>
+                            <tr>
+                                <td><a href="#">Sub-Item 3</a></td>
+                            </tr>
+                            <tr>
+                                <td><a href="#">Sub-Item 4</a></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#operatingVoltage">Робоча напруга,
+                            V</a>
+                    </h4>
+                </div>
+                <div id="operatingVoltage" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <table class="table">
+                            <tr>
+                                <td><a href="#">Sub-Item 1</a></td>
+                            </tr>
+                            <tr>
+                                <td><a href="#">Sub-Item 2</a></td>
+                            </tr>
+                            <tr>
+                                <td><a href="#">Sub-Item 3</a></td>
+                            </tr>
+                            <tr>
+                                <td><a href="#">Sub-Item 4</a></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#diffuserType">Тип розсіювача</a>
+                    </h4>
+                </div>
+                <div id="diffuserType" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <table class="table">
+                            <tr>
+                                <td><a href="#">Sub-Item 1</a></td>
+                            </tr>
+                            <tr>
+                                <td><a href="#">Sub-Item 2</a></td>
+                            </tr>
+                            <tr>
+                                <td><a href="#">Sub-Item 3</a></td>
+                            </tr>
+                            <tr>
+                                <td><a href="#">Sub-Item 4</a></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#serviceLife">Термін служби, год</a>
+                    </h4>
+                </div>
+                <div id="serviceLife" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <table class="table">
+                            <tr>
+                                <td><a href="#">Sub-Item 1</a></td>
+                            </tr>
+                            <tr>
+                                <td><a href="#">Sub-Item 2</a></td>
+                            </tr>
+                            <tr>
+                                <td><a href="#">Sub-Item 3</a></td>
+                            </tr>
+                            <tr>
+                                <td><a href="#">Sub-Item 4</a></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#warrantyPeriod">Гарантійний термін,
+                            м</a>
+                    </h4>
+                </div>
+                <div id="warrantyPeriod" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <table class="table">
+                            <tr>
+                                <td><a href="#">Sub-Item 1</a></td>
+                            </tr>
+                            <tr>
+                                <td><a href="#">Sub-Item 2</a></td>
+                            </tr>
+                            <tr>
+                                <td><a href="#">Sub-Item 3</a></td>
+                            </tr>
+                            <tr>
+                                <td><a href="#">Sub-Item 4</a></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <div class="container">
