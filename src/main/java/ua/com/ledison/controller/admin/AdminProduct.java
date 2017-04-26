@@ -55,7 +55,8 @@ public class AdminProduct {
 
 		String homePath = System.getProperty("user.home") + File.separator + "images" + File.separator + product.getProductId() + ".jpg";
 
-		if (multipartFile != null && !multipartFile.isEmpty()) {
+		if (multipartFile == null || multipartFile.isEmpty()) {
+		} else {
 			try {
 				multipartFile.transferTo(new File(homePath));
 			} catch (Exception e) {
@@ -78,30 +79,29 @@ public class AdminProduct {
 		return "editProduct";
 	}
 
-	//	@PostMapping("/editProduct")
-	//	public String editProductPost(@Valid @ModelAttribute("product") Product product, BindingResult result, HttpServletRequest request) {
-	//
-	//		if (result.hasErrors()) {
-	//			return "editProduct";
-	//		}
-	//
-	//		MultipartFile productImage = product.getProductImage();
-	//		String rootDirectory = request.getSession().getServletContext().getRealPath("/");
-	//		String path = rootDirectory + "/WEB-INF/resources/images/" + product.getProductId() + ".png";
-	//
-	//		if (productImage != null && !productImage.isEmpty()) {
-	//			try {
-	//				productImage.transferTo(new File(path));
-	//			} catch (Exception ex) {
-	//				ex.printStackTrace();
-	//				throw new RuntimeException("Product image saving failed", ex);
-	//			}
-	//		}
-	//
-	//		productService.editProduct(product);
-	//
-	//		return "redirect:/admin/productInventory";
-	//	}
+	@PostMapping("/editProduct")
+	public String editProductPost(@Valid @ModelAttribute("product") Product product, BindingResult result, HttpServletRequest request) {
+
+		if (result.hasErrors()) {
+			return "editProduct";
+		}
+
+		MultipartFile multipartFile = product.getProductImage();
+
+		String homePath = System.getProperty("user.home") + File.separator + "images" + File.separator + product.getProductId() + ".jpg";
+
+		if (multipartFile == null || multipartFile.isEmpty()) {
+		} else try {
+			multipartFile.transferTo(new File(homePath));
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new RuntimeException("Product image saving failed", e);
+		}
+
+		productService.editProduct(product);
+
+		return "redirect:/admin/productInventory";
+	}
 
 	@GetMapping("/deleteProduct/{id}")
 	public String deleteProduct(@PathVariable int id, Model model) {

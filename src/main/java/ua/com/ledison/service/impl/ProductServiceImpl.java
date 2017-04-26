@@ -26,7 +26,11 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public Page<Product> findPaginated(Specification<Product> spec, Integer pageNumber) {
-		Page requestedPage = productDao.findAll(spec, new PageRequest(pageNumber - 1, PAGE_SIZE,Sort.Direction.DESC,  "productId"));
+		Page requestedPage = productDao.findAll(spec,
+				new PageRequest(pageNumber - 1, PAGE_SIZE, Sort.Direction.DESC, "productId"));
+		if (requestedPage.getTotalPages() == 0) {
+			return null;
+		}
 		return requestedPage;
 	}
 
