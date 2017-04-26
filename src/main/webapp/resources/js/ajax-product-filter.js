@@ -40,8 +40,13 @@ $(document).ready(function () {
             timeout: 100000,
             success: function (data) {
                 console.log("SUCCESS: ", data);
-                displayProducts(data);
-                doPagination(data);
+                if (data.toString() == "") {
+                    noElementWasFound();
+                    console.log("No element was found on request!");
+                } else {
+                    displayProducts(data);
+                    doPagination(data);
+                }
             },
             error: function (e) {
                 console.log("ERROR: ", e);
@@ -73,6 +78,11 @@ $(document).ready(function () {
     }
 
     $('#pagination').twbsPagination('destroy');
+
+    function noElementWasFound() {
+        $('#products').empty();
+        $('#products').html('<h1 class="text-center text-danger">No element was found on request!</h>');
+    }
 
     function displayProducts(data) {
         $('#products').empty();
