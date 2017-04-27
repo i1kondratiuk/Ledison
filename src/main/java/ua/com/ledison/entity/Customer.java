@@ -3,9 +3,12 @@ package ua.com.ledison.entity;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
-public class Customer {
+public class Customer implements Serializable {
+
+	private static final long serialVersionUID = -1514573522236596110L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

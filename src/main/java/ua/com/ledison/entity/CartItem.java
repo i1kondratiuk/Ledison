@@ -3,65 +3,66 @@ package ua.com.ledison.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
-public class CartItem {
+public class CartItem implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int cartItemId;
+	private static final long serialVersionUID = 8967872770366830416L;
 
-    @ManyToOne
-    @JoinColumn(name = "cartId")
-    @JsonIgnore
-    private Cart cart;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int cartItemId;
 
-    @ManyToOne
-    @JoinColumn(name = "productId")
-    private Product product;
+	@ManyToOne
+	@JoinColumn(name = "cartId")
+	@JsonIgnore
+	private Cart cart;
 
-    private int quantity;
-    private double totalPrice;
+	@ManyToOne
+	@JoinColumn(name = "productId")
+	private Product product;
 
+	private int quantity;
+	private double totalPrice;
 
-    public int getCartItemId() {
-        return cartItemId;
-    }
+	public int getCartItemId() {
+		return cartItemId;
+	}
 
-    public void setCartItemId(int cartItemId) {
-        this.cartItemId = cartItemId;
-    }
+	public void setCartItemId(int cartItemId) {
+		this.cartItemId = cartItemId;
+	}
 
-    public Cart getCart() {
-        return cart;
-    }
+	public Cart getCart() {
+		return cart;
+	}
 
-    public void setCart(Cart cart) {
-        this.cart = cart;
-    }
+	public void setCart(Cart cart) {
+		this.cart = cart;
+	}
 
-    public Product getProduct() {
-        return product;
-    }
+	public Product getProduct() {
+		return product;
+	}
 
-    public void setProduct(Product product) {
-        this.product = product;
-    }
+	public void setProduct(Product product) {
+		this.product = product;
+	}
 
-    public int getQuantity() {
-        return quantity;
-    }
+	public int getQuantity() {
+		return quantity;
+	}
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
 
-    public double getTotalPrice() {
-        return totalPrice;
-    }
+	public double getTotalPrice() {
+		return totalPrice;
+	}
 
-    public void setTotalPrice(double totalPrice) {
-        this.totalPrice = totalPrice;
-    }
-    
+	public void setTotalPrice(double totalPrice) {
+		this.totalPrice = totalPrice;
+	}
 }

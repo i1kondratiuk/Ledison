@@ -1,86 +1,89 @@
 package ua.com.ledison.entity;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
-public class ShippingAddress {
+public class ShippingAddress implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int shippingAddressId;
-    private String streetName;
-    private String apartmentNumber;
-    private String city;
-    private String state;
-    private String country;
+	private static final long serialVersionUID = -2301841381687322121L;
 
-    @OneToOne
-    private Customer customer;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int shippingAddressId;
+	private String streetName;
+	private String apartmentNumber;
+	private String city;
+	private String state;
+	private String country;
 
-    public int getShippingAddressId() {
-        return shippingAddressId;
-    }
+	@OneToOne
+	private Customer customer;
 
-    public void setShippingAddressId(int shippingAddressId) {
-        this.shippingAddressId = shippingAddressId;
-    }
+	public int getShippingAddressId() {
+		return shippingAddressId;
+	}
 
-    public String getStreetName() {
-        return streetName;
-    }
+	public void setShippingAddressId(int shippingAddressId) {
+		this.shippingAddressId = shippingAddressId;
+	}
 
-    public void setStreetName(String streetName) {
-        this.streetName = streetName;
-    }
+	public String getStreetName() {
+		return streetName;
+	}
 
-    public String getApartmentNumber() {
-        return apartmentNumber;
-    }
+	public void setStreetName(String streetName) {
+		this.streetName = streetName;
+	}
 
-    public void setApartmentNumber(String apartmentNumber) {
-        this.apartmentNumber = apartmentNumber;
-    }
+	public String getApartmentNumber() {
+		return apartmentNumber;
+	}
 
-    public String getCity() {
-        return city;
-    }
+	public void setApartmentNumber(String apartmentNumber) {
+		this.apartmentNumber = apartmentNumber;
+	}
 
-    public void setCity(String city) {
-        this.city = city;
-    }
+	public String getCity() {
+		return city;
+	}
 
-    public String getState() {
-        return state;
-    }
+	public void setCity(String city) {
+		this.city = city;
+	}
 
-    public void setState(String state) {
-        this.state = state;
-    }
+	public String getState() {
+		return state;
+	}
 
-    public String getCountry() {
-        return country;
-    }
+	public void setState(String state) {
+		this.state = state;
+	}
 
-    public void setCountry(String country) {
-        this.country = country;
-    }
+	public String getCountry() {
+		return country;
+	}
 
-    public Customer getCustomer() {
-        return customer;
-    }
+	public void setCountry(String country) {
+		this.country = country;
+	}
 
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
-    }
+	public Customer getCustomer() {
+		return customer;
+	}
 
-    @Override
-    public String toString() {
-        return "ShippingAddress{" +
-                "streetName='" + streetName + '\'' +
-                ", apartmentNumber='" + apartmentNumber + '\'' +
-                ", city='" + city + '\'' +
-                ", state='" + state + '\'' +
-                ", country='" + country + '\'' +
-                '}';
-    }
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
+
+	@Override
+	public String toString() {
+		return "ShippingAddress{" +
+				"streetName='" + streetName + '\'' +
+				", apartmentNumber='" + apartmentNumber + '\'' +
+				", city='" + city + '\'' +
+				", state='" + state + '\'' +
+				", country='" + country + '\'' +
+				'}';
+	}
 }
