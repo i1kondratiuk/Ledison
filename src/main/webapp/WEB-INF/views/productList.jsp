@@ -17,9 +17,11 @@
                 </div>
                 <div id="brand" class="panel-collapse collapse in">
                     <div name="brand" class="panel-body">
-                        <input name="productManufacturer" type="checkbox" value="LG"/><label>LG</label><br>
-                        <input name="productManufacturer" type="checkbox" value="Sony"/><label>Sony</label><br>
-                        <input name="productManufacturer" type="checkbox" value="Philips"/><label>Philips</label><br>
+                        <c:forEach items="${productManufacturers}" var="productManufacturer">
+                            <input type="checkbox" name="productManufacturerId"
+                                   value="${productManufacturer.productManufacturerId}"/> ${productManufacturer.productManufacturerName}
+                            <br>
+                        </c:forEach>
                     </div>
                 </div>
             </div>
@@ -31,44 +33,14 @@
                 </div>
                 <div id="capType" class="panel-collapse collapse in">
                     <div class="panel-body">
-                        <input type="checkbox" name="capType" value="E27"/><label>E27</label><br>
-                        <input type="checkbox" name="capType" value="E14"/><label>E14</label><br>
-                        <input type="checkbox" name="capType" value="G4"/><label>G4</label><br>
-                        <input type="checkbox" name="capType" value="G9"/><label>G9</label><br>
-                        <input type="checkbox" name="capType" value="GU53"/><label>GU5.3</label><br>
-                        <input type="checkbox" name="capType" value="T8"/><label>T8</label><br>
-                        <c:forEach items="${capType}" var="capType">
-                            <input type="checkbox" name="capType" value="${capType.capTypeName}"/><label>${capType.capTypeName}</label><br>
+                        <c:forEach items="${capTypes}" var="capType">
+                            <input type="checkbox" name="capType"
+                                   value="${capType.capTypeName}"/> ${capType.capTypeName}
+                            <br>
                         </c:forEach>
                     </div>
                 </div>
             </div>
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#price">Ціна</a>
-                    </h4>
-                </div>
-                <div id="price" class="panel-collapse collapse">
-                    <div class="panel-body">
-                        <table class="table">
-                            <tr>
-                                <td><a href="#">Sub-Item 1</a> <span class="label label-success">$ 1320</span></td>
-                            </tr>
-                            <tr>
-                                <td><a href="#">Sub-Item 2</a></td>
-                            </tr>
-                            <tr>
-                                <td><a href="#">Sub-Item 1</a></td>
-                            </tr>
-                            <tr>
-                                <td><a href="#">Sub-Item 1</a></td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-            </div>
-
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h4 class="panel-title">
@@ -77,23 +49,11 @@
                 </div>
                 <div id="glowColor" class="panel-collapse collapse">
                     <div class="panel-body">
-                        <table class="table">
-                            <tr>
-                                <td><a href="#">Sub-Item 1</a></td>
-                            </tr>
-                            <tr>
-                                <td><a href="#">Sub-Item 2</a> <span class="label label-info">5</span></td>
-                            </tr>
-                            <tr>
-                                <td><a href="#">Sub-Item 2</a></td>
-                            </tr>
-                            <tr>
-                                <td><a href="#">Sub-Item 3</a></td>
-                            </tr>
-                            <tr>
-                                <td><a href="#">Sub-Item 4</a></td>
-                            </tr>
-                        </table>
+                        <c:forEach items="${glowColors}" var="glowColor">
+                            <input type="checkbox" name="capType"
+                                   value="${glowColor.glowColorName}"/> ${glowColor.glowColorName}
+                            <br>
+                        </c:forEach>
                     </div>
                 </div>
             </div>
