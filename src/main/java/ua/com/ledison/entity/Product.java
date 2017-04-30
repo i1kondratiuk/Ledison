@@ -25,8 +25,10 @@ public class Product implements Serializable {
 	@NotEmpty(message = "The product category name must not be empty")
 	private String productCategory;
 
-	@NotEmpty(message = "The product brand name must not be empty")
-	private String productManufacturer;
+	@ManyToOne
+	@JoinColumn(name = "productManufacturerId")
+	@JsonIgnore
+	private ProductManufacturer productManufacturer;
 
 	@Min(value = 0, message = "The product price must not be less then zero")
 	private double productPrice;
@@ -62,7 +64,7 @@ public class Product implements Serializable {
 	@Transient
 	private MultipartFile productImage;
 
-	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JsonIgnore
 	private List<CartItem> cartItemList;
 
@@ -93,11 +95,11 @@ public class Product implements Serializable {
 		this.productCategory = productCategory;
 	}
 
-	public String getProductManufacturer() {
+	public ProductManufacturer getProductManufacturer() {
 		return productManufacturer;
 	}
 
-	public void setProductManufacturer(String productManufacturer) {
+	public void setProductManufacturer(ProductManufacturer productManufacturer) {
 		this.productManufacturer = productManufacturer;
 	}
 

@@ -47,6 +47,6 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	public void deleteProduct(Product product) {
-		productDao.delete(product);
+		productDao.delete(product.getProductId());
 	}
 }

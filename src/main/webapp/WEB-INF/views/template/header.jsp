@@ -16,8 +16,6 @@
     <link href="/resources/css/style.css" rel="stylesheet">
     <link href="/resources/css/font-awesome.css" rel="stylesheet">
 
-    <!-- Angular.JS -->
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.1/angular.min.js"></script>
     <!-- JQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
