@@ -11,18 +11,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Ledison</title>
-
-    <link href="/resources/css/bootstrap.css" rel="stylesheet" />
+    <%--Bootstrap--%>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link href="/resources/css/style.css" rel="stylesheet">
-    <link href="/resources/css/font-awesome.css" rel="stylesheet">
-
+    <%--font-awesome--%>
+    <link href="/resources/css/font-awesome.min.css" rel="stylesheet">
     <!-- JQuery -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <%-- twbsPagination --%>
     <script src="/resources/js/esimakin-twbs-pagination/jquery.twbsPagination.js"></script>
 
-    <script src="/resources/js/bootstrap.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="/resources/js/image-preview-input.js"></script>
     <script src="/resources/js/register-user.js"></script>
 </head>
