@@ -31,9 +31,7 @@ public class AdminHome {
     @GetMapping("/productInventory")
     public String productInventory(Model model){
         List<Product> products = productService.getProductList();
-        String homePath = System.getProperty("user.home") + File.separator + "images" + File.separator;
         model.addAttribute("products", products);
-        model.addAttribute("homePath", homePath);
 
         return "productInventory";
     }
