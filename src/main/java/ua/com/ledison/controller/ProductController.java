@@ -1,14 +1,18 @@
 package ua.com.ledison.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import ua.com.ledison.entity.CapType;
+import ua.com.ledison.entity.GlowColor;
 import ua.com.ledison.entity.Product;
+import ua.com.ledison.entity.ProductManufacturer;
+import ua.com.ledison.service.CapTypeService;
+import ua.com.ledison.service.GlowColorService;
+import ua.com.ledison.service.ProductManufacturerService;
 import ua.com.ledison.service.ProductService;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
@@ -18,9 +22,23 @@ public class ProductController {
 
 	@Autowired
 	private ProductService productService;
+	@Autowired
+	private CapTypeService capTypeService;
+	@Autowired
+	private ProductManufacturerService productManufacturerService;
+	@Autowired
+	private GlowColorService glowColorService;
 
 	@GetMapping("/productList/all")
-	public String getProducts() {
+	public String getProducts(Model model) {
+		System.out.println("@GetMapping(\"/productList/all\")");
+		List<ProductManufacturer> productManufacturers = productManufacturerService.getProductManufacturerList();
+		List<CapType> capTypes = capTypeService.getCapTypeList();
+		List<GlowColor> glowColors = glowColorService.getGlowColorList();
+
+		model.addAttribute("productManufacturers", productManufacturers);
+		model.addAttribute("capTypes", capTypes);
+		model.addAttribute("glowColors", glowColors);
 
 		return "productList";
 	}
@@ -32,5 +50,4 @@ public class ProductController {
 
 		return "viewProduct";
 	}
-
 }
