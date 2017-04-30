@@ -8,10 +8,11 @@
     <div class="container">
         <div class="page-header">
             <h1>Product Inventory Page</h1>
-
-
             <p class="lead">Product Inventory Page:</p>
-
+        <div>
+            <a href="<spring:url value="/admin/product/addProduct" />" class="btn btn-primary">Add Product</a>
+        </div>
+            <br>
         <table class="table table-striped table-hover">
             <thead>
             <tr class="bg-success">
@@ -28,7 +29,7 @@
                     <td><img src="/images/${product.productId}.jpg" width="100" alt="${homePath}${product.productId}.jpg"/></td>
                     <td>${product.productName}</td>
                     <td>${product.productCategory}</td>
-                    <td>${product.productManufacturer}</td>
+                    <td>${product.productManufacturer.productManufacturerName}</td>
                     <td>${product.productPrice} грн</td>
                     <td>
                         <a href="<spring:url value="/product/viewProduct/${product.productId}" />"><span class="glyphicon glyphicon-info-sign"></span></a>
@@ -38,7 +39,5 @@
                 </tr>
             </c:forEach>
         </table>
-
-        <a href="<spring:url value="/admin/product/addProduct" />" class="btn btn-primary">Add Product</a>
 
 <%@ include file="/WEB-INF/views/template/footer.jsp" %>
