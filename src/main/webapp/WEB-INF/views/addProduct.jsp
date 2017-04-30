@@ -21,16 +21,23 @@
 
             <div class="form-group">
                 <label for="productCategory">Категорія</label>
-                <label class="checkbox-inline"><form:radiobutton path="productCategory" id="productCategory"
+                <label class="checkbox-inline">
+                    <form:radiobutton path="productCategory" id="productCategory"
                                                                  value="ledBulbs"/>Світлодіодні лампи</label>
-                <label class="checkbox-inline"><form:radiobutton path="productCategory" id="productCategory"
+                <label class="checkbox-inline">
+                    <form:radiobutton path="productCategory" id="productCategory"
                                                                  value="ledLuminaires"/>Світильники</label>
             </div>
 
             <div class="form-group">
                 <label for="productManufacturer">Виробник</label>
-                <form:errors path="productManufacturer" cssStyle="color:#ff0000;"/>
-                <form:input path="productManufacturer" id="productManufacturer" class="form-control"/>
+                <select id="productManufacturer" name="productManufacturerId" class="selectpicker">
+                    <c:forEach items="${productManufacturers}" var="productManufacturer">
+                        <option value="${productManufacturer.productManufacturerId}"> ${productManufacturer.productManufacturerName}
+                        </option>
+                    </c:forEach>
+                </select>
+                <a class="pull-right" href="<spring:url value="/admin/product/addProductManufacturer" />"> Add new product manufacturer</a>
             </div>
 
             <div class="form-group">
