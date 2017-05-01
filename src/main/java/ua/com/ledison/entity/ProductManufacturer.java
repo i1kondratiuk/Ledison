@@ -17,8 +17,7 @@ public class ProductManufacturer implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer productManufacturerId;
 
-	@NotBlank(message = "The brand name must not consist of spaces")
-	@NotEmpty(message = "The brand name must not be empty")
+	@NotBlank(message = "The brand name must not be empty")
 	private String productManufacturerName;
 
 	@OneToMany(mappedBy = "productManufacturer", cascade = CascadeType.ALL, fetch = FetchType.LAZY)

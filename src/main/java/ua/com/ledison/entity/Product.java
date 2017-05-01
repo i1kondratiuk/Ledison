@@ -1,6 +1,7 @@
 package ua.com.ledison.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -19,10 +20,10 @@ public class Product implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int productId;
 
-	@NotEmpty(message = "The product name must not be empty")
+	@NotBlank(message = "The product name must not be empty")
 	private String productName;
 
-	@NotEmpty(message = "The product category name must not be empty")
+	@NotBlank(message = "The product category name must not be empty")
 	private String productCategory;
 
 	@ManyToOne
@@ -33,23 +34,18 @@ public class Product implements Serializable {
 	@Min(value = 0, message = "The product price must not be less then zero")
 	private double productPrice;
 
-	@NotEmpty(message = "The cap type must not be empty")
 	private String capType;
 
-	@NotEmpty(message = "The color of glow must not be empty")
 	private String glowColor;
 
-	@NotEmpty(message = "The lamp shape must not be empty")
 	private String lampShape;
 
 	@Min(value = 0, message = "The power must not be less then zero")
 	@Max(value = 200, message = "The power must not be more then 200")
 	private int power;
 
-	@NotEmpty(message = "The operating voltage name must not be empty")
 	private String operatingVoltage;
 
-	@NotEmpty(message = "The diffuser type must not be empty")
 	private String diffuserType;
 
 	@Min(value = 0, message = "The service period must not be less then zero")
