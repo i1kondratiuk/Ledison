@@ -41,8 +41,8 @@ $(document).ready(function () {
             success: function (data) {
                 console.log("SUCCESS: ", data);
                 if (data.toString() == "") {
-                    noElementWasFound();
-                    console.log("No element was found on request!");
+                    nothingFound();
+                    console.log("Nothing Found!");
                 } else {
                     displayProducts(data);
                     doPagination(data);
@@ -79,9 +79,9 @@ $(document).ready(function () {
 
     $('#pagination').twbsPagination('destroy');
 
-    function noElementWasFound() {
+    function nothingFound() {
         $('#products').empty();
-        $('#products').html('<h1 class="text-center text-danger">No element was found on request!</h>');
+        $('#products').html('<h1 class="text-center text-danger">Nothing Found!</h>');
     }
 
     function displayProducts(data) {

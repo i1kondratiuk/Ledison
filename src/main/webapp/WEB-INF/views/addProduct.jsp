@@ -37,7 +37,7 @@
                         </option>
                     </c:forEach>
                 </select>
-                <a class="pull-right" href="<spring:url value="/admin/product/addProductManufacturer" />"> Add new product manufacturer</a>
+                <a href="/admin/product/addProductManufacturer" class="pull-right">Add new product manufacturer</a>
             </div>
 
             <div class="form-group">
