@@ -83,8 +83,21 @@ public class AdminProduct {
 
 	@GetMapping("/addProductManufacturer")
 	public String addProductManufacturer(Model model) {
+		ProductManufacturer productManufacturer = new ProductManufacturer();
+		model.addAttribute("productManufacturer", productManufacturer);
 
 		return "addProductManufacturer";
+	}
+
+	@PostMapping("/addProductManufacturer")
+	public String addProductManufacturerPost(@Valid @ModelAttribute("productManufacturer") ProductManufacturer productManufacturer, BindingResult result) {
+
+		if (result.hasErrors()) {
+			return "addProductManufacturer";
+		}
+		productManufacturerService.addProductManufacturer(productManufacturer);
+
+		return "redirect:/admin/product/addProduct";
 	}
 
 	@GetMapping("/editProduct/{productId}")
