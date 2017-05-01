@@ -8,7 +8,6 @@ import ua.com.ledison.entity.CapType;
 import ua.com.ledison.entity.GlowColor;
 import ua.com.ledison.entity.Product;
 import ua.com.ledison.entity.ProductManufacturer;
-import ua.com.ledison.service.CapTypeService;
 import ua.com.ledison.service.GlowColorService;
 import ua.com.ledison.service.ProductManufacturerService;
 import ua.com.ledison.service.ProductService;
@@ -23,8 +22,6 @@ public class ProductController {
 	@Autowired
 	private ProductService productService;
 	@Autowired
-	private CapTypeService capTypeService;
-	@Autowired
 	private ProductManufacturerService productManufacturerService;
 	@Autowired
 	private GlowColorService glowColorService;
@@ -33,11 +30,10 @@ public class ProductController {
 	public String getProducts(Model model) {
 		System.out.println("@GetMapping(\"/productList/all\")");
 		List<ProductManufacturer> productManufacturers = productManufacturerService.getProductManufacturerList();
-		List<CapType> capTypes = capTypeService.getCapTypeList();
 		List<GlowColor> glowColors = glowColorService.getGlowColorList();
 
 		model.addAttribute("productManufacturers", productManufacturers);
-		model.addAttribute("capTypes", capTypes);
+		model.addAttribute("capTypes", CapType.values());
 		model.addAttribute("glowColors", glowColors);
 
 		return "productList";

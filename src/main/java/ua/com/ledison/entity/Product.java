@@ -34,7 +34,8 @@ public class Product implements Serializable {
 	@Min(value = 0, message = "The product price must not be less then zero")
 	private double productPrice;
 
-	private String capType;
+	@Enumerated(EnumType.STRING)
+	private CapType capType;
 
 	private String glowColor;
 
@@ -107,11 +108,11 @@ public class Product implements Serializable {
 		this.productPrice = productPrice;
 	}
 
-	public String getCapType() {
+	public CapType getCapType() {
 		return capType;
 	}
 
-	public void setCapType(String capType) {
+	public void setCapType(CapType capType) {
 		this.capType = capType;
 	}
 
@@ -200,13 +201,14 @@ public class Product implements Serializable {
 		return "Product{" +
 				"productId=" + productId +
 				", productName='" + productName + '\'' +
-				", productBrand='" + productManufacturer + '\'' +
+				", productCategory='" + productCategory + '\'' +
+				", productManufacturer=" + productManufacturer +
 				", productPrice=" + productPrice +
-				", capType='" + capType + '\'' +
+				", capType=" + capType +
 				", glowColor='" + glowColor + '\'' +
 				", lampShape='" + lampShape + '\'' +
 				", power=" + power +
-				", operatingVoltage=" + operatingVoltage +
+				", operatingVoltage='" + operatingVoltage + '\'' +
 				", diffuserType='" + diffuserType + '\'' +
 				", serviceLife=" + serviceLife +
 				", warrantyPeriod=" + warrantyPeriod +

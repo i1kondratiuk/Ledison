@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import ua.com.ledison.entity.CapType;
 import ua.com.ledison.entity.Product;
 import ua.com.ledison.entity.ProductManufacturer;
 import ua.com.ledison.service.ProductManufacturerService;
@@ -36,7 +37,7 @@ public class AdminProduct {
 		product.setProductName("Lamp-1");
 		product.setProductPrice(20.1);
 		product.setProductCategory("ledBulbs");
-		product.setCapType("E27");
+		product.setCapType(CapType.E27);
 		product.setGlowColor("neutralWhite");
 		product.setLampShape("A60");
 		product.setPower(3);
@@ -46,8 +47,9 @@ public class AdminProduct {
 		product.setWarrantyPeriod(36);
 		product.setUnitInStock(10);
 
-		model.addAttribute("productManufacturers", productManufacturers);
 		model.addAttribute("product", product);
+		model.addAttribute("productManufacturers", productManufacturers);
+		model.addAttribute("capTypes", CapType.values());
 
 		return "addProduct";
 	}

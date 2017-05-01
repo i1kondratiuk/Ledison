@@ -35,7 +35,7 @@
                     <div class="panel-body">
                         <c:forEach items="${capTypes}" var="capType">
                             <input type="checkbox" name="capType"
-                                   value="${capType.capTypeName}"/> ${capType.capTypeName}
+                                   value="${capType}"/> ${capType}
                             <br>
                         </c:forEach>
                     </div>

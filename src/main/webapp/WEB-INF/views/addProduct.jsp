@@ -48,17 +48,11 @@
 
             <div class="form-group">
                 <label for="capType">Тип цоколя</label>
-                <label class="checkbox-inline"><form:radiobutton path="capType" id="capType"
-                                                                 value="E27"/>E27</label>
-                <label class="checkbox-inline"><form:radiobutton path="capType" id="capType"
-                                                                 value="E14"/>E14</label>
-                <label class="checkbox-inline"><form:radiobutton path="capType" id="capType"
-                                                                 value="E40"/>E40</label>
-                <label class="checkbox-inline"><form:radiobutton path="capType" id="capType" value="G4"/>G4</label>
-                <label class="checkbox-inline"><form:radiobutton path="capType" id="capType" value="G9"/>G9</label>
-                <label class="checkbox-inline"><form:radiobutton path="capType" id="capType"
-                                                                 value="GU53"/>GU5.3</label>
-                <label class="checkbox-inline"><form:radiobutton path="capType" id="capType" value="T8"/>T8</label>
+                <c:forEach items="${capTypes}" var="capType">
+                        <label class="checkbox-inline">
+                        <form:radiobutton path="capType" id="capType" value="${capType}"/>${capType}</label>
+                </c:forEach>
+                <br>
             </div>
 
             <div class="form-group">
