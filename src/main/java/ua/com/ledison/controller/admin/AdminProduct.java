@@ -37,7 +37,7 @@ public class AdminProduct {
 		product.setProductName("Lamp-1");
 		product.setProductPrice(20.1);
 		product.setProductCategory("ledBulbs");
-		product.setCapType(CapType.E27);
+		product.setCapType(CapType.E27.toString());
 		product.setGlowColor("neutralWhite");
 		product.setLampShape("A60");
 		product.setPower(3);

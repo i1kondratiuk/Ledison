@@ -3,7 +3,6 @@ package ua.com.ledison.service;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.domain.Specifications;
 import ua.com.ledison.entity.Product;
-import ua.com.ledison.service.ProductSpecification;
 import ua.com.ledison.util.SearchCriteria;
 
 import java.util.ArrayList;

@@ -1,7 +1,5 @@
 package ua.com.ledison.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
@@ -15,12 +13,12 @@ public class Cart implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int cartId;
 
-	@OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private List<CartItem> cartItems;
 
 	@OneToOne
-	@JoinColumn(name = "customerId")
-	private Customer customer;
+	@JoinColumn(name = "userId")
+	private User user;
 
 	private double grandTotal;
 
@@ -40,12 +38,12 @@ public class Cart implements Serializable {
 		this.cartItems = cartItems;
 	}
 
-	public Customer getCustomer() {
-		return customer;
+	public User getUser() {
+		return user;
 	}
 
-	public void setCustomer(Customer customer) {
-		this.customer = customer;
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	public double getGrandTotal() {

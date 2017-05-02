@@ -28,7 +28,6 @@ public class ProductController {
 
 	@GetMapping("/productList/all")
 	public String getProducts(Model model) {
-		System.out.println("@GetMapping(\"/productList/all\")");
 		List<ProductManufacturer> productManufacturers = productManufacturerService.getProductManufacturerList();
 		List<GlowColor> glowColors = glowColorService.getGlowColorList();
 

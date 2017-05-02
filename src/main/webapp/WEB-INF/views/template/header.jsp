@@ -2,6 +2,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <!DOCTYPE html>
 <html>
@@ -16,10 +17,14 @@
     <link href="/resources/css/style.css" rel="stylesheet">
     <%--font-awesome--%>
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
     <!-- JQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <%-- twbsPagination --%>
     <script src="/resources/js/esimakin-twbs-pagination/jquery.twbsPagination.js"></script>
+
+    <!-- Angular.JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.1/angular.min.js"></script>
 
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="/resources/js/image-preview-input.js"></script>
@@ -58,9 +63,21 @@
                 </div>
             </form>
             <div class="navbar-form navbar-right">
-                <a href="/admin"> Адміністратор </a>
-                <a href="/login" class="btn btn-primary"><i class="fa fa-sign-in"></i> Вхід/Реєстрація</a>
-                <a href="/cart" class="btn btn-danger"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
+                <sec:authorize access="hasRole('ROLE_ADMIN')">
+                    <a href="/admin" class="btn btn-default">Admin</a>
+                </sec:authorize>
+                <sec:authorize var="loggedIn" access="isAuthenticated()"/>
+                <c:choose>
+                    <c:when test="${loggedIn}">
+                        <a href="/logout" class="btn btn-info"><i class="icon-signout"></i> Logout</a>
+                    </c:when>
+                    <c:otherwise>
+                        <a href="/login" class="btn btn-primary"><i class="icon-signin"></i> Login/Registration</a>
+                    </c:otherwise>
+                </c:choose>
+                <sec:authorize access="hasRole('ROLE_USER')">
+                    <a href="/customer/cart" class="btn btn-danger"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
+                </sec:authorize>
             </div>
         </div>
     </div>

@@ -13,9 +13,6 @@ import ua.com.ledison.service.UserService;
 
 import java.util.List;
 
-/**
- * Created by i1kon on 29-Mar-17.
- */
 @Service
 @Transactional
 public class UserServiceImpl implements UserService, UserDetailsService {

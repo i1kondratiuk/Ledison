@@ -34,8 +34,7 @@ public class Product implements Serializable {
 	@Min(value = 0, message = "The product price must not be less then zero")
 	private double productPrice;
 
-	@Enumerated(EnumType.STRING)
-	private CapType capType;
+	private String capType;
 
 	private String glowColor;
 
@@ -61,7 +60,7 @@ public class Product implements Serializable {
 	@Transient
 	private MultipartFile productImage;
 
-	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JsonIgnore
 	private List<CartItem> cartItemList;
 
@@ -108,11 +107,11 @@ public class Product implements Serializable {
 		this.productPrice = productPrice;
 	}
 
-	public CapType getCapType() {
+	public String getCapType() {
 		return capType;
 	}
 
-	public void setCapType(CapType capType) {
+	public void setCapType(String capType) {
 		this.capType = capType;
 	}
 

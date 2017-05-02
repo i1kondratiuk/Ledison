@@ -18,7 +18,7 @@ public class ShippingAddress implements Serializable {
 	private String country;
 
 	@OneToOne
-	private Customer customer;
+	private User user;
 
 	public int getShippingAddressId() {
 		return shippingAddressId;
@@ -68,12 +68,12 @@ public class ShippingAddress implements Serializable {
 		this.country = country;
 	}
 
-	public Customer getCustomer() {
-		return customer;
+	public User getUser() {
+		return user;
 	}
 
-	public void setCustomer(Customer customer) {
-		this.customer = customer;
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	@Override

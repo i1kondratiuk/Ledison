@@ -17,8 +17,8 @@ public class CustomerOrder implements Serializable {
     private Cart cart;
 
     @OneToOne
-    @JoinColumn(name = "customerId")
-    private Customer customer;
+    @JoinColumn(name = "userId")
+    private User user;
 
     @OneToOne
     @JoinColumn(name="shippingAddressId")
@@ -40,12 +40,12 @@ public class CustomerOrder implements Serializable {
         this.cart = cart;
     }
 
-    public Customer getCustomer() {
-        return customer;
+    public User getUser() {
+        return user;
     }
 
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public ShippingAddress getShippingAddress() {

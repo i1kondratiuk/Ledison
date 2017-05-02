@@ -1,18 +1,19 @@
 package ua.com.ledison.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.User;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import ua.com.ledison.entity.Cart;
 import ua.com.ledison.entity.CartItem;
-import ua.com.ledison.entity.Customer;
 import ua.com.ledison.entity.Product;
+import ua.com.ledison.entity.User;
 import ua.com.ledison.service.CartItemService;
 import ua.com.ledison.service.CartService;
-import ua.com.ledison.service.CustomerService;
 import ua.com.ledison.service.ProductService;
+import ua.com.ledison.service.UserService;
 
+import java.security.Principal;
 import java.util.List;
 
 @Controller
@@ -26,7 +27,7 @@ public class CartResources {
 	private CartItemService cartItemService;
 
 	@Autowired
-	private CustomerService customerService;
+	UserService userService;
 
 	@Autowired
 	private ProductService productService;
@@ -37,9 +38,10 @@ public class CartResources {
 	}
 
 	@GetMapping("/add/{productId}")
-	public void addItem(@PathVariable(value = "productId") int productId, User activeUser) {
-		Customer customer = customerService.getCustomerByUsername(activeUser.getUsername());
-		Cart cart = customer.getCart();
+	@ResponseStatus(value = HttpStatus.NO_CONTENT)
+	public void addItem(@PathVariable(value = "productId") int productId, Principal principal) {
+		User user = userService.findByName(principal.getName());
+		Cart cart = user.getCart();
 		Product product = productService.getProductById(productId);
 		List<CartItem> cartItems = cart.getCartItems();
 

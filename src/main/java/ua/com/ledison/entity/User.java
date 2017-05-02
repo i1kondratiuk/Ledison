@@ -16,11 +16,31 @@ public class User implements UserDetails {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-	@NotEmpty(message = "The customer username must not be null")
+	@NotEmpty(message = "The username must not be null")
 	private String username;
 
-	@NotEmpty (message = "The customer password must not be null")
+	@NotEmpty (message = "The password must not be null")
 	private String password;
+
+	@NotEmpty(message = "The first name must not be null")
+	private String firstName;
+
+	@NotEmpty(message = "The last name must not be null")
+	private String lastName;
+
+	@NotEmpty(message = "The email must not be null")
+	private String email;
+
+	@NotEmpty(message = "The customer phone must not be null")
+	private String phone;
+
+	@OneToOne
+	@JoinColumn(name = "shippingAddressId")
+	private ShippingAddress shippingAddress;
+
+	@OneToOne
+	@JoinColumn(name = "cartId")
+	private Cart cart;
 
 	@Enumerated(EnumType.STRING)
 	private Authority authority = Authority.ROLE_USER;
@@ -29,10 +49,6 @@ public class User implements UserDetails {
 	private boolean accountNonLocked = true;
 	private boolean credentialsNonExpired = true;
 	private boolean enabled = true;
-
-	@OneToOne
-	@JoinColumn(name = "customerId")
-	private Customer customer;
 
 	public User() {
 	}
@@ -43,7 +59,7 @@ public class User implements UserDetails {
 	}
 
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		ArrayList<SimpleGrantedAuthority> authorities = new ArrayList<SimpleGrantedAuthority>();
+		ArrayList<SimpleGrantedAuthority> authorities = new ArrayList<>();
 		authorities.add(new SimpleGrantedAuthority(authority.name().toString()));
 		return authorities;
 	}
@@ -108,20 +124,55 @@ public class User implements UserDetails {
 		this.credentialsNonExpired = credentialsNonExpired;
 	}
 
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public ShippingAddress getShippingAddress() {
+		return shippingAddress;
+	}
+
+	public void setShippingAddress(ShippingAddress shippingAddress) {
+		this.shippingAddress = shippingAddress;
+	}
+
+	public Cart getCart() {
+		return cart;
+	}
+
+	public void setCart(Cart cart) {
+		this.cart = cart;
+	}
+
 	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
-	}
-
-	public Customer getCustomer() {
-		return customer;
-	}
-
-	public void setCustomer(Customer customer) {
-		this.customer = customer;
-	}
-
-	@Override
-	public String toString() {
-		return "User{" + "id=" + id + ", username='" + username + '\'' + ", password='" + password + '\'' + '}';
 	}
 }

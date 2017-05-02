@@ -5,12 +5,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import ua.com.ledison.entity.Customer;
 import ua.com.ledison.entity.Product;
-import ua.com.ledison.service.CustomerService;
+import ua.com.ledison.entity.User;
 import ua.com.ledison.service.ProductService;
+import ua.com.ledison.service.UserService;
 
-import java.io.File;
 import java.util.List;
 
 @Controller
@@ -21,7 +20,7 @@ public class AdminHome {
     private ProductService productService;
 
     @Autowired
-    private CustomerService customerService;
+    private UserService userService;
 
     @GetMapping
     public String adminPage(){
@@ -38,8 +37,7 @@ public class AdminHome {
 
     @GetMapping("/customer")
     public String customerManagement(Model model){
-
-        List<Customer> customerList = customerService.getAllCustomers();
+        List<User> customerList = userService.getAllUsers();
         model.addAttribute("customerList", customerList);
 
         return "customerManagement";
