@@ -95,16 +95,16 @@ $(document).ready(function () {
             var className = "col-xs-6 col-sm-4";
             var imagePath = "/images/" + product.productId + ".jpg";
             var viewProduct = "/product/viewProduct/" + product.productId;
+            var addToCart = "/rest/cart/add/" + product.productId;
             $('#products').append($('<div>', {
                 class: className,
                 text: product
-            }).html('<a href=""><div class="thumbnail">' +
+            }).html('<a href="' + viewProduct + '"><div class="thumbnail">' +
                 '<img src="' + imagePath + '" id="productImg" width="400" alt="' +
-                product.productName + product.productId + '"/><div class="caption"><h3 style="margin-top: 0"><a href="">' +
+                product.productName + product.productId + '"/><div class="caption"><h3 style="margin-top: 0"><a href="' + viewProduct + '">' +
                 product.productName + '</a></h3><span style="font-size: 24px;">' +
-                product.productPrice + '</span><a href="' + viewProduct + '" class="btn btn-success pull-right">Купити' +
+                product.productPrice + '</span><a href="' + addToCart + '" class="btn btn-success pull-right">Купити' +
                 '<i class="fa fa-cart-plus" aria-hidden="true"></i></a></div></div></a>'));
         }
     }
-
 });

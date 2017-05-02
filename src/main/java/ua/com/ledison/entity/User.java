@@ -1,6 +1,5 @@
 package ua.com.ledison.entity;
 
-import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -16,22 +15,12 @@ public class User implements UserDetails {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-	@NotEmpty(message = "The username must not be null")
 	private String username;
-
-	@NotEmpty (message = "The password must not be null")
 	private String password;
-
-	@NotEmpty(message = "The first name must not be null")
-	private String firstName;
-
-	@NotEmpty(message = "The last name must not be null")
-	private String lastName;
-
-	@NotEmpty(message = "The email must not be null")
 	private String email;
 
-	@NotEmpty(message = "The customer phone must not be null")
+	private String firstName;
+	private String lastName;
 	private String phone;
 
 	@OneToOne
@@ -48,18 +37,62 @@ public class User implements UserDetails {
 	private boolean accountNonExpired = true;
 	private boolean accountNonLocked = true;
 	private boolean credentialsNonExpired = true;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public Authority getAuthority() {
+		return authority;
+	}
+
+	public void setAuthority(Authority authority) {
+		this.authority = authority;
+	}
+
+	public void setAccountNonExpired(boolean accountNonExpired) {
+		this.accountNonExpired = accountNonExpired;
+	}
+
+	public void setAccountNonLocked(boolean accountNonLocked) {
+		this.accountNonLocked = accountNonLocked;
+	}
+
+	public void setCredentialsNonExpired(boolean credentialsNonExpired) {
+		this.credentialsNonExpired = credentialsNonExpired;
+	}
+
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
+	}
+
 	private boolean enabled = true;
 
 	public User() {
 	}
 
-	public User(String username, String password) {
-		this.username = username;
-		this.password = password;
-	}
-
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		ArrayList<SimpleGrantedAuthority> authorities = new ArrayList<>();
+		ArrayList<SimpleGrantedAuthority> authorities = new ArrayList<SimpleGrantedAuthority>();
 		authorities.add(new SimpleGrantedAuthority(authority.name().toString()));
 		return authorities;
 	}
@@ -88,42 +121,6 @@ public class User implements UserDetails {
 		return enabled;
 	}
 
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public Authority getAuthority() {
-		return authority;
-	}
-
-	public void setAuthority(Authority authority) {
-		this.authority = authority;
-	}
-
-	public void setAccountNonExpired(boolean accountNonExpired) {
-		this.accountNonExpired = accountNonExpired;
-	}
-
-	public void setAccountNonLocked(boolean accountNonLocked) {
-		this.accountNonLocked = accountNonLocked;
-	}
-
-	public void setCredentialsNonExpired(boolean credentialsNonExpired) {
-		this.credentialsNonExpired = credentialsNonExpired;
-	}
-
 	public String getFirstName() {
 		return firstName;
 	}
@@ -138,14 +135,6 @@ public class User implements UserDetails {
 
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
 	}
 
 	public String getPhone() {
@@ -172,7 +161,15 @@ public class User implements UserDetails {
 		this.cart = cart;
 	}
 
-	public void setEnabled(boolean enabled) {
-		this.enabled = enabled;
+	@Override
+	public String toString() {
+		return "User{" +
+				"id=" + id +
+				", username='" + username + '\'' +
+				", email='" + email + '\'' +
+				", firstName='" + firstName + '\'' +
+				", lastName='" + lastName + '\'' +
+				", phone='" + phone + '\'' +
+				'}';
 	}
 }

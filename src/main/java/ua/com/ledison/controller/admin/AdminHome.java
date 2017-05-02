@@ -37,10 +37,10 @@ public class AdminHome {
 
     @GetMapping("/customer")
     public String customerManagement(Model model){
-        List<User> customerList = userService.getAllUsers();
-        model.addAttribute("customerList", customerList);
+        List<User> userList = userService.getAllUsers();
+        model.addAttribute("userList", userList);
 
-        return "customerManagement";
+        return "userManagement";
     }
 
 }

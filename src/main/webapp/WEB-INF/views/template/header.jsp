@@ -66,6 +66,9 @@
                 <sec:authorize access="hasRole('ROLE_ADMIN')">
                     <a href="/admin" class="btn btn-default">Admin</a>
                 </sec:authorize>
+                <sec:authorize access="hasRole('ROLE_USER')">
+                    <a href="/customer/profile"><sec:authentication property="principal.username"></sec:authentication></a>
+                </sec:authorize>
                 <sec:authorize var="loggedIn" access="isAuthenticated()"/>
                 <c:choose>
                     <c:when test="${loggedIn}">

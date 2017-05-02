@@ -9,35 +9,44 @@
         <div class="page-header">
             <h1>Product Inventory Page</h1>
             <p class="lead">Product Inventory Page:</p>
-        <div>
-            <a href="<spring:url value="/admin/product/addProduct" />" class="btn btn-primary">Add Product</a>
-        </div>
+            <div>
+                <a href="<spring:url value="/admin/product/addProduct" />" class="btn btn-primary">Add Product</a>
+            </div>
             <br>
-        <table class="table table-striped table-hover">
-            <thead>
-            <tr class="bg-success">
-                <th>Фото</th>
-                <th>Найменування</th>
-                <th>Категорія</th>
-                <th>Виробник</th>
-                <th>Ціна</th>
-                <th></th>
-            </tr>
-            </thead>
-            <c:forEach items="${products}" var="product">
-                <tr>
-                    <td><img src="/images/${product.productId}.jpg" width="100" alt="${homePath}${product.productId}.jpg"/></td>
-                    <td>${product.productName}</td>
-                    <td>${product.productCategory}</td>
-                    <td>${product.productManufacturer.productManufacturerName}</td>
-                    <td>${product.productPrice} грн</td>
-                    <td>
-                        <a href="<spring:url value="/product/viewProduct/${product.productId}" />"><span class="glyphicon glyphicon-info-sign"></span></a>
-                        <a href="<spring:url value="/admin/product/deleteProduct/${product.productId}" />"><span class="glyphicon glyphicon-remove"></span></a>
-                        <a href="<spring:url value="/admin/product/editProduct/${product.productId}" />"><span class="glyphicon glyphicon-pencil"></span></a>
-                    </td>
+            <table class="table table-striped table-hover">
+                <thead>
+                <tr class="bg-success">
+                    <th>Фото</th>
+                    <th>Найменування</th>
+                    <th>Категорія</th>
+                    <th>Виробник</th>
+                    <th>Ціна</th>
+                    <th></th>
                 </tr>
-            </c:forEach>
-        </table>
+                </thead>
+                <c:forEach items="${products}" var="product">
+                    <tr>
+                        <td><img src="/images/${product.productId}.jpg" width="100" alt="${product.productId}.jpg"/>
+                        </td>
+                        <td>${product.productName}</td>
+                        <td>${product.productCategory}</td>
+                        <td>${product.productManufacturer.productManufacturerName}</td>
+                        <td>${product.productPrice} грн</td>
+                        <td>
+                            <a href="<spring:url value="/product/viewProduct/${product.productId}" />"><span
+                                    class="glyphicon glyphicon-info-sign"></span></a>
+                            <a href="<spring:url value="/admin/product/deleteProduct/${product.productId}" />"><span
+                                    class="glyphicon glyphicon-remove"></span></a>
+                            <a href="<spring:url value="/admin/product/editProduct/${product.productId}" />"><span
+                                    class="glyphicon glyphicon-pencil"></span></a>
+                        </td>
+                    </tr>
+                </c:forEach>
+            </table>
 
-<%@ include file="/WEB-INF/views/template/footer.jsp" %>
+        </div>
+    </div>
+</div>
+</body>
+
+</html>

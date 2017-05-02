@@ -33,7 +33,6 @@ public class AdminProduct {
 		List<ProductManufacturer> productManufacturers = productManufacturerService.getProductManufacturerList();
 		Product product = new Product();
 
-		product.setProductManufacturer(productManufacturerService.getProductManufacturerById(3));
 		product.setProductName("Lamp-1");
 		product.setProductPrice(20.1);
 		product.setProductCategory("ledBulbs");
