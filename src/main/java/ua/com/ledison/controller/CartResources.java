@@ -40,7 +40,7 @@ public class CartResources {
 	@GetMapping("/add/{productId}")
 	@ResponseStatus(value = HttpStatus.NO_CONTENT)
 	public void addItem(@PathVariable(value = "productId") int productId, Principal principal) {
-		User user = userService.findByName(principal.getName());
+		User user = userService.findByNameLazy(principal.getName());
 		Cart cart = user.getCart();
 		Product product = productService.getProductById(productId);
 		List<CartItem> cartItems = cart.getCartItems();

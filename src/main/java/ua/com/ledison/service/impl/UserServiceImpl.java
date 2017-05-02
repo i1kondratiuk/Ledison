@@ -17,26 +17,33 @@ import java.util.List;
 @Transactional
 public class UserServiceImpl implements UserService, UserDetailsService {
 
-	@Autowired
-	UserDao userDao;
+    @Autowired
+    UserDao userDao;
 
-	@Autowired
-	PasswordEncoder passwordEncoder;
+    @Autowired
+    PasswordEncoder passwordEncoder;
 
-	public void addUser(User user) {
-		user.setPassword(passwordEncoder.encode(user.getPassword()));
-		userDao.save(user);
-	}
+    public void addUser(User user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        userDao.save(user);
+    }
 
-	public User findByName(String username) {
-		return userDao.findByUserName(username);
-	}
+    public User findByName(String username) {
+        return userDao.findByUserName(username);
+    }
 
-	public List<User> getAllUsers() {
-		return userDao.findAll();
-	}
+    //.size() forces loading of the children
+    public User findByNameLazy(String username) {
+        User user = userDao.findByUserName(username);
+        user.getCart().getCartItems().size();
+        return user;
+    }
 
-	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		return findByName(username);
-	}
+    public List<User> getAllUsers() {
+        return userDao.findAll();
+    }
+
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        return findByName(username);
+    }
 }
