@@ -13,20 +13,22 @@
         <table class="table table-striped table-hover">
             <thead>
             <tr class="bg-success">
-                <th>Name</th>
+                <th>Username</th>
                 <th>Email</th>
                 <th>Phone</th>
-                <th>Username</th>
+                <th>Name</th>
+                <th>Surname</th>
                 <th>Enabled</th>
             </tr>
             </thead>
-            <c:forEach items="${customerList}" var="customer">
+            <c:forEach items="${userList}" var="user">
                 <tr>
-                    <td>${customer.customerName}</td>
-                    <td>${customer.customerEmail}</td>
-                    <td>${customer.customerPhone}</td>
-                    <td>${customer.username}</td>
-                    <td>${customer.enabled}</td>
+                    <td>${user.username}</td>
+                    <td>${user.email}</td>
+                    <td>${user.phone}</td>
+                    <td>${user.firstName}</td>
+                    <td>${user.lastName}</td>
+                    <td>${user.enabled}</td>
                 </tr>
             </c:forEach>
         </table>
