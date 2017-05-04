@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import ua.com.ledison.entity.Cart;
 import ua.com.ledison.entity.User;
 import ua.com.ledison.service.UserService;
 
@@ -21,6 +22,10 @@ public class CartController {
     @GetMapping
     public String getCart(Principal principal, Model model) {
         User user = userService.findByName(principal.getName());
+        if (user.getCart() == null) {
+            user.setCart(new Cart());
+        }
+
         int cartId = user.getCart().getCartId();
 
         model.addAttribute("cart", user.getCart());
