@@ -185,3 +185,10 @@ a.spoiler.collapsed:after {
 .image-preview-input-title {
     margin-left: 2px;
 }
+
+/*carousel*/
+.hide-bullets {
+    list-style:none;
+    margin-left: -40px;
+    margin-top:20px;
+}
