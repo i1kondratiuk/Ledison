@@ -23,18 +23,21 @@
 
                     <br/>
 
-                    <c:set var = "role" scope="page" value="${param.role}" />
-                    <c:set var = "url" scope="page" value="/product/productList/all" />
+                    <c:set var = "urlBack" scope="page" value="/product/productList/all" />
+                    <c:set var = "urlAddItem" scope="page" value="/rest/cart/add/${product.productId}" />
+                    <sec:authorize var="loggedIn" access="isAuthenticated()"/>
                     <sec:authorize access="hasRole('ROLE_ADMIN')">
-                        <c:set var="url" scope="page" value="/admin/productInventory" />
+                        <c:set var="urlBack" scope="page" value="/admin/productInventory" />
                     </sec:authorize>
 
                     <p>
-                        <a href="<c:url value = "${url}" />" class="btn btn-default">Back</a>
+                        <a href="<c:url value = "${urlBack}" />" class="btn btn-default">Back</a>
                         <sec:authorize access="hasRole('ROLE_USER')">
-                            <a href="/rest/cart/add/${product.productId}" class="btn btn-warning btn-large"><span class="glyphicon glyphicon-shopping-cart"></span> Order Now</a>
+                            <a href="<spring:url value="${urlAddItem}" />" class="btn btn-warning btn-large"><span class="glyphicon glyphicon-shopping-cart"></span> Order Now</a>
+                            <sec:authorize access="!hasRole('ROLE_ADMIN')">
+                                <a href="<spring:url value="/customer/cart" />" class="btn btn-default"><span class="glyphicon glyphicon-hand-right"></span> View Cart</a>
+                            </sec:authorize>
                         </sec:authorize>
-                        <a href="<spring:url value="/customer/cart" />" class="btn btn-default"><span class="glyphicon glyphicon-hand-right"></span> View Cart</a>
                     </p>
 
                 </div>
