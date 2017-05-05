@@ -14,6 +14,7 @@ import ua.com.ledison.service.ProductService;
 import ua.com.ledison.service.UserService;
 
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -40,10 +41,22 @@ public class CartResources {
 	@GetMapping("/add/{productId}")
 	@ResponseStatus(value = HttpStatus.NO_CONTENT)
 	public void addItem(@PathVariable(value = "productId") int productId, Principal principal) {
-		User user = userService.findByNameLazy(principal.getName());
+		User user = userService.findByNameAndFetchItems(principal.getName());
+		if (user.getCart() == null) {
+			Cart cart = new Cart();
+			cart.setUser(user);
+			cartService.update(cart);
+			user.setCart(cart);
+			userService.updateUser(user);
+			user.setCart(cart);
+		}
+
 		Cart cart = user.getCart();
 		Product product = productService.getProductById(productId);
 		List<CartItem> cartItems = cart.getCartItems();
+		if (cartItems == null) {
+			cartItems = new ArrayList<>();
+		}
 
 		for (int i = 0; i < cartItems.size(); i++) {
 			if (product.getProductId() == cartItems.get(i).getProduct().getProductId()) {
@@ -62,6 +75,8 @@ public class CartResources {
 		cartItem.setTotalPrice(product.getProductPrice() * cartItem.getQuantity());
 		cartItem.setCart(cart);
 		cartItemService.addCartItem(cartItem);
+		cart.setCartItems(cartItems);
+		cartService.update(cart);
 	}
 
 	@GetMapping("/remove/{productId}")
