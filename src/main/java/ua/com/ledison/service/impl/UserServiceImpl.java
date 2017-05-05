@@ -28,12 +28,17 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         userDao.save(user);
     }
 
+    @Override
+    public void updateUser(User user) {
+        userDao.save(user);
+    }
+
     public User findByName(String username) {
         return userDao.findByUserName(username);
     }
 
     //.size() forces loading of the children
-    public User findByNameLazy(String username) {
+    public User findByNameAndFetchItems(String username) {
         User user = userDao.findByUserName(username);
         user.getCart().getCartItems().size();
         return user;

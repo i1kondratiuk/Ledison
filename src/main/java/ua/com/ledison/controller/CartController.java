@@ -21,7 +21,7 @@ public class CartController {
 
     @GetMapping
     public String getCart(Principal principal, Model model) {
-        User user = userService.findByName(principal.getName());
+        User user = userService.findByNameAndFetchItems(principal.getName());
         if (user.getCart() == null) {
             user.setCart(new Cart());
         }

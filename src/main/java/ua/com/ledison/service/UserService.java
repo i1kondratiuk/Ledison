@@ -6,7 +6,8 @@ import java.util.List;
 
 public interface UserService {
     void addUser(User user);
+    void updateUser(User user);
     User findByName(String username);
-    User findByNameLazy(String username);
+    User findByNameAndFetchItems(String username);
     List<User> getAllUsers();
 }
