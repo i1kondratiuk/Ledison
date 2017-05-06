@@ -14,19 +14,19 @@ public class CartItemServiceImpl implements CartItemService {
     @Autowired
     private CartItemDao cartItemDao;
 
-    public void addCartItem(CartItem cartItem) {
-
+    public void addCartItem(CartItem cartItem){
+        cartItemDao.save(cartItem);
     }
 
-    public void removeCartItem(CartItem cartItem) {
-
+    public void removeCartItem(CartItem cartItem){
+        cartItemDao.delete(cartItem);
     }
 
-    public void removeAllCartItems(Cart cart) {
-
+    public void removeAllCartItems(Cart cart){
+        cartItemDao.deleteAll();
     }
 
-    public CartItem getCartItemByProductId(int productId) {
-        return null;
+    public CartItem getCartItemByProductId(int productId){
+        return cartItemDao.findOne(productId);
     }
 }

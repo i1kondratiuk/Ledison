@@ -8,7 +8,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ua.com.ledison.dao.UserDao;
+import ua.com.ledison.entity.Cart;
 import ua.com.ledison.entity.User;
+import ua.com.ledison.service.CartItemService;
+import ua.com.ledison.service.CartService;
 import ua.com.ledison.service.UserService;
 
 import java.util.List;
@@ -17,38 +20,51 @@ import java.util.List;
 @Transactional
 public class UserServiceImpl implements UserService, UserDetailsService {
 
-    @Autowired
-    UserDao userDao;
+	@Autowired
+	UserDao userDao;
 
-    @Autowired
-    PasswordEncoder passwordEncoder;
+	@Autowired
+	PasswordEncoder passwordEncoder;
 
-    public void addUser(User user) {
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        userDao.save(user);
-    }
+	@Autowired
+	private CartService cartService;
 
-    @Override
-    public void updateUser(User user) {
-        userDao.save(user);
-    }
+	@Autowired
+	private UserService userService;
 
-    public User findByName(String username) {
-        return userDao.findByUserName(username);
-    }
 
-    //.size() forces loading of the children
-    public User findByNameAndFetchItems(String username) {
-        User user = userDao.findByUserName(username);
-        user.getCart().getCartItems().size();
-        return user;
-    }
+	public void addUser(User user) {
+		user.setPassword(passwordEncoder.encode(user.getPassword()));
+		userDao.save(user);
+	}
 
-    public List<User> getAllUsers() {
-        return userDao.findAll();
-    }
+	@Override
+	public void updateUser(User user) {
+		userDao.save(user);
+	}
 
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return findByName(username);
-    }
+	public User findByName(String username) {
+		return userDao.findByUserName(username);
+	}
+
+	//.size() forces loading of the children
+	public User findByNameAndFetchItems(String username) {
+		User user = userDao.findByUserName(username);
+		if (user.getCart() == null) {
+			user.setCart(new Cart());
+		}
+		cartService.update(user.getCart());
+		userService.updateUser(user);
+		user.getCart().getCartItems().size();
+
+		return user;
+	}
+
+	public List<User> getAllUsers() {
+		return userDao.findAll();
+	}
+
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		return findByName(username);
+	}
 }

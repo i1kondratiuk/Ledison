@@ -42,20 +42,12 @@ public class CartResources {
 	@ResponseStatus(value = HttpStatus.NO_CONTENT)
 	public void addItem(@PathVariable(value = "productId") int productId, Principal principal) {
 		User user = userService.findByNameAndFetchItems(principal.getName());
-		if (user.getCart() == null) {
-			Cart cart = new Cart();
-			cart.setUser(user);
-			cartService.update(cart);
-			user.setCart(cart);
-			userService.updateUser(user);
-			user.setCart(cart);
-		}
 
 		Cart cart = user.getCart();
 		Product product = productService.getProductById(productId);
-		List<CartItem> cartItems = cart.getCartItems();
-		if (cartItems == null) {
-			cartItems = new ArrayList<>();
+		List<CartItem> cartItems = new ArrayList<>();
+		if (cart.getCartItems() != null) {
+			cartItems = cart.getCartItems();
 		}
 
 		for (int i = 0; i < cartItems.size(); i++) {
@@ -75,6 +67,11 @@ public class CartResources {
 		cartItem.setTotalPrice(product.getProductPrice() * cartItem.getQuantity());
 		cartItem.setCart(cart);
 		cartItemService.addCartItem(cartItem);
+		Double grandTotal = 0.0;
+		for (CartItem item: cart.getCartItems()) {
+			grandTotal += item.getTotalPrice();
+		}
+		cart.setGrandTotal(grandTotal);
 		cart.setCartItems(cartItems);
 		cartService.update(cart);
 	}
