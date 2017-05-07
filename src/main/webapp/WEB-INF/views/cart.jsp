@@ -15,7 +15,7 @@
         <section class="container">
             <div>
                 <div>
-                    <a class="btn btn-danger pull-left" ng-click="clearCart()"><span
+                    <a href="<spring:url value="/rest/cart/removeAll" />" class="btn btn-danger pull-left"><span
                             class="glyphicon glyphicon-remove-sign"></span> Clear Cart</a>
                     <a href="<spring:url value="/order/${cart.cartId}" />" class="btn btn-success pull-right"><span
                             class="glyphicon glyphicon-shopping-cart"></span> Check out</a>
@@ -31,22 +31,21 @@
                         <th>Price</th>
                         <th>Action</th>
                     </tr>
-                    <c:forEach items="${cart}" var="item">
+                    <c:forEach items="${cart.cartItems}" var="cartItem">
                         <tr>
-                            <td>${item.product.productName}</td>
-                            <td>${item.product.productPrice}</td>
-                            <td>${item.quantity}</td>
-                            <td>${item.totalPrice}</td>
-                            <td><a href="#" class="label label-danger"
-                                   ng-click="removeFromCart(item.product.productId)"><span
-                                    class="glyphicon glyphicon-remove"></span>remove</a></td>
+                            <td>${cartItem.product.productName}</td>
+                            <td>${cartItem.product.productPrice}</td>
+                            <td>${cartItem.quantity}</td>
+                            <td>${cartItem.totalPrice}</td>
+                            <td><a href="#" class="label label-danger">
+                                <span class="glyphicon glyphicon-remove"></span>remove</a></td>
                         </tr>
                     </c:forEach>
                     <tr>
                         <th></th>
                         <th></th>
-                        <th>Grand Total</th>
-                        <th>calGrandTotal()</th>
+                        <th>${cartQuantityTotal}</th>
+                        <th>${cart.grandTotal}</th>
                         <th></th>
                     </tr>
                 </table>
