@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import ua.com.ledison.entity.Cart;
+import ua.com.ledison.entity.CartItem;
 import ua.com.ledison.entity.User;
 import ua.com.ledison.service.UserService;
 
@@ -26,11 +27,17 @@ public class CartController {
             user.setCart(new Cart());
         }
 
-        int cartId = user.getCart().getCartId();
+        int quantityTotal = 0;
+
+        for (CartItem cartItem :
+                user.getCart().getCartItems()) {
+            quantityTotal += cartItem.getQuantity();
+        }
 
         model.addAttribute("cart", user.getCart());
+        model.addAttribute("cartQuantityTotal", quantityTotal);
 
-        return "redirect:/customer/cart/" + cartId;
+        return "cart";
     }
 
     @GetMapping("/{cartId}")
