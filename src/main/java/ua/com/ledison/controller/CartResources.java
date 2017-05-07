@@ -81,10 +81,16 @@ public class CartResources {
 		return (double) tmp / factor;
 	}
 
-	@GetMapping("/remove/{productId}")
-	public void removeItem(@PathVariable(value = "productId") int productId) {
-		CartItem cartItem = cartItemService.getCartItemByProductId(productId);
+	@GetMapping("/remove/{cartItemId}")
+	public String removeItem(@PathVariable(value = "cartItemId") int cartItemId) {
+		CartItem cartItem = cartItemService.getCartItemById(cartItemId);
+		Cart cart = cartItem.getCart();
+		cart.setGrandTotal(roundDoubleValue(cartItem.getCart().getGrandTotal() - cartItem.getTotalPrice(), 2));
+		cartService.update(cart);
+		cartItem.getCart().getGrandTotal();
 		cartItemService.deleteCartItem(cartItem);
+
+		return "redirect:/customer/cart/";
 	}
 
 	@GetMapping("/removeAll")

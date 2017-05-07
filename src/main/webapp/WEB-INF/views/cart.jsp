@@ -37,7 +37,7 @@
                             <td>${cartItem.product.productPrice}</td>
                             <td>${cartItem.quantity}</td>
                             <td>${cartItem.totalPrice}</td>
-                            <td><a href="#" class="label label-danger">
+                            <td><a href="<spring:url value="/rest/cart/remove/${cartItem.cartItemId}" />" class="label label-danger">
                                 <span class="glyphicon glyphicon-remove"></span>remove</a></td>
                         </tr>
                     </c:forEach>

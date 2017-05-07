@@ -12,6 +12,6 @@ public interface CartItemService {
 
     void deleteAllCartItems(List<CartItem> cartItems);
 
-    CartItem getCartItemByProductId(int productId);
+    CartItem getCartItemById(int cartItemId);
 
 }
