@@ -60,7 +60,7 @@ public class Product implements Serializable {
 	@Transient
 	private MultipartFile productImage;
 
-	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JsonIgnore
 	private List<CartItem> cartItemList;
 

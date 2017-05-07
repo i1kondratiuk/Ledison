@@ -9,11 +9,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ua.com.ledison.dao.UserDao;
 import ua.com.ledison.entity.Cart;
+import ua.com.ledison.entity.CartItem;
 import ua.com.ledison.entity.User;
-import ua.com.ledison.service.CartItemService;
 import ua.com.ledison.service.CartService;
 import ua.com.ledison.service.UserService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -51,10 +52,14 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 	public User findByNameAndFetchItems(String username) {
 		User user = userDao.findByUserName(username);
 		if (user.getCart() == null) {
-			user.setCart(new Cart());
+			Cart cart = new Cart();
+			List<CartItem> cartItems = new ArrayList<>();
+			cart.setCartItems(cartItems);
+			user.setCart(cart);
+			userService.updateUser(user);
+			cart.setUser(user);
+			cartService.update(cart);
 		}
-		cartService.update(user.getCart());
-		userService.updateUser(user);
 		user.getCart().getCartItems().size();
 
 		return user;

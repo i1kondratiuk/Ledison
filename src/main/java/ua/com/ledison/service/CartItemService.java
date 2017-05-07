@@ -1,16 +1,16 @@
 package ua.com.ledison.service;
 
-
-import ua.com.ledison.entity.Cart;
 import ua.com.ledison.entity.CartItem;
+
+import java.util.List;
 
 public interface CartItemService {
 
     void addCartItem(CartItem cartItem);
 
-    void removeCartItem(CartItem cartItem);
+    void deleteCartItem(CartItem cartItem);
 
-    void removeAllCartItems(Cart cart);
+    void deleteAllCartItems(List<CartItem> cartItems);
 
     CartItem getCartItemByProductId(int productId);
 
