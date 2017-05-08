@@ -28,7 +28,6 @@
 
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="/resources/js/image-preview-input.js"></script>
-    <script src="/resources/js/register-user.js"></script>
 </head>
 
 <body>

@@ -5,7 +5,7 @@
 
         <div class="container">
             <div class="page-header  text-center">
-                <h1>Register Customer</h1>
+                <h1>Register User</h1>
 
                 <p class="lead  text-center">Please fill in your information below:</p>
             </div>
@@ -15,11 +15,11 @@
                 <div id="reg-form">
                     <div class="form-group">
                         <label for="username">User: </label>
-                        <input type="text" id="username" name="username" class="form-control"/>
+                        <input type="text" id="username" name="username" placeholder="username" class="form-control"/>
                     </div>
                     <div class="form-group">
                         <label for="password">Password: </label>
-                        <input type="password" id="password" name="password" class="form-control"/>
+                        <input type="password" id="password" name="password" placeholder="password" class="form-control"/>
                     </div>
                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                     <button id="addUser" class="btn btn-success">Create user</button>
@@ -33,5 +33,6 @@
 
     </div>
 </div>
+<script src="/resources/js/register-user.js"></script>
 
 <%@ include file="/WEB-INF/views/template/footer.jsp" %>

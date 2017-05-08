@@ -21,16 +21,16 @@ public class OrderController {
 
     @GetMapping("/order/{cartId}")
     public String createOrder(@PathVariable("cartId") int cartId){
-        CustomerOrder customerOrder = new CustomerOrder();
-        Cart cart = cartService.getCartById(cartId);
-        customerOrder.setCart(cart);
+//        CustomerOrder customerOrder = new CustomerOrder();
+//        Cart cart = cartService.getCartById(cartId);
+//        customerOrder.setCart(cart);
+//
+//        User user= cart.getUser();
+//        customerOrder.setUser(user);
+//        user.setShippingAddress(user.getShippingAddress());
+//
+//        customerOrderService.addCustomerOrder(customerOrder);
 
-        User user= cart.getUser();
-        customerOrder.setUser(user);
-        user.setShippingAddress(user.getShippingAddress());
-
-        customerOrderService.addCustomerOrder(customerOrder);
-
-        return "redirect:/thankCustomer";
+        return "redirect:/collectCustomerInfo";
     }
 }

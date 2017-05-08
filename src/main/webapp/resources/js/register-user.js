@@ -18,8 +18,7 @@ $(document).ready(function () {
             success: function (response) {
                 console.log(response);
                 $("#reg-form").empty();
-                $("#reg-form").text("User " + response.username + " was successfully created");
-                $("#show").html("<a href='registerCustomer' class='btn pull-right'>Continue registration</a>");
+                $("#reg-form").html("<h4>User <b>" + response.username + "</b> was successfully created</h4>");
             },
             error: function () {
                 console.log("error!");
