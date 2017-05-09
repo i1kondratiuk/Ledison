@@ -36,6 +36,7 @@
 
         <div class="form-group">
             <label for="phone">Phone</label>
+            <form:errors path="phone" cssStyle="color: #ff0000"/>
             <form:input path="phone" id="phone" class="form-control"/>
         </div>
         <br/>
@@ -44,26 +45,31 @@
 
         <div class="form-group">
             <label for="shippingStreet">Street Name</label>
+            <form:errors path="shippingAddress.streetName" cssStyle="color: #ff0000"/>
             <form:input path="shippingAddress.streetName" id="shippingStreet" class="form-control"/>
         </div>
 
         <div class="form-group">
             <label for="shippingApartmentNumber">Apartment Number</label>
+            <form:errors path="shippingAddress.apartmentNumber" cssStyle="color: #ff0000"/>
             <form:input path="shippingAddress.apartmentNumber" id="shippingApartmentNumber" class="form-control"/>
         </div>
 
         <div class="form-group">
             <label for="shippingCity">City</label>
+            <form:errors path="shippingAddress.city" cssStyle="color: #ff0000"/>
             <form:input path="shippingAddress.city" id="shippingCity" class="form-control"/>
         </div>
 
         <div class="form-group">
             <label for="shippingState">State</label>
+            <form:errors path="shippingAddress.state" cssStyle="color: #ff0000"/>
             <form:input path="shippingAddress.state" id="shippingState" class="form-control"/>
         </div>
 
         <div class="form-group">
             <label for="shippingCountry">Country</label>
+            <form:errors path="shippingAddress.country" cssStyle="color: #ff0000"/>
             <form:input path="shippingAddress.country" id="shippingCountry" class="form-control"/>
         </div>
 

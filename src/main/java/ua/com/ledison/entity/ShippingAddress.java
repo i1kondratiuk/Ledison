@@ -1,5 +1,7 @@
 package ua.com.ledison.entity;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -11,10 +13,15 @@ public class ShippingAddress implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int shippingAddressId;
+	@NotBlank(message = "The street name must not be blank")
 	private String streetName;
+	@NotBlank(message = "The apartment number must not be blank")
 	private String apartmentNumber;
+	@NotBlank(message = "The city name must not be blank")
 	private String city;
+	@NotBlank(message = "The state name must not be blank")
 	private String state;
+	@NotBlank(message = "The country name must not be blank")
 	private String country;
 
 	@OneToOne

@@ -1,11 +1,11 @@
 package ua.com.ledison.entity;
 
-import org.hibernate.validator.constraints.Email;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -21,17 +21,22 @@ public class User implements UserDetails {
 
 	private String firstName;
 	private String lastName;
-	@Email
+
 	private String email;
 	private String phone;
 
 	@OneToOne
 	@JoinColumn(name = "shippingAddressId")
+	@Valid
 	private ShippingAddress shippingAddress;
 
 	@OneToOne
 	@JoinColumn(name = "cartId")
 	private Cart cart;
+
+	@OneToOne
+	@JoinColumn(name = "orderId")
+	private CustomerOrder order;
 
 	@Enumerated(EnumType.STRING)
 	private Authority authority = Authority.ROLE_USER;
@@ -161,6 +166,14 @@ public class User implements UserDetails {
 
 	public void setCart(Cart cart) {
 		this.cart = cart;
+	}
+
+	public CustomerOrder getOrder() {
+		return order;
+	}
+
+	public void setOrder(CustomerOrder order) {
+		this.order = order;
 	}
 
 	@Override

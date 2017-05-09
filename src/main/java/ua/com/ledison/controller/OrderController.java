@@ -33,8 +33,9 @@ public class OrderController {
         customerOrder.setCart(cart);
         customerOrder.setUser(user);
         customerOrder.setShippingAddress(user.getShippingAddress());
-
+        user.setOrder(customerOrder);
         customerOrderService.addCustomerOrder(customerOrder);
+        userService.updateUser(user);
 
         return "thankCustomer";
     }

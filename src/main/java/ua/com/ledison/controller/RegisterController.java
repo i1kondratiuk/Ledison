@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import ua.com.ledison.entity.ShippingAddress;
 import ua.com.ledison.entity.User;
@@ -31,10 +30,16 @@ public class RegisterController {
         return user;
     }
 
+    @GetMapping("/customer/profile")
+    public String toUserProfile(Principal principal, Model model) {
+        User user = userService.findByName(principal.getName());
+        model.addAttribute("user", user);
+
+        return "userProfile";
+    }
+
     @GetMapping("/registerCustomer")
     public String toRegisterCustomer(Principal principal, Model model) {
-
-
         User user = userService.findByName(principal.getName());
         model.addAttribute("user", user);
 
@@ -59,11 +64,11 @@ public class RegisterController {
                 return "registerCustomer";
             }
 
-//            if(user.getUsername().equals(users.get(i).getUsername())){
-//                model.addAttribute("usernameMsg", "Username already exists");
-//
-//                return "registerCustomer";
-//            }
+            if(user.getUsername().equals(users.get(i).getUsername())){
+                model.addAttribute("usernameMsg", "Username already exists");
+
+                return "registerCustomer";
+            }
         }
         ShippingAddress shippingAddress = user.getShippingAddress();
         shippingAddress.setUser(existingUser);

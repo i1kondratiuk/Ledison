@@ -71,7 +71,7 @@
     <div class="container text-center">
         <div class="col-sm-4 col-md-4 col-lg-4">
             <div class="well well-bottom">
-                <a href="#">
+                <a href="/delivery">
                     <div class="item-img">
                         <img src="../../resources/images/delivery.png" alt="" class="img-responsive"
                              style="padding: 0% 10%;">
@@ -83,7 +83,7 @@
         </div>
         <div class="col-sm-4 col-md-4 col-lg-4">
             <div class="well well-bottom">
-                <a href="#">
+                <a href="/warranty">
                     <div class="item-img">
                         <img src="../../resources/images/warranty.png" alt="" class="img-responsive">
                     </div>
@@ -93,7 +93,7 @@
         </div>
         <div class="col-sm-4 col-md-4 col-lg-4">
             <div class="well well-bottom">
-                <a href="#">
+                <a href="/discount">
                     <div class="item-img">
                         <img src="../../resources/images/discount.png" alt="" class="img-responsive">
                     </div>

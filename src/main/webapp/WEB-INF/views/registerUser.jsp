@@ -15,6 +15,7 @@
                 <div id="reg-form">
                     <div class="form-group">
                         <label for="username">User: </label>
+                        <span style="color: #ff0000">${usernameMsg}</span>
                         <input type="text" id="username" name="username" placeholder="username" class="form-control"/>
                     </div>
                     <div class="form-group">
