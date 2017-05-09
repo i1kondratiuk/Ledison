@@ -9,6 +9,9 @@ import ua.com.ledison.entity.CustomerOrder;
 import ua.com.ledison.entity.User;
 import ua.com.ledison.service.CartService;
 import ua.com.ledison.service.CustomerOrderService;
+import ua.com.ledison.service.UserService;
+
+import java.security.Principal;
 
 @Controller
 public class OrderController {
@@ -17,20 +20,22 @@ public class OrderController {
     private CartService cartService;
 
     @Autowired
+    private UserService userService;
+
+    @Autowired
     private CustomerOrderService customerOrderService;
 
-    @GetMapping("/order/{cartId}")
-    public String createOrder(@PathVariable("cartId") int cartId){
-//        CustomerOrder customerOrder = new CustomerOrder();
-//        Cart cart = cartService.getCartById(cartId);
-//        customerOrder.setCart(cart);
-//
-//        User user= cart.getUser();
-//        customerOrder.setUser(user);
-//        user.setShippingAddress(user.getShippingAddress());
-//
-//        customerOrderService.addCustomerOrder(customerOrder);
+    @GetMapping("/order")
+    public String createOrder(Principal principal) {
+        User user = userService.findByName(principal.getName());
+        CustomerOrder customerOrder = new CustomerOrder();
+        Cart cart = user.getCart();
+        customerOrder.setCart(cart);
+        customerOrder.setUser(user);
+        customerOrder.setShippingAddress(user.getShippingAddress());
 
-        return "redirect:/collectCustomerInfo";
+        customerOrderService.addCustomerOrder(customerOrder);
+
+        return "thankCustomer";
     }
 }

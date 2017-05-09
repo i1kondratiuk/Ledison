@@ -1,10 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ include file="/WEB-INF/views/template/header.jsp" %>
 
-</body>
-</html>
+<div class="container-wrapper">
+    <div class="container">
+        <section>
+            <div class="jumbotron">
+                <div class="container">
+                    <h1>Customer registered successfully!</h1>
+                </div>
+            </div>
+        </section>
+
+        <section class="container">
+            <p>
+                <a href="<spring:url value="/product/productList/All" />" class="btn btn-default">Products</a>
+                <a href="<spring:url value="/order" />" class="btn btn-success">Confirm order</a>
+            </p>
+        </section>
+
+<%@ include file="/WEB-INF/views/template/footer.jsp" %>

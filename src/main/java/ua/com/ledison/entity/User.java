@@ -1,5 +1,6 @@
 package ua.com.ledison.entity;
 
+import org.hibernate.validator.constraints.Email;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -20,6 +21,7 @@ public class User implements UserDetails {
 
 	private String firstName;
 	private String lastName;
+	@Email
 	private String email;
 	private String phone;
 

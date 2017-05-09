@@ -17,7 +17,7 @@
                 <div>
                     <a href="<spring:url value="/rest/cart/removeAll" />" class="btn btn-danger pull-left"><span
                             class="glyphicon glyphicon-remove-sign"></span> Clear Cart</a>
-                    <a href="<spring:url value="/order/${cart.cartId}" />" class="btn btn-success pull-right"><span
+                    <a href="<spring:url value="/registerCustomer" />" class="btn btn-success pull-right"><span
                             class="glyphicon glyphicon-shopping-cart"></span> Check out</a>
                 </div>
 
