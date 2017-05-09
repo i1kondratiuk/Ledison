@@ -4,11 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import ua.com.ledison.entity.CapType;
-import ua.com.ledison.entity.GlowColor;
-import ua.com.ledison.entity.Product;
-import ua.com.ledison.entity.ProductManufacturer;
-import ua.com.ledison.service.GlowColorService;
+import ua.com.ledison.entity.*;
 import ua.com.ledison.service.ProductManufacturerService;
 import ua.com.ledison.service.ProductService;
 
@@ -21,19 +17,18 @@ public class ProductController {
 
 	@Autowired
 	private ProductService productService;
+
 	@Autowired
 	private ProductManufacturerService productManufacturerService;
-	@Autowired
-	private GlowColorService glowColorService;
 
 	@GetMapping("/productList/all")
 	public String getProducts(Model model) {
 		List<ProductManufacturer> productManufacturers = productManufacturerService.getProductManufacturerList();
-		List<GlowColor> glowColors = glowColorService.getGlowColorList();
 
 		model.addAttribute("productManufacturers", productManufacturers);
 		model.addAttribute("capTypes", CapType.values());
-		model.addAttribute("glowColors", glowColors);
+		model.addAttribute("glowColors", GlowColor.values());
+		model.addAttribute("lampShapes", LampShape.values());
 
 		return "productList";
 	}

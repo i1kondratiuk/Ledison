@@ -67,13 +67,12 @@
 
         <div class="form-group">
             <label for="glowColor">Колір світіння</label>
-            <label class="checkbox-inline"><form:radiobutton path="glowColor" id="glowColor"
-                                                             value="neutralWhite"/>Нейтральний
-                білий</label>
-            <label class="checkbox-inline"><form:radiobutton path="glowColor" id="glowColor" value="coolWhite"/>Холодний
-                білий</label>
-            <label class="checkbox-inline"><form:radiobutton path="glowColor" id="glowColor" value="warmWhite"/>Теплий
-                білий</label>
+            <label for="glowColor">Колір світіння</label>
+            <c:forEach items="${glowColors}" var="glowColor">
+                <label class="checkbox-inline">
+                    <form:radiobutton path="glowColor" id="glowColor" value="${glowColor}"/>${glowColor.name}
+                </label>
+            </c:forEach>
         </div>
 
         <div class="form-group">

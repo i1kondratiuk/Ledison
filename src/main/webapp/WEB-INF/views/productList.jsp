@@ -12,7 +12,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#brand">Бренд</a>
+                        <a data-toggle="collapse" data-parent="#accordion" href="#brand">Product Manufacturer</a>
                     </h4>
                 </div>
                 <div id="brand" class="panel-collapse collapse in">
@@ -28,7 +28,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#capType">Тип цоколя</a>
+                        <a data-toggle="collapse" data-parent="#accordion" href="#capType">Cap Type</a>
                     </h4>
                 </div>
                 <div id="capType" class="panel-collapse collapse in">
@@ -44,14 +44,14 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#glowColor">Колір світіння</a>
+                        <a data-toggle="collapse" data-parent="#accordion" href="#glowColor">Glow Color</a>
                     </h4>
                 </div>
-                <div id="glowColor" class="panel-collapse collapse">
+                <div id="glowColor" class="panel-collapse collapse in">
                     <div class="panel-body">
                         <c:forEach items="${glowColors}" var="glowColor">
-                            <input type="checkbox" name="capType"
-                                   value="${glowColor.glowColorName}"/> ${glowColor.glowColorName}
+                            <input type="checkbox" name="glowColor"
+                                   value="${glowColor}"/> ${glowColor.name}
                             <br>
                         </c:forEach>
                     </div>
@@ -60,32 +60,23 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#lampShape">Форма лампи</a>
+                        <a data-toggle="collapse" data-parent="#accordion" href="#lampShape">Lamp Shape</a>
                     </h4>
                 </div>
                 <div id="lampShape" class="panel-collapse collapse">
                     <div class="panel-body">
-                        <table class="table">
-                            <tr>
-                                <td><a href="#">Sub-Item 1</a></td>
-                            </tr>
-                            <tr>
-                                <td><a href="#">Sub-Item 2</a></td>
-                            </tr>
-                            <tr>
-                                <td><a href="#">Sub-Item 3</a></td>
-                            </tr>
-                            <tr>
-                                <td><a href="#">Sub-Item 4</a></td>
-                            </tr>
-                        </table>
+                        <c:forEach items="${lampShapes}" var="lampShape">
+                            <input type="checkbox" name="lampShape"
+                                   value="${lampShape}"/> ${lampShape.name}
+                            <br>
+                        </c:forEach>
                     </div>
                 </div>
             </div>
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#power">Потужність, W</a>
+                        <a data-toggle="collapse" data-parent="#accordion" href="#power">Power, W</a>
                     </h4>
                 </div>
                 <div id="power" class="panel-collapse collapse">
@@ -110,7 +101,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#operatingVoltage">Робоча напруга,
+                        <a data-toggle="collapse" data-parent="#accordion" href="#operatingVoltage">Operating Voltage,
                             V</a>
                     </h4>
                 </div>
@@ -136,7 +127,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#diffuserType">Тип розсіювача</a>
+                        <a data-toggle="collapse" data-parent="#accordion" href="#diffuserType">Diffuser Type</a>
                     </h4>
                 </div>
                 <div id="diffuserType" class="panel-collapse collapse">
@@ -161,7 +152,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#serviceLife">Термін служби, год</a>
+                        <a data-toggle="collapse" data-parent="#accordion" href="#serviceLife">Service Life, год</a>
                     </h4>
                 </div>
                 <div id="serviceLife" class="panel-collapse collapse">
@@ -186,8 +177,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#warrantyPeriod">Гарантійний термін,
-                            м</a>
+                        <a data-toggle="collapse" data-parent="#accordion" href="#warrantyPeriod">Warranty Period, m</a>
                     </h4>
                 </div>
                 <div id="warrantyPeriod" class="panel-collapse collapse">

@@ -6,9 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import ua.com.ledison.entity.CapType;
-import ua.com.ledison.entity.Product;
-import ua.com.ledison.entity.ProductManufacturer;
+import ua.com.ledison.entity.*;
 import ua.com.ledison.service.ProductManufacturerService;
 import ua.com.ledison.service.ProductService;
 
@@ -37,8 +35,8 @@ public class AdminProduct {
 		product.setProductPrice(20.1);
 		product.setProductCategory("ledBulbs");
 		product.setCapType(CapType.E27.toString());
-		product.setGlowColor("neutralWhite");
-		product.setLampShape("A60");
+		product.setGlowColor(GlowColor.NEUTRAL_WHITE.getName());
+		product.setLampShape(LampShape.A60.getName());
 		product.setPower(3);
 		product.setOperatingVoltage("220");
 		product.setDiffuserType("frosted");
@@ -49,6 +47,8 @@ public class AdminProduct {
 		model.addAttribute("product", product);
 		model.addAttribute("productManufacturers", productManufacturers);
 		model.addAttribute("capTypes", CapType.values());
+		model.addAttribute("glowColors", GlowColor.values());
+		model.addAttribute("lampShapes", LampShape.values());
 
 		return "addProduct";
 	}
@@ -108,6 +108,7 @@ public class AdminProduct {
 
 		model.addAttribute("product", product);
 		model.addAttribute("productManufacturers", productManufacturers);
+		model.addAttribute("glowColors", GlowColor.values());
 
 		return "editProduct";
 	}
@@ -136,7 +137,6 @@ public class AdminProduct {
 			e.printStackTrace();
 			throw new RuntimeException("Product image saving failed", e);
 		}
-
 
 		productService.editProduct(product);
 

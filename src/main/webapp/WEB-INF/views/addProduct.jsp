@@ -23,10 +23,10 @@
                 <label for="productCategory">Категорія</label>
                 <label class="checkbox-inline">
                     <form:radiobutton path="productCategory" id="productCategory"
-                                                                 value="ledBulbs"/>Світлодіодні лампи</label>
+                                      value="ledBulbs"/>Світлодіодні лампи</label>
                 <label class="checkbox-inline">
                     <form:radiobutton path="productCategory" id="productCategory"
-                                                                 value="ledLuminaires"/>Світильники</label>
+                                      value="ledLuminaires"/>Світильники</label>
             </div>
 
             <div class="form-group">
@@ -49,45 +49,30 @@
             <div class="form-group">
                 <label for="capType">Тип цоколя</label>
                 <c:forEach items="${capTypes}" var="capType">
-                        <label class="checkbox-inline">
-                        <form:radiobutton path="capType" id="capType" value="${capType}"/>${capType}</label>
+                    <label class="checkbox-inline">
+                        <form:radiobutton path="capType" id="capType" value="${capType}"/>${capType}
+                    </label>
                 </c:forEach>
                 <br>
             </div>
 
             <div class="form-group">
                 <label for="glowColor">Колір світіння</label>
-                <label class="checkbox-inline"><form:radiobutton path="glowColor" id="glowColor"
-                                                                 value="neutralWhite"/>Нейтральний
-                    білий</label>
-                <label class="checkbox-inline"><form:radiobutton path="glowColor" id="glowColor" value="coolWhite"/>Холодний
-                    білий</label>
-                <label class="checkbox-inline"><form:radiobutton path="glowColor" id="glowColor" value="warmWhite"/>Теплий
-                    білий</label>
+                <c:forEach items="${glowColors}" var="glowColor">
+                    <label class="checkbox-inline">
+                        <form:radiobutton path="glowColor" id="glowColor" value="${glowColor}"/>${glowColor.name}
+                    </label>
+                </c:forEach>
             </div>
 
             <div class="form-group">
                 <label for="lampShape">Форма лампи</label>
-                <label class="checkbox-inline"><form:radiobutton path="lampShape" id="lampShape" value="A60"/>A60
-                    (груша)</label>
-                <label class="checkbox-inline"><form:radiobutton path="lampShape" id="lampShape" value="A65"/>A65
-                    (груша)</label>
-                <label class="checkbox-inline"><form:radiobutton path="lampShape" id="lampShape" value="C37"/>C37
-                    (свічка)</label>
-                <label class="checkbox-inline"><form:radiobutton path="lampShape" id="lampShape"
-                                                                 value="C110"/>C110</label>
-                <label class="checkbox-inline"><form:radiobutton path="lampShape" id="lampShape"
-                                                                 value="C120"/>C120</label>
-                <label class="checkbox-inline"><form:radiobutton path="lampShape" id="lampShape"
-                                                                 value="C140"/>C140</label>
-                <label class="checkbox-inline"><form:radiobutton path="lampShape" id="lampShape" value="G45"/>G45
-                    (куля)</label>
-                <label class="checkbox-inline"><form:radiobutton path="lampShape" id="lampShape" value="G95"/>G95
-                    (куля)</label>
-                <label class="checkbox-inline"><form:radiobutton path="lampShape" id="lampShape"
-                                                                 value="HW"/>HW</label>
-                <label class="checkbox-inline"><form:radiobutton path="lampShape" id="lampShape" value="R63"/>R63
-                    (гриб)</label>
+                <label for="glowColor">Колір світіння</label>
+                <c:forEach items="${lampShapes}" var="lampShape">
+                    <label class="checkbox-inline">
+                        <form:radiobutton path="lampShape" id="lampShape" value="${lampShape}"/>${lampShape.name}
+                    </label>
+                </c:forEach>
             </div>
 
             <div class="form-group">

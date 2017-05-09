@@ -57,7 +57,7 @@
             </div>
             <form action="" class="navbar-form navbar-left">
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Пошук" value="">
+                    <input type="text" class="form-control" placeholder="Search" value="">
                     <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
                 </div>
             </form>
