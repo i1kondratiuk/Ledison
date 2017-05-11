@@ -50,7 +50,7 @@
                 <label for="capType">Тип цоколя</label>
                 <c:forEach items="${capTypes}" var="capType">
                     <label class="checkbox-inline">
-                        <form:radiobutton path="capType" id="capType" value="${capType}"/>${capType}
+                        <form:radiobutton path="capType" id="capType" value="${capType}"/>${capType.name}
                     </label>
                 </c:forEach>
                 <br>

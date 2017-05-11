@@ -58,17 +58,17 @@ public class RegisterController {
         List<User> users = userService.getAllUsers();
 
         for (int i = 0; i < users.size(); i++) {
-            if (user.getEmail().equals(users.get(i).getEmail())) {
-                model.addAttribute("emailMsg", "Email already exists");
+//            if (user.getEmail().equals(users.get(i).getEmail())) {
+//                model.addAttribute("emailMsg", "Email already exists");
+//
+//                return "registerCustomer";
+//            }
 
-                return "registerCustomer";
-            }
-
-            if(user.getUsername().equals(users.get(i).getUsername())){
-                model.addAttribute("usernameMsg", "Username already exists");
-
-                return "registerCustomer";
-            }
+//            if(user.getUsername().equals(users.get(i).getUsername())){
+//                model.addAttribute("usernameMsg", "Username already exists");
+//
+//                return "registerCustomer";
+//            }
         }
         ShippingAddress shippingAddress = user.getShippingAddress();
         shippingAddress.setUser(existingUser);
