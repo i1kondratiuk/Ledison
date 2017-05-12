@@ -152,6 +152,24 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#productPrice">Price, UAH</a>
+                    </h4>
+                </div>
+                <div id="productPrice" class="panel-collapse collapse in">
+                    <div class="panel-body">
+                        <script>
+                            $("#ex2").slider({});
+                        </script>
+                        <b>€ 10</b> <input id="ex2" type="text" class="span2" value="" data-slider-min="10"
+                                           data-slider-max="1000" data-slider-step="5" data-slider-value="[250,450]"/>
+                        <b>€ 1000</b>
+
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
                         <a data-toggle="collapse" data-parent="#accordion" href="#serviceLife">Service Life, год</a>
                     </h4>
                 </div>
