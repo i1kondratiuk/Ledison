@@ -16,12 +16,16 @@ $(document).ready(function () {
             data: jUser,
             contentType: 'application/json',
             success: function (response) {
-                console.log(response);
-                $("#reg-form").empty();
-                $("#reg-form").html("<h4>User <b>" + response.username + "</b> was successfully created</h4>");
+                if (response.code == 400) {
+                    $("#error").text(response.msg);
+                } else if (response.code == 200){
+                    $("#reg-form").empty();
+                    $("#success").html("User <b>" + response.result.username + "</b> was successfully created");
+                }
             },
-            error: function () {
-                console.log("error!");
+            error: function (e) {
+                console.log("ERROR: ", e);
+                console.log(e);
             },
         });
     });

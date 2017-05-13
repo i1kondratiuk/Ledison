@@ -9,6 +9,7 @@ import ua.com.ledison.entity.ShippingAddress;
 import ua.com.ledison.entity.User;
 import ua.com.ledison.service.ShippingAddressService;
 import ua.com.ledison.service.UserService;
+import ua.com.ledison.util.AjaxResponseBody;
 
 import javax.validation.Valid;
 import java.security.Principal;
@@ -25,9 +26,24 @@ public class RegisterController {
 
     @PostMapping("/addUser")
     @ResponseBody
-    public User addUser(@RequestBody User user) {
+    public AjaxResponseBody addUser(@RequestBody User user) {
+        AjaxResponseBody result = new AjaxResponseBody();
+        List<User> users = userService.getAllUsers();
+        for (int i = 0; i < users.size(); i++) {
+            if(user.getUsername().equals(users.get(i).getUsername())) {
+                result.setMsg("Username already exists");
+                result.setCode("400");
+                result.setResult(user);
+
+                return result;
+            }
+        }
+        result.setMsg("");
+        result.setCode("200");
+        result.setResult(user);
         userService.addUser(user);
-        return user;
+
+        return result;
     }
 
     @GetMapping("/customer/profile")
@@ -58,12 +74,6 @@ public class RegisterController {
         List<User> users = userService.getAllUsers();
 
         for (int i = 0; i < users.size(); i++) {
-//            if (user.getEmail().equals(users.get(i).getEmail())) {
-//                model.addAttribute("emailMsg", "Email already exists");
-//
-//                return "registerCustomer";
-//            }
-
 //            if(user.getUsername().equals(users.get(i).getUsername())){
 //                model.addAttribute("usernameMsg", "Username already exists");
 //

@@ -12,10 +12,15 @@
 
             <div class="col-lg-4 col-md-3 col-sm-2"></div>
             <div class="col-lg-4 col-md-6 col-sm-8">
+                <div class="text-center">
+                    <h4 id="success"></h4>
+                </div>
                 <div id="reg-form">
                     <div class="form-group">
+                        <div class="text-center">
+                        <h4 id="error" style="color: #ff0000; font-size: large"></h4>
+                    </div>
                         <label for="username">User: </label>
-                        <span style="color: #ff0000">${usernameMsg}</span>
                         <input type="text" id="username" name="username" placeholder="username" class="form-control"/>
                     </div>
                     <div class="form-group">
@@ -25,8 +30,6 @@
                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                     <button id="addUser" class="btn btn-success">Create user</button>
                 </div>
-                <div id="show"></div>
-
             </div>
             <div class="col-lg-4 col-md-3 col-sm-2"></div>
 

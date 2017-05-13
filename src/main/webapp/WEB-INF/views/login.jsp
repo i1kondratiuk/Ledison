@@ -11,7 +11,7 @@
             <div id="login-box">
                 <form name="loginForm" action="/login" method="post">
                     <div class="form-group">
-                        <label for="username">User: </label>
+                        <label  for="username">User: </label>
                         <input type="text" id="username" name="username" class="form-control"/>
                     </div>
                     <div class="form-group">
