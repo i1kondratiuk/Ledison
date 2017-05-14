@@ -2,6 +2,7 @@ package ua.com.ledison.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ua.com.ledison.dao.CustomerOrderDao;
 import ua.com.ledison.entity.Cart;
 import ua.com.ledison.entity.CartItem;
@@ -12,6 +13,7 @@ import ua.com.ledison.service.CustomerOrderService;
 import java.util.List;
 
 @Service
+@Transactional
 public class CustmerOrderServiceImpl implements CustomerOrderService {
 
     @Autowired

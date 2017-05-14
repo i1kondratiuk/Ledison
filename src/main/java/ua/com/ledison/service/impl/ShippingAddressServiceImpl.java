@@ -6,9 +6,6 @@ import ua.com.ledison.dao.ShippingAddressDao;
 import ua.com.ledison.entity.ShippingAddress;
 import ua.com.ledison.service.ShippingAddressService;
 
-/**
- * Created by i1kon on 02-Apr-17.
- */
 @Service
 public class ShippingAddressServiceImpl implements ShippingAddressService {
 

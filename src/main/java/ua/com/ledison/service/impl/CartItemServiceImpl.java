@@ -2,6 +2,7 @@ package ua.com.ledison.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ua.com.ledison.dao.CartItemDao;
 import ua.com.ledison.entity.CartItem;
 import ua.com.ledison.service.CartItemService;
@@ -9,6 +10,7 @@ import ua.com.ledison.service.CartItemService;
 import java.util.List;
 
 @Service
+@Transactional
 public class CartItemServiceImpl implements CartItemService {
 
     @Autowired

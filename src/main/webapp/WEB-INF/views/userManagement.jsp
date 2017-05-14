@@ -19,6 +19,7 @@
                 <th>Name</th>
                 <th>Surname</th>
                 <th>Enabled</th>
+                <th>User role</th>
             </tr>
             </thead>
             <c:forEach items="${userList}" var="user">
@@ -29,6 +30,11 @@
                     <td>${user.firstName}</td>
                     <td>${user.lastName}</td>
                     <td>${user.enabled}</td>
+                    <td>${user.authority}
+                        <a href="<spring:url value="user/editUser/${user.id}/ROLE_ADMIN" />">
+                            <span class="glyphicon glyphicon-pencil"></span>
+                        </a>
+                    </td>
                 </tr>
             </c:forEach>
         </table>

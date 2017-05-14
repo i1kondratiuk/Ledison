@@ -17,7 +17,7 @@
         <br/><br/>
 
         <h3>
-            <a href="/admin/customer">Customer Management</a>
+            <a href="/admin/user">Customer Management</a>
         </h3>
 
         <p>Here you can view the customer information!</p>

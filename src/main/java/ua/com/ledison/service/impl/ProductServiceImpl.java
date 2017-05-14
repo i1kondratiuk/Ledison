@@ -4,6 +4,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.transaction.annotation.Transactional;
 import ua.com.ledison.dao.ProductDao;
 import ua.com.ledison.entity.Product;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import ua.com.ledison.service.ProductService;
 import java.util.List;
 
 @Service
+@Transactional
 public class ProductServiceImpl implements ProductService {
 
 	private static final int PAGE_SIZE = 9;

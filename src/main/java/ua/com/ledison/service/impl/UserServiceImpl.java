@@ -48,6 +48,11 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 		return userDao.findByUserName(username);
 	}
 
+	@Override
+	public User findById(int id) {
+		return userDao.getOne(id);
+	}
+
 	//.size() forces loading of the children
 	public User findByNameAndFetchItems(String username) {
 		User user = userDao.findByUserName(username);
