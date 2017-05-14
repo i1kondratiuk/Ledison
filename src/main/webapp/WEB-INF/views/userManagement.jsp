@@ -31,9 +31,17 @@
                     <td>${user.lastName}</td>
                     <td>${user.enabled}</td>
                     <td>${user.authority}
-                        <a href="<spring:url value="user/editUser/${user.id}/ROLE_ADMIN" />">
-                            <span class="glyphicon glyphicon-pencil"></span>
-                        </a>
+                        <c:choose>
+                            <c:when test="${user.authority == 'ROLE_ADMIN'}">
+                                <a href="<spring:url value="user/editUser/${user.id}/ROLE_USER" />">
+                                    <span class="glyphicon glyphicon-pencil"></span>
+                                </a>                            </c:when>
+                            <c:otherwise>
+                                <a href="<spring:url value="user/editUser/${user.id}/ROLE_ADMIN" />">
+                                    <span class="glyphicon glyphicon-pencil"></span>
+                                </a>
+                            </c:otherwise>
+                        </c:choose>
                     </td>
                 </tr>
             </c:forEach>

@@ -26,7 +26,7 @@ public class AdminUser {
         userService.updateUser(user);
         model.addAttribute("user", user);
 
-        return "userManagement";
+        return "redirect:/admin/user";
     }
 
 }

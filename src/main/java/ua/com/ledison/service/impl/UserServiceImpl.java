@@ -50,7 +50,9 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
 	@Override
 	public User findById(int id) {
-		return userDao.getOne(id);
+		User user = userDao.findOne(id);
+		user.fetchLazyCollection();
+		return user;
 	}
 
 	//.size() forces loading of the children
@@ -65,7 +67,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 			cart.setUser(user);
 			cartService.update(cart);
 		}
-		user.getCart().getCartItems().size();
+		user.fetchLazyCollection();
 
 		return user;
 	}

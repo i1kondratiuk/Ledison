@@ -12,179 +12,185 @@ import java.util.Collection;
 @Entity
 public class User implements UserDetails {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
 
-	private String username;
-	private String password;
+    private String username;
+    private String password;
 
-	private String firstName;
-	private String lastName;
+    private String firstName;
+    private String lastName;
 
-	private String email;
-	private String phone;
+    private String email;
+    private String phone;
 
-	@OneToOne
-	@JoinColumn(name = "shippingAddressId")
-	@Valid
-	private ShippingAddress shippingAddress;
+    @OneToOne
+    @JoinColumn(name = "shippingAddressId")
+    @Valid
+    private ShippingAddress shippingAddress;
 
-	@OneToOne
-	@JoinColumn(name = "cartId")
-	private Cart cart;
+    @OneToOne
+    @JoinColumn(name = "cartId")
+    private Cart cart;
 
-	@OneToOne
-	@JoinColumn(name = "orderId")
-	private CustomerOrder order;
+    public void fetchLazyCollection() {
+        if (getCart().getCartItems() != null) {
+            getCart().getCartItems().size();
+        }
+    }
 
-	@Enumerated(EnumType.STRING)
-	private Authority authority = Authority.ROLE_USER;
+    @OneToOne
+    @JoinColumn(name = "orderId")
+    private CustomerOrder order;
 
-	private boolean accountNonExpired = true;
-	private boolean accountNonLocked = true;
-	private boolean credentialsNonExpired = true;
+    @Enumerated(EnumType.STRING)
+    private Authority authority = Authority.ROLE_USER;
 
-	public int getId() {
-		return id;
-	}
+    private boolean accountNonExpired = true;
+    private boolean accountNonLocked = true;
+    private boolean credentialsNonExpired = true;
 
-	public void setId(int id) {
-		this.id = id;
-	}
+    public int getId() {
+        return id;
+    }
 
-	public void setUsername(String username) {
-		this.username = username;
-	}
+    public void setId(int id) {
+        this.id = id;
+    }
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
-	public String getEmail() {
-		return email;
-	}
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+    public String getEmail() {
+        return email;
+    }
 
-	public Authority getAuthority() {
-		return authority;
-	}
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-	public void setAuthority(Authority authority) {
-		this.authority = authority;
-	}
+    public Authority getAuthority() {
+        return authority;
+    }
 
-	public void setAccountNonExpired(boolean accountNonExpired) {
-		this.accountNonExpired = accountNonExpired;
-	}
+    public void setAuthority(Authority authority) {
+        this.authority = authority;
+    }
 
-	public void setAccountNonLocked(boolean accountNonLocked) {
-		this.accountNonLocked = accountNonLocked;
-	}
+    public void setAccountNonExpired(boolean accountNonExpired) {
+        this.accountNonExpired = accountNonExpired;
+    }
 
-	public void setCredentialsNonExpired(boolean credentialsNonExpired) {
-		this.credentialsNonExpired = credentialsNonExpired;
-	}
+    public void setAccountNonLocked(boolean accountNonLocked) {
+        this.accountNonLocked = accountNonLocked;
+    }
 
-	public void setEnabled(boolean enabled) {
-		this.enabled = enabled;
-	}
+    public void setCredentialsNonExpired(boolean credentialsNonExpired) {
+        this.credentialsNonExpired = credentialsNonExpired;
+    }
 
-	private boolean enabled = true;
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
 
-	public User() {
-	}
+    private boolean enabled = true;
 
-	public Collection<? extends GrantedAuthority> getAuthorities() {
-		ArrayList<SimpleGrantedAuthority> authorities = new ArrayList<SimpleGrantedAuthority>();
-		authorities.add(new SimpleGrantedAuthority(authority.name().toString()));
-		return authorities;
-	}
+    public User() {
+    }
 
-	public String getPassword() {
-		return password;
-	}
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        ArrayList<SimpleGrantedAuthority> authorities = new ArrayList<SimpleGrantedAuthority>();
+        authorities.add(new SimpleGrantedAuthority(authority.name().toString()));
+        return authorities;
+    }
 
-	public String getUsername() {
-		return username;
-	}
+    public String getPassword() {
+        return password;
+    }
 
-	public boolean isAccountNonExpired() {
-		return accountNonExpired;
-	}
+    public String getUsername() {
+        return username;
+    }
 
-	public boolean isAccountNonLocked() {
-		return accountNonLocked;
-	}
+    public boolean isAccountNonExpired() {
+        return accountNonExpired;
+    }
 
-	public boolean isCredentialsNonExpired() {
-		return credentialsNonExpired;
-	}
+    public boolean isAccountNonLocked() {
+        return accountNonLocked;
+    }
 
-	public boolean isEnabled() {
-		return enabled;
-	}
+    public boolean isCredentialsNonExpired() {
+        return credentialsNonExpired;
+    }
 
-	public String getFirstName() {
-		return firstName;
-	}
+    public boolean isEnabled() {
+        return enabled;
+    }
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
+    public String getFirstName() {
+        return firstName;
+    }
 
-	public String getLastName() {
-		return lastName;
-	}
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
 
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
+    public String getLastName() {
+        return lastName;
+    }
 
-	public String getPhone() {
-		return phone;
-	}
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
 
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
+    public String getPhone() {
+        return phone;
+    }
 
-	public ShippingAddress getShippingAddress() {
-		return shippingAddress;
-	}
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
 
-	public void setShippingAddress(ShippingAddress shippingAddress) {
-		this.shippingAddress = shippingAddress;
-	}
+    public ShippingAddress getShippingAddress() {
+        return shippingAddress;
+    }
 
-	public Cart getCart() {
-		return cart;
-	}
+    public void setShippingAddress(ShippingAddress shippingAddress) {
+        this.shippingAddress = shippingAddress;
+    }
 
-	public void setCart(Cart cart) {
-		this.cart = cart;
-	}
+    public Cart getCart() {
+        return cart;
+    }
 
-	public CustomerOrder getOrder() {
-		return order;
-	}
+    public void setCart(Cart cart) {
+        this.cart = cart;
+    }
 
-	public void setOrder(CustomerOrder order) {
-		this.order = order;
-	}
+    public CustomerOrder getOrder() {
+        return order;
+    }
 
-	@Override
-	public String toString() {
-		return "User{" +
-				"id=" + id +
-				", username='" + username + '\'' +
-				", email='" + email + '\'' +
-				", firstName='" + firstName + '\'' +
-				", lastName='" + lastName + '\'' +
-				", phone='" + phone + '\'' +
-				'}';
-	}
+    public void setOrder(CustomerOrder order) {
+        this.order = order;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", email='" + email + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", phone='" + phone + '\'' +
+                '}';
+    }
 }
