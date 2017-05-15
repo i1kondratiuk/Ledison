@@ -17,10 +17,18 @@
         <br/><br/>
 
         <h3>
-            <a href="/admin/user">Customer Management</a>
+            <a href="/admin/user">User Management</a>
         </h3>
 
-        <p>Here you can view the customer information!</p>
+        <p>Here you can view the user information!</p>
+
+        <br/><br/>
+
+        <h3>
+            <a href="/admin/orders">Orders</a>
+        </h3>
+
+        <p>Here you can view the orders!</p>
 
         <script>
             $(function () {

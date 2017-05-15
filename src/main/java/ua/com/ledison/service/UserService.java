@@ -10,5 +10,6 @@ public interface UserService {
     User findByName(String username);
     User findById(int id);
     User findByNameAndFetchItems(String username);
+    User findByNameAndFetchOrders(String username);
     List<User> getAllUsers();
 }

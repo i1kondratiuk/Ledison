@@ -22,6 +22,11 @@ public class CustmerOrderServiceImpl implements CustomerOrderService {
     @Autowired
     private CartService cartService;
 
+    @Override
+    public List<CustomerOrder> getAllOrders() {
+        return customerOrderDao.findAll();
+    }
+
     public void addCustomerOrder(CustomerOrder customerOrder){
         customerOrderDao.save(customerOrder);
     }

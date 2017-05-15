@@ -1,5 +1,6 @@
 package ua.com.ledison.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -8,6 +9,7 @@ import javax.persistence.*;
 import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 @Entity
 public class User implements UserDetails {
@@ -35,14 +37,14 @@ public class User implements UserDetails {
     private Cart cart;
 
     public void fetchLazyCollection() {
-        if (getCart().getCartItems() != null) {
+        if (this.cart != null) {
             getCart().getCartItems().size();
         }
     }
 
-    @OneToOne
-    @JoinColumn(name = "orderId")
-    private CustomerOrder order;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore
+    private List<CustomerOrder> orders;
 
     @Enumerated(EnumType.STRING)
     private Authority authority = Authority.ROLE_USER;
@@ -174,12 +176,12 @@ public class User implements UserDetails {
         this.cart = cart;
     }
 
-    public CustomerOrder getOrder() {
-        return order;
+    public List<CustomerOrder> getOrders() {
+        return orders;
     }
 
-    public void setOrder(CustomerOrder order) {
-        this.order = order;
+    public void setOrders(List<CustomerOrder> orders) {
+        this.orders = orders;
     }
 
     @Override

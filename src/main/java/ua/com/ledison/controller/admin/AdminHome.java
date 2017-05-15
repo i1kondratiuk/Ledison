@@ -35,12 +35,4 @@ public class AdminHome {
         return "productInventory";
     }
 
-    @GetMapping("/user")
-    public String customerManagement(Model model){
-        List<User> userList = userService.getAllUsers();
-        model.addAttribute("userList", userList);
-
-        return "userManagement";
-    }
-
 }

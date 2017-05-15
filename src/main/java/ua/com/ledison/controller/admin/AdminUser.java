@@ -10,23 +10,32 @@ import ua.com.ledison.entity.Authority;
 import ua.com.ledison.entity.User;
 import ua.com.ledison.service.UserService;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/admin/user")
 public class AdminUser {
 
-    @Autowired
-    UserService userService;
+	@Autowired
+	UserService userService;
 
-    @GetMapping("/editUser/{userId}/{userRole}")
-    public String editProduct(@PathVariable("userId") int userId, @PathVariable("userRole") String userRole, Model model) {
-        User user = userService.findById(userId);
-        user.getAuthorities();
+	@GetMapping
+	public String customerManagement(Model model) {
+		List<User> userList = userService.getAllUsers();
+		model.addAttribute("userList", userList);
 
-        user.setAuthority(Authority.valueOf(userRole));
-        userService.updateUser(user);
-        model.addAttribute("user", user);
+		return "userManagement";
+	}
 
-        return "redirect:/admin/user";
-    }
+	@GetMapping("/editUser/{userId}/{userRole}")
+	public String editProduct(@PathVariable("userId") int userId, @PathVariable("userRole") String userRole, Model model) {
+		User user = userService.findById(userId);
+		user.getAuthorities();
 
+		user.setAuthority(Authority.valueOf(userRole));
+		userService.updateUser(user);
+		model.addAttribute("user", user);
+
+		return "redirect:/admin/user";
+	}
 }

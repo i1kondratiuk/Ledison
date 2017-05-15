@@ -5,39 +5,16 @@
 <div class="container-wrapper">
     <div class="container">
         <div class="page-header">
-            <h1>Profile</h1>
+            <h1>Orders Management Page</h1>
 
-            <p class="lead">Your Profile Info</p>
+            <p class="lead">Orders Management Page</p>
         </div>
 
         <table class="table table-striped table-hover">
             <thead>
             <tr class="bg-success">
                 <th>Username</th>
-                <th>Email</th>
-                <th>Phone</th>
-                <th>Name</th>
-                <th>Surname</th>
-            </tr>
-            </thead>
-            <tr>
-                <td>${user.username}</td>
-                <td>${user.email}</td>
-                <td>${user.phone}</td>
-                <td>${user.firstName}</td>
-                <td>${user.lastName}</td>
-            </tr>
-        </table>
-
-        <div class="page-header">
-            <h1>Orders</h1>
-
-            <p class="lead">Your Orders</p>
-        </div>
-
-        <table class="table table-striped table-hover">
-            <thead>
-            <tr class="bg-success">
+                <th>Customer</th>
                 <th>Order</th>
                 <th>Date</th>
                 <th>Total Price</th>
@@ -46,13 +23,16 @@
             </thead>
             <c:forEach items="${customerOrders}" var="customerOrder">
                 <tr>
-                    <td>${customerOrder.customerOrderId}</td>
+                    <td>${customerOrder.user.username}</td>
+                    <td>${customerOrder.user.firstName} ${customerOrder.user.lastName}</td>
+                    <td>${customerOrder.user.order.customerOrderId}</td>
                     <td></td>
-                    <td>${customerOrder.cart.grandTotal}</td>
+                    <td>${customerOrder.user.order.cart.grandTotal}</td>
                     <td></td>
                 </tr>
             </c:forEach>
         </table>
+
     </div>
 </div>
 </body>

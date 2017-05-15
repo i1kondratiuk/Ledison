@@ -35,7 +35,7 @@
                             <c:when test="${user.authority == 'ROLE_ADMIN'}">
                                 <a href="<spring:url value="user/editUser/${user.id}/ROLE_USER" />">
                                     <span class="glyphicon glyphicon-pencil"></span>
-                                </a>                            </c:when>
+                                </a> </c:when>
                             <c:otherwise>
                                 <a href="<spring:url value="user/editUser/${user.id}/ROLE_ADMIN" />">
                                     <span class="glyphicon glyphicon-pencil"></span>
@@ -46,12 +46,6 @@
                 </tr>
             </c:forEach>
         </table>
-        <script>
-            $(function () {
-                $('[data-toggle="tooltip"]').tooltip();
-                $('[data-toggle="popover"]').popover();
-            });
-        </script>
     </div>
 </div>
 </body>

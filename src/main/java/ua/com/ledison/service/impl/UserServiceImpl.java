@@ -72,6 +72,13 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 		return user;
 	}
 
+	@Override
+	public User findByNameAndFetchOrders(String username) {
+		User user = userDao.findByUserName(username);
+		user.getOrders().size();
+		return user;
+	}
+
 	public List<User> getAllUsers() {
 		return userDao.findAll();
 	}
