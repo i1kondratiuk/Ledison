@@ -100,7 +100,7 @@ $(document).ready(function () {
                 class: className,
                 text: product
             }).html('<a href="' + viewProduct + '"><div class="thumbnail">' +
-                '<img src="' + imagePath + '" id="productImg" width="400" alt="' +
+                '<img src="' + imagePath + '" width="400" alt="' +
                 product.productName + product.productId + '"/><div class="caption"><h3 style="margin-top: 0"><a href="' + viewProduct + '">' +
                 product.productName + '</a></h3><span style="font-size: 24px;">' +
                 product.productPrice + '</span><a href="' + addToCart + '" class="btn btn-success pull-right">Купити' +

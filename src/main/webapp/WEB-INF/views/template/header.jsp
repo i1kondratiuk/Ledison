@@ -80,7 +80,10 @@
                     </c:otherwise>
                 </c:choose>
                 <sec:authorize access="hasRole('ROLE_USER')">
-                    <a href="/customer/cart" class="btn btn-danger"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
+                    <a href="/customer/cart" class="btn btn-danger">
+                        <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                        <span id="сartItemsQuantity"></span>
+                    </a>
                 </sec:authorize>
             </div>
         </div>
