@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import ua.com.ledison.entity.CustomerOrder;
 import ua.com.ledison.entity.ShippingAddress;
 import ua.com.ledison.entity.User;
+import ua.com.ledison.entity.UserDTO;
 import ua.com.ledison.service.ShippingAddressService;
 import ua.com.ledison.service.UserService;
 import ua.com.ledison.util.AjaxResponseBody;
@@ -73,7 +74,7 @@ public class RegisterController {
 	}
 
 	@PostMapping("/registerCustomer")
-	public String registerCustomerPost(@Valid @ModelAttribute("user") User user, BindingResult result, Principal principal, Model model) {
+	public String registerCustomerPost(@Valid @ModelAttribute("user") UserDTO userDTO, BindingResult result, Principal principal) {
 
 		if (result.hasErrors()) {
 			return "registerCustomer";
@@ -81,24 +82,15 @@ public class RegisterController {
 
 		User existingUser = userService.findByName(principal.getName());
 
-		List<User> users = userService.getAllUsers();
-
-		for (int i = 0; i < users.size(); i++) {
-			//            if(user.getUsername().equals(users.get(i).getUsername())){
-			//                model.addAttribute("usernameMsg", "Username already exists");
-			//
-			//                return "registerCustomer";
-			//            }
-		}
-		ShippingAddress shippingAddress = user.getShippingAddress();
+		ShippingAddress shippingAddress = userDTO.getShippingAddress();
 		shippingAddress.setUser(existingUser);
 		shippingAddressService.addShippingAddress(shippingAddress);
 
-		existingUser.setFirstName(user.getFirstName());
-		existingUser.setLastName(user.getLastName());
-		existingUser.setEmail(user.getEmail());
-		existingUser.setPhone(user.getPhone());
-		existingUser.setShippingAddress(user.getShippingAddress());
+		existingUser.setFirstName(userDTO.getFirstName());
+		existingUser.setLastName(userDTO.getLastName());
+		existingUser.setEmail(userDTO.getEmail());
+		existingUser.setPhone(userDTO.getPhone());
+		existingUser.setShippingAddress(userDTO.getShippingAddress());
 		existingUser.setEnabled(true);
 		userService.updateUser(existingUser);
 		return "registerCustomerSuccess";

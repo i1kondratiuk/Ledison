@@ -20,6 +20,7 @@
                 <th>Surname</th>
                 <th>Enabled</th>
                 <th>User role</th>
+                <th></th>
             </tr>
             </thead>
             <c:forEach items="${userList}" var="user">
@@ -30,18 +31,23 @@
                     <td>${user.firstName}</td>
                     <td>${user.lastName}</td>
                     <td>${user.enabled}</td>
-                    <td>${user.authority}
+                    <td>
                         <c:choose>
                             <c:when test="${user.authority == 'ROLE_ADMIN'}">
                                 <a href="<spring:url value="user/editUser/${user.id}/ROLE_USER" />">
-                                    <span class="glyphicon glyphicon-pencil"></span>
+                                        ${user.authority.name}
                                 </a> </c:when>
                             <c:otherwise>
                                 <a href="<spring:url value="user/editUser/${user.id}/ROLE_ADMIN" />">
-                                    <span class="glyphicon glyphicon-pencil"></span>
+                                        ${user.authority.name}
                                 </a>
                             </c:otherwise>
                         </c:choose>
+                    </td>
+                    <td>
+                        <a href="<spring:url value="" />">
+                            <span class="glyphicon glyphicon-info-sign"></span>
+                        </a>
                     </td>
                 </tr>
             </c:forEach>

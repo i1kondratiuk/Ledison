@@ -6,7 +6,6 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
-import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -29,7 +28,6 @@ public class User implements UserDetails {
 
     @OneToOne
     @JoinColumn(name = "shippingAddressId")
-    @Valid
     private ShippingAddress shippingAddress;
 
     @OneToOne
