@@ -47,9 +47,9 @@
             <c:forEach items="${customerOrders}" var="customerOrder">
                 <tr>
                     <td>${customerOrder.customerOrderId}</td>
-                    <td></td>
+                    <td>${customerOrder.orderDate}</td>
                     <td>${customerOrder.cart.grandTotal}</td>
-                    <td></td>
+                    <td>${customerOrder.status.name}</td>
                 </tr>
             </c:forEach>
         </table>

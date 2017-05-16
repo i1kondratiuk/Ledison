@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import ua.com.ledison.entity.CustomerOrder;
+import ua.com.ledison.entity.OrderStatus;
 import ua.com.ledison.service.CustomerOrderService;
 
 import java.util.List;
@@ -21,6 +22,7 @@ public class AdminOrder {
 	public String customerManagement(Model model) {
 		List<CustomerOrder> customerOrders = customerOrderService.getAllOrders();
 		model.addAttribute("customerOrders", customerOrders);
+		model.addAttribute("orderStatuses", OrderStatus.values());
 
 		return "orderManagement";
 	}

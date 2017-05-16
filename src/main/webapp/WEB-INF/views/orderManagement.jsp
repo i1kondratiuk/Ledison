@@ -17,6 +17,7 @@
                 <th>Customer</th>
                 <th>Order</th>
                 <th>Date</th>
+                <th>Time</th>
                 <th>Total Price</th>
                 <th>Status</th>
             </tr>
@@ -25,16 +26,24 @@
                 <tr>
                     <td>${customerOrder.user.username}</td>
                     <td>${customerOrder.user.firstName} ${customerOrder.user.lastName}</td>
-                    <td>${customerOrder.user.order.customerOrderId}</td>
-                    <td></td>
-                    <td>${customerOrder.user.order.cart.grandTotal}</td>
-                    <td></td>
+                    <td>${customerOrder.customerOrderId}</td>
+                    <td>${customerOrder.orderDate}</td>
+                    <td>${customerOrder.orderTime}</td>
+                    <td>${customerOrder.cart.grandTotal}</td>
+                    <td>
+                        <button class="btn" onclick="changeOrderStatus()">${customerOrder.status.name}</button>
+                    </td>
                 </tr>
             </c:forEach>
         </table>
 
     </div>
 </div>
+<script>
+    function changeOrderStatus() {
+        ;
+    }
+</script>
 </body>
 
 </html>

@@ -16,6 +16,13 @@ public class CustomerOrder implements Serializable {
     @JoinColumn(name = "cartId")
     private Cart cart;
 
+    String orderDate;
+
+    String orderTime;
+
+    @Enumerated(EnumType.STRING)
+    OrderStatus status;
+
     @ManyToOne
     @JoinColumn(name = "userId")
     private User user;
@@ -54,5 +61,29 @@ public class CustomerOrder implements Serializable {
 
     public void setShippingAddress(ShippingAddress shippingAddress) {
         this.shippingAddress = shippingAddress;
+    }
+
+    public String getOrderDate() {
+        return orderDate;
+    }
+
+    public void setOrderDate(String orderDate) {
+        this.orderDate = orderDate;
+    }
+
+    public String getOrderTime() {
+        return orderTime;
+    }
+
+    public void setOrderTime(String orderTime) {
+        this.orderTime = orderTime;
+    }
+
+    public OrderStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(OrderStatus status) {
+        this.status = status;
     }
 }
