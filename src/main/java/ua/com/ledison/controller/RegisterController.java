@@ -30,6 +30,13 @@ public class RegisterController {
 	public AjaxResponseBody addUser(@RequestBody User user) {
 		AjaxResponseBody result = new AjaxResponseBody();
 		List<User> users = userService.getAllUsers();
+		if (user.getUsername().length() < 3 || user.getPassword().length() < 3) {
+			result.setMsg("The fields must not be empty or less than 3 characters");
+			result.setCode("400");
+			result.setResult(user);
+
+			return result;
+		}
 		for (int i = 0; i < users.size(); i++) {
 			if (user.getUsername().equals(users.get(i).getUsername())) {
 				result.setMsg("Username already exists");
