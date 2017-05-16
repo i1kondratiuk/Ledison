@@ -24,12 +24,11 @@
     <%-- twbsPagination --%>
     <script src="/resources/js/esimakin-twbs-pagination/jquery.twbsPagination.js"></script>
 
-    <!-- Angular.JS -->
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.1/angular.min.js"></script>
-
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="/resources/js/image-preview-input.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/9.8.0/bootstrap-slider.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script>
+    <script src="/resources/js/search.js"></script>
 </head>
 
 <body>
@@ -59,7 +58,7 @@
             </div>
             <form action="" class="navbar-form navbar-left">
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Search" value="">
+                    <input id="searchString" type="text" class="typeahead form-control" placeholder="Search" value="">
                     <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
                 </div>
             </form>
@@ -90,3 +89,4 @@
     </div>
 </div>
 <div class="after-divider"></div>
+<div style="background: black" id="results"></div>

@@ -11,6 +11,8 @@ public interface ProductService {
 
     Page<Product> findPaginated(Specification<Product> spec, Integer pageNumber);
 
+    List<Product> findProductsByName(String productName);
+
     List<Product> getProductList();
 
     Product getProductById(int id);

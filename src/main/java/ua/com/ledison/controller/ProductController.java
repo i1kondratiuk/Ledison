@@ -40,4 +40,12 @@ public class ProductController {
 
 		return "viewProduct";
 	}
+
+	@PostMapping("/search")
+	@ResponseBody
+	public List<Product> search(@RequestBody String searchString) {
+		System.out.println(searchString);
+		List <Product> productList = productService.findProductsByName(searchString);
+		return productList;
+	}
 }

@@ -36,6 +36,11 @@ public class ProductServiceImpl implements ProductService {
 		return requestedPage;
 	}
 
+	@Override
+	public List<Product> findProductsByName(String productName) {
+		return productDao.findAll();
+	}
+
 	public List<Product> getProductList() {
 		return productDao.findAll();
 	}
