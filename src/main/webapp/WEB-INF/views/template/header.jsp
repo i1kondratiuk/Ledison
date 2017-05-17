@@ -58,9 +58,9 @@
                     </ul>
                 </li>
             </div>
-            <form action="" class="navbar-form navbar-left">
+            <form action="/product/viewProduct" modelAttribute="productName" method="get" class="navbar-form navbar-left">
                 <div class="form-group">
-                    <input id="searchString" data-items="4" type="text" class="typeahead form-control" placeholder="Search">
+                    <input id="searchString" type="text" class="typeahead form-control" placeholder="Search">
                     <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
                 </div>
             </form>

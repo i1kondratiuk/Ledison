@@ -41,6 +41,14 @@ public class ProductController {
 		return "viewProduct";
 	}
 
+	@GetMapping("/viewProduct/{productName}")
+	public String findProductByNameAndViewProduct(@PathVariable String productName, Model model) throws IOException {
+		Product product = productService.getProductByName(productName);
+		model.addAttribute("product", product);
+
+		return "viewProduct";
+	}
+
 	@PostMapping("/search")
 	@ResponseBody
 	public List<Product> search(@RequestBody String searchString) {

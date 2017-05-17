@@ -17,6 +17,8 @@ public interface ProductService {
 
     Product getProductById(int id);
 
+    Product getProductByName(String productName);
+
     void addProduct(Product product);
 
     void editProduct(Product product);
