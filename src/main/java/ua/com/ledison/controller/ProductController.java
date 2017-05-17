@@ -44,8 +44,7 @@ public class ProductController {
 	@PostMapping("/search")
 	@ResponseBody
 	public List<Product> search(@RequestBody String searchString) {
-		System.out.println(searchString);
-		List <Product> productList = productService.findProductsByName(searchString);
-		return productList;
+
+		return productService.getProductsMatchingSearch(searchString);
 	}
 }

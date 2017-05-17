@@ -27,8 +27,10 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="/resources/js/image-preview-input.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/9.8.0/bootstrap-slider.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script>
     <script src="/resources/js/search.js"></script>
+
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 </head>
 
 <body>
@@ -58,7 +60,7 @@
             </div>
             <form action="" class="navbar-form navbar-left">
                 <div class="form-group">
-                    <input id="searchString" type="text" class="typeahead form-control" placeholder="Search" value="">
+                    <input id="searchString" data-items="4" type="text" class="typeahead form-control" placeholder="Search">
                     <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
                 </div>
             </form>
