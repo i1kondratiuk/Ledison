@@ -14,7 +14,8 @@
     <title>Ledison</title>
     <%--Bootstrap--%>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/9.8.0/css/bootstrap-slider.min.css">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/9.8.0/css/bootstrap-slider.min.css">
     <link href="/resources/css/style.css" rel="stylesheet">
     <%--font-awesome--%>
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -58,18 +59,25 @@
                     </ul>
                 </li>
             </div>
-            <form action="/product/viewProduct" modelAttribute="productName" method="get" class="navbar-form navbar-left">
-                <div class="form-group">
-                    <input id="searchString" type="text" class="typeahead form-control" placeholder="Search">
-                    <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+            <div class="panel-heading col-lg-3 col-md-4 col-sm-5">
+                <div class="input-group">
+                    <input type="hidden" name="search_param" value="name" id="search_param">
+                    <input id="searchText" type="text" class="form-control" name="q" placeholder="Search Products"
+                           id="search_key" value="">
+                    <span class="input-group-btn">
+                      <a id="x" class="btn btn-default hide" href="#" title="Clear">
+                          <i class="glyphicon glyphicon-remove"></i> </a>
+                       <button class="btn btn-default" type="submit">  Search  </button>
+                    </span>
                 </div>
-            </form>
+            </div>
             <div class="navbar-form navbar-right">
                 <sec:authorize access="hasRole('ROLE_ADMIN')">
                     <a href="/admin" class="btn btn-default">Admin</a>
                 </sec:authorize>
                 <sec:authorize access="hasRole('ROLE_USER')">
-                    <a href="/customer/profile"><sec:authentication property="principal.username"></sec:authentication></a>
+                    <a href="/customer/profile"><sec:authentication
+                            property="principal.username"></sec:authentication></a>
                 </sec:authorize>
                 <sec:authorize var="loggedIn" access="isAuthenticated()"/>
                 <c:choose>
