@@ -49,4 +49,10 @@ public class ProductController {
 		return "viewProduct";
 	}
 
+	@GetMapping("/search")
+	public List<Product> search(@RequestParam String tagName) {
+
+		return productService.getProductsMatchingSearch(tagName);
+	}
+
 }

@@ -58,10 +58,4 @@ public class ProductRestController {
 		return productService.findPaginated(spec, pageNumber);
 	}
 
-	@PostMapping("/search")
-	public List<Product> search(@RequestBody String searchString) {
-
-		return productService.getProductsMatchingSearch(searchString);
-	}
-
 }

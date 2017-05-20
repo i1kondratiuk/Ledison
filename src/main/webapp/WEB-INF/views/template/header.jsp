@@ -28,10 +28,10 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="/resources/js/image-preview-input.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/9.8.0/bootstrap-slider.min.js"></script>
-    <script src="/resources/js/search.js"></script>
 
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="/resources/js/search.js"></script>
+    <script src="<c:url value="/resources/js/jquery.autocomplete.js" />"></script>
+
 </head>
 
 <body>
@@ -61,14 +61,21 @@
             </div>
             <div class="panel-heading col-lg-3 col-md-4 col-sm-5">
                 <div class="input-group">
-                    <input type="hidden" name="search_param" value="name" id="search_param">
-                    <input id="searchText" type="text" class="form-control" name="q" placeholder="Search Products"
-                           id="search_key" value="">
-                    <span class="input-group-btn">
-                      <a id="x" class="btn btn-default hide" href="#" title="Clear">
-                          <i class="glyphicon glyphicon-remove"></i> </a>
-                       <button class="btn btn-default" type="submit">  Search  </button>
-                    </span>
+                    <div>
+                        <input type="text" id="w-input-search" value="">
+                        <span>
+                            <button id="button-id" type="button">Search</button>
+                        </span>
+                    </div>
+
+                    <%--<input type="hidden" name="search_param" value="name" id="search_param">--%>
+                    <%--<input id="searchString" type="text" class="form-control" name="q" placeholder="Search Products"--%>
+                           <%--id="search_key" value="">--%>
+                    <%--<span class="input-group-btn">--%>
+                      <%--<a id="x" class="btn btn-default hide" href="#" title="Clear">--%>
+                          <%--<i class="glyphicon glyphicon-remove"></i> </a>--%>
+                       <%--<button class="btn btn-default" type="submit">  Search  </button>--%>
+                    <%--</span>--%>
                 </div>
             </div>
             <div class="navbar-form navbar-right">
