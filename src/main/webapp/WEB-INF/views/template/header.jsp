@@ -30,7 +30,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/9.8.0/bootstrap-slider.min.js"></script>
 
     <script src="/resources/js/search.js"></script>
-    <script src="<c:url value="/resources/js/jquery.autocomplete.js" />"></script>
+    <script src="/resources/js/jquery.autocomplete.js"></script>
 
 </head>
 
@@ -62,7 +62,8 @@
             <div class="panel-heading col-lg-3 col-md-4 col-sm-5">
                 <div class="input-group">
                     <div>
-                        <input type="text" id="w-input-search" value="">
+                        <label for="autocomplete"></label>
+                        <input type="text" id="autocomplete"/>
                         <span>
                             <button id="button-id" type="button">Search</button>
                         </span>
@@ -70,11 +71,11 @@
 
                     <%--<input type="hidden" name="search_param" value="name" id="search_param">--%>
                     <%--<input id="searchString" type="text" class="form-control" name="q" placeholder="Search Products"--%>
-                           <%--id="search_key" value="">--%>
+                    <%--id="search_key" value="">--%>
                     <%--<span class="input-group-btn">--%>
-                      <%--<a id="x" class="btn btn-default hide" href="#" title="Clear">--%>
-                          <%--<i class="glyphicon glyphicon-remove"></i> </a>--%>
-                       <%--<button class="btn btn-default" type="submit">  Search  </button>--%>
+                    <%--<a id="x" class="btn btn-default hide" href="#" title="Clear">--%>
+                    <%--<i class="glyphicon glyphicon-remove"></i> </a>--%>
+                    <%--<button class="btn btn-default" type="submit">  Search  </button>--%>
                     <%--</span>--%>
                 </div>
             </div>

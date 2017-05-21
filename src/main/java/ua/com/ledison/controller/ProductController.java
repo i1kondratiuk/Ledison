@@ -49,10 +49,9 @@ public class ProductController {
 		return "viewProduct";
 	}
 
-	@GetMapping("/search")
-	public List<Product> search(@RequestParam String tagName) {
+	@PostMapping("/search")
+	public @ResponseBody List<Product> search(@RequestParam("term") String searchString) {
 
-		return productService.getProductsMatchingSearch(tagName);
+		return productService.getProductsMatchingSearch(searchString);
 	}
-
 }

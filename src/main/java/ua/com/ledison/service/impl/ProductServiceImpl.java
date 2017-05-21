@@ -47,7 +47,7 @@ public class ProductServiceImpl implements ProductService {
 
 	public List<Product> getProductsMatchingSearch(String searchString) {
 		List<Product> result = new LinkedList<>();
-		for (Product product : productDao.findAll()) {
+		for (Product product : getProductList()) {
 			if (product.getProductName().toLowerCase().startsWith(searchString.toLowerCase())) {
 				result.add(product);
 			}
