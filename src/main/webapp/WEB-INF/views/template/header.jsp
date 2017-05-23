@@ -30,7 +30,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/9.8.0/bootstrap-slider.min.js"></script>
 
     <script src="/resources/js/search.js"></script>
-    <script src="/resources/js/jquery.autocomplete.min.js"></script>
+    <script src="/resources/js/jquery-autocomplete/jquery.autocomplete.min.js"></script>
 
 </head>
 
@@ -63,19 +63,8 @@
                 <div class="input-group">
                     <div>
                         <label for="autocomplete"></label>
-                        <input type="text" id="autocomplete"/>
-                        <span>
-                            <button id="button-id" type="button">Search</button>
-                        </span>
+                        <input class="form-control" type="text" name="product" id="autocomplete" placeholder="Search"/>
                     </div>
-                    <%--<input type="hidden" name="search_param" value="name" id="search_param">--%>
-                    <%--<input id="searchString" type="text" class="form-control" name="q" placeholder="Search Products"--%>
-                    <%--id="search_key" value="">--%>
-                    <%--<span class="input-group-btn">--%>
-                    <%--<a id="x" class="btn btn-default hide" href="#" title="Clear">--%>
-                    <%--<i class="glyphicon glyphicon-remove"></i> </a>--%>
-                    <%--<button class="btn btn-default" type="submit">  Search  </button>--%>
-                    <%--</span>--%>
                 </div>
             </div>
             <div class="navbar-form navbar-right">

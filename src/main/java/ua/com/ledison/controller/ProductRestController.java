@@ -3,6 +3,7 @@ package ua.com.ledison.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ua.com.ledison.service.ProductSpecificationsBuilder;
 import ua.com.ledison.entity.Product;
@@ -10,7 +11,9 @@ import ua.com.ledison.service.ProductService;
 import ua.com.ledison.util.SearchCriteria;
 
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -58,6 +61,19 @@ public class ProductRestController {
 		return productService.findPaginated(spec, pageNumber);
 	}
 
+	@ResponseBody
+	@RequestMapping(value = "/products/autocomplete", produces = "application/json")
+	public Set<String> autoComplete(@RequestParam String query) {
 
+		List<Product> result = productService.getProductsMatchingSearch(query);
 
+		Set<String> titles = new LinkedHashSet<>();
+		for (Product product : result) {
+			if (product.getProductName().toLowerCase().contains(query.toLowerCase())) {
+				titles.add(product.getProductName());
+			}
+		}
+
+		return titles;
+	}
 }

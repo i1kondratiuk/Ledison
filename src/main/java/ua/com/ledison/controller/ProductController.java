@@ -49,9 +49,4 @@ public class ProductController {
 		return "viewProduct";
 	}
 
-	@PostMapping("/search")
-	public @ResponseBody List<Product> search(@RequestParam("term") String searchString) {
-
-		return productService.getProductsMatchingSearch(searchString);
-	}
 }
