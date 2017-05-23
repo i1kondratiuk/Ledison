@@ -19,7 +19,7 @@
     <link href="/resources/css/style.css" rel="stylesheet">
     <%--font-awesome--%>
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+    <link href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
     <!-- JQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <%-- twbsPagination --%>
@@ -30,7 +30,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/9.8.0/bootstrap-slider.min.js"></script>
 
     <script src="/resources/js/search.js"></script>
-    <script src="/resources/js/jquery.autocomplete.js"></script>
+    <script src="/resources/js/jquery.autocomplete.min.js"></script>
 
 </head>
 
@@ -68,7 +68,6 @@
                             <button id="button-id" type="button">Search</button>
                         </span>
                     </div>
-
                     <%--<input type="hidden" name="search_param" value="name" id="search_param">--%>
                     <%--<input id="searchString" type="text" class="form-control" name="q" placeholder="Search Products"--%>
                     <%--id="search_key" value="">--%>
