@@ -36,14 +36,9 @@ public class ProductController {
 	@GetMapping("/viewProduct/{productId}")
 	public String viewProduct(@PathVariable int productId, Model model) throws IOException {
 		Product product = productService.getProductById(productId);
-		model.addAttribute("product", product);
+		product.setProductViewCounter(product.getProductViewCounter() + 1);
+		productService.editProduct(product);
 
-		return "viewProduct";
-	}
-
-	@GetMapping("/viewProduct/{productName}")
-	public String findProductByNameAndViewProduct(@PathVariable String productName, Model model) throws IOException {
-		Product product = productService.getProductByName(productName);
 		model.addAttribute("product", product);
 
 		return "viewProduct";

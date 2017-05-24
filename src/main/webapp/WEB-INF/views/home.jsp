@@ -108,14 +108,14 @@
                 <br>
                 <div class="tabs">
                     <ul class="nav nav-tabs">
-                        <li class="active"><a href="#tab-1" data-toggle="tab">Рекомендоване</a></li>
-                        <li><a href="#tab-2" data-toggle="tab">Найпопулярніше</a></li>
+                        <li class="active"><a href="#tab-1" data-toggle="tab">Most Popular</a></li>
+                        <li><a href="#tab-2" data-toggle="tab">Recommended</a></li>
                     </ul>
                     <div class="tab-content">
                         <div id="tab-1" class="tab-pane fade in active">
                             <div class="row">
-                                <div class="col-xs-6 col-sm-4">
-                                    <div class="thumbnail"><img src="http://placehold.it/400x240" alt="">
+                                <div class="col-xs-6 col-sm-3">
+                                    <div class="thumbnail"><img src="http://placehold.it/400x400" alt="">
                                         <div class="caption">
                                             <h3><a href="#">Post</a></h3>
                                             <p>text text text text text text text text text</p> <a href="#"
@@ -123,8 +123,8 @@
                                             <i class="fa fa-arrow-right"></i></a></div>
                                     </div>
                                 </div>
-                                <div class="col-xs-6 col-sm-4">
-                                    <div class="thumbnail"><img src="http://placehold.it/400x240" alt="">
+                                <div class="col-xs-6 col-sm-3">
+                                    <div class="thumbnail"><img src="http://placehold.it/400x400" alt="">
                                         <div class="caption">
                                             <h3><a href="#">Post</a></h3>
                                             <p>text text text text text text text</p> <a href="#"
@@ -132,8 +132,17 @@
                                             <i class="fa fa-arrow-right"></i></a></div>
                                     </div>
                                 </div>
-                                <div class="col-xs-6 col-sm-4">
-                                    <div class="thumbnail"><img src="http://placehold.it/400x240" alt="">
+                                <div class="col-xs-6 col-sm-3">
+                                    <div class="thumbnail"><img src="http://placehold.it/400x400" alt="">
+                                        <div class="caption">
+                                            <h3><a href="#">Post</a></h3>
+                                            <p>text text text text text text text text text</p> <a href="#"
+                                                                                                   class="btn btn-success">More
+                                            <i class="fa fa-arrow-right"></i></a></div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-6 col-sm-3">
+                                    <div class="thumbnail"><img src="http://placehold.it/400x400" alt="">
                                         <div class="caption">
                                             <h3><a href="#">Post</a></h3>
                                             <p>text text text text text text text text text</p> <a href="#"
@@ -145,7 +154,7 @@
                         </div>
                         <div id="tab-2" class="tab-pane fade">
                             <div class="row">
-                                <div class="col-xs-6 col-sm-4">
+                                <div class="col-xs-6 col-sm-3">
                                     <div class="thumbnail"><img src="http://placehold.it/400x240" alt="">
                                         <div class="caption">
                                             <h3><a href="#">Post</a></h3>
@@ -154,7 +163,7 @@
                                             <i class="fa fa-arrow-right"></i></a></div>
                                     </div>
                                 </div>
-                                <div class="col-xs-6 col-sm-4">
+                                <div class="col-xs-6 col-sm-3">
                                     <div class="thumbnail"><img src="http://placehold.it/400x240" alt="">
                                         <div class="caption">
                                             <h3><a href="#">Post</a></h3>
@@ -163,7 +172,7 @@
                                             <i class="fa fa-arrow-right"></i></a></div>
                                     </div>
                                 </div>
-                                <div class="col-xs-6 col-sm-4">
+                                <div class="col-xs-6 col-sm-3">
                                     <div class="thumbnail"><img src="http://placehold.it/400x240" alt="">
                                         <div class="caption">
                                             <h3><a href="#">Post</a></h3>

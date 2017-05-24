@@ -63,6 +63,8 @@ public class Product implements Serializable {
 	@JsonIgnore
 	private List<CartItem> cartItemList;
 
+	private long productViewCounter;
+
 	public Product() {
 	}
 
@@ -194,6 +196,14 @@ public class Product implements Serializable {
 		this.cartItemList = cartItemList;
 	}
 
+	public long getProductViewCounter() {
+		return productViewCounter;
+	}
+
+	public void setProductViewCounter(long productViewCounter) {
+		this.productViewCounter = productViewCounter;
+	}
+
 	@Override
 	public String toString() {
 		return "Product{" +
@@ -202,7 +212,7 @@ public class Product implements Serializable {
 				", productCategory='" + productCategory + '\'' +
 				", productManufacturer=" + productManufacturer +
 				", productPrice=" + productPrice +
-				", capType=" + capType +
+				", capType='" + capType + '\'' +
 				", glowColor='" + glowColor + '\'' +
 				", lampShape='" + lampShape + '\'' +
 				", power=" + power +
@@ -213,6 +223,7 @@ public class Product implements Serializable {
 				", unitInStock=" + unitInStock +
 				", productImage=" + productImage +
 				", cartItemList=" + cartItemList +
+				", productViewCounter=" + productViewCounter +
 				'}';
 	}
 }
