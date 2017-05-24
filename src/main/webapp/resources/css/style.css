@@ -188,13 +188,34 @@ a.spoiler.collapsed:after {
 
 /*carousel*/
 .hide-bullets {
-    list-style:none;
+    list-style: none;
     margin-left: -40px;
-    margin-top:20px;
+    margin-top: 20px;
 }
 
 /*autocomplete*/
-.autocomplete-suggestions { border: 1px solid #999; background: #FFF; overflow: auto; }
-.autocomplete-suggestion { padding: 5px 5px; white-space: nowrap; overflow: hidden; font-size:22px}
-.autocomplete-selected { background: #F0F0F0; }
-.autocomplete-suggestions strong { font-weight: bold; color: #3399FF; }
+.autocomplete-suggestion {
+    cursor: pointer;
+}
+
+.autocomplete-suggestions {
+    border: 1px solid #999;
+    background: #FFF;
+    overflow: auto;
+}
+
+.autocomplete-suggestion {
+    padding: 5px 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    font-size: 18px
+}
+
+.autocomplete-selected {
+    background: #F0F0F0;
+}
+
+.autocomplete-suggestions strong {
+    font-weight: bold;
+    color: #3399FF;
+}

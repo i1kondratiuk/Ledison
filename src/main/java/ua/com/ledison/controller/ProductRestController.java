@@ -3,7 +3,6 @@ package ua.com.ledison.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.jpa.domain.Specification;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ua.com.ledison.service.ProductSpecificationsBuilder;
 import ua.com.ledison.entity.Product;
@@ -27,7 +26,6 @@ public class ProductRestController {
 	public Page<Product> getProductResult(@RequestBody String search) {
 
 		ArrayList<SearchCriteria> params = new ArrayList<>();
-		System.out.println(search);
 		Pattern pattern = Pattern.compile("\"(\\w+?)(:|>|<)(\\w+?)\"");
 		Matcher matcher = pattern.matcher(search + ",");
 
@@ -50,19 +48,13 @@ public class ProductRestController {
 			}
 		}
 
-		for (SearchCriteria param :
-				params) {
-			System.out.println(param.toString());
-		}
-
 		ProductSpecificationsBuilder builder = new ProductSpecificationsBuilder(params);
 		Specification<Product> spec = builder.build();
 
 		return productService.findPaginated(spec, pageNumber);
 	}
 
-	@ResponseBody
-	@RequestMapping(value = "/products/autocomplete", produces = "application/json")
+	@GetMapping(value = "/products/autocomplete", produces = "application/json")
 	public Set<String> autoComplete(@RequestParam String query) {
 
 		List<Product> result = productService.getProductsMatchingSearch(query);
@@ -75,5 +67,20 @@ public class ProductRestController {
 		}
 
 		return titles;
+	}
+
+	@GetMapping("/search")
+	public Page<Product> getProductAutocompleteSearchResult(@RequestBody String search) {
+		ArrayList<SearchCriteria> params = new ArrayList<>();
+		List<Product> products = productService.getProductsMatchingSearch(search);
+
+		for (Product product : products) {
+			params.add(new SearchCriteria("productName", ":", product.getProductName()));
+		}
+
+		ProductSpecificationsBuilder builder = new ProductSpecificationsBuilder(params);
+		Specification<Product> spec = builder.build();
+
+		return productService.findPaginated(spec, 1);
 	}
 }
