@@ -10,9 +10,7 @@ import ua.com.ledison.service.ProductService;
 import ua.com.ledison.util.SearchCriteria;
 
 import java.util.ArrayList;
-import java.util.LinkedHashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -54,33 +52,18 @@ public class ProductRestController {
 		return productService.findPaginated(spec, pageNumber);
 	}
 
-	@GetMapping(value = "/products/autocomplete", produces = "application/json")
-	public Set<String> autoComplete(@RequestParam String query) {
+	@GetMapping(value = "/products/autocomplete")
+	public List<Product> autoComplete(@RequestParam String query) {
 
 		List<Product> result = productService.getProductsMatchingSearch(query);
 
-		Set<String> titles = new LinkedHashSet<>();
-		for (Product product : result) {
-			if (product.getProductName().toLowerCase().contains(query.toLowerCase())) {
-				titles.add(product.getProductName());
-			}
-		}
+		//		Set<String> titles = new LinkedHashSet<>();
+		//		for (Product product : result) {
+		//			if (product.getProductName().toLowerCase().contains(query.toLowerCase())) {
+		//				titles.add(product.getProductName());
+		//			}
+		//		}
 
-		return titles;
-	}
-
-	@GetMapping("/search")
-	public Page<Product> getProductAutocompleteSearchResult(@RequestBody String search) {
-		ArrayList<SearchCriteria> params = new ArrayList<>();
-		List<Product> products = productService.getProductsMatchingSearch(search);
-
-		for (Product product : products) {
-			params.add(new SearchCriteria("productName", ":", product.getProductName()));
-		}
-
-		ProductSpecificationsBuilder builder = new ProductSpecificationsBuilder(params);
-		Specification<Product> spec = builder.build();
-
-		return productService.findPaginated(spec, 1);
+		return result;
 	}
 }

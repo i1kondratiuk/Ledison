@@ -27,13 +27,10 @@ public class ProductServiceImpl implements ProductService {
 		return productDao.findOne(productId);
 	}
 
-	@Override
-	public Product getProductByName(String productName) {
-		List<Product> products = productDao.findAll();
-		for (Product product : products) {
-			if (product.getProductName().equals(productName)) return product;
-		}
-		return null;
+	public Product getProductByIdAndFetchLazyCartItemList(int productId) {
+		Product product = productDao.findOne(productId);
+		product.fetchLazyCollection();
+		return product;
 	}
 
 	public Page<Product> findPaginated(Specification<Product> spec, Integer pageNumber) {

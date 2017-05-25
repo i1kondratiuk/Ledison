@@ -17,7 +17,7 @@ public interface ProductService {
 
     Product getProductById(int id);
 
-    Product getProductByName(String productName);
+    Product getProductByIdAndFetchLazyCartItemList(int id);
 
     void addProduct(Product product);
 

@@ -65,6 +65,12 @@ public class Product implements Serializable {
 
 	private long productViewCounter;
 
+	public void fetchLazyCollection() {
+		if (this.cartItemList != null) {
+			getCartItemList().size();
+		}
+	}
+
 	public Product() {
 	}
 
