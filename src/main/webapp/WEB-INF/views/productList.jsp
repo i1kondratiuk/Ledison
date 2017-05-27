@@ -157,17 +157,8 @@
                 </div>
                 <div id="productPrice" class="panel-collapse collapse in">
                     <div class="panel-body">
-                        <div data-role="main" class="ui-content">
-                            <form method="post" action="/action_page_post.php">
-                                <div data-role="rangeslider">
-                                    <label for="price-min">Price:</label>
-                                    <input type="range" name="price-min" id="price-min" value="200" min="0" max="1000">
-                                    <label for="price-max">Price:</label>
-                                    <input type="range" name="price-max" id="price-max" value="800" min="0" max="1000">
-                                </div>
-                                <input type="submit" data-inline="true" value="Submit">
-                            </form>
-                        </div>
+                        <input id="price-range" name="productPrice" type="text" class="span2" value="" data-slider-min="10"
+                                           data-slider-max="1000" data-slider-step="5" data-slider-value="[50,200]"/>
                     </div>
                 </div>
             </div>

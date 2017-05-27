@@ -1,6 +1,7 @@
 $(document).ready(function () {
 
     init();
+    $("#price-range").slider({});
 
     function init() {
         var opts = [];
@@ -10,11 +11,16 @@ $(document).ready(function () {
 
     var checker = true;
 
-    var $checkboxes = $("input:checkbox");
+    var $checkboxes = $("input:checkbox, #price-range");
     $checkboxes.on("change", function () {
         checker = true;
         var opts = [];
         opts.push('page' + ":" + '1');
+        var min = $('#price-range').data('slider').options.value[0];
+        var max = $('#price-range').data('slider').options.value[1];
+        var name = $("#price-range").attr("name");
+        opts.push(name + "-" + min);
+        opts.push(name + "-" + max);
         opts.push(getProductFilterOptions());
         $('#pagination').twbsPagination('destroy');
         updateProducts(opts);

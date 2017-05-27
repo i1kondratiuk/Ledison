@@ -24,7 +24,7 @@ public class ProductRestController {
     public Page<Product> getProductResult(@RequestBody String search) {
 
         ArrayList<SearchCriteria> params = new ArrayList<>();
-        Pattern pattern = Pattern.compile("\"(\\w+?)(:|>|<)(\\w+?)\"");
+        Pattern pattern = Pattern.compile("\"(\\w+?)(:|>|<|-)(\\w+?)\"");
         Matcher matcher = pattern.matcher(search + ",");
 
         while (matcher.find()) {
