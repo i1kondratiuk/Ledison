@@ -15,33 +15,33 @@ import java.util.List;
 @RequestMapping("/product")
 public class ProductController {
 
-	@Autowired
-	private ProductService productService;
+    @Autowired
+    private ProductService productService;
 
-	@Autowired
-	private ProductManufacturerService productManufacturerService;
+    @Autowired
+    private ProductManufacturerService productManufacturerService;
 
-	@GetMapping("/productList/all")
-	public String getProducts(Model model) {
-		List<ProductManufacturer> productManufacturers = productManufacturerService.getProductManufacturerList();
+    @GetMapping("/productList/all")
+    public String getProducts(Model model) {
+        List<ProductManufacturer> productManufacturers = productManufacturerService.getProductManufacturerList();
 
-		model.addAttribute("productManufacturers", productManufacturers);
-		model.addAttribute("capTypes", CapType.values());
-		model.addAttribute("glowColors", GlowColor.values());
-		model.addAttribute("lampShapes", LampShape.values());
+        model.addAttribute("productManufacturers", productManufacturers);
+        model.addAttribute("capTypes", CapType.values());
+        model.addAttribute("glowColors", GlowColor.values());
+        model.addAttribute("lampShapes", LampShape.values());
 
-		return "productList";
-	}
+        return "productList";
+    }
 
-	@GetMapping("/viewProduct/{productId}")
-	public String viewProduct(@PathVariable int productId, Model model) throws IOException {
-		Product product = productService.getProductByIdAndFetchLazyCartItemList(productId);
-		product.setProductViewCounter(product.getProductViewCounter() + 1);
-		productService.editProduct(product);
+    @GetMapping("/viewProduct/{productId}")
+    public String viewProduct(@PathVariable int productId, Model model) throws IOException {
+        Product product = productService.getProductByIdAndFetchLazyCartItemList(productId);
+        product.setProductViewCounter(product.getProductViewCounter() + 1);
+        productService.editProduct(product);
 
-		model.addAttribute("product", product);
+        model.addAttribute("product", product);
 
-		return "viewProduct";
-	}
+        return "viewProduct";
+    }
 
 }

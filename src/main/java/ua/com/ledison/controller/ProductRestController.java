@@ -17,53 +17,46 @@ import java.util.regex.Pattern;
 @RestController
 public class ProductRestController {
 
-	@Autowired
-	private ProductService productService;
+    @Autowired
+    private ProductService productService;
 
-	@PostMapping("/")
-	public Page<Product> getProductResult(@RequestBody String search) {
+    @PostMapping("/")
+    public Page<Product> getProductResult(@RequestBody String search) {
 
-		ArrayList<SearchCriteria> params = new ArrayList<>();
-		Pattern pattern = Pattern.compile("\"(\\w+?)(:|>|<)(\\w+?)\"");
-		Matcher matcher = pattern.matcher(search + ",");
+        ArrayList<SearchCriteria> params = new ArrayList<>();
+        Pattern pattern = Pattern.compile("\"(\\w+?)(:|>|<)(\\w+?)\"");
+        Matcher matcher = pattern.matcher(search + ",");
 
-		while (matcher.find()) {
-			params.add(new SearchCriteria(matcher.group(1), matcher.group(2), matcher.group(3)));
-		}
+        while (matcher.find()) {
+            params.add(new SearchCriteria(matcher.group(1), matcher.group(2), matcher.group(3)));
+        }
 
-		int pageNumber = Integer.parseInt((String) params.get(0).getValue());
+        int pageNumber = Integer.parseInt((String) params.get(0).getValue());
 
-		params.remove(0);
+        params.remove(0);
 
-		int j = 0;
-		for (int i = 1; i < params.size(); i++) {
-			if (params.get(j).getKey().equals(params.get(i).getKey())) {
-				params.get(j).setValue(params.get(j).getValue() + ";" + params.get(i).getValue());
-				params.remove(i);
-				i--;
-			} else {
-				j++;
-			}
-		}
+        int j = 0;
+        for (int i = 1; i < params.size(); i++) {
+            if (params.get(j).getKey().equals(params.get(i).getKey())) {
+                params.get(j).setValue(params.get(j).getValue() + ";" + params.get(i).getValue());
+                params.remove(i);
+                i--;
+            } else {
+                j++;
+            }
+        }
 
-		ProductSpecificationsBuilder builder = new ProductSpecificationsBuilder(params);
-		Specification<Product> spec = builder.build();
+        ProductSpecificationsBuilder builder = new ProductSpecificationsBuilder(params);
+        Specification<Product> spec = builder.build();
 
-		return productService.findPaginated(spec, pageNumber);
-	}
+        return productService.findPaginated(spec, pageNumber);
+    }
 
-	@GetMapping(value = "/products/autocomplete")
-	public List<Product> autoComplete(@RequestParam String query) {
+    @GetMapping(value = "/products/autocomplete")
+    public List<Product> autoComplete(@RequestParam String query) {
+        List<Product> result = productService.getProductsMatchingSearch(query);
 
-		List<Product> result = productService.getProductsMatchingSearch(query);
+        return result;
+    }
 
-		//		Set<String> titles = new LinkedHashSet<>();
-		//		for (Product product : result) {
-		//			if (product.getProductName().toLowerCase().contains(query.toLowerCase())) {
-		//				titles.add(product.getProductName());
-		//			}
-		//		}
-
-		return result;
-	}
 }

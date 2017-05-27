@@ -12,7 +12,7 @@ $(document).ready(function () {
             };
         },
         onSelect: function (suggestion) {
-            $.get("/product/viewProduct/" + suggestion.data);
+            window.location.href = '/product/viewProduct/' + suggestion.data;
         }
     });
 });
