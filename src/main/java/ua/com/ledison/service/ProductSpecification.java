@@ -28,7 +28,7 @@ public class ProductSpecification implements Specification<Product> {
         } else if (criteria.getOperation().equalsIgnoreCase("-")) {
             String[] values = criteria.getValue().toString().split(";");
             return builder.between(
-                    root.get(criteria.getKey()), values[0], values[1]);
+                    root.get(criteria.getKey()), Integer.parseInt(values[0]), Integer.parseInt(values[1]));
         } else if (criteria.getOperation().equalsIgnoreCase(":")) {
             if (criteria.getValue().toString().contains(";")) {
                 String[] values = criteria.getValue().toString().split(";");

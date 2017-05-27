@@ -11,20 +11,30 @@ $(document).ready(function () {
 
     var checker = true;
 
-    var $checkboxes = $("input:checkbox, #price-range");
+    var $checkboxes = $("input:checkbox");
     $checkboxes.on("change", function () {
+        doRequest();
+    });
+
+    $("#price-range").on("change", function () {
+        doRequest();
+    });
+
+    function doRequest() {
         checker = true;
         var opts = [];
         opts.push('page' + ":" + '1');
-        var min = $('#price-range').data('slider').options.value[0];
-        var max = $('#price-range').data('slider').options.value[1];
+        var range = $('#price-range').val().split(',');
+        range = range.concat(range);
+        var min = range[0];
+        var max = range[1];
         var name = $("#price-range").attr("name");
         opts.push(name + "-" + min);
         opts.push(name + "-" + max);
         opts.push(getProductFilterOptions());
         $('#pagination').twbsPagination('destroy');
         updateProducts(opts);
-    });
+    }
 
     function getProductFilterOptions() {
         var opts = [];
@@ -43,7 +53,7 @@ $(document).ready(function () {
             url: "/",
             data: JSON.stringify(opts),
             contentType: 'text/plain',
-            timeout: 100000,
+            timeout: 10000,
             success: function (data) {
                 console.log("SUCCESS: ", data);
                 if (data.toString() == "") {
@@ -100,17 +110,27 @@ $(document).ready(function () {
         function drawProduct(product) {
             var className = "col-xs-6 col-sm-4";
             var imagePath = "/images/" + product.productId + ".jpg";
-            var viewProduct = "/product/viewProduct/" + product.productId;
-            var addToCart = "/rest/cart/add/" + product.productId;
-            $('#products').append($('<div>', {
-                class: className,
-                text: product
-            }).html('<a href="' + viewProduct + '"><div class="thumbnail">' +
-                '<img src="' + imagePath + '" width="400" alt="' +
-                product.productName + product.productId + '"/><div class="caption"><h3 style="margin-top: 0"><a href="' + viewProduct + '">' +
-                product.productName + '</a></h3><span style="font-size: 24px;">' +
-                product.productPrice + '</span><a href="' + addToCart + '" class="btn btn-success pull-right">Купити' +
-                '<i class="fa fa-cart-plus" aria-hidden="true"></i></a></div></div></a>'));
+            var viewProductUrl = "/product/viewProduct/" + product.productId;
+            var addToCartUrl = "/rest/cart/add/" + product.productId;
+
+            var div1 = $("<div/>").attr('class', className);
+            var a1 = $("<a/>").attr('href', viewProductUrl);
+            var div2 = $("<div/>").addClass('thumbnail');
+            var img = $("<img/>").attr('src', imagePath).attr('width', 400).attr('alt', product.productName + product.productId);
+            var div3 = $("<div/>").addClass('caption');
+            var h3 = $("<h3/>").attr('style', 'margin-top: 0');
+            var a2 = $("<a/>").text(product.productName).attr('href', viewProductUrl);
+            var span = $("<span/>").text(product.productPrice).attr('style', 'font-size: 24px');
+            var a3 = $("<a/>").addClass('btn btn-success pull-right').text("Buy").attr('href', addToCartUrl);
+            var i = $("<i/>").addClass('fa fa-cart-plus').attr('aria-hidden', 'true');
+
+            div1.append(a1.append(div2));
+            div2.append(img, div3);
+            div3.append(h3.append(a2), span, a3.append(i));
+
+            $('#products').append(
+                div1.append(div2.append(div3))
+            );
         }
     }
 });
