@@ -22,7 +22,7 @@ $(document).ready(function () {
         doRequest();
     });
 
-    $("#price-range").on("change", function () {
+    $("#price-range-section").click(function () {
         doRequest();
     });
 

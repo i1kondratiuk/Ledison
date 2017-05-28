@@ -18,8 +18,10 @@
                 <div id="productPrice" class="panel-collapse collapse in">
                     <div class="panel-body">
                         <b id="min-price"></b><b id="max-price"></b>
-                        <input id="price-range" name="productPrice" type="text" class="span2" value="" data-slider-min="0"
-                               data-slider-max="500" data-slider-step="1" data-slider-value="[10,300]"/>
+                        <span id="price-range-section">
+                            <input id="price-range" name="productPrice" type="text" class="span2" value="" data-slider-min="0"
+                                data-slider-max="500" data-slider-step="1" data-slider-value="[10,300]"/>
+                        </span>
                     </div>
                 </div>
             </div>
