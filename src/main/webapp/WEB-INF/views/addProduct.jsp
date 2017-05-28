@@ -93,12 +93,11 @@
 
             <div class="form-group">
                 <label for="diffuserType">Тип розсіювача</label>
-                <label class="checkbox-inline"><form:radiobutton path="diffuserType" id="diffuserType"
-                                                                 value="frosted"/>Матовий
-                    (Frosted)</label>
-                <label class="checkbox-inline"><form:radiobutton path="diffuserType" id="diffuserType"
-                                                                 value="clear"/>Прозорий
-                    (Clear)</label>
+                <c:forEach items="${diffuserType}" var="diffuserType">
+                    <label class="checkbox-inline">
+                        <form:radiobutton path="diffuserType" id="diffuserType" value="${diffuserType}"/>${diffuserType.name}
+                    </label>
+                </c:forEach>
             </div>
 
             <div class="form-group">

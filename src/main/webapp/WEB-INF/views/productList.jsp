@@ -120,6 +120,11 @@
                 </div>
                 <div id="diffuserType" class="panel-collapse collapse">
                     <div class="panel-body">
+                        <c:forEach items="${diffuserType}" var="diffuserType">
+                            <input type="checkbox" id="${diffuserType.name}" name="diffuserType" value="${diffuserType}"/>
+                            <label for="${diffuserType.name}">${diffuserType.name}</label>
+                            <br>
+                        </c:forEach>
                     </div>
                 </div>
             </div>

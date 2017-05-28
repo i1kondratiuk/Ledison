@@ -34,12 +34,12 @@ public class AdminProduct {
 		product.setProductName("Lamp-1");
 		product.setProductPrice(20.1);
 		product.setProductCategory("ledBulbs");
-		product.setCapType(CapType.E27.getName());
-		product.setGlowColor(GlowColor.NEUTRAL_WHITE.getName());
-		product.setLampShape(LampShape.A60.getName());
+		product.setCapType(CapType.E27.name());
+		product.setGlowColor(GlowColor.NEUTRAL_WHITE.name());
+		product.setLampShape(LampShape.A60.name());
+		product.setDiffuserType(DiffuserType.FROSTED.name());
 		product.setPower(3);
 		product.setOperatingVoltage("220");
-		product.setDiffuserType("frosted");
 		product.setServiceLife(1200);
 		product.setWarrantyPeriod(36);
 		product.setUnitInStock(10);
@@ -49,6 +49,7 @@ public class AdminProduct {
 		model.addAttribute("capTypes", CapType.values());
 		model.addAttribute("glowColors", GlowColor.values());
 		model.addAttribute("lampShapes", LampShape.values());
+		model.addAttribute("diffuserType", DiffuserType.values());
 
 		return "addProduct";
 	}

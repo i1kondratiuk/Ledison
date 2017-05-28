@@ -29,6 +29,7 @@ public class ProductController {
         model.addAttribute("capTypes", CapType.values());
         model.addAttribute("glowColors", GlowColor.values());
         model.addAttribute("lampShapes", LampShape.values());
+        model.addAttribute("diffuserType", DiffuserType.values());
 
         return "productList";
     }
