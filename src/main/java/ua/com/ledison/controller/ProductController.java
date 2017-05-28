@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ua.com.ledison.entity.*;
+import ua.com.ledison.service.PowerService;
 import ua.com.ledison.service.ProductManufacturerService;
 import ua.com.ledison.service.ProductService;
 
@@ -17,6 +18,8 @@ public class ProductController {
 
     @Autowired
     private ProductService productService;
+    @Autowired
+    private PowerService powerService;
 
     @Autowired
     private ProductManufacturerService productManufacturerService;
@@ -24,12 +27,15 @@ public class ProductController {
     @GetMapping("/productList/all")
     public String getProducts(Model model) {
         List<ProductManufacturer> productManufacturers = productManufacturerService.getProductManufacturerList();
+        List<Power> powers= powerService.getPowerList();
 
         model.addAttribute("productManufacturers", productManufacturers);
         model.addAttribute("capTypes", CapType.values());
         model.addAttribute("glowColors", GlowColor.values());
         model.addAttribute("lampShapes", LampShape.values());
         model.addAttribute("diffuserType", DiffuserType.values());
+        model.addAttribute("operatingVoltages", OperatingVoltage.values());
+        model.addAttribute("powers", powers);
 
         return "productList";
     }

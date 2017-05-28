@@ -12,15 +12,16 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h4 class="panel-title">
-                        <a data-toggle="collapse"  href="#productPrice">Price, UAH</a>
+                        <a data-toggle="collapse" href="#productPrice">Price, UAH</a>
                     </h4>
                 </div>
                 <div id="productPrice" class="panel-collapse collapse in">
                     <div class="panel-body">
                         <b id="min-price"></b><b id="max-price"></b>
                         <span id="price-range-section">
-                            <input id="price-range" name="productPrice" type="text" class="span2" value="" data-slider-min="0"
-                                data-slider-max="500" data-slider-step="1" data-slider-value="[10,300]"/>
+                            <input id="price-range" name="productPrice" type="text" class="span2" value=""
+                                   data-slider-min="0"
+                                   data-slider-max="500" data-slider-step="1" data-slider-value="[10,300]"/>
                         </span>
                     </div>
                 </div>
@@ -34,7 +35,8 @@
                 <div id="brand" class="panel-collapse collapse in">
                     <div name="brand" class="panel-body">
                         <c:forEach items="${productManufacturers}" var="productManufacturer">
-                            <input type="checkbox" id="${productManufacturer.productManufacturerName}" name="productManufacturerId" value="${productManufacturer.productManufacturerId}"/>
+                            <input type="checkbox" id="${productManufacturer.productManufacturerName}"
+                                   name="productManufacturerId" value="${productManufacturer.productManufacturerId}"/>
                             <label for="${productManufacturer.productManufacturerName}">${productManufacturer.productManufacturerName}</label>
                             <br>
                         </c:forEach>
@@ -96,7 +98,13 @@
                     </h4>
                 </div>
                 <div id="power" class="panel-collapse collapse">
-                    <div class="panel-body">
+                    <div name="power" class="panel-body">
+                        <c:forEach items="${powers}" var="power">
+                            <input type="checkbox" id="${power.power}" name="powerId"
+                                   value="${power.powerId}"/>
+                            <label for="${power.power}">${power.power}</label>
+                            <br>
+                        </c:forEach>
                     </div>
                 </div>
             </div>
@@ -109,6 +117,12 @@
                 </div>
                 <div id="operatingVoltage" class="panel-collapse collapse">
                     <div class="panel-body">
+                        <c:forEach items="${operatingVoltages}" var="operatingVoltage">
+                            <input type="checkbox" id="${operatingVoltage.name}" name="operatingVoltage"
+                                   value="${operatingVoltage}"/>
+                            <label for="${operatingVoltage.name}">${operatingVoltage.name}</label>
+                            <br>
+                        </c:forEach>
                     </div>
                 </div>
             </div>
@@ -121,7 +135,8 @@
                 <div id="diffuserType" class="panel-collapse collapse">
                     <div class="panel-body">
                         <c:forEach items="${diffuserType}" var="diffuserType">
-                            <input type="checkbox" id="${diffuserType.name}" name="diffuserType" value="${diffuserType}"/>
+                            <input type="checkbox" id="${diffuserType.name}" name="diffuserType"
+                                   value="${diffuserType}"/>
                             <label for="${diffuserType.name}">${diffuserType.name}</label>
                             <br>
                         </c:forEach>

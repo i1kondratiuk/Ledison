@@ -7,6 +7,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import ua.com.ledison.entity.*;
+import ua.com.ledison.service.PowerService;
 import ua.com.ledison.service.ProductManufacturerService;
 import ua.com.ledison.service.ProductService;
 
@@ -24,11 +25,14 @@ public class AdminProduct {
 	private ProductService productService;
 	@Autowired
 	private ProductManufacturerService productManufacturerService;
+	@Autowired
+	private PowerService powerService;
 
 	@GetMapping("/addProduct")
 	public String addProduct(Model model) {
 
 		List<ProductManufacturer> productManufacturers = productManufacturerService.getProductManufacturerList();
+		List<Power> powers = powerService.getPowerList();
 		Product product = new Product();
 
 		product.setProductName("Lamp-1");
@@ -38,18 +42,19 @@ public class AdminProduct {
 		product.setGlowColor(GlowColor.NEUTRAL_WHITE.name());
 		product.setLampShape(LampShape.A60.name());
 		product.setDiffuserType(DiffuserType.FROSTED.name());
-		product.setPower(3);
-		product.setOperatingVoltage("220");
+		product.setOperatingVoltage(OperatingVoltage.V_220.name());
 		product.setServiceLife(1200);
 		product.setWarrantyPeriod(36);
 		product.setUnitInStock(10);
 
 		model.addAttribute("product", product);
 		model.addAttribute("productManufacturers", productManufacturers);
+		model.addAttribute("powers", powers);
 		model.addAttribute("capTypes", CapType.values());
 		model.addAttribute("glowColors", GlowColor.values());
 		model.addAttribute("lampShapes", LampShape.values());
 		model.addAttribute("diffuserType", DiffuserType.values());
+		model.addAttribute("operatingVoltages", OperatingVoltage.values());
 
 		return "addProduct";
 	}
@@ -62,6 +67,7 @@ public class AdminProduct {
 		}
 
 		product.setProductManufacturer(productManufacturerService.getProductManufacturerById(Integer.parseInt(request.getParameter("productManufacturerId"))));
+		product.setPower(powerService.getPowerById(Integer.parseInt(request.getParameter("powerId"))));
 		productService.addProduct(product);
 
 		MultipartFile multipartFile = product.getProductImage();
@@ -102,14 +108,39 @@ public class AdminProduct {
 		return "redirect:/admin/product/addProduct";
 	}
 
+	@GetMapping("/addPower")
+	public String addPower(Model model) {
+		Power power = new Power();
+		model.addAttribute("power", power);
+
+		return "addPower";
+	}
+
+	@PostMapping("/addPower")
+	public String addPowerPost(@Valid @ModelAttribute("power") Power power, BindingResult result) {
+
+		if (result.hasErrors()) {
+			return "addPower";
+		}
+		powerService.addPower(power);
+
+		return "redirect:/admin/product/addProduct";
+	}
+
 	@GetMapping("/editProduct/{productId}")
 	public String editProduct(@PathVariable("productId") int productId, Model model) {
 		Product product = productService.getProductById(productId);
 		List<ProductManufacturer> productManufacturers = productManufacturerService.getProductManufacturerList();
+		List<Power> powers = powerService.getPowerList();
 
 		model.addAttribute("product", product);
 		model.addAttribute("productManufacturers", productManufacturers);
+		model.addAttribute("powers", powers);
 		model.addAttribute("glowColors", GlowColor.values());
+		model.addAttribute("capTypes", CapType.values());
+		model.addAttribute("lampShapes", LampShape.values());
+		model.addAttribute("diffuserType", DiffuserType.values());
+		model.addAttribute("operatingVoltages", OperatingVoltage.values());
 
 		return "editProduct";
 	}
@@ -122,6 +153,7 @@ public class AdminProduct {
 		}
 
 		product.setProductManufacturer(productManufacturerService.getProductManufacturerById(Integer.parseInt(request.getParameter("productManufacturerId"))));
+		product.setPower(powerService.getPowerById(Integer.parseInt(request.getParameter("powerId"))));
 		productService.addProduct(product);
 
 		MultipartFile multipartFile = product.getProductImage();

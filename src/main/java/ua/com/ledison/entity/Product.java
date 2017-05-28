@@ -39,9 +39,10 @@ public class Product implements Serializable {
 
 	private String lampShape;
 
-	@Min(value = 0, message = "The power must not be less then zero")
-	@Max(value = 200, message = "The power must not be more then 200")
-	private int power;
+	@ManyToOne
+	@JoinColumn(name = "powerId")
+	@JsonIgnore
+	private Power power;
 
 	private String operatingVoltage;
 
@@ -138,11 +139,11 @@ public class Product implements Serializable {
 		this.lampShape = lampShape;
 	}
 
-	public int getPower() {
+	public Power getPower() {
 		return power;
 	}
 
-	public void setPower(int power) {
+	public void setPower(Power power) {
 		this.power = power;
 	}
 

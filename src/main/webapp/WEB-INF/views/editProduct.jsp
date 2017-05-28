@@ -3,12 +3,11 @@
 
 <%@ include file="/WEB-INF/views/template/header.jsp" %>
 
-<div class="container-wrapper">
-    <div class="container">
+<div class="container">
+    <hr>
+    <div class="col-lg-8 col-xs-12 col-md-6 col-lg-offset-2 col-md-offset-3 col-sm-8">
         <div class="page-header">
             <h1>Edit Product</h1>
-
-
             <p class="lead">Please update the product information here:</p>
         </div>
 
@@ -41,7 +40,7 @@
                     </option>
                 </c:forEach>
             </select>
-            <a class="pull-right" href="<spring:url value="/admin/product/addProductManufacturer" />"> Add new product manufacturer</a>
+            <a href="/admin/product/addProductManufacturer" class="pull-right">Add new product manufacturer</a>
         </div>
 
         <div class="form-group">
@@ -52,21 +51,15 @@
 
         <div class="form-group">
             <label for="capType">Тип цоколя</label>
-            <label class="checkbox-inline"><form:radiobutton path="capType" id="capType"
-                                                             value="E27"/>E27</label>
-            <label class="checkbox-inline"><form:radiobutton path="capType" id="capType"
-                                                             value="E14"/>E14</label>
-            <label class="checkbox-inline"><form:radiobutton path="capType" id="capType"
-                                                             value="E40"/>E40</label>
-            <label class="checkbox-inline"><form:radiobutton path="capType" id="capType" value="G4"/>G4</label>
-            <label class="checkbox-inline"><form:radiobutton path="capType" id="capType" value="G9"/>G9</label>
-            <label class="checkbox-inline"><form:radiobutton path="capType" id="capType"
-                                                             value="GU53"/>GU5.3</label>
-            <label class="checkbox-inline"><form:radiobutton path="capType" id="capType" value="T8"/>T8</label>
+            <c:forEach items="${capTypes}" var="capType">
+                <label class="checkbox-inline">
+                    <form:radiobutton path="capType" id="capType" value="${capType}"/>${capType.name}
+                </label>
+            </c:forEach>
+            <br>
         </div>
 
         <div class="form-group">
-            <label for="glowColor">Колір світіння</label>
             <label for="glowColor">Колір світіння</label>
             <c:forEach items="${glowColors}" var="glowColor">
                 <label class="checkbox-inline">
@@ -77,52 +70,40 @@
 
         <div class="form-group">
             <label for="lampShape">Форма лампи</label>
-            <label class="checkbox-inline"><form:radiobutton path="lampShape" id="lampShape" value="A60"/>A60
-                (груша)</label>
-            <label class="checkbox-inline"><form:radiobutton path="lampShape" id="lampShape" value="A65"/>A65
-                (груша)</label>
-            <label class="checkbox-inline"><form:radiobutton path="lampShape" id="lampShape" value="C37"/>C37
-                (свічка)</label>
-            <label class="checkbox-inline"><form:radiobutton path="lampShape" id="lampShape"
-                                                             value="C110"/>C110</label>
-            <label class="checkbox-inline"><form:radiobutton path="lampShape" id="lampShape"
-                                                             value="C120"/>C120</label>
-            <label class="checkbox-inline"><form:radiobutton path="lampShape" id="lampShape"
-                                                             value="C140"/>C140</label>
-            <label class="checkbox-inline"><form:radiobutton path="lampShape" id="lampShape" value="G45"/>G45
-                (куля)</label>
-            <label class="checkbox-inline"><form:radiobutton path="lampShape" id="lampShape" value="G95"/>G95
-                (куля)</label>
-            <label class="checkbox-inline"><form:radiobutton path="lampShape" id="lampShape"
-                                                             value="HW"/>HW</label>
-            <label class="checkbox-inline"><form:radiobutton path="lampShape" id="lampShape" value="R63"/>R63
-                (гриб)</label>
+            <c:forEach items="${lampShapes}" var="lampShape">
+                <label class="checkbox-inline">
+                    <form:radiobutton path="lampShape" id="lampShape" value="${lampShape}"/>${lampShape.name}
+                </label>
+            </c:forEach>
         </div>
 
         <div class="form-group">
             <label for="power">Потужність, W</label>
-            <form:errors path="power" cssStyle="color:#ff0000;"/>
-            <form:input path="power" id="power" class="form-control"/>
+            <select id="power" name="powerId" class="selectpicker">
+                <c:forEach items="${powers}" var="power">
+                    <option value="${power.powerId}"> ${power.power}
+                    </option>
+                </c:forEach>
+            </select>
+            <a href="/admin/product/addPower" class="pull-right">Add new power value</a>
         </div>
 
         <div class="form-group">
             <label for="operatingVoltage">Робоча напруга, V</label>
-            <label class="checkbox-inline"><form:radiobutton path="operatingVoltage" id="operatingVoltage"
-                                                             value="175-250"/>175-250</label>
-            <label class="checkbox-inline"><form:radiobutton path="operatingVoltage" id="operatingVoltage"
-                                                             value="220"/>220</label>
-            <label class="checkbox-inline"><form:radiobutton path="operatingVoltage" id="operatingVoltage"
-                                                             value="198-242"/>198-242</label>
+            <c:forEach items="${operatingVoltages}" var="operatingVoltage">
+                <label class="checkbox-inline">
+                    <form:radiobutton path="operatingVoltage" id="operatingVoltage" value="${operatingVoltage}"/>${operatingVoltage.name}
+                </label>
+            </c:forEach>
         </div>
 
         <div class="form-group">
             <label for="diffuserType">Тип розсіювача</label>
-            <label class="checkbox-inline"><form:radiobutton path="diffuserType" id="diffuserType"
-                                                             value="frosted"/>Матовий
-                (Frosted)</label>
-            <label class="checkbox-inline"><form:radiobutton path="diffuserType" id="diffuserType"
-                                                             value="clear"/>Прозорий
-                (Clear)</label>
+            <c:forEach items="${diffuserType}" var="diffuserType">
+                <label class="checkbox-inline">
+                    <form:radiobutton path="diffuserType" id="diffuserType" value="${diffuserType}"/>${diffuserType.name}
+                </label>
+            </c:forEach>
         </div>
 
         <div class="form-group">

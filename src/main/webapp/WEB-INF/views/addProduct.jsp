@@ -77,18 +77,22 @@
 
             <div class="form-group">
                 <label for="power">Потужність, W</label>
-                <form:errors path="power" cssStyle="color:#ff0000;"/>
-                <form:input path="power" id="power" class="form-control"/>
+                <select id="power" name="powerId" class="selectpicker">
+                    <c:forEach items="${powers}" var="power">
+                        <option value="${power.powerId}"> ${power.power}
+                        </option>
+                    </c:forEach>
+                </select>
+                <a href="/admin/product/addPower" class="pull-right">Add new power value</a>
             </div>
 
             <div class="form-group">
                 <label for="operatingVoltage">Робоча напруга, V</label>
-                <label class="checkbox-inline"><form:radiobutton path="operatingVoltage" id="operatingVoltage"
-                                                                 value="175-250"/>175-250</label>
-                <label class="checkbox-inline"><form:radiobutton path="operatingVoltage" id="operatingVoltage"
-                                                                 value="220"/>220</label>
-                <label class="checkbox-inline"><form:radiobutton path="operatingVoltage" id="operatingVoltage"
-                                                                 value="198-242"/>198-242</label>
+                <c:forEach items="${operatingVoltages}" var="operatingVoltage">
+                    <label class="checkbox-inline">
+                        <form:radiobutton path="operatingVoltage" id="operatingVoltage" value="${operatingVoltage}"/>${operatingVoltage.name}
+                    </label>
+                </c:forEach>
             </div>
 
             <div class="form-group">
