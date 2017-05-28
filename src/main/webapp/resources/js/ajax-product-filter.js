@@ -1,7 +1,13 @@
 $(document).ready(function () {
 
-    init();
+
     $("#price-range").slider({});
+    init();
+
+    var min = $('#price-range').data('slider').options.value[0];
+    var max = $('#price-range').data('slider').options.value[1];
+    $('#min-price').text(min);
+    $('#max-price').text(max).addClass('pull-right');
 
     function init() {
         var opts = [];
@@ -29,6 +35,9 @@ $(document).ready(function () {
         var min = range[0];
         var max = range[1];
         var name = $("#price-range").attr("name");
+
+        $('#min-price').text(min);
+        $('#max-price').text(max).addClass('pull-right');
         opts.push(name + "-" + min);
         opts.push(name + "-" + max);
         opts.push(getProductFilterOptions());
@@ -56,7 +65,7 @@ $(document).ready(function () {
             timeout: 10000,
             success: function (data) {
                 console.log("SUCCESS: ", data);
-                if (data.toString() == "") {
+                if (data.toString() === "") {
                     nothingFound();
                     console.log("Nothing Found!");
                 } else {
@@ -102,30 +111,30 @@ $(document).ready(function () {
 
     function displayProducts(data) {
         $('#products').empty();
-        var products = data.content;
+        let products = data.content;
         $.each(products, function (i, product) {
             drawProduct(product);
         });
 
         function drawProduct(product) {
-            var className = "col-xs-6 col-sm-4";
-            var imagePath = "/images/" + product.productId + ".jpg";
-            var viewProductUrl = "/product/viewProduct/" + product.productId;
-            var addToCartUrl = "/rest/cart/add/" + product.productId;
+            let className = "col-xs-6 col-sm-4";
+            let imagePath = "/images/" + product.productId + ".jpg";
+            let viewProductUrl = "/product/viewProduct/" + product.productId;
+            let addToCartUrl = "/rest/cart/add/" + product.productId;
 
-            var div1 = $("<div/>").attr('class', className);
-            var a1 = $("<a/>").attr('href', viewProductUrl);
-            var div2 = $("<div/>").addClass('thumbnail');
-            var img = $("<img/>").attr('src', imagePath).attr('width', 400).attr('alt', product.productName + product.productId);
-            var div3 = $("<div/>").addClass('caption');
-            var h3 = $("<h3/>").attr('style', 'margin-top: 0');
-            var a2 = $("<a/>").text(product.productName).attr('href', viewProductUrl);
-            var span = $("<span/>").text(product.productPrice).attr('style', 'font-size: 24px');
-            var a3 = $("<a/>").addClass('btn btn-success pull-right').text("Buy").attr('href', addToCartUrl);
-            var i = $("<i/>").addClass('fa fa-cart-plus').attr('aria-hidden', 'true');
+            let div1 = $("<div/>").attr('class', className);
+            let div2 = $("<div/>").addClass('thumbnail');
+            let a1 = $("<a/>").attr('href', viewProductUrl);
+            let img = $("<img/>").addClass('white-border').attr('src', imagePath).attr('width', 400).attr('alt', product.productName + product.productId);
+            let div3 = $("<div/>").addClass('caption');
+            let h3 = $("<h3/>").attr('style', 'margin-top: 0');
+            let a2 = $("<a/>").text(product.productName).attr('href', viewProductUrl);
+            let span = $("<span/>").text(product.productPrice).attr('style', 'font-size: 24px');
+            let a3 = $("<a/>").addClass('btn btn-success pull-right').text("Buy").attr('href', addToCartUrl);
+            let i = $("<i/>").addClass('fa fa-cart-plus').attr('aria-hidden', 'true');
 
-            div1.append(a1.append(div2));
-            div2.append(img, div3);
+            div1.append(div2);
+            div2.append(a1.append(img), div3);
             div3.append(h3.append(a2), span, a3.append(i));
 
             $('#products').append(

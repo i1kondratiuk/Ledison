@@ -8,18 +8,32 @@
 <div class="container">
     <div id="filter" class="col-md-3 col-lg-3 col-lg-3">
         <br>
-        <div class="panel-group" id="accordion">
+        <div class="panel-group">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#brand">Product Manufacturer</a>
+                        <a data-toggle="collapse"  href="#productPrice">Price, UAH</a>
+                    </h4>
+                </div>
+                <div id="productPrice" class="panel-collapse collapse in">
+                    <div class="panel-body">
+                        <b id="min-price"></b><b id="max-price"></b>
+                        <input id="price-range" name="productPrice" type="text" class="span2" value="" data-slider-min="0"
+                               data-slider-max="500" data-slider-step="1" data-slider-value="[10,300]"/>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" href="#brand">Product Manufacturer</a>
                     </h4>
                 </div>
                 <div id="brand" class="panel-collapse collapse in">
                     <div name="brand" class="panel-body">
                         <c:forEach items="${productManufacturers}" var="productManufacturer">
-                            <input type="checkbox" name="productManufacturerId"
-                                   value="${productManufacturer.productManufacturerId}"/> ${productManufacturer.productManufacturerName}
+                            <input type="checkbox" id="${productManufacturer.productManufacturerName}" name="productManufacturerId" value="${productManufacturer.productManufacturerId}"/>
+                            <label for="${productManufacturer.productManufacturerName}">${productManufacturer.productManufacturerName}</label>
                             <br>
                         </c:forEach>
                     </div>
@@ -28,30 +42,14 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#capType">Cap Type</a>
-                    </h4>
-                </div>
-                <div id="capType" class="panel-collapse collapse in">
-                    <div class="panel-body">
-                        <c:forEach items="${capTypes}" var="capType">
-                            <input type="checkbox" name="capType"
-                                   value="${capType}"/> ${capType.name}
-                            <br>
-                        </c:forEach>
-                    </div>
-                </div>
-            </div>
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#glowColor">Glow Color</a>
+                        <a data-toggle="collapse" href="#glowColor">Glow Color</a>
                     </h4>
                 </div>
                 <div id="glowColor" class="panel-collapse collapse in">
                     <div class="panel-body">
                         <c:forEach items="${glowColors}" var="glowColor">
-                            <input type="checkbox" name="glowColor"
-                                   value="${glowColor}"/> ${glowColor.name}
+                            <input type="checkbox" id="${glowColor.name}" name="glowColor" value="${glowColor}"/>
+                            <label for="${glowColor.name}">${glowColor.name}</label>
                             <br>
                         </c:forEach>
                     </div>
@@ -60,14 +58,30 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#lampShape">Lamp Shape</a>
+                        <a data-toggle="collapse" href="#capType">Cap Type</a>
+                    </h4>
+                </div>
+                <div id="capType" class="panel-collapse collapse in">
+                    <div class="panel-body">
+                        <c:forEach items="${capTypes}" var="capType">
+                            <input type="checkbox" id="${capType.name}" name="capType" value="${capType}"/>
+                            <label for="${capType.name}">${capType.name}</label>
+                            <br>
+                        </c:forEach>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" href="#lampShape">Lamp Shape</a>
                     </h4>
                 </div>
                 <div id="lampShape" class="panel-collapse collapse">
                     <div class="panel-body">
                         <c:forEach items="${lampShapes}" var="lampShape">
-                            <input type="checkbox" name="lampShape"
-                                   value="${lampShape}"/> ${lampShape.name}
+                            <input type="checkbox" id="${lampShape.name}" name="lampShape" value="${lampShape}"/>
+                            <label for="${lampShape.name}">${lampShape.name}</label>
                             <br>
                         </c:forEach>
                     </div>
@@ -76,121 +90,52 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#power">Power, W</a>
+                        <a data-toggle="collapse" href="#power">Power, W</a>
                     </h4>
                 </div>
                 <div id="power" class="panel-collapse collapse">
                     <div class="panel-body">
-                        <table class="table">
-                            <tr>
-                                <td><a href="#">Sub-Item 1</a></td>
-                            </tr>
-                            <tr>
-                                <td><a href="#">Sub-Item 2</a></td>
-                            </tr>
-                            <tr>
-                                <td><a href="#">Sub-Item 3</a></td>
-                            </tr>
-                            <tr>
-                                <td><a href="#">Sub-Item 4</a></td>
-                            </tr>
-                        </table>
                     </div>
                 </div>
             </div>
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#operatingVoltage">Operating Voltage,
+                        <a data-toggle="collapse" href="#operatingVoltage">Operating Voltage,
                             V</a>
                     </h4>
                 </div>
                 <div id="operatingVoltage" class="panel-collapse collapse">
                     <div class="panel-body">
-                        <table class="table">
-                            <tr>
-                                <td><a href="#">Sub-Item 1</a></td>
-                            </tr>
-                            <tr>
-                                <td><a href="#">Sub-Item 2</a></td>
-                            </tr>
-                            <tr>
-                                <td><a href="#">Sub-Item 3</a></td>
-                            </tr>
-                            <tr>
-                                <td><a href="#">Sub-Item 4</a></td>
-                            </tr>
-                        </table>
                     </div>
                 </div>
             </div>
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#diffuserType">Diffuser Type</a>
+                        <a data-toggle="collapse" href="#diffuserType">Diffuser Type</a>
                     </h4>
                 </div>
                 <div id="diffuserType" class="panel-collapse collapse">
                     <div class="panel-body">
-                        <table class="table">
-                            <tr>
-                                <td><a href="#">Sub-Item 1</a></td>
-                            </tr>
-                            <tr>
-                                <td><a href="#">Sub-Item 2</a></td>
-                            </tr>
-                            <tr>
-                                <td><a href="#">Sub-Item 3</a></td>
-                            </tr>
-                            <tr>
-                                <td><a href="#">Sub-Item 4</a></td>
-                            </tr>
-                        </table>
                     </div>
                 </div>
             </div>
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#productPrice">Price, UAH</a>
-                    </h4>
-                </div>
-                <div id="productPrice" class="panel-collapse collapse in">
-                    <div class="panel-body">
-                        <input id="price-range" name="productPrice" type="text" class="span2" value="" data-slider-min="0"
-                                           data-slider-max="500" data-slider-step="1" data-slider-value="[0,500]"/>
-                    </div>
-                </div>
-            </div>
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#serviceLife">Service Life, год</a>
+                        <a data-toggle="collapse" href="#serviceLife">Service Life, год</a>
                     </h4>
                 </div>
                 <div id="serviceLife" class="panel-collapse collapse">
                     <div class="panel-body">
-                        <table class="table">
-                            <tr>
-                                <td><a href="#">Sub-Item 1</a></td>
-                            </tr>
-                            <tr>
-                                <td><a href="#">Sub-Item 2</a></td>
-                            </tr>
-                            <tr>
-                                <td><a href="#">Sub-Item 3</a></td>
-                            </tr>
-                            <tr>
-                                <td><a href="#">Sub-Item 4</a></td>
-                            </tr>
-                        </table>
                     </div>
                 </div>
             </div>
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#warrantyPeriod">Warranty Period, m</a>
+                        <a data-toggle="collapse" href="#warrantyPeriod">Warranty Period, m</a>
                     </h4>
                 </div>
                 <div id="warrantyPeriod" class="panel-collapse collapse">
@@ -198,15 +143,6 @@
                         <table class="table">
                             <tr>
                                 <td><a href="#">Sub-Item 1</a></td>
-                            </tr>
-                            <tr>
-                                <td><a href="#">Sub-Item 2</a></td>
-                            </tr>
-                            <tr>
-                                <td><a href="#">Sub-Item 3</a></td>
-                            </tr>
-                            <tr>
-                                <td><a href="#">Sub-Item 4</a></td>
                             </tr>
                         </table>
                     </div>
