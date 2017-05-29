@@ -109,8 +109,13 @@
 
             <div class="form-group">
                 <label for="warrantyPeriod">Гарантійний термін, м</label>
-                <form:errors path="warrantyPeriod" cssStyle="color:#ff0000;"/>
-                <form:input path="warrantyPeriod" id="warrantyPeriod" class="form-control"/>
+                <select id="warrantyPeriod" name="warrantyPeriodId" class="selectpicker">
+                    <c:forEach items="${warrantyPeriods}" var="warrantyPeriod">
+                        <option value="${warrantyPeriod.warrantyPeriodId}"> ${warrantyPeriod.warrantyPeriod}
+                        </option>
+                    </c:forEach>
+                </select>
+                <a href="/admin/product/addWarrantyPeriod" class="pull-right">Add new warranty period value</a>
             </div>
 
             <div class="form-group">

@@ -150,12 +150,13 @@
                     </h4>
                 </div>
                 <div id="warrantyPeriod" class="panel-collapse collapse">
-                    <div class="panel-body">
-                        <table class="table">
-                            <tr>
-                                <td><a href="#">Sub-Item 1</a></td>
-                            </tr>
-                        </table>
+                    <div name="warrantyPeriod" class="panel-body">
+                        <c:forEach items="${warrantyPeriods}" var="warrantyPeriod">
+                            <input type="checkbox" id="${warrantyPeriod.warrantyPeriod}" name="warrantyPeriod"
+                                   value="${warrantyPeriod.warrantyPeriodId}"/>
+                            <label for="${warrantyPeriod.warrantyPeriod}">${warrantyPeriod.warrantyPeriod}</label>
+                            <br>
+                        </c:forEach>
                     </div>
                 </div>
             </div>

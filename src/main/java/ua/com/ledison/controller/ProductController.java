@@ -8,6 +8,7 @@ import ua.com.ledison.entity.*;
 import ua.com.ledison.service.PowerService;
 import ua.com.ledison.service.ProductManufacturerService;
 import ua.com.ledison.service.ProductService;
+import ua.com.ledison.service.WarrantyPeriodService;
 
 import java.io.IOException;
 import java.util.List;
@@ -20,7 +21,8 @@ public class ProductController {
     private ProductService productService;
     @Autowired
     private PowerService powerService;
-
+    @Autowired
+    private WarrantyPeriodService warrantyPeriodService;
     @Autowired
     private ProductManufacturerService productManufacturerService;
 
@@ -28,6 +30,7 @@ public class ProductController {
     public String getProducts(Model model) {
         List<ProductManufacturer> productManufacturers = productManufacturerService.getProductManufacturerList();
         List<Power> powers= powerService.getPowerList();
+        List<WarrantyPeriod> warrantyPeriods = warrantyPeriodService.getWarrantyPeriodList();
 
         model.addAttribute("productManufacturers", productManufacturers);
         model.addAttribute("capTypes", CapType.values());
@@ -36,6 +39,7 @@ public class ProductController {
         model.addAttribute("diffuserType", DiffuserType.values());
         model.addAttribute("operatingVoltages", OperatingVoltage.values());
         model.addAttribute("powers", powers);
+        model.addAttribute("warrantyPeriods", warrantyPeriods);
 
         return "productList";
     }

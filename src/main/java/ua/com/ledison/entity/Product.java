@@ -45,7 +45,7 @@ public class Product implements Serializable {
 	private Power power;
 
 	@Min(value = 175, message = "The operating voltage must not be less then 175")
-	@Max(value = 240, message = "The operating voltage must not be more then 240")
+	@Max(value = 250, message = "The operating voltage must not be more then 250")
 	private int operatingVoltage;
 
 	private String diffuserType;
@@ -53,8 +53,10 @@ public class Product implements Serializable {
 	@Min(value = 0, message = "The service period must not be less then zero")
 	private int serviceLife;
 
-	@Min(value = 0, message = "The warranty period must not be less then zero")
-	private int warrantyPeriod;
+	@ManyToOne
+	@JoinColumn(name = "warrantyPeriodId")
+	@JsonIgnore
+	private WarrantyPeriod warrantyPeriod;
 
 	@Min(value = 0, message = "The product unit must not be less then zero")
 	private int unitInStock;
@@ -173,11 +175,11 @@ public class Product implements Serializable {
 		this.serviceLife = serviceLife;
 	}
 
-	public int getWarrantyPeriod() {
+	public WarrantyPeriod getWarrantyPeriod() {
 		return warrantyPeriod;
 	}
 
-	public void setWarrantyPeriod(int warrantyPeriod) {
+	public void setWarrantyPeriod(WarrantyPeriod warrantyPeriod) {
 		this.warrantyPeriod = warrantyPeriod;
 	}
 

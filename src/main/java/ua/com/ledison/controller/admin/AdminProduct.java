@@ -10,6 +10,7 @@ import ua.com.ledison.entity.*;
 import ua.com.ledison.service.PowerService;
 import ua.com.ledison.service.ProductManufacturerService;
 import ua.com.ledison.service.ProductService;
+import ua.com.ledison.service.WarrantyPeriodService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -27,12 +28,15 @@ public class AdminProduct {
 	private ProductManufacturerService productManufacturerService;
 	@Autowired
 	private PowerService powerService;
+	@Autowired
+	private WarrantyPeriodService warrantyPeriodService;
 
 	@GetMapping("/addProduct")
 	public String addProduct(Model model) {
 
 		List<ProductManufacturer> productManufacturers = productManufacturerService.getProductManufacturerList();
 		List<Power> powers = powerService.getPowerList();
+		List<WarrantyPeriod> warrantyPeriods = warrantyPeriodService.getWarrantyPeriodList();
 		Product product = new Product();
 
 		product.setProductName("Lamp-1");
@@ -44,7 +48,6 @@ public class AdminProduct {
 		product.setDiffuserType(DiffuserType.FROSTED.name());
 		product.setOperatingVoltage(220);
 		product.setServiceLife(1200);
-		product.setWarrantyPeriod(36);
 		product.setUnitInStock(10);
 
 		model.addAttribute("product", product);
@@ -54,6 +57,7 @@ public class AdminProduct {
 		model.addAttribute("glowColors", GlowColor.values());
 		model.addAttribute("lampShapes", LampShape.values());
 		model.addAttribute("diffuserType", DiffuserType.values());
+		model.addAttribute("warrantyPeriods", warrantyPeriods);
 
 		return "addProduct";
 	}
@@ -126,11 +130,31 @@ public class AdminProduct {
 		return "redirect:/admin/product/addProduct";
 	}
 
+	@GetMapping("/addWarrantyPeriod")
+	public String addWarrantyPeriod(Model model) {
+		WarrantyPeriod warrantyPeriod = new WarrantyPeriod();
+		model.addAttribute("warrantyPeriod", warrantyPeriod);
+
+		return "addWarrantyPeriod";
+	}
+
+	@PostMapping("/addWarrantyPeriod")
+	public String addWarrantyPeriodPost(@Valid @ModelAttribute("warrantyPeriod") WarrantyPeriod warrantyPeriod, BindingResult result) {
+
+		if (result.hasErrors()) {
+			return "addWarrantyPeriod";
+		}
+		warrantyPeriodService.addWarrantyPeriod(warrantyPeriod);
+
+		return "redirect:/admin/product/addProduct";
+	}
+
 	@GetMapping("/editProduct/{productId}")
 	public String editProduct(@PathVariable("productId") int productId, Model model) {
 		Product product = productService.getProductById(productId);
 		List<ProductManufacturer> productManufacturers = productManufacturerService.getProductManufacturerList();
 		List<Power> powers = powerService.getPowerList();
+		List<WarrantyPeriod> warrantyPeriods = warrantyPeriodService.getWarrantyPeriodList();
 
 		model.addAttribute("product", product);
 		model.addAttribute("productManufacturers", productManufacturers);
@@ -139,6 +163,8 @@ public class AdminProduct {
 		model.addAttribute("capTypes", CapType.values());
 		model.addAttribute("lampShapes", LampShape.values());
 		model.addAttribute("diffuserType", DiffuserType.values());
+		model.addAttribute("warrantyPeriods", warrantyPeriods);
+
 
 		return "editProduct";
 	}
@@ -152,6 +178,7 @@ public class AdminProduct {
 
 		product.setProductManufacturer(productManufacturerService.getProductManufacturerById(Integer.parseInt(request.getParameter("productManufacturerId"))));
 		product.setPower(powerService.getPowerById(Integer.parseInt(request.getParameter("powerId"))));
+		product.setWarrantyPeriod(warrantyPeriodService.getWarrantyPeriodById(Integer.parseInt(request.getParameter("warrantyPeriodId"))));
 		productService.addProduct(product);
 
 		MultipartFile multipartFile = product.getProductImage();
