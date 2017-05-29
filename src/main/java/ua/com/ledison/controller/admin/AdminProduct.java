@@ -42,7 +42,7 @@ public class AdminProduct {
 		product.setGlowColor(GlowColor.NEUTRAL_WHITE.name());
 		product.setLampShape(LampShape.A60.name());
 		product.setDiffuserType(DiffuserType.FROSTED.name());
-		product.setOperatingVoltage(OperatingVoltage.V_220.name());
+		product.setOperatingVoltage(220);
 		product.setServiceLife(1200);
 		product.setWarrantyPeriod(36);
 		product.setUnitInStock(10);
@@ -54,7 +54,6 @@ public class AdminProduct {
 		model.addAttribute("glowColors", GlowColor.values());
 		model.addAttribute("lampShapes", LampShape.values());
 		model.addAttribute("diffuserType", DiffuserType.values());
-		model.addAttribute("operatingVoltages", OperatingVoltage.values());
 
 		return "addProduct";
 	}
@@ -140,7 +139,6 @@ public class AdminProduct {
 		model.addAttribute("capTypes", CapType.values());
 		model.addAttribute("lampShapes", LampShape.values());
 		model.addAttribute("diffuserType", DiffuserType.values());
-		model.addAttribute("operatingVoltages", OperatingVoltage.values());
 
 		return "editProduct";
 	}
@@ -160,8 +158,10 @@ public class AdminProduct {
 
 		String homePath = System.getProperty("user.home") + File.separator + "images" + File.separator + product.getProductId() + ".jpg";
 
-		File file = new File(homePath);
-		file.delete();
+		if (!product.getProductImage().isEmpty()) {
+			File file = new File(homePath);
+			file.delete();
+		}
 
 		if (multipartFile == null || multipartFile.isEmpty()) {
 		} else try {

@@ -22,7 +22,7 @@ $(document).ready(function () {
         doRequest();
     });
 
-    $("#price-range-section").click(function () {
+    $("#price-range-section").on('click', function () {
         doRequest();
     });
 
@@ -30,10 +30,9 @@ $(document).ready(function () {
         checker = true;
         var opts = [];
         opts.push('page' + ":" + '1');
-        var range = $('#price-range').val().split(',');
-        range = range.concat(range);
-        var min = range[0];
-        var max = range[1];
+
+        var min = rangeParse($('#price-range').val(), ",")[0];
+        var max = rangeParse($('#price-range').val(), ",")[1];
         var name = $("#price-range").attr("name");
 
         $('#min-price').text(min);
@@ -49,11 +48,23 @@ $(document).ready(function () {
         var opts = [];
         $checkboxes.each(function () {
             if (this.checked) {
-                opts.push(this.name + ":" + this.value);
+                if (this.value.includes('-')) {
+                    opts.push(this.name + "-" + rangeParse(this.value, '-')[0]);
+                    opts.push(this.name + "-" + rangeParse(this.value, '-')[1]);
+                } else if ($.isNumeric(this.value)) {
+                    opts.push(this.name + "=" + this.value);
+                } else {
+                    opts.push(this.name + ":" + this.value);
+                }
             }
         });
 
         return opts;
+    }
+
+    function rangeParse(value, splitBy) {
+        var range = value.split(splitBy);
+        return range.concat(range);
     }
 
     function updateProducts(opts) {

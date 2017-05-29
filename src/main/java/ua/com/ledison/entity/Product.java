@@ -44,7 +44,9 @@ public class Product implements Serializable {
 	@JsonIgnore
 	private Power power;
 
-	private String operatingVoltage;
+	@Min(value = 175, message = "The operating voltage must not be less then 175")
+	@Max(value = 240, message = "The operating voltage must not be more then 240")
+	private int operatingVoltage;
 
 	private String diffuserType;
 
@@ -147,11 +149,11 @@ public class Product implements Serializable {
 		this.power = power;
 	}
 
-	public String getOperatingVoltage() {
+	public int getOperatingVoltage() {
 		return operatingVoltage;
 	}
 
-	public void setOperatingVoltage(String operatingVoltage) {
+	public void setOperatingVoltage(int operatingVoltage) {
 		this.operatingVoltage = operatingVoltage;
 	}
 

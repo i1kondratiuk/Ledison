@@ -119,7 +119,7 @@
                     <div class="panel-body">
                         <c:forEach items="${operatingVoltages}" var="operatingVoltage">
                             <input type="checkbox" id="${operatingVoltage.name}" name="operatingVoltage"
-                                   value="${operatingVoltage}"/>
+                                   value="${operatingVoltage.name}"/>
                             <label for="${operatingVoltage.name}">${operatingVoltage.name}</label>
                             <br>
                         </c:forEach>
@@ -140,17 +140,6 @@
                             <label for="${diffuserType.name}">${diffuserType.name}</label>
                             <br>
                         </c:forEach>
-                    </div>
-                </div>
-            </div>
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h4 class="panel-title">
-                        <a data-toggle="collapse" href="#serviceLife">Service Life, год</a>
-                    </h4>
-                </div>
-                <div id="serviceLife" class="panel-collapse collapse">
-                    <div class="panel-body">
                     </div>
                 </div>
             </div>

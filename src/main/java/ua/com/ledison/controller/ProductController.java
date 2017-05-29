@@ -47,6 +47,7 @@ public class ProductController {
         productService.editProduct(product);
 
         model.addAttribute("product", product);
+        model.addAttribute("productImage", product.getProductImage());
 
         return "viewProduct";
     }

@@ -88,11 +88,8 @@
 
             <div class="form-group">
                 <label for="operatingVoltage">Робоча напруга, V</label>
-                <c:forEach items="${operatingVoltages}" var="operatingVoltage">
-                    <label class="checkbox-inline">
-                        <form:radiobutton path="operatingVoltage" id="operatingVoltage" value="${operatingVoltage}"/>${operatingVoltage.name}
-                    </label>
-                </c:forEach>
+                <form:errors path="operatingVoltage" cssStyle="color:#ff0000;"/>
+                <form:input path="operatingVoltage" id="operatingVoltage" class="form-control"/>
             </div>
 
             <div class="form-group">

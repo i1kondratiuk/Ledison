@@ -10,49 +10,53 @@ import java.util.List;
 
 public class ProductSpecification implements Specification<Product> {
 
-    private SearchCriteria criteria;
+	private SearchCriteria criteria;
 
-    public ProductSpecification(final SearchCriteria criteria) {
-        this.criteria = criteria;
-    }
+	public ProductSpecification(final SearchCriteria criteria) {
+		this.criteria = criteria;
+	}
 
-    @Override
-    public Predicate toPredicate(Root<Product> root, CriteriaQuery<?> query, CriteriaBuilder builder) {
+	@Override
+	public Predicate toPredicate(Root<Product> root, CriteriaQuery<?> query, CriteriaBuilder builder) {
 
-        if (criteria.getOperation().equalsIgnoreCase(">")) {
-            return builder.greaterThanOrEqualTo(
-                    root.get(criteria.getKey()), criteria.getValue().toString());
-        } else if (criteria.getOperation().equalsIgnoreCase("<")) {
-            return builder.lessThanOrEqualTo(
-                    root.get(criteria.getKey()), criteria.getValue().toString());
-        } else if (criteria.getOperation().equalsIgnoreCase("-")) {
-            String[] values = criteria.getValue().toString().split(";");
-            return builder.between(
-                    root.get(criteria.getKey()), Integer.parseInt(values[0]), Integer.parseInt(values[1]));
-        } else if (criteria.getOperation().equalsIgnoreCase(":")) {
-            if (criteria.getValue().toString().contains(";")) {
-                String[] values = criteria.getValue().toString().split(";");
-                List<Predicate> predicates = new ArrayList<>();
-                if (criteria.isJoinColumn()) {
-                    for (String value : values) {
-                        predicates.add(builder.equal(root.join(criteria.getJoinEntity()).get(criteria.getKey()), value));
-                    }
-                } else {
-                    for (String value : values) {
-                        predicates.add(builder.equal(root.get(criteria.getKey()), value));
-                    }
-                }
-                Predicate[] p = predicates.toArray(new Predicate[predicates.size()]);
-                return builder.or(p);
-            } else {
-                if (criteria.isJoinColumn()) {
-                    return builder.equal(root.join(criteria.getJoinEntity()).get(criteria.getKey()), criteria.getValue());
-                }
-                return builder.like(root.get(criteria.getKey()), "%" + criteria.getValue() + "%");
-            }
-        }
-        return null;
-    }
-
-
+		if (criteria.getOperation().equalsIgnoreCase(">")) {
+			return builder.greaterThanOrEqualTo(
+					root.get(criteria.getKey()), criteria.getValue().toString());
+		} else if (criteria.getOperation().equalsIgnoreCase("<")) {
+			return builder.lessThanOrEqualTo(
+					root.get(criteria.getKey()), criteria.getValue().toString());
+		} else if (criteria.getOperation().equalsIgnoreCase("-")) {
+			String[] values = criteria.getValue().toString().split(";");
+			return builder.between(
+					root.get(criteria.getKey()), Integer.parseInt(values[0]), Integer.parseInt(values[1]));
+		} else if (criteria.getOperation().equalsIgnoreCase("=")) {
+			return builder.equal(
+					root.get(criteria.getKey()), Integer.parseInt(criteria.getValue().toString()));
+		} else if (criteria.getOperation().equalsIgnoreCase(":")) {
+			if (criteria.getValue().toString().contains(";")) {
+				String[] values = criteria.getValue().toString().split(";");
+				List<Predicate> predicates = new ArrayList<>();
+				if (criteria.isJoinColumn()) {
+					for (String value : values) {
+						predicates.add(builder.equal(
+								root.join(criteria.getJoinEntity()).get(criteria.getKey()), value));
+					}
+				} else {
+					for (String value : values) {
+						predicates.add(builder.equal(root.get(criteria.getKey()), value));
+					}
+				}
+				Predicate[] p = predicates.toArray(new Predicate[predicates.size()]);
+				return builder.or(p);
+			} else {
+				if (criteria.isJoinColumn()) {
+					return builder.equal(
+							root.join(criteria.getJoinEntity()).get(criteria.getKey()), criteria.getValue());
+				}
+				return builder.like(
+						root.get(criteria.getKey()), "%" + criteria.getValue() + "%");
+			}
+		}
+		return null;
+	}
 }
