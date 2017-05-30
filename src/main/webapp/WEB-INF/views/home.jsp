@@ -153,43 +153,41 @@
                             </div>
                         </div>
                         <div id="tab-2" class="tab-pane fade">
-                            <div class="raw">
-                                <div class="multi-slider">
-                                    <div class="box-1 col-xs-6 col-sm-3">
-                                        <div class="thumbnail"><img src="http://placehold.it/400x400" alt="">
-                                            <div class="caption">
-                                                <h3><a href="#">Post</a></h3>
-                                                <p>text text text text text text text text text</p> <a href="#"
-                                                                                                       class="btn btn-success">More
-                                                <i class="fa fa-arrow-right"></i></a></div>
-                                        </div>
+                            <div class="multi-slider">
+                                <div class="box-1 col-xs-6 col-sm-3">
+                                    <div class="thumbnail"><img src="http://placehold.it/400x400" alt="">
+                                        <div class="caption">
+                                            <h3><a href="#">Post</a></h3>
+                                            <p>text text text text text text text text text</p> <a href="#"
+                                                                                                   class="btn btn-success">More
+                                            <i class="fa fa-arrow-right"></i></a></div>
                                     </div>
-                                    <div class="box-2 col-xs-6 col-sm-3">
-                                        <div class="thumbnail"><img src="http://placehold.it/400x400" alt="">
-                                            <div class="caption">
-                                                <h3><a href="#">Post</a></h3>
-                                                <p>text text text text text text text text text</p> <a href="#"
-                                                                                                       class="btn btn-success">More
-                                                <i class="fa fa-arrow-right"></i></a></div>
-                                        </div>
+                                </div>
+                                <div class="box-2 col-xs-6 col-sm-3">
+                                    <div class="thumbnail"><img src="http://placehold.it/400x400" alt="">
+                                        <div class="caption">
+                                            <h3><a href="#">Post</a></h3>
+                                            <p>text text text text text text text text text</p> <a href="#"
+                                                                                                   class="btn btn-success">More
+                                            <i class="fa fa-arrow-right"></i></a></div>
                                     </div>
-                                    <div class="box-3 col-xs-6 col-sm-3">
-                                        <div class="thumbnail"><img src="http://placehold.it/400x400" alt="">
-                                            <div class="caption">
-                                                <h3><a href="#">Post</a></h3>
-                                                <p>text text text text text text text text text</p> <a href="#"
-                                                                                                       class="btn btn-success">More
-                                                <i class="fa fa-arrow-right"></i></a></div>
-                                        </div>
+                                </div>
+                                <div class="box-3 col-xs-6 col-sm-3">
+                                    <div class="thumbnail"><img src="http://placehold.it/400x400" alt="">
+                                        <div class="caption">
+                                            <h3><a href="#">Post</a></h3>
+                                            <p>text text text text text text text text text</p> <a href="#"
+                                                                                                   class="btn btn-success">More
+                                            <i class="fa fa-arrow-right"></i></a></div>
                                     </div>
-                                    <div class="box-4 col-xs-6 col-sm-3">
-                                        <div class="thumbnail"><img src="http://placehold.it/400x400" alt="">
-                                            <div class="caption">
-                                                <h3><a href="#">Post</a></h3>
-                                                <p>text text text text text text text text text</p> <a href="#"
-                                                                                                       class="btn btn-success">More
-                                                <i class="fa fa-arrow-right"></i></a></div>
-                                        </div>
+                                </div>
+                                <div class="box-4 col-xs-6 col-sm-3">
+                                    <div class="thumbnail"><img src="http://placehold.it/400x400" alt="">
+                                        <div class="caption">
+                                            <h3><a href="#">Post</a></h3>
+                                            <p>text text text text text text text text text</p> <a href="#"
+                                                                                                   class="btn btn-success">More
+                                            <i class="fa fa-arrow-right"></i></a></div>
                                     </div>
                                 </div>
                             </div>
