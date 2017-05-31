@@ -7,11 +7,11 @@
 <div class="container">
     <div class="col-md-4 col-lg-4 col-lg-4">
         <ul class="col-menu">
-            <li class="col-menu-item"><a href="/product/productList/all">Каталог</a></li>
-            <li class="col-menu-item"><a href="#">Передзвоніть мені</a></li>
-            <li class="col-menu-item"><a href="#">Зворотній зв’язок</a></li>
-            <li class="col-menu-item"><a href="#">Новинки індустрії</a></li>
-            <li class="col-menu-item"><a href="#">Про компанію</a></li>
+            <li class="col-menu-item"><a href="/product/productList/all">Сatalogue</a></li>
+            <li class="col-menu-item"><a href="#">Call Back</a></li>
+            <li class="col-menu-item"><a href="#">Feedback</a></li>
+            <li class="col-menu-item"><a href="#">Industry News</a></li>
+            <li class="col-menu-item"><a href="#">About the Сompany</a></li>
         </ul>
     </div>
     <div class="container">
@@ -76,7 +76,7 @@
                         <img src="../../resources/images/delivery.png" alt="" class="img-responsive"
                              style="padding: 0% 10%;">
                     </div>
-                    <h2 class="well-element">Доставка</h2>
+                    <h2 class="well-element">Delivery</h2>
                 </a>
             </div>
 
@@ -87,7 +87,7 @@
                     <div class="item-img">
                         <img src="../../resources/images/warranty.png" alt="" class="img-responsive">
                     </div>
-                    <h2 class="well-element">Гарантія</h2>
+                    <h2 class="well-element">Warranty</h2>
                 </a>
             </div>
         </div>
@@ -97,7 +97,7 @@
                     <div class="item-img">
                         <img src="../../resources/images/discount.png" alt="" class="img-responsive">
                     </div>
-                    <h2 class="well-element">Знижки</h2>
+                    <h2 class="well-element">Discount</h2>
                 </a>
             </div>
         </div>
@@ -153,41 +153,43 @@
                             </div>
                         </div>
                         <div id="tab-2" class="tab-pane fade">
-                            <div class="multi-slider">
-                                <div class="box-1 col-xs-6 col-sm-3">
-                                    <div class="thumbnail"><img src="http://placehold.it/400x400" alt="">
-                                        <div class="caption">
-                                            <h3><a href="#">Post</a></h3>
-                                            <p>text text text text text text text text text</p> <a href="#"
-                                                                                                   class="btn btn-success">More
-                                            <i class="fa fa-arrow-right"></i></a></div>
+                            <div class="raw">
+                                <div class="multi-slider">
+                                    <div class="box-1 col-xs-6 col-sm-3">
+                                        <div class="thumbnail"><img src="http://placehold.it/400x400" alt="">
+                                            <div class="caption">
+                                                <h3><a href="#">Post</a></h3>
+                                                <p>text text text text text text text text text</p> <a href="#"
+                                                                                                       class="btn btn-success">More
+                                                <i class="fa fa-arrow-right"></i></a></div>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="box-2 col-xs-6 col-sm-3">
-                                    <div class="thumbnail"><img src="http://placehold.it/400x400" alt="">
-                                        <div class="caption">
-                                            <h3><a href="#">Post</a></h3>
-                                            <p>text text text text text text text text text</p> <a href="#"
-                                                                                                   class="btn btn-success">More
-                                            <i class="fa fa-arrow-right"></i></a></div>
+                                    <div class="box-2 col-xs-6 col-sm-3">
+                                        <div class="thumbnail"><img src="http://placehold.it/400x400" alt="">
+                                            <div class="caption">
+                                                <h3><a href="#">Post</a></h3>
+                                                <p>text text text text text text text text text</p> <a href="#"
+                                                                                                       class="btn btn-success">More
+                                                <i class="fa fa-arrow-right"></i></a></div>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="box-3 col-xs-6 col-sm-3">
-                                    <div class="thumbnail"><img src="http://placehold.it/400x400" alt="">
-                                        <div class="caption">
-                                            <h3><a href="#">Post</a></h3>
-                                            <p>text text text text text text text text text</p> <a href="#"
-                                                                                                   class="btn btn-success">More
-                                            <i class="fa fa-arrow-right"></i></a></div>
+                                    <div class="box-3 col-xs-6 col-sm-3">
+                                        <div class="thumbnail"><img src="http://placehold.it/400x400" alt="">
+                                            <div class="caption">
+                                                <h3><a href="#">Post</a></h3>
+                                                <p>text text text text text text text text text</p> <a href="#"
+                                                                                                       class="btn btn-success">More
+                                                <i class="fa fa-arrow-right"></i></a></div>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="box-4 col-xs-6 col-sm-3">
-                                    <div class="thumbnail"><img src="http://placehold.it/400x400" alt="">
-                                        <div class="caption">
-                                            <h3><a href="#">Post</a></h3>
-                                            <p>text text text text text text text text text</p> <a href="#"
-                                                                                                   class="btn btn-success">More
-                                            <i class="fa fa-arrow-right"></i></a></div>
+                                    <div class="box-4 col-xs-6 col-sm-3">
+                                        <div class="thumbnail"><img src="http://placehold.it/400x400" alt="">
+                                            <div class="caption">
+                                                <h3><a href="#">Post</a></h3>
+                                                <p>text text text text text text text text text</p> <a href="#"
+                                                                                                       class="btn btn-success">More
+                                                <i class="fa fa-arrow-right"></i></a></div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
