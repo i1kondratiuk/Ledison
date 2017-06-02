@@ -51,7 +51,7 @@ $(document).ready(function () {
                 if (this.value.includes('-')) {
                     opts.push(this.name + "-" + rangeParse(this.value, '-')[0]);
                     opts.push(this.name + "-" + rangeParse(this.value, '-')[1]);
-                } else if ($.isNumeric(this.value)) {
+                } else if (!this.name.toLocaleLowerCase().includes('id') && $.isNumeric(this.value)) {
                     opts.push(this.name + "=" + this.value);
                 } else {
                     opts.push(this.name + ":" + this.value);
