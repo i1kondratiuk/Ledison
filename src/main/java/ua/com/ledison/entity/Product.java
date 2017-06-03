@@ -61,7 +61,7 @@ public class Product implements Serializable {
 	private WarrantyPeriod warrantyPeriod;
 
 	@Min(value = 0, message = "The product unit must not be less then zero")
-	private int unitInStock;
+	private int unitsInStock;
 
 	@Transient
 	private MultipartFile productImage;
@@ -193,12 +193,12 @@ public class Product implements Serializable {
 		this.warrantyPeriod = warrantyPeriod;
 	}
 
-	public int getUnitInStock() {
-		return unitInStock;
+	public int getUnitsInStock() {
+		return unitsInStock;
 	}
 
-	public void setUnitInStock(int unitInStock) {
-		this.unitInStock = unitInStock;
+	public void setUnitsInStock(int unitsInStock) {
+		this.unitsInStock = unitsInStock;
 	}
 
 	public MultipartFile getProductImage() {
@@ -241,7 +241,7 @@ public class Product implements Serializable {
 				", diffuserType='" + diffuserType + '\'' +
 				", serviceLife=" + serviceLife +
 				", warrantyPeriod=" + warrantyPeriod +
-				", unitInStock=" + unitInStock +
+				", unitInStock=" + unitsInStock +
 				", productImage=" + productImage +
 				", cartItemList=" + cartItemList +
 				", productViewCounter=" + productViewCounter +

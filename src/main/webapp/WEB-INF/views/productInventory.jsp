@@ -22,6 +22,7 @@
                     <th>Manufacturer</th>
                     <th>Price</th>
                     <th>Recommended</th>
+                    <th>Units in Stock</th>
                     <th></th>
                 </tr>
                 </thead>
@@ -32,12 +33,13 @@
                         <td>${product.productName}</td>
                         <td>${product.productCategory}</td>
                         <td>${product.productManufacturer.productManufacturerName}</td>
-                        <td>${product.productPrice} грн</td>
+                        <td>${product.productPrice} USD</td>
                         <td>
                             <c:if test="${product.recommended == true}">
                                 Yes
                             </c:if>
                         </td>
+                        <td>${product.unitsInStock}</td>
                         <td>
                             <a href="<spring:url value="/product/viewProduct/${product.productId}" />">
                                 <span class="glyphicon glyphicon-info-sign"></span>

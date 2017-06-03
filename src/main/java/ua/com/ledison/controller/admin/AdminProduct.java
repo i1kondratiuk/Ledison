@@ -48,7 +48,7 @@ public class AdminProduct {
 		product.setDiffuserType(DiffuserType.FROSTED.name());
 		product.setOperatingVoltage(220);
 		product.setServiceLife(1200);
-		product.setUnitInStock(10);
+		product.setUnitsInStock(10);
 
 		model.addAttribute("product", product);
 		model.addAttribute("productManufacturers", productManufacturers);
