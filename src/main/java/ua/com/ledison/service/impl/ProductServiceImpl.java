@@ -56,6 +56,17 @@ public class ProductServiceImpl implements ProductService {
 		return productDao.findAll();
 	}
 
+	@Override
+	public List<Product> getRecommendedProductList() {
+		productDao.findAll();
+		return null;
+	}
+
+	@Override
+	public List<Product> getMostPopularProductList() {
+		return null;
+	}
+
 	public void addProduct(Product product) {
 		productDao.save(product);
 	}

@@ -39,6 +39,8 @@ public class Product implements Serializable {
 
 	private String lampShape;
 
+	private boolean recommended;
+
 	@ManyToOne
 	@JoinColumn(name = "powerId")
 	@JsonIgnore
@@ -141,6 +143,14 @@ public class Product implements Serializable {
 
 	public void setLampShape(String lampShape) {
 		this.lampShape = lampShape;
+	}
+
+	public boolean isRecommended() {
+		return recommended;
+	}
+
+	public void setRecommended(boolean recommended) {
+		this.recommended = recommended;
 	}
 
 	public Power getPower() {

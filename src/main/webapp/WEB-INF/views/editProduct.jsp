@@ -10,12 +10,13 @@
                    enctype="multipart/form-data">
 
             <form:hidden path="productId" value="${product.productId}"/>
-        <div class="page-header col-md-12">
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-4">
-                <img class="white-border" src="<c:url value="/images/${product.productId}.jpg" />" alt="image" style="width: 100%"/>
-                <div class="input-group image-preview">
-                    <input type="text" class="form-control image-preview-filename" disabled="disabled">
-                    <span class="input-group-btn">
+            <div class="page-header col-md-12">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-4">
+                    <img class="white-border" src="<c:url value="/images/${product.productId}.jpg" />" alt="image"
+                         style="width: 100%"/>
+                    <div class="input-group image-preview">
+                        <input type="text" class="form-control image-preview-filename" disabled="disabled">
+                        <span class="input-group-btn">
                     <button type="button" class="btn btn-default image-preview-clear" style="display:none;">
                         <span class="glyphicon glyphicon-remove"></span> Clear
                     </button>
@@ -26,14 +27,14 @@
                                     accept="image/png, image/jpg, image/jpeg, image/gif" name="productImage"/>
                     </div>
                 </span>
+                    </div>
                 </div>
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-8" style="margin-top: 10%">
-                <h1>Edit Product</h1>
-                <p class="lead">Please update the product information here:</p>
-            </div>
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-8" style="margin-top: 10%">
+                    <h1>Edit Product</h1>
+                    <p class="lead">Please update the product information here:</p>
+                </div>
 
-        </div>
+            </div>
 
 
             <br>
@@ -97,6 +98,11 @@
                         <form:radiobutton path="lampShape" id="lampShape" value="${lampShape}"/>${lampShape.name}
                     </label>
                 </c:forEach>
+            </div>
+
+            <div class="form-group">
+                <label for="recommended">Recommended</label>
+                    <form:checkbox path="recommended" id="recommended"/>
             </div>
 
             <div class="form-group">

@@ -16,11 +16,12 @@
             <table class="table table-striped table-hover">
                 <thead>
                 <tr class="bg-success">
-                    <th>Фото</th>
-                    <th>Найменування</th>
-                    <th>Категорія</th>
-                    <th>Виробник</th>
-                    <th>Ціна</th>
+                    <th>Photo</th>
+                    <th>Name</th>
+                    <th>Category</th>
+                    <th>Manufacturer</th>
+                    <th>Price</th>
+                    <th>Recommended</th>
                     <th></th>
                 </tr>
                 </thead>
@@ -32,6 +33,11 @@
                         <td>${product.productCategory}</td>
                         <td>${product.productManufacturer.productManufacturerName}</td>
                         <td>${product.productPrice} грн</td>
+                        <td>
+                            <c:if test="${product.recommended == true}">
+                                Yes
+                            </c:if>
+                        </td>
                         <td>
                             <a href="<spring:url value="/product/viewProduct/${product.productId}" />">
                                 <span class="glyphicon glyphicon-info-sign"></span>

@@ -76,6 +76,11 @@
             </div>
 
             <div class="form-group">
+                <label for="recommended">Recommended</label>
+                <form:checkbox path="recommended" id="recommended"/>
+            </div>
+
+            <div class="form-group">
                 <label for="power">Потужність, W</label>
                 <select id="power" name="powerId" class="selectpicker">
                     <c:forEach items="${powers}" var="power">

@@ -11,6 +11,8 @@ public interface ProductService {
 	Page<Product> findPaginated(Specification<Product> spec, Integer pageNumber);
 	List<Product> getProductsMatchingSearch(String searchString);
 	List<Product> getProductList();
+	List<Product> getRecommendedProductList();
+	List<Product> getMostPopularProductList();
 	Product getProductById(int id);
 	Product getProductByIdAndFetchLazyCartItemList(int id);
 	void addProduct(Product product);
