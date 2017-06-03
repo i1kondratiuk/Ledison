@@ -58,8 +58,8 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public List<Product> getRecommendedProductList() {
-		productDao.findAll();
-		return null;
+		List<Product> products = productDao.findRecommended(true);
+		return products;
 	}
 
 	@Override
