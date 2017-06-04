@@ -156,7 +156,7 @@
                             <div id="recommended-products" class="row">
                                 <div class="panel-body">
                                     <c:forEach items="${recommendedProducts}" var="product">
-                                        ${product.name}
+                                        ${product.productName}
                                     </c:forEach>
                                 </div>
                             </div>
@@ -166,7 +166,8 @@
             </div>
         </div>
     </div>
-    <script src="/resources/js/product-slider.js"></script>
-    <script src="/resources/js/carousel.js"></script>
+</div>
+<script src="/resources/js/product-slider.js"></script>
+<script src="/resources/js/carousel.js"></script>
 
-    <jsp:include page="template/footer.jsp"/>
+<jsp:include page="template/footer.jsp"/>

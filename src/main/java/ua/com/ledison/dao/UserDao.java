@@ -8,5 +8,5 @@ import ua.com.ledison.entity.User;
 public interface UserDao extends JpaRepository<User, Integer> {
 
 	@Query("from User u where u.username =:username")
-	public User findByUserName(@Param("username") String username);
+	User findByUserName(@Param("username") String username);
 }

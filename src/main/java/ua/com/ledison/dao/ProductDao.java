@@ -13,6 +13,6 @@ public interface ProductDao extends JpaRepository<Product, Integer>, JpaSpecific
 
 	@Transactional
 	@Query("from Product p where p.recommended =:recommended")
-	public List<Product> findRecommended(@Param("recommended") Boolean recommended);
+	List<Product> findRecommended(@Param("recommended") Boolean recommended);
 
 }
