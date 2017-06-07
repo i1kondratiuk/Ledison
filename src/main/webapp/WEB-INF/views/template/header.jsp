@@ -33,11 +33,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/9.8.0/bootstrap-slider.min.js"></script>
     <script src="/resources/js/jquery-autocomplete/jquery.autocomplete.min.js"></script>
 
-    <%--slick--%>
-    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.css"/>
-    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js"></script>
-
-
 </head>
 
 <body>

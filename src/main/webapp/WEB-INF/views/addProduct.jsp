@@ -124,9 +124,9 @@
             </div>
 
             <div class="form-group">
-                <label for="unitInStock">Кількість на залишку, шт</label>
-                <form:errors path="unitInStock" cssStyle="color:#ff0000;"/>
-                <form:input path="unitInStock" id="unitInStock" class="form-control"/>
+                <label for="unitsInStock">Кількість на залишку, шт</label>
+                <form:errors path="unitsInStock" cssStyle="color:#ff0000;"/>
+                <form:input path="unitsInStock" id="unitsInStock" class="form-control"/>
             </div>
 
             <div class="input-group image-preview">

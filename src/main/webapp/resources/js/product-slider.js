@@ -1,17 +1,26 @@
 $(document).ready(function () {
-    $('.multi-slider').slick({
 
+    $.ajax({
+        type: "POST",
+        url: "/recommended",
+        contentType: 'text/plain',
+        success: function (data) {
+            console.log("SUCCESS:", data);
+                displayProducts(data);
+        },
+        error: function (e) {
+            console.log("ERROR: ", e);
+        },
     });
 
     function displayProducts(data) {
-        $('#products').empty();
-        let products = data.content;
-        $.each(products, function (i, product) {
+        $('#recommended-products').empty();
+        $.each(data, function (i, product) {
             drawProduct(product);
         });
 
         function drawProduct(product) {
-            let className = "col-xs-6 col-sm-4";
+            let className = "col-xs-6 col-sm-3";
             let imagePath = "/images/" + product.productId + ".jpg";
             let viewProductUrl = "/product/viewProduct/" + product.productId;
             let addToCartUrl = "/rest/cart/add/" + product.productId;
@@ -31,7 +40,7 @@ $(document).ready(function () {
             div2.append(a1.append(img), div3);
             div3.append(h3.append(a2), span, a3.append(i));
 
-            $('#products').append(
+            $('#recommended-products').append(
                 div1.append(div2.append(div3))
             );
         }

@@ -154,11 +154,6 @@
                         </div>
                         <div id="tab-2" class="tab-pane fade">
                             <div id="recommended-products" class="row">
-                                <div class="panel-body">
-                                    <c:forEach items="${recommendedProducts}" var="product">
-                                        ${product.productName}
-                                    </c:forEach>
-                                </div>
                             </div>
                         </div>
                     </div>

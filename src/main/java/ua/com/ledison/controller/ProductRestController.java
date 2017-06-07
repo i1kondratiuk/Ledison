@@ -52,6 +52,12 @@ public class ProductRestController {
         return productService.findPaginated(spec, pageNumber);
     }
 
+    @PostMapping("/recommended")
+    public List<Product> getRecommendedProducts() {
+
+        return productService.getRecommendedProductList();
+    }
+
     @GetMapping(value = "/products/autocomplete")
     public List<Product> autoComplete(@RequestParam String query) {
         List<Product> result = productService.getProductsMatchingSearch(query);

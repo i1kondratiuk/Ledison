@@ -3,7 +3,6 @@ package ua.com.ledison.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import ua.com.ledison.service.ProductService;
 
@@ -15,8 +14,7 @@ public class HomeController {
 
     @GetMapping({"/", "/home"})
     @Transactional
-    public String home(Model model) {
-        model.addAttribute("recommendedProducts", productService.getRecommendedProductList());
+    public String home() {
 
         return "home";
     }
