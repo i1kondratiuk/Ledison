@@ -11,7 +11,6 @@ import java.util.List;
 
 public interface ProductDao extends JpaRepository<Product, Integer>, JpaSpecificationExecutor<Product> {
 
-	@Transactional
 	@Query("from Product p where p.recommended =:recommended")
 	List<Product> findRecommended(@Param("recommended") Boolean recommended);
 
