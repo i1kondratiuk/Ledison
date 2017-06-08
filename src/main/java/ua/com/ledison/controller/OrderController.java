@@ -36,16 +36,21 @@ public class OrderController {
 		customerOrder.setUser(user);
 		customerOrder.setShippingAddress(user.getShippingAddress());
 
+		boolean isCurrentItemUpdated = false;
 		for (CartItem cartItem : cart.getCartItems()) {
 			for (SoldUnit soldUnit : soldUnitService.getSoldUnitsList()) {
 				if (soldUnit.getProduct().getProductId() == cartItem.getProduct().getProductId()) {
 					soldUnit.setQuantity(soldUnit.getQuantity() + cartItem.getQuantity());
 					soldUnit.setTotalPrice(soldUnit.getTotalPrice() + cartItem.getTotalPrice());
 					soldUnitService.update(soldUnit);
+					isCurrentItemUpdated = true;
 					break;
 				}
 			}
-			soldUnitService.update(new SoldUnit(cartItem.getProduct(), cartItem.getQuantity(), cartItem.getTotalPrice()));
+			if (!isCurrentItemUpdated) {
+				soldUnitService.update(new SoldUnit(cartItem.getProduct(), cartItem.getQuantity(), cartItem.getTotalPrice()));
+			}
+			isCurrentItemUpdated = false;
 		}
 
 		Date now = new Date();
