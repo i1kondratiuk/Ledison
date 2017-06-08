@@ -70,8 +70,6 @@ public class Product implements Serializable {
 	@JsonIgnore
 	private List<CartItem> cartItemList;
 
-	private long productViewCounter;
-
 	public void fetchLazyCollection() {
 		if (this.cartItemList != null) {
 			getCartItemList().size();
@@ -217,14 +215,6 @@ public class Product implements Serializable {
 		this.cartItemList = cartItemList;
 	}
 
-	public long getProductViewCounter() {
-		return productViewCounter;
-	}
-
-	public void setProductViewCounter(long productViewCounter) {
-		this.productViewCounter = productViewCounter;
-	}
-
 	@Override
 	public String toString() {
 		return "Product{" +
@@ -244,7 +234,6 @@ public class Product implements Serializable {
 				", unitInStock=" + unitsInStock +
 				", productImage=" + productImage +
 				", cartItemList=" + cartItemList +
-				", productViewCounter=" + productViewCounter +
 				'}';
 	}
 }

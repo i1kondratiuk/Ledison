@@ -52,6 +52,12 @@ public class ProductRestController {
         return productService.findPaginated(spec, pageNumber);
     }
 
+    @PostMapping("/popular")
+    public List<Product> getMostPopularProducts() {
+
+        return productService.getMostPopularProductList();
+    }
+
     @PostMapping("/recommended")
     public List<Product> getRecommendedProducts() {
 

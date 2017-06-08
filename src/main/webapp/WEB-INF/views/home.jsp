@@ -113,48 +113,10 @@
                     </ul>
                     <div class="tab-content">
                         <div id="tab-1" class="tab-pane fade in active">
-                            <div class="row">
-                                <div class="col-xs-6 col-sm-3">
-                                    <div class="thumbnail"><img src="http://placehold.it/400x400" alt="">
-                                        <div class="caption">
-                                            <h3><a href="#">Post</a></h3>
-                                            <p>text text text text text text text text text</p> <a href="#"
-                                                                                                   class="btn btn-success">More
-                                            <i class="fa fa-arrow-right"></i></a></div>
-                                    </div>
-                                </div>
-                                <div class="col-xs-6 col-sm-3">
-                                    <div class="thumbnail"><img src="http://placehold.it/400x400" alt="">
-                                        <div class="caption">
-                                            <h3><a href="#">Post</a></h3>
-                                            <p>text text text text text text text</p> <a href="#"
-                                                                                         class="btn btn-success">More
-                                            <i class="fa fa-arrow-right"></i></a></div>
-                                    </div>
-                                </div>
-                                <div class="col-xs-6 col-sm-3">
-                                    <div class="thumbnail"><img src="http://placehold.it/400x400" alt="">
-                                        <div class="caption">
-                                            <h3><a href="#">Post</a></h3>
-                                            <p>text text text text text text text text text</p> <a href="#"
-                                                                                                   class="btn btn-success">More
-                                            <i class="fa fa-arrow-right"></i></a></div>
-                                    </div>
-                                </div>
-                                <div class="col-xs-6 col-sm-3">
-                                    <div class="thumbnail"><img src="http://placehold.it/400x400" alt="">
-                                        <div class="caption">
-                                            <h3><a href="#">Post</a></h3>
-                                            <p>text text text text text text text text text</p> <a href="#"
-                                                                                                   class="btn btn-success">More
-                                            <i class="fa fa-arrow-right"></i></a></div>
-                                    </div>
-                                </div>
-                            </div>
+                            <div id="most-popular-products" class="row"></div>
                         </div>
                         <div id="tab-2" class="tab-pane fade">
-                            <div id="recommended-products" class="row">
-                            </div>
+                            <div id="recommended-products" class="row"></div>
                         </div>
                     </div>
                 </div>

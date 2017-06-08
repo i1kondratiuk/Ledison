@@ -63,7 +63,7 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	public List<Product> getMostPopularProductList() {
-		return null;
+		return productDao.findRecommended(true);
 	}
 
 	public void addProduct(Product product) {

@@ -47,8 +47,6 @@ public class ProductController {
     @GetMapping("/viewProduct/{productId}")
     public String viewProduct(@PathVariable int productId, Model model) throws IOException {
         Product product = productService.getProductByIdAndFetchLazyCartItemList(productId);
-        product.setProductViewCounter(product.getProductViewCounter() + 1);
-        productService.editProduct(product);
 
         model.addAttribute("product", product);
         model.addAttribute("productImage", product.getProductImage());

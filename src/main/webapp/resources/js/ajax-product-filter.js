@@ -128,12 +128,11 @@ $(document).ready(function () {
         });
 
         function drawProduct(product) {
-            let className = "col-xs-6 col-sm-4";
             let imagePath = "/images/" + product.productId + ".jpg";
             let viewProductUrl = "/product/viewProduct/" + product.productId;
             let addToCartUrl = "/rest/cart/add/" + product.productId;
 
-            let div1 = $("<div/>").attr('class', className);
+            let div1 = $("<div/>").addClass("col-xs-6 col-sm-4");
             let div2 = $("<div/>").addClass('thumbnail');
             let a1 = $("<a/>").attr('href', viewProductUrl);
             let img = $("<img/>").addClass('white-border').attr('src', imagePath).attr('width', 400).attr('alt', product.productName + product.productId);
@@ -141,7 +140,7 @@ $(document).ready(function () {
             let h3 = $("<h3/>").attr('style', 'margin-top: 0');
             let a2 = $("<a/>").text(product.productName).attr('href', viewProductUrl);
             let span = $("<span/>").text(product.productPrice).attr('style', 'font-size: 24px');
-            let a3 = $("<a/>").addClass('btn btn-success pull-right').text("Buy").attr('href', addToCartUrl);
+            let a3 = $("<a/>").addClass('btn btn-success pull-right button-buy').text("Buy").attr('href', addToCartUrl);
             let i = $("<i/>").addClass('fa fa-cart-plus').attr('aria-hidden', 'true');
 
             div1.append(div2);

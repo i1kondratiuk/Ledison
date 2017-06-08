@@ -225,3 +225,11 @@ a.spoiler.collapsed:after {
     border: 3px solid #ffffff;
 
 }
+
+.button-buy {
+    display: none;
+}
+
+.thumbnail:hover .button-buy {
+    display: inline-block;
+}
