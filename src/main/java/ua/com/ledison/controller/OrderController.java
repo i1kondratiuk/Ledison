@@ -14,6 +14,8 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import static ua.com.ledison.util.Math.roundDoubleValue;
+
 @Controller
 public class OrderController {
 
@@ -41,7 +43,7 @@ public class OrderController {
 			for (SoldUnit soldUnit : soldUnitService.getSoldUnitsList()) {
 				if (soldUnit.getProduct().getProductId() == cartItem.getProduct().getProductId()) {
 					soldUnit.setQuantity(soldUnit.getQuantity() + cartItem.getQuantity());
-					soldUnit.setTotalPrice(soldUnit.getTotalPrice() + cartItem.getTotalPrice());
+					soldUnit.setTotalPrice(roundDoubleValue(soldUnit.getTotalPrice() + cartItem.getTotalPrice(), 2));
 					soldUnitService.update(soldUnit);
 					isCurrentItemUpdated = true;
 					break;

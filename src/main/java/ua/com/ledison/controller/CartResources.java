@@ -16,6 +16,8 @@ import ua.com.ledison.service.UserService;
 import java.security.Principal;
 import java.util.List;
 
+import static ua.com.ledison.util.Math.roundDoubleValue;
+
 @Controller
 @RequestMapping("/rest/cart")
 public class CartResources {
@@ -70,15 +72,6 @@ public class CartResources {
 		cart.setGrandTotal(grandTotalRounded);
 		cart.setCartItems(cartItems);
 		cartService.update(cart);
-	}
-
-	public static double roundDoubleValue(double value, int places) {
-		if (places < 0) throw new IllegalArgumentException();
-
-		long factor = (long) Math.pow(10, places);
-		value = value * factor;
-		long tmp = Math.round(value);
-		return (double) tmp / factor;
 	}
 
 	@GetMapping("/remove/{cartItemId}")
