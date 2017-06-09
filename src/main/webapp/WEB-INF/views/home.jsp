@@ -113,10 +113,10 @@
                     </ul>
                     <div class="tab-content">
                         <div id="tab-1" class="tab-pane fade in active">
-                            <div id="most-popular-products" class="row"></div>
+                            <div id="most-popular-products" class="row box-slider"></div>
                         </div>
                         <div id="tab-2" class="tab-pane fade">
-                            <div id="recommended-products" class="row"></div>
+                            <div id="recommended-products" class="row box-slider"></div>
                         </div>
                     </div>
                 </div>

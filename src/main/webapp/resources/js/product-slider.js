@@ -6,7 +6,8 @@ $(document).ready(function () {
         contentType: 'text/plain',
         success: function (data) {
             console.log("SUCCESS:", data);
-                displayProducts(data, '#recommended-products');
+            displayProducts(data, '#recommended-products');
+            let boxNumber = data.length;
         },
         error: function (e) {
             console.log("ERROR: ", e);
@@ -20,6 +21,7 @@ $(document).ready(function () {
         success: function (data) {
             console.log("SUCCESS:", data);
             displayProducts(data, '#most-popular-products');
+            slide(data.length);
         },
         error: function (e) {
             console.log("ERROR: ", e);
@@ -28,16 +30,16 @@ $(document).ready(function () {
 
     function displayProducts(data, id) {
         $(id).empty();
-        $.each(data, function (i, product) {
-            drawProduct(product);
+        $.each(data, function (n, product) {
+            drawProduct(n + 1, product);
         });
 
-        function drawProduct(product) {
+        function drawProduct(n, product) {
             let imagePath = "/images/" + product.productId + ".jpg";
             let viewProductUrl = "/product/viewProduct/" + product.productId;
             let addToCartUrl = "/rest/cart/add/" + product.productId;
 
-            let div1 = $("<div/>").addClass("col-xs-6 col-sm-3");
+            let div1 = $("<div/>").addClass("col-xs-6 col-sm-3").attr('id', 'box-' + n);
             let div2 = $("<div/>").addClass('thumbnail');
             let a1 = $("<a/>").attr('href', viewProductUrl);
             let img = $("<img/>").addClass('white-border').attr('src', imagePath).attr('width', 400).attr('alt', product.productName + product.productId);
@@ -57,4 +59,35 @@ $(document).ready(function () {
             );
         }
     }
+
+    function slide(elementsQuantity) {
+
+        console.log(elementsQuantity);
+        $('.tabs').css("overflow", "hidden");
+        var box = $(".thumbnail");
+        $(".box-slider").width(box.width() * 4).height("100%");
+        $(".slider>div")
+            .css("float", "left")
+            .height("100%");
+        $("#box-1").animate({
+            marginLeft: -box.width()
+        }, 2000, function () {
+            $("#box-2").animate({
+                marginLeft: -box.width()
+            }, 2000, function () {
+
+            })
+        });
+
+        var boxNumber = 1;
+        setInterval(function () {
+            if (boxNumber <= elementsQuantity) {
+                $("#box-" + boxNumber).animate({
+                    marginLeft: -box.width()
+                }, 1000);
+                boxNumber++;
+            }
+        }, 5000);
+    }
+
 });
