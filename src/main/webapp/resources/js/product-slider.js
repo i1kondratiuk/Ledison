@@ -7,7 +7,6 @@ $(document).ready(function () {
         success: function (data) {
             console.log("SUCCESS:", data);
             displayProducts(data, '#recommended-products');
-            let boxNumber = data.length;
         },
         error: function (e) {
             console.log("ERROR: ", e);
@@ -21,7 +20,12 @@ $(document).ready(function () {
         success: function (data) {
             console.log("SUCCESS:", data);
             displayProducts(data, '#most-popular-products');
-            slide(data.length);
+            $('#most-popular-products').slick({
+                slidesToShow: 4,
+                slidesToScroll: 1,
+                autoplay: true,
+                autoplaySpeed: 5000,
+            });
         },
         error: function (e) {
             console.log("ERROR: ", e);
@@ -29,7 +33,6 @@ $(document).ready(function () {
     });
 
     function displayProducts(data, id) {
-        $(id).empty();
         $.each(data, function (n, product) {
             drawProduct(n + 1, product);
         });
@@ -58,36 +61,6 @@ $(document).ready(function () {
                 div1.append(div2.append(div3))
             );
         }
-    }
-
-    function slide(elementsQuantity) {
-
-        console.log(elementsQuantity);
-        $('.tabs').css("overflow", "hidden");
-        var box = $(".thumbnail");
-        $(".box-slider").width(box.width() * 4).height("100%");
-        $(".slider>div")
-            .css("float", "left")
-            .height("100%");
-        $("#box-1").animate({
-            marginLeft: -box.width()
-        }, 2000, function () {
-            $("#box-2").animate({
-                marginLeft: -box.width()
-            }, 2000, function () {
-
-            })
-        });
-
-        var boxNumber = 1;
-        setInterval(function () {
-            if (boxNumber <= elementsQuantity) {
-                $("#box-" + boxNumber).animate({
-                    marginLeft: -box.width()
-                }, 1000);
-                boxNumber++;
-            }
-        }, 5000);
     }
 
 });

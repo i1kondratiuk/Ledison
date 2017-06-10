@@ -124,6 +124,7 @@
         </div>
     </div>
 </div>
+<script type="text/javascript" src="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js"></script>
 <script src="/resources/js/product-slider.js"></script>
 <script src="/resources/js/carousel.js"></script>
 
