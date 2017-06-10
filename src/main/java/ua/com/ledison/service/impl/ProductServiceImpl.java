@@ -6,6 +6,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.transaction.annotation.Transactional;
 import ua.com.ledison.dao.ProductDao;
+import ua.com.ledison.dao.SoldUnitDao;
 import ua.com.ledison.entity.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,6 +23,9 @@ public class ProductServiceImpl implements ProductService {
 
 	@Autowired
 	private ProductDao productDao;
+
+	@Autowired
+	private SoldUnitDao soldUnitDao;
 
 	public Product getProductById(int productId) {
 		return productDao.findOne(productId);
@@ -60,10 +64,6 @@ public class ProductServiceImpl implements ProductService {
 	public List<Product> getRecommendedProductList() {
 		List<Product> products = productDao.findRecommended(true);
 		return products;
-	}
-
-	public List<Product> getMostPopularProductList() {
-		return productDao.findRecommended(true);
 	}
 
 	public void addProduct(Product product) {

@@ -4,9 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.web.bind.annotation.*;
+import ua.com.ledison.entity.SoldUnit;
 import ua.com.ledison.service.ProductSpecificationsBuilder;
 import ua.com.ledison.entity.Product;
 import ua.com.ledison.service.ProductService;
+import ua.com.ledison.service.SoldUnitService;
 import ua.com.ledison.util.SearchCriteria;
 
 import java.util.ArrayList;
@@ -19,6 +21,9 @@ public class ProductRestController {
 
     @Autowired
     private ProductService productService;
+
+    @Autowired
+    private SoldUnitService soldUnitService;
 
     @PostMapping("/")
     public Page<Product> getProductResult(@RequestBody String search) {
@@ -55,7 +60,7 @@ public class ProductRestController {
     @PostMapping("/popular")
     public List<Product> getMostPopularProducts() {
 
-        return productService.getMostPopularProductList();
+        return soldUnitService.get8MostPopularProducts();
     }
 
     @PostMapping("/recommended")

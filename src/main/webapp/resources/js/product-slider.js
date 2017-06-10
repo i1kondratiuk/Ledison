@@ -7,6 +7,7 @@ $(document).ready(function () {
         success: function (data) {
             console.log("SUCCESS:", data);
             displayProducts(data, '#recommended-products');
+            slide('#recommended-products');
         },
         error: function (e) {
             console.log("ERROR: ", e);
@@ -20,16 +21,21 @@ $(document).ready(function () {
         success: function (data) {
             console.log("SUCCESS:", data);
             displayProducts(data, '#most-popular-products');
-            $('#most-popular-products').slick({
-                slidesToShow: 4,
-                slidesToScroll: 1,
-                autoplay: true,
-                autoplaySpeed: 5000,
-            });
         },
         error: function (e) {
             console.log("ERROR: ", e);
         },
+    });
+
+
+    $('#popular').on('click', function () {
+        console.log("popular");
+        $('#recommended-products').slick('unslick');
+    });
+
+    $('#recommended').on('click', function () {
+        console.log("recommended");
+        slide('#recommended-products');
     });
 
     function displayProducts(data, id) {
@@ -61,6 +67,16 @@ $(document).ready(function () {
                 div1.append(div2.append(div3))
             );
         }
+    }
+
+    function slide(tabId) {
+        $(tabId).slick({
+            slidesToShow: 4,
+            slidesToScroll: 1,
+            autoplay: true,
+            pauseOnFocus: true,
+            autoplaySpeed: 5000,
+        });
     }
 
 });

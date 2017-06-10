@@ -108,15 +108,15 @@
                 <br>
                 <div class="tabs">
                     <ul class="nav nav-tabs">
-                        <li class="active"><a href="#tab-1" data-toggle="tab">Most Popular</a></li>
-                        <li><a href="#tab-2" data-toggle="tab">Recommended</a></li>
+                        <li class="active"><a id="recommended" href="#tab-1" data-toggle="tab">Recommended</a></li>
+                        <li><a id="popular" href="#tab-2" data-toggle="tab">Most Popular</a></li>
                     </ul>
                     <div class="tab-content">
                         <div id="tab-1" class="tab-pane fade in active">
-                            <div id="most-popular-products" class="row box-slider"></div>
+                            <div id="recommended-products" class="row box-slider"></div>
                         </div>
                         <div id="tab-2" class="tab-pane fade">
-                            <div id="recommended-products" class="row box-slider"></div>
+                            <div id="most-popular-products" class="row box-slider"></div>
                         </div>
                     </div>
                 </div>
