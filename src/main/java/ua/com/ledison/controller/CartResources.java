@@ -13,7 +13,10 @@ import ua.com.ledison.service.CartService;
 import ua.com.ledison.service.ProductService;
 import ua.com.ledison.service.UserService;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
 
 import static ua.com.ledison.util.Math.roundDoubleValue;
@@ -41,7 +44,47 @@ public class CartResources {
 
 	@GetMapping("/add/{productId}")
 	@ResponseStatus(value = HttpStatus.NO_CONTENT)
-	public void addItem(@PathVariable(value = "productId") int productId, Principal principal) {
+	public void addItem(@PathVariable(value = "productId") int productId, Principal principal, HttpServletResponse response) {
+
+		if (principal == null) {
+			Cart cart = new Cart();
+			Product product = productService.getProductById(productId);
+			List<CartItem> cartItems;
+			if (cart.getCartItems() == null) {
+				cartItems = new ArrayList<>();
+			} else {
+				cartItems = cart.getCartItems();
+			}
+
+			for (int i = 0; i < cartItems.size(); i++) {
+				if (product.getProductId() == cartItems.get(i).getProduct().getProductId()) {
+					CartItem cartItem = cartItems.get(i);
+					cartItem.setQuantity(cartItem.getQuantity() + 1);
+					cartItem.setTotalPrice(roundDoubleValue(product.getProductPrice() * cartItem.getQuantity(), 2));
+					Double grandTotalRounded = roundDoubleValue(cart.getGrandTotal() + cartItem.getProduct().getProductPrice(), 2);
+					cart.setGrandTotal(grandTotalRounded);
+
+					return;
+				}
+			}
+
+			CartItem cartItem = new CartItem();
+			cartItem.setProduct(product);
+			cartItem.setQuantity(1);
+			cartItem.setTotalPrice(roundDoubleValue(product.getProductPrice() * cartItem.getQuantity(), 2));
+			cartItem.setCart(cart);
+			Double grandTotalRounded = roundDoubleValue(cart.getGrandTotal() + cartItem.getProduct().getProductPrice(), 2);
+			cart.setGrandTotal(grandTotalRounded);
+			cart.setCartItems(cartItems);
+
+			System.out.println(cart.toString());
+
+			Cookie cookie = new Cookie("cart", cart.toString());
+			cookie.setMaxAge(864000);
+			response.addCookie(cookie);
+			return;
+		}
+
 		User user = userService.findByNameAndFetchItems(principal.getName());
 
 		Cart cart = user.getCart();
@@ -95,5 +138,4 @@ public class CartResources {
 
 		return "redirect:/customer/cart/";
 	}
-
 }
