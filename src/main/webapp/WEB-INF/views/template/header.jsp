@@ -77,8 +77,9 @@
                     <a href="/admin" class="btn btn-default">Admin</a>
                 </sec:authorize>
                 <sec:authorize access="hasRole('ROLE_USER')">
-                    <a href="/customer/profile"><sec:authentication
-                            property="principal.username"></sec:authentication></a>
+                    <a href="/customer/profile">
+                        <sec:authentication property="principal.username"></sec:authentication>
+                    </a>
                 </sec:authorize>
                 <sec:authorize var="loggedIn" access="isAuthenticated()"/>
                 <c:choose>
@@ -87,12 +88,16 @@
                     </c:when>
                     <c:otherwise>
                         <a href="/login" class="btn btn-primary"><i class="icon-signin"></i> Login/Registration</a>
+                        <a href="/rest/cart" class="btn btn-danger">
+                            <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                            <span id="restCartItemsQuantity"></span>
+                        </a>
                     </c:otherwise>
                 </c:choose>
                 <sec:authorize access="hasRole('ROLE_USER')">
                     <a href="/customer/cart" class="btn btn-danger">
                         <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                        <span id="сartItemsQuantity"></span>
+                        <span id="customerCartItemsQuantity"></span>
                     </a>
                 </sec:authorize>
             </div>

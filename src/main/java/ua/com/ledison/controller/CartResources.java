@@ -14,6 +14,7 @@ import ua.com.ledison.service.ProductService;
 import ua.com.ledison.service.UserService;
 
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.security.Principal;
 import java.util.ArrayList;
@@ -36,6 +37,14 @@ public class CartResources {
 
 	@Autowired
 	private ProductService productService;
+
+	@GetMapping
+	public Cart getCart(HttpServletRequest request, HttpServletResponse response) {
+		Cookie[] cookie = request.getCookies();
+		Cart cart = new Cart(); // !!!
+
+		return cart;
+	}
 
 	@GetMapping("/{cartId}")
 	public Cart getCartById(@PathVariable(value = "cartId") int cartId) {
