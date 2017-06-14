@@ -66,4 +66,12 @@ public class CartItem implements Serializable {
 	public void setTotalPrice(double totalPrice) {
 		this.totalPrice = totalPrice;
 	}
+
+	@Override
+	public String toString() {
+		return 	"productId=" + product.getProductId() +
+				", quantity=" + quantity +
+				", totalPrice=" + totalPrice
+				;
+	}
 }

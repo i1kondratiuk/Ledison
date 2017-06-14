@@ -3,6 +3,7 @@ package ua.com.ledison.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import ua.com.ledison.entity.Cart;
 import ua.com.ledison.entity.CartItem;
@@ -18,6 +19,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.security.Principal;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static ua.com.ledison.util.Math.roundDoubleValue;
@@ -52,6 +54,7 @@ public class CartResources {
 	}
 
 	@GetMapping("/add/{productId}")
+	@Transactional
 	@ResponseStatus(value = HttpStatus.NO_CONTENT)
 	public void addItem(@PathVariable(value = "productId") int productId, Principal principal, HttpServletResponse response) {
 
@@ -84,11 +87,10 @@ public class CartResources {
 			cartItem.setCart(cart);
 			Double grandTotalRounded = roundDoubleValue(cart.getGrandTotal() + cartItem.getProduct().getProductPrice(), 2);
 			cart.setGrandTotal(grandTotalRounded);
+			cartItems.add(cartItem);
 			cart.setCartItems(cartItems);
 
-			System.out.println(cart.toString());
-
-			Cookie cookie = new Cookie("cart", cart.toString());
+			Cookie cookie = new Cookie("cart", Arrays.asList(cart.toString()).toString());
 			cookie.setMaxAge(864000);
 			response.addCookie(cookie);
 			return;

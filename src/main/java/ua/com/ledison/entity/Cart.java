@@ -56,4 +56,12 @@ public class Cart implements Serializable {
 	public void setGrandTotal(double grandTotal) {
 		this.grandTotal = grandTotal;
 	}
+
+	@Override
+	public String toString() {
+		return 	"cartItems=" + cartItems +
+				", user=" + user +
+				", grandTotal=" + grandTotal
+				;
+	}
 }
