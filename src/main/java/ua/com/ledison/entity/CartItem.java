@@ -70,8 +70,8 @@ public class CartItem implements Serializable {
 	@Override
 	public String toString() {
 		return 	"productId=" + product.getProductId() +
-				", quantity=" + quantity +
-				", totalPrice=" + totalPrice
+				"&quantity=" + quantity +
+				"&totalPrice=" + totalPrice
 				;
 	}
 }
