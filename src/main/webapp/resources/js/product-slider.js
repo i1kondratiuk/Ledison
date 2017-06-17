@@ -21,21 +21,16 @@ $(document).ready(function () {
         success: function (data) {
             console.log("SUCCESS:", data);
             displayProducts(data, '#most-popular-products');
+            slide('#most-popular-products');
         },
         error: function (e) {
             console.log("ERROR: ", e);
         },
     });
 
-
     $('#popular').on('click', function () {
         console.log("popular");
-        $('#recommended-products').slick('unslick');
-    });
-
-    $('#recommended').on('click', function () {
-        console.log("recommended");
-        slide('#recommended-products');
+        $('#most-popular-products').slick('unslick');
     });
 
     function displayProducts(data, id) {
@@ -72,10 +67,9 @@ $(document).ready(function () {
     function slide(tabId) {
         $(tabId).slick({
             slidesToShow: 4,
-            slidesToScroll: 1,
-            autoplay: true,
+            slidesToScroll: 4,
             pauseOnFocus: true,
-            autoplaySpeed: 5000,
+            dots: true,
         });
     }
 
