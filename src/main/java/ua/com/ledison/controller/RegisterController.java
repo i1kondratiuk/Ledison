@@ -93,6 +93,7 @@ public class RegisterController {
 		existingUser.setShippingAddress(userDTO.getShippingAddress());
 		existingUser.setEnabled(true);
 		userService.updateUser(existingUser);
+
 		return "registerCustomerSuccess";
 	}
 }

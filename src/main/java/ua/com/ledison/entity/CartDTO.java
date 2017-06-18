@@ -1,6 +1,5 @@
 package ua.com.ledison.entity;
 
-import javax.persistence.*;
 import java.util.List;
 
 public class CartDTO {
@@ -20,16 +19,20 @@ public class CartDTO {
 		return localInstance;
 	}
 
-	private List<CartItem> cartItems;
+	private List<CartItemDTO> cartItemsDTO;
 
 	private double grandTotal;
 
-	public List<CartItem> getCartItems() {
-		return cartItems;
+	public static void setInstance(CartDTO instance) {
+		CartDTO.instance = instance;
 	}
 
-	public void setCartItems(List<CartItem> cartItems) {
-		this.cartItems = cartItems;
+	public List<CartItemDTO> getCartItemsDTO() {
+		return cartItemsDTO;
+	}
+
+	public void setCartItemsDTO(List<CartItemDTO> cartItemsDTO) {
+		this.cartItemsDTO = cartItemsDTO;
 	}
 
 	public double getGrandTotal() {
@@ -42,8 +45,6 @@ public class CartDTO {
 
 	@Override
 	public String toString() {
-		return 	"cartItems=" + cartItems +
-				"&grandTotal=" + grandTotal
-				;
+		return 	cartItemsDTO.toString();
 	}
 }
