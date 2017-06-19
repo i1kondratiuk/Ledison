@@ -27,6 +27,11 @@ public class SearchCriteria {
         findJoinColumns();
     }
 
+    public SearchCriteria(final String key, final Object value) {
+        this.key = key;
+        this.value = value;
+    }
+
     private void findJoinColumns() {
         if (joinColumns == null) {
             joinColumns = new HashMap<>();
@@ -71,6 +76,10 @@ public class SearchCriteria {
 
     public Object getValue() {
         return value;
+    }
+
+    public String getValueAsString() {
+        return value.toString();
     }
 
     public void setValue(final Object value) {

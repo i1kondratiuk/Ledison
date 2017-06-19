@@ -1,7 +1,7 @@
 package ua.com.ledison.util;
 
 import ua.com.ledison.entity.CartDTO;
-import ua.com.ledison.entity.CartItem;
+import ua.com.ledison.entity.CartItemDTO;
 
 import javax.servlet.http.Cookie;
 import java.util.ArrayList;
@@ -12,7 +12,7 @@ import java.util.regex.Pattern;
 
 public class CookieManager {
 
-	public static Cookie saveCartToCookie(String cookieName, CartDTO cartDTO, int maxAge){
+	public static Cookie saveCartToCookie(String cookieName, CartDTO cartDTO, int maxAge) {
 		String str = Arrays.asList(cartDTO.toString()).toString().replaceAll(", ", "&");
 
 		Cookie newCookie = new Cookie(cookieName, str);
@@ -20,20 +20,29 @@ public class CookieManager {
 		return newCookie;
 	}
 
-	public static CartDTO convertCookieToCartDTO(String cartCookie){
+	public static CartDTO convertCookieToCartDTO(String cartCookie) {
 		CartDTO cartDTO = new CartDTO();
-		List<CartItem> cartItems = new ArrayList<>();
+		List<CartItemDTO> cartItemsDTO = new ArrayList<>();
 
-		Pattern pattern = Pattern.compile("\"(\\w+?)(=)(\\w+?)\"");
+		Pattern pattern = Pattern.compile("(\\w+)(=)(\\d+\\.\\d+|\\d+)");
 		Matcher matcher = pattern.matcher(cartCookie + "&");
 
+		List<SearchCriteria> searchCriteriaList = new ArrayList<>();
+
 		while (matcher.find()) {
-			cartItems.add(new CartItem(Integer.parseInt(matcher.group(2)), Double.parseDouble(matcher.group(3))));
+			searchCriteriaList.add(new SearchCriteria(matcher.group(1), matcher.group(3)));
 		}
 
-		cartDTO.setCartItems(cartItems);
+		for (int i = 0; i < searchCriteriaList.size(); ) {
+			cartItemsDTO.add(new CartItemDTO(
+					Integer.parseInt(searchCriteriaList.get(i++).getValueAsString()),
+					Integer.parseInt(searchCriteriaList.get(i++).getValueAsString()),
+					Double.parseDouble(searchCriteriaList.get(i++).getValueAsString())
+			));
+		}
+
+		cartDTO.setCartItemsDTO(cartItemsDTO);
 
 		return cartDTO;
 	}
-
 }
