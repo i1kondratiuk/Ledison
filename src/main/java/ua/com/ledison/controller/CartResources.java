@@ -88,6 +88,7 @@ public class CartResources {
 		}
 
 		CartItemDTO cartItemDTO = new CartItemDTO();
+		cartItemDTO.setCartItemId(cartItemsDTO.size());
 		cartItemDTO.setProductId(productId);
 		cartItemDTO.setQuantity(1);
 		cartItemDTO.setTotalPrice(roundDoubleValue(product.getProductPrice() * cartItemDTO.getQuantity(), 2));
@@ -139,7 +140,18 @@ public class CartResources {
 	}
 
 	@GetMapping("/remove/{cartItemId}")
-	public String removeItem(@PathVariable(value = "cartItemId") int cartItemId) {
+	public String removeItem(@PathVariable(value = "cartItemId") int cartItemId, Principal principal, Model model) {
+		if (principal == null) {
+			CartDTO cartDTO = CartDTO.getInstance();
+			cartDTO.getCartItems().remove(cartItemId);
+			for (CartItemDTO cartItemDTO : cartDTO.getCartItems()) {
+				cartItemDTO.setProduct(productService.getProductById(cartItemDTO.getProductId()));
+			}
+			model.addAttribute("cart", cartDTO);
+
+			return "cart";
+		}
+
 		CartItem cartItem = cartItemService.getCartItemById(cartItemId);
 		Cart cart = cartItem.getCart();
 		cart.setGrandTotal(roundDoubleValue(cartItem.getCart().getGrandTotal() - cartItem.getTotalPrice(), 2));
