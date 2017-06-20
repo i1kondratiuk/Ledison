@@ -2,7 +2,9 @@ package ua.com.ledison.entity;
 
 public class CartItemDTO {
 
+	private int cartItemId;
 	private int productId;
+	private Product product;
 	private int quantity;
 	private double totalPrice;
 
@@ -15,8 +17,24 @@ public class CartItemDTO {
 		this.totalPrice = totalPrice;
 	}
 
+	public int getCartItemId() {
+		return cartItemId;
+	}
+
+	public void setCartItemId(int cartItemId) {
+		this.cartItemId = cartItemId;
+	}
+
 	public int getProductId() {
 		return productId;
+	}
+
+	public Product getProduct() {
+		return product;
+	}
+
+	public void setProduct(Product product) {
+		this.product = product;
 	}
 
 	public void setProductId(int productId) {

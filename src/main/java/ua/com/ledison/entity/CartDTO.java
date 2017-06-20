@@ -19,7 +19,7 @@ public class CartDTO {
 		return localInstance;
 	}
 
-	private List<CartItemDTO> cartItemsDTO;
+	private List<CartItemDTO> cartItems;
 
 	private double grandTotal;
 
@@ -27,12 +27,12 @@ public class CartDTO {
 		CartDTO.instance = instance;
 	}
 
-	public List<CartItemDTO> getCartItemsDTO() {
-		return cartItemsDTO;
+	public List<CartItemDTO> getCartItems() {
+		return cartItems;
 	}
 
-	public void setCartItemsDTO(List<CartItemDTO> cartItemsDTO) {
-		this.cartItemsDTO = cartItemsDTO;
+	public void setCartItems(List<CartItemDTO> cartItems) {
+		this.cartItems = cartItems;
 	}
 
 	public double getGrandTotal() {
@@ -45,6 +45,6 @@ public class CartDTO {
 
 	@Override
 	public String toString() {
-		return 	cartItemsDTO.toString();
+		return cartItems.toString();
 	}
 }

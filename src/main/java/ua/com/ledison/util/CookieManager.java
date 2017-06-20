@@ -34,14 +34,16 @@ public class CookieManager {
 		}
 
 		for (int i = 0; i < searchCriteriaList.size(); ) {
-			cartItemsDTO.add(new CartItemDTO(
-					Integer.parseInt(searchCriteriaList.get(i++).getValueAsString()),
-					Integer.parseInt(searchCriteriaList.get(i++).getValueAsString()),
-					Double.parseDouble(searchCriteriaList.get(i++).getValueAsString())
-			));
+			Integer productId = Integer.parseInt(searchCriteriaList.get(i++).getValueAsString());
+			Integer quantity =Integer.parseInt(searchCriteriaList.get(i++).getValueAsString());
+			Double totalPrice = Double.parseDouble(searchCriteriaList.get(i++).getValueAsString());
+
+			cartItemsDTO.add(new CartItemDTO(productId, quantity, totalPrice));
+
+			cartDTO.setGrandTotal(Math.roundDoubleValue(cartDTO.getGrandTotal() + totalPrice,2));
 		}
 
-		cartDTO.setCartItemsDTO(cartItemsDTO);
+		cartDTO.setCartItems(cartItemsDTO);
 
 		return cartDTO;
 	}
