@@ -12,6 +12,7 @@ import ua.com.ledison.service.CartService;
 import ua.com.ledison.service.ProductService;
 import ua.com.ledison.service.UserService;
 import ua.com.ledison.util.CookieManager;
+import ua.com.ledison.util.Math;
 
 import javax.servlet.http.HttpServletResponse;
 import java.security.Principal;
@@ -37,16 +38,13 @@ public class CartResources {
 	private ProductService productService;
 
 	@GetMapping
-	public String addCartToCookie(HttpServletResponse response) {
+	public String getCartFromCookie(@CookieValue(value = "cart") String cartCookie, Model model) {
 		CartDTO cartDTO = CartDTO.getInstance();
-		response.addCookie(CookieManager.saveCartToCookie("cart", cartDTO, 24 * 60 * 60));
+		if (cartDTO.getCartItems() == null) {
+			cartDTO = CookieManager.convertCookieToCartDTO(cartCookie);
+			CartDTO.setInstance(cartDTO);
+		}
 
-		return "redirect:/rest/cart/cartCookie";
-	}
-
-	@GetMapping("/cartCookie")
-	public String getCartWithCookie(@CookieValue(value = "cart") String cartCookie, Model model) {
-		CartDTO cartDTO = CookieManager.convertCookieToCartDTO(cartCookie);
 		for (CartItemDTO cartItemDTO : cartDTO.getCartItems()) {
 			cartItemDTO.setProduct(productService.getProductById(cartItemDTO.getProductId()));
 		}
@@ -56,8 +54,45 @@ public class CartResources {
 	}
 
 	@GetMapping("/add/{productId}")
-	public String addItem(@PathVariable(value = "productId") int productId, Principal principal) {
+	public String addItem(@CookieValue(value = "cart") String cartCookie, @PathVariable(value = "productId") int productId, Principal principal, HttpServletResponse response) {
 		if (principal == null) {
+			if (CartDTO.getInstance().getCartItems() == null){
+				CartDTO.setInstance(CookieManager.convertCookieToCartDTO(cartCookie));
+			}
+			CartDTO cartDTO = CartDTO.getInstance();
+
+			Product product = productService.getProductById(productId);
+			List<CartItemDTO> cartItemsDTO;
+			if (cartDTO.getCartItems() == null) {
+				cartItemsDTO = new ArrayList<>();
+			} else {
+				cartItemsDTO = cartDTO.getCartItems();
+			}
+
+			for (int i = 0; i < cartItemsDTO.size(); i++) {
+				if (productId == cartItemsDTO.get(i).getProductId()) {
+					CartItemDTO cartItemDTO = cartItemsDTO.get(i);
+					cartItemDTO.setQuantity(cartItemDTO.getQuantity() + 1);
+					cartItemDTO.setTotalPrice(roundDoubleValue(product.getProductPrice() * cartItemDTO.getQuantity(), 2));
+					Double grandTotalRounded = roundDoubleValue(cartDTO.getGrandTotal() + product.getProductPrice(), 2);
+					cartDTO.setGrandTotal(grandTotalRounded);
+					response.addCookie(CookieManager.saveCartToCookie("cart", cartDTO, 24 * 60 * 60));
+
+					return "redirect:/rest/cart/addToCookie/" + productId;
+				}
+			}
+
+			CartItemDTO cartItemDTO = new CartItemDTO();
+			cartItemDTO.setCartItemId(cartItemsDTO.hashCode());
+			cartItemDTO.setProductId(productId);
+			cartItemDTO.setQuantity(1);
+			cartItemDTO.setTotalPrice(roundDoubleValue(product.getProductPrice() * cartItemDTO.getQuantity(), 2));
+			Double grandTotalRounded = roundDoubleValue(cartDTO.getGrandTotal() + product.getProductPrice(), 2);
+			cartDTO.setGrandTotal(grandTotalRounded);
+			cartItemsDTO.add(cartItemDTO);
+			cartDTO.setCartItems(cartItemsDTO);
+			response.addCookie(CookieManager.saveCartToCookie("cart", cartDTO, 24 * 60 * 60));
+
 			return "redirect:/rest/cart/addToCookie/" + productId;
 		} else
 			return "redirect:/rest/cart/addToCart/" + productId;
@@ -66,36 +101,7 @@ public class CartResources {
 	@GetMapping("/addToCookie/{productId}")
 	@ResponseStatus(value = HttpStatus.NO_CONTENT)
 	public void addItemToUnregisteredCustomerCart(@PathVariable(value = "productId") int productId) {
-		CartDTO cartDTO = CartDTO.getInstance();
-		Product product = productService.getProductById(productId);
-		List<CartItemDTO> cartItemsDTO;
-		if (cartDTO.getCartItems() == null) {
-			cartItemsDTO = new ArrayList<>();
-		} else {
-			cartItemsDTO = cartDTO.getCartItems();
-		}
 
-		for (int i = 0; i < cartItemsDTO.size(); i++) {
-			if (productId == cartItemsDTO.get(i).getProductId()) {
-				CartItemDTO cartItemDTO = cartItemsDTO.get(i);
-				cartItemDTO.setQuantity(cartItemDTO.getQuantity() + 1);
-				cartItemDTO.setTotalPrice(roundDoubleValue(product.getProductPrice() * cartItemDTO.getQuantity(), 2));
-				Double grandTotalRounded = roundDoubleValue(cartDTO.getGrandTotal() + product.getProductPrice(), 2);
-				cartDTO.setGrandTotal(grandTotalRounded);
-
-				return;
-			}
-		}
-
-		CartItemDTO cartItemDTO = new CartItemDTO();
-		cartItemDTO.setCartItemId(cartItemsDTO.size());
-		cartItemDTO.setProductId(productId);
-		cartItemDTO.setQuantity(1);
-		cartItemDTO.setTotalPrice(roundDoubleValue(product.getProductPrice() * cartItemDTO.getQuantity(), 2));
-		Double grandTotalRounded = roundDoubleValue(cartDTO.getGrandTotal() + product.getProductPrice(), 2);
-		cartDTO.setGrandTotal(grandTotalRounded);
-		cartItemsDTO.add(cartItemDTO);
-		cartDTO.setCartItems(cartItemsDTO);
 	}
 
 	@GetMapping("/{cartId}")
@@ -140,13 +146,20 @@ public class CartResources {
 	}
 
 	@GetMapping("/remove/{cartItemId}")
-	public String removeItem(@PathVariable(value = "cartItemId") int cartItemId, Principal principal, Model model) {
+	public String removeItem(@PathVariable(value = "cartItemId") int cartItemId, Principal principal, HttpServletResponse response, Model model) {
 		if (principal == null) {
 			CartDTO cartDTO = CartDTO.getInstance();
-			cartDTO.getCartItems().remove(cartItemId);
-			for (CartItemDTO cartItemDTO : cartDTO.getCartItems()) {
-				cartItemDTO.setProduct(productService.getProductById(cartItemDTO.getProductId()));
+
+			for (int i = 0; i < cartDTO.getCartItems().size(); i++){
+				if (cartDTO.getCartItems().get(i).getCartItemId() == cartItemId) {
+					cartDTO.setGrandTotal(Math.roundDoubleValue(
+							cartDTO.getGrandTotal() - cartDTO.getCartItems().get(i).getTotalPrice(),
+							2));
+					cartDTO.getCartItems().remove(i);
+				}
 			}
+
+			response.addCookie(CookieManager.saveCartToCookie("cart", cartDTO, 24 * 60 * 60));
 			model.addAttribute("cart", cartDTO);
 
 			return "cart";
