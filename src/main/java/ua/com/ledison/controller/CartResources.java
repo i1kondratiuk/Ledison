@@ -38,7 +38,7 @@ public class CartResources {
 	private ProductService productService;
 
 	@GetMapping
-	public String getCartFromCookie(@CookieValue(value = "cart") String cartCookie, Model model) {
+	public String getCartFromCookie(@CookieValue(value = "cart", defaultValue = "0") String cartCookie, Model model) {
 		CartDTO cartDTO = CartDTO.getInstance();
 		if (cartDTO.getCartItems() == null) {
 			cartDTO = CookieManager.convertCookieToCartDTO(cartCookie);
@@ -54,7 +54,7 @@ public class CartResources {
 	}
 
 	@GetMapping("/add/{productId}")
-	public String addItem(@CookieValue(value = "cart") String cartCookie, @PathVariable(value = "productId") int productId, Principal principal, HttpServletResponse response) {
+	public String addItem(@CookieValue(value = "cart", defaultValue = "0") String cartCookie, @PathVariable(value = "productId") int productId, Principal principal, HttpServletResponse response) {
 		if (principal == null) {
 			if (CartDTO.getInstance().getCartItems() == null){
 				CartDTO.setInstance(CookieManager.convertCookieToCartDTO(cartCookie));
