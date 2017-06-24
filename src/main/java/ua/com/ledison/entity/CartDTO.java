@@ -1,5 +1,6 @@
 package ua.com.ledison.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CartDTO {
@@ -26,6 +27,23 @@ public class CartDTO {
 	public static void setInstance(CartDTO instance) {
 		CartDTO.instance = instance;
 	}
+
+	public Cart convertCartDTOToCart() {
+		Cart cart = new Cart();
+		cart.setCartItems(this.convertCartItemsDTOToCartItems());
+		cart.setGrandTotal(this.getGrandTotal());
+		return cart;
+	}
+
+	private List<CartItem> convertCartItemsDTOToCartItems() {
+		List<CartItem> cartItems = new ArrayList<>();
+		for (CartItemDTO cartItemDTO : this.getCartItems()) {
+			cartItems.add(cartItemDTO.convertCartItemDTOToCartItem());
+		}
+
+		return cartItems;
+	}
+
 
 	public List<CartItemDTO> getCartItems() {
 		return cartItems;

@@ -16,6 +16,11 @@ public class ShippingAddressServiceImpl implements ShippingAddressService {
 		shippingAddressDao.save(shippingAddress);
 	}
 
+	@Override
+	public void updateShippingAddress(ShippingAddress shippingAddress) {
+		shippingAddressDao.save(shippingAddress);
+	}
+
 	public ShippingAddress getShippingAddressById(int shippingAddressId) {
 		return shippingAddressDao.findOne(shippingAddressId);
 	}

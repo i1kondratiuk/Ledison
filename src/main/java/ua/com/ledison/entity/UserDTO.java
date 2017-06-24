@@ -29,6 +29,16 @@ public class UserDTO {
 	@Valid
 	private ShippingAddress shippingAddress;
 
+	public User convertToUser() {
+		User user = new User();
+		user.setFirstName(this.getFirstName());
+		user.setLastName(this.getLastName());
+		user.setEmail(this.getEmail());
+		user.setPhone(this.getPhone());
+		user.setShippingAddress(this.getShippingAddress());
+		return user;
+	}
+
 	public String getFirstName() {
 		return firstName;
 	}

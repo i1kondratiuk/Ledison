@@ -21,6 +21,14 @@ public class CartItemDTO {
 		return cartItemId;
 	}
 
+	public CartItem convertCartItemDTOToCartItem() {
+		CartItem cartItem = new CartItem();
+		cartItem.setProduct(this.getProduct());
+		cartItem.setQuantity(this.getQuantity());
+		cartItem.setTotalPrice(this.getTotalPrice());
+		return cartItem;
+	}
+
 	public void setCartItemId(int cartItemId) {
 		this.cartItemId = cartItemId;
 	}

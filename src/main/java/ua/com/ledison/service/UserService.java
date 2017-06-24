@@ -7,6 +7,7 @@ import java.util.List;
 public interface UserService {
 
 	void addUser(User user);
+	void addCustomer(User user);
 	void updateUser(User user);
 	User findByName(String username);
 	User findById(int id);

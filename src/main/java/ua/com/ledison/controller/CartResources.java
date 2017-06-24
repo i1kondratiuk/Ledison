@@ -88,6 +88,7 @@ public class CartResources {
 			CartItemDTO cartItemDTO = new CartItemDTO();
 			cartItemDTO.setCartItemId(cartItemsDTO.hashCode());
 			cartItemDTO.setProductId(productId);
+			cartItemDTO.setProduct(product);
 			cartItemDTO.setQuantity(1);
 			cartItemDTO.setTotalPrice(roundDoubleValue(product.getProductPrice() * cartItemDTO.getQuantity(), 2));
 			Double grandTotalRounded = roundDoubleValue(cartDTO.getGrandTotal() + product.getProductPrice(), 2);
