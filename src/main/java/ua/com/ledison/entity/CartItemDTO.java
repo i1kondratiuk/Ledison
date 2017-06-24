@@ -5,6 +5,7 @@ public class CartItemDTO {
 	private int cartItemId;
 	private int productId;
 	private Product product;
+	private Cart cart;
 	private int quantity;
 	private double totalPrice;
 
@@ -24,6 +25,7 @@ public class CartItemDTO {
 	public CartItem convertCartItemDTOToCartItem() {
 		CartItem cartItem = new CartItem();
 		cartItem.setProduct(this.getProduct());
+		cartItem.setCart(this.getCart());
 		cartItem.setQuantity(this.getQuantity());
 		cartItem.setTotalPrice(this.getTotalPrice());
 		return cartItem;
@@ -43,6 +45,14 @@ public class CartItemDTO {
 
 	public void setProduct(Product product) {
 		this.product = product;
+	}
+
+	public Cart getCart() {
+		return cart;
+	}
+
+	public void setCart(Cart cart) {
+		this.cart = cart;
 	}
 
 	public void setProductId(int productId) {

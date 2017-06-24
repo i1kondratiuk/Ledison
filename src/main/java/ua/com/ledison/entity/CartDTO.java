@@ -20,6 +20,8 @@ public class CartDTO {
 		return localInstance;
 	}
 
+	private int userId;
+
 	private List<CartItemDTO> cartItems;
 
 	private double grandTotal;
@@ -47,6 +49,14 @@ public class CartDTO {
 
 	public List<CartItemDTO> getCartItems() {
 		return cartItems;
+	}
+
+	public int getUserId() {
+		return userId;
+	}
+
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
 
 	public void setCartItems(List<CartItemDTO> cartItems) {

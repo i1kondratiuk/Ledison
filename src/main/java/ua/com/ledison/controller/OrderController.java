@@ -7,7 +7,10 @@ import ua.com.ledison.entity.*;
 import ua.com.ledison.service.CustomerOrderService;
 import ua.com.ledison.service.SoldUnitService;
 import ua.com.ledison.service.UserService;
+import ua.com.ledison.util.CookieManager;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import javax.transaction.Transactional;
 import java.security.Principal;
 import java.text.DateFormat;
@@ -30,8 +33,22 @@ public class OrderController {
 
 	@Transactional
 	@GetMapping("/order")
-	public String createOrder(Principal principal) {
-		User user = userService.findByNameAndFetchOrders(principal.getName());
+	public String createOrder(Principal principal, HttpServletResponse response) {
+		User user;
+
+		if (principal == null) {
+			user = userService.findById(CartDTO.getInstance().getUserId());
+			CartDTO.setInstance(null);
+			Cookie cookie = new Cookie("cart", null);
+			cookie.setPath("/");
+			cookie.setMaxAge(0);
+			response.addCookie(cookie);
+			CartDTO.setInstance(CookieManager.convertCookieToCartDTO(null));
+		} else {
+			user = userService.findByNameAndFetchOrders(principal.getName());
+			user.setCart(null);
+		}
+
 		CustomerOrder customerOrder = new CustomerOrder();
 		Cart cart = user.getCart();
 		customerOrder.setCart(cart);
@@ -66,7 +83,7 @@ public class OrderController {
 		customerOrder.setStatus(OrderStatus.AWAITING_PAYMENT);
 
 		user.getOrders().add(customerOrder);
-		user.setCart(null);
+
 		customerOrderService.addCustomerOrder(customerOrder);
 		userService.updateUser(user);
 

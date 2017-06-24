@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import ua.com.ledison.entity.*;
+import ua.com.ledison.service.CartItemService;
 import ua.com.ledison.service.CartService;
 import ua.com.ledison.service.ShippingAddressService;
 import ua.com.ledison.service.UserService;
@@ -23,6 +24,9 @@ public class RegisterController {
 
 	@Autowired
 	private CartService cartService;
+
+	@Autowired
+	private CartItemService cartItemService;
 
 	@Autowired
 	private ShippingAddressService shippingAddressService;
@@ -99,11 +103,18 @@ public class RegisterController {
 			Cart cart = CartDTO.getInstance().convertCartDTOToCart();
 			cart.setUser(customer);
 			cartService.addCart(cart);
+			for (CartItemDTO cartItemDTO: CartDTO.getInstance().getCartItems()) {
+				cartItemDTO.setCart(cart);
+				cartItemService.addCartItem(cartItemDTO.convertCartItemDTOToCartItem());
+			}
+
 			customer.setCart(cart);
 
 			shippingAddress.setUser(customer);
 			shippingAddressService.updateShippingAddress(shippingAddress);
 			userService.updateUser(customer);
+
+			CartDTO.getInstance().setUserId(customer.getId());
 
 			return "registerCustomerSuccess";
 		}
