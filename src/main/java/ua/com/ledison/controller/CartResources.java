@@ -14,6 +14,7 @@ import ua.com.ledison.service.UserService;
 import ua.com.ledison.util.CookieManager;
 import ua.com.ledison.util.Math;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import java.security.Principal;
 import java.util.ArrayList;
@@ -76,7 +77,9 @@ public class CartResources {
 					cartItemDTO.setTotalPrice(roundDoubleValue(product.getProductPrice() * cartItemDTO.getQuantity(), 2));
 					Double grandTotalRounded = roundDoubleValue(cartDTO.getGrandTotal() + product.getProductPrice(), 2);
 					cartDTO.setGrandTotal(grandTotalRounded);
-					response.addCookie(CookieManager.saveCartToCookie("cart", cartDTO, 24 * 60 * 60));
+					Cookie cookie = CookieManager.saveCartToCookie("cart", cartDTO, 24 * 60 * 60);
+					cookie.setPath("/");
+					response.addCookie(cookie);
 
 					return "redirect:/rest/cart/addToCookie/" + productId;
 				}
@@ -91,7 +94,9 @@ public class CartResources {
 			cartDTO.setGrandTotal(grandTotalRounded);
 			cartItemsDTO.add(cartItemDTO);
 			cartDTO.setCartItems(cartItemsDTO);
-			response.addCookie(CookieManager.saveCartToCookie("cart", cartDTO, 24 * 60 * 60));
+			Cookie cookie = CookieManager.saveCartToCookie("cart", cartDTO, 24 * 60 * 60);
+			cookie.setPath("/");
+			response.addCookie(cookie);
 
 			return "redirect:/rest/cart/addToCookie/" + productId;
 		} else
@@ -176,7 +181,17 @@ public class CartResources {
 	}
 
 	@GetMapping("/removeAll")
-	public String clearCart(Principal principal) {
+	public String clearCart(Principal principal, HttpServletResponse response) {
+		if (principal == null) {
+			Cookie cookie = new Cookie("cart", null);
+			cookie.setPath("/");
+			cookie.setMaxAge(0);
+			response.addCookie(cookie);
+			CartDTO.setInstance(CookieManager.convertCookieToCartDTO(null));
+
+			return "redirect:/rest/cart/";
+		}
+
 		Cart cart = userService.findByNameAndFetchItems(principal.getName()).getCart();
 		cart.setGrandTotal(0.0);
 		cartService.update(cart);
