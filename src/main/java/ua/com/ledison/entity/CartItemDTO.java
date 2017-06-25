@@ -78,7 +78,7 @@ public class CartItemDTO {
 
 	@Override
 	public String toString() {
-		return 	"+cartItemId=" + cartItemId +
+		return 	"cartItemId=" + cartItemId +
 				"+productId=" + productId +
 				"+quantity=" + quantity +
 				"+totalPrice=" + totalPrice;

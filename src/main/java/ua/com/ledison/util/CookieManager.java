@@ -24,7 +24,7 @@ public class CookieManager {
 		CartDTO cartDTO = new CartDTO();
 		List<CartItemDTO> cartItemsDTO = new ArrayList<>();
 
-		Pattern pattern = Pattern.compile("(\\w+)(=)(\\d+\\.\\d+|\\d+)");
+		Pattern pattern = Pattern.compile("(\\w+)(=)(\\d+\\.\\d+|\\d+|-\\d+)");
 		Matcher matcher = pattern.matcher(cartCookie + "&");
 
 		List<SearchCriteria> searchCriteriaList = new ArrayList<>();
