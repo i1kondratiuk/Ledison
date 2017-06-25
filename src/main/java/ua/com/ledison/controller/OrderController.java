@@ -35,6 +35,7 @@ public class OrderController {
 	@GetMapping("/order")
 	public String createOrder(Principal principal, HttpServletResponse response) {
 		User user;
+		boolean isCartEmpty = false;
 
 		if (principal == null) {
 			user = userService.findById(CartDTO.getInstance().getUserId());
@@ -46,7 +47,7 @@ public class OrderController {
 			CartDTO.setInstance(CookieManager.convertCookieToCartDTO(null));
 		} else {
 			user = userService.findByNameAndFetchOrders(principal.getName());
-			user.setCart(null);
+			isCartEmpty = true;
 		}
 
 		CustomerOrder customerOrder = new CustomerOrder();
@@ -83,7 +84,9 @@ public class OrderController {
 		customerOrder.setStatus(OrderStatus.AWAITING_PAYMENT);
 
 		user.getOrders().add(customerOrder);
-
+		if (isCartEmpty) {
+			user.setCart(null);
+		}
 		customerOrderService.addCustomerOrder(customerOrder);
 		userService.updateUser(user);
 
