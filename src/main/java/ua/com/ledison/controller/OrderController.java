@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import ua.com.ledison.entity.*;
 import ua.com.ledison.service.CustomerOrderService;
+import ua.com.ledison.service.MailService;
 import ua.com.ledison.service.SoldUnitService;
 import ua.com.ledison.service.UserService;
 import ua.com.ledison.util.CookieManager;
@@ -30,6 +31,9 @@ public class OrderController {
 
 	@Autowired
 	private CustomerOrderService customerOrderService;
+
+	@Autowired
+	MailService mailService;
 
 	@Transactional
 	@GetMapping("/order")
@@ -89,6 +93,8 @@ public class OrderController {
 		}
 		customerOrderService.addCustomerOrder(customerOrder);
 		userService.updateUser(user);
+
+		mailService.sendMail(user);
 
 		return "thankCustomer";
 	}
