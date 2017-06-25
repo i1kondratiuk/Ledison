@@ -40,11 +40,10 @@ public class CartResources {
 
 	@GetMapping
 	public String getCartFromCookie(@CookieValue(value = "cart", defaultValue = "0") String cartCookie, Model model) {
-		CartDTO cartDTO = CartDTO.getInstance();
-		if (cartDTO.getCartItems() == null) {
-			cartDTO = CookieManager.convertCookieToCartDTO(cartCookie);
-			CartDTO.setInstance(cartDTO);
+		if (CartDTO.getInstance().getCartItems() == null){
+			CartDTO.setInstance(CookieManager.convertCookieToCartDTO(cartCookie));
 		}
+		CartDTO cartDTO = CartDTO.getInstance();
 
 		for (CartItemDTO cartItemDTO : cartDTO.getCartItems()) {
 			cartItemDTO.setProduct(productService.getProductById(cartItemDTO.getProductId()));
@@ -55,7 +54,10 @@ public class CartResources {
 	}
 
 	@GetMapping("/add/{productId}")
-	public String addItem(@CookieValue(value = "cart", defaultValue = "0") String cartCookie, @PathVariable(value = "productId") int productId, Principal principal, HttpServletResponse response) {
+	public String addItem(@CookieValue(value = "cart", defaultValue = "0") String cartCookie,
+	                      @PathVariable(value = "productId") int productId,
+	                      Principal principal,
+	                      HttpServletResponse response) {
 		if (principal == null) {
 			if (CartDTO.getInstance().getCartItems() == null){
 				CartDTO.setInstance(CookieManager.convertCookieToCartDTO(cartCookie));
@@ -74,8 +76,12 @@ public class CartResources {
 				if (productId == cartItemsDTO.get(i).getProductId()) {
 					CartItemDTO cartItemDTO = cartItemsDTO.get(i);
 					cartItemDTO.setQuantity(cartItemDTO.getQuantity() + 1);
-					cartItemDTO.setTotalPrice(roundDoubleValue(product.getProductPrice() * cartItemDTO.getQuantity(), 2));
-					Double grandTotalRounded = roundDoubleValue(cartDTO.getGrandTotal() + product.getProductPrice(), 2);
+					cartItemDTO.setTotalPrice(roundDoubleValue(
+							product.getProductPrice() * cartItemDTO.getQuantity(),
+							2));
+					Double grandTotalRounded = roundDoubleValue(
+							cartDTO.getGrandTotal() + product.getProductPrice(),
+							2);
 					cartDTO.setGrandTotal(grandTotalRounded);
 					Cookie cookie = CookieManager.saveCartToCookie("cart", cartDTO, 24 * 60 * 60);
 					cookie.setPath("/");
@@ -86,14 +92,18 @@ public class CartResources {
 			}
 
 			CartItemDTO cartItemDTO = new CartItemDTO();
-			cartItemDTO.setCartItemId(cartItemsDTO.hashCode());
 			cartItemDTO.setProductId(productId);
 			cartItemDTO.setProduct(product);
 			cartItemDTO.setQuantity(1);
-			cartItemDTO.setTotalPrice(roundDoubleValue(product.getProductPrice() * cartItemDTO.getQuantity(), 2));
-			Double grandTotalRounded = roundDoubleValue(cartDTO.getGrandTotal() + product.getProductPrice(), 2);
+			cartItemDTO.setTotalPrice(roundDoubleValue(
+					product.getProductPrice() * cartItemDTO.getQuantity(),
+					2));
+			Double grandTotalRounded = roundDoubleValue(
+					cartDTO.getGrandTotal() + product.getProductPrice(),
+					2);
 			cartDTO.setGrandTotal(grandTotalRounded);
 			cartItemsDTO.add(cartItemDTO);
+			cartItemDTO.setCartItemId(cartItemsDTO.hashCode());
 			cartDTO.setCartItems(cartItemsDTO);
 			Cookie cookie = CookieManager.saveCartToCookie("cart", cartDTO, 24 * 60 * 60);
 			cookie.setPath("/");
@@ -129,9 +139,13 @@ public class CartResources {
 			if (product.getProductId() == cartItems.get(i).getProduct().getProductId()) {
 				CartItem cartItem = cartItems.get(i);
 				cartItem.setQuantity(cartItem.getQuantity() + 1);
-				cartItem.setTotalPrice(roundDoubleValue(product.getProductPrice() * cartItem.getQuantity(), 2));
+				cartItem.setTotalPrice(roundDoubleValue(
+						product.getProductPrice() * cartItem.getQuantity(),
+						2));
 				cartItemService.addCartItem(cartItem);
-				Double grandTotalRounded = roundDoubleValue(cart.getGrandTotal() + cartItem.getProduct().getProductPrice(), 2);
+				Double grandTotalRounded = roundDoubleValue(
+						cart.getGrandTotal() + cartItem.getProduct().getProductPrice(),
+						2);
 				cart.setGrandTotal(grandTotalRounded);
 				cartService.update(cart);
 
@@ -145,14 +159,19 @@ public class CartResources {
 		cartItem.setTotalPrice(roundDoubleValue(product.getProductPrice() * cartItem.getQuantity(), 2));
 		cartItem.setCart(cart);
 		cartItemService.addCartItem(cartItem);
-		Double grandTotalRounded = roundDoubleValue(cart.getGrandTotal() + cartItem.getProduct().getProductPrice(), 2);
+		Double grandTotalRounded = roundDoubleValue(
+				cart.getGrandTotal() + cartItem.getProduct().getProductPrice(),
+				2);
 		cart.setGrandTotal(grandTotalRounded);
 		cart.setCartItems(cartItems);
 		cartService.update(cart);
 	}
 
 	@GetMapping("/remove/{cartItemId}")
-	public String removeItem(@PathVariable(value = "cartItemId") int cartItemId, Principal principal, HttpServletResponse response, Model model) {
+	public String removeItem(@PathVariable(value = "cartItemId") int cartItemId,
+	                         Principal principal,
+	                         HttpServletResponse response,
+	                         Model model) {
 		if (principal == null) {
 			CartDTO cartDTO = CartDTO.getInstance();
 
@@ -173,9 +192,10 @@ public class CartResources {
 
 		CartItem cartItem = cartItemService.getCartItemById(cartItemId);
 		Cart cart = cartItem.getCart();
-		cart.setGrandTotal(roundDoubleValue(cartItem.getCart().getGrandTotal() - cartItem.getTotalPrice(), 2));
+		cart.setGrandTotal(roundDoubleValue(
+				cartItem.getCart().getGrandTotal() - cartItem.getTotalPrice(),
+				2));
 		cartService.update(cart);
-		cartItem.getCart().getGrandTotal();
 		cartItemService.deleteCartItem(cartItem);
 
 		return "redirect:/customer/cart/";

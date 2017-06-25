@@ -12,7 +12,8 @@ public class CartItemDTO {
 	public CartItemDTO() {
 	}
 
-	public CartItemDTO(int productId, int quantity, double totalPrice) {
+	public CartItemDTO(int cartItemId, int productId, int quantity, double totalPrice) {
+		this.cartItemId = cartItemId;
 		this.productId = productId;
 		this.quantity = quantity;
 		this.totalPrice = totalPrice;
@@ -77,9 +78,9 @@ public class CartItemDTO {
 
 	@Override
 	public String toString() {
-		return 	"productId=" + productId +
+		return 	"+cartItemId=" + cartItemId +
+				"+productId=" + productId +
 				"+quantity=" + quantity +
-				"+totalPrice=" + totalPrice
-				;
+				"+totalPrice=" + totalPrice;
 	}
 }
