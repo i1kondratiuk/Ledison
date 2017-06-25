@@ -31,19 +31,30 @@
                     <td>${customerOrder.orderTime}</td>
                     <td>${customerOrder.cart.grandTotal}</td>
                     <td>
-                        <button class="btn" onclick="changeOrderStatus()">${customerOrder.status.name}</button>
+                        <div class="dropdown">
+                            <a id="dLabel" role="button" data-toggle="dropdown" class="btn btn-default"
+                               data-target="dropdownMenu">${customerOrder.status.name} <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
+                                <c:forEach items="${orderStatuses}" var="orderStatus">
+                                    <li>
+                                        <a href="/admin/orders/changeOrderStatus/${customerOrder.customerOrderId}/${orderStatus}">
+                                            <c:set var="orderStatus" value="${orderStatus}"/>
+                                            <c:set var="customerOrderStatus" value="${customerOrder.status}"/>
+                                            <c:if test="${orderStatus ne customerOrderStatus}">
+                                                ${orderStatus.name}
+                                            </c:if>
+                                        </a>
+                                    </li>
+                                </c:forEach>
+                            </ul>
+                        </div>
                     </td>
                 </tr>
             </c:forEach>
         </table>
-
     </div>
 </div>
-<script>
-    function changeOrderStatus() {
-        ;
-    }
-</script>
 </body>
 
 </html>

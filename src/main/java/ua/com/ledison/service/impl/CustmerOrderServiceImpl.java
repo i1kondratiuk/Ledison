@@ -27,6 +27,11 @@ public class CustmerOrderServiceImpl implements CustomerOrderService {
         return customerOrderDao.findAll();
     }
 
+    @Override
+    public CustomerOrder findCustomerOrderById(int customerOrderId) {
+        return customerOrderDao.findOne(customerOrderId);
+    }
+
     public void addCustomerOrder(CustomerOrder customerOrder){
         customerOrderDao.save(customerOrder);
     }
@@ -42,4 +47,8 @@ public class CustmerOrderServiceImpl implements CustomerOrderService {
         return grandTotal;
     }
 
+    @Override
+    public void updateCustomerOrder(CustomerOrder customerOrder) {
+        customerOrderDao.save(customerOrder);
+    }
 }
