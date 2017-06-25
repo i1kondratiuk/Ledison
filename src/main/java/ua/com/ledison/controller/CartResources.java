@@ -184,7 +184,9 @@ public class CartResources {
 				}
 			}
 
-			response.addCookie(CookieManager.saveCartToCookie("cart", cartDTO, 24 * 60 * 60));
+			Cookie cookie = CookieManager.saveCartToCookie("cart", cartDTO, 24 * 60 * 60);
+			cookie.setPath("/");
+			response.addCookie(cookie);
 			model.addAttribute("cart", cartDTO);
 
 			return "cart";
