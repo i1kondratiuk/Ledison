@@ -80,6 +80,7 @@ $(document).ready(function () {
                     nothingFound();
                     console.log("Nothing Found!");
                 } else {
+                    refreshBadges(data);
                     displayProducts(data);
                     doPagination(data);
                 }
@@ -87,6 +88,13 @@ $(document).ready(function () {
             error: function (e) {
                 console.log("ERROR: ", e);
             },
+        });
+    }
+
+    function refreshBadges(data) {
+
+        $.each(data.content, function (i, product) {
+            console.log(product);
         });
     }
 

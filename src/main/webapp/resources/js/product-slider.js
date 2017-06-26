@@ -48,7 +48,7 @@ $(document).ready(function () {
             let a1 = $("<a/>").attr('href', viewProductUrl);
             let img = $("<img/>").addClass('white-border').attr('src', imagePath).attr('width', 400).attr('alt', product.productName + product.productId);
             let div3 = $("<div/>").addClass('caption');
-            let h3 = $("<h3/>").attr('style', 'margin-top: 0');
+            let h3 = $("<h4/>").attr('style', 'margin-top: 0').height(50);
             let a2 = $("<a/>").text(product.productName).attr('href', viewProductUrl);
             let span = $("<span/>").text(product.productPrice).attr('style', 'font-size: 24px');
             let a3 = $("<a/>").addClass('btn btn-success pull-right button-buy').text("Buy").attr('href', addToCartUrl);

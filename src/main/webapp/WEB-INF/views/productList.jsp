@@ -111,8 +111,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h4 class="panel-title">
-                        <a data-toggle="collapse" href="#operatingVoltage">Operating Voltage,
-                            V</a>
+                        <a data-toggle="collapse" href="#operatingVoltage">Operating Voltage, V</a>
                     </h4>
                 </div>
                 <div id="operatingVoltage" class="panel-collapse collapse">
@@ -173,6 +172,6 @@
     </div>
 </div>
 <br>
-<script src="/resources/js/ajax-product-filter.js"></script>
+<script src="<c:url value="/resources/js/ajax-product-filter.js"/>"></script>
 
 <%@ include file="/WEB-INF/views/template/footer.jsp" %>
