@@ -38,6 +38,7 @@ public class AdminWarrantyPeriod {
 	@PostMapping
 	public String addWarrantyPeriod(@ModelAttribute("warrantyPeriod") @Valid WarrantyPeriod warrantyPeriod,
 	                                    @PathVariable("productId") int productId,
+	                                    Model model,
 	                                    BindingResult result) {
 
 		if (result.hasErrors()) {
