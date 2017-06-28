@@ -92,23 +92,27 @@ public class AdminProduct {
 		return "redirect:/admin/productInventory";
 	}
 
-	@GetMapping("/addProductManufacturer")
-	public String addProductManufacturer(Model model) {
+	@GetMapping("/addProductManufacturer/{productId}")
+	public String addProductManufacturer(@PathVariable("productId") int productId, Model model) {
 		ProductManufacturer productManufacturer = new ProductManufacturer();
 		model.addAttribute("productManufacturer", productManufacturer);
+		model.addAttribute("productId", productId);
 
 		return "addProductManufacturer";
 	}
 
-	@PostMapping("/addProductManufacturer")
-	public String addProductManufacturerPost(@Valid @ModelAttribute("productManufacturer") ProductManufacturer productManufacturer, BindingResult result) {
+	@PostMapping("/addProductManufacturer/{productId}")
+	public String addProductManufacturerPost(
+			@Valid @ModelAttribute("productManufacturer") ProductManufacturer productManufacturer,
+			@PathVariable("productId") int productId,
+			BindingResult result) {
 
 		if (result.hasErrors()) {
 			return "addProductManufacturer";
 		}
 		productManufacturerService.addProductManufacturer(productManufacturer);
 
-		return "redirect:/admin/product/addProduct";
+		return "redirect:/admin/product//editProduct/" + productId;
 	}
 
 	@GetMapping("/addPower")
@@ -165,7 +169,6 @@ public class AdminProduct {
 		model.addAttribute("diffuserType", DiffuserType.values());
 		model.addAttribute("warrantyPeriods", warrantyPeriods);
 
-
 		return "editProduct";
 	}
 
@@ -179,7 +182,6 @@ public class AdminProduct {
 		product.setProductManufacturer(productManufacturerService.getProductManufacturerById(Integer.parseInt(request.getParameter("productManufacturerId"))));
 		product.setPower(powerService.getPowerById(Integer.parseInt(request.getParameter("powerId"))));
 		product.setWarrantyPeriod(warrantyPeriodService.getWarrantyPeriodById(Integer.parseInt(request.getParameter("warrantyPeriodId"))));
-		productService.addProduct(product);
 
 		MultipartFile multipartFile = product.getProductImage();
 

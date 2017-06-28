@@ -19,7 +19,7 @@
             </div>
             <br>
             <input type="submit" value="Submit" class="btn btn-default">
-            <a href="<spring:url value="/admin/product/addProduct" />" class="btn btn-default">Cancel</a>
+            <a href="<spring:url value="/admin/product//editProduct/${productId}" />" class="btn btn-default">Cancel</a>
         </form:form>
         <br>
     </div>

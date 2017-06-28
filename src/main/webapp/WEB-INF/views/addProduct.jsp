@@ -37,7 +37,7 @@
                         </option>
                     </c:forEach>
                 </select>
-                <a href="/admin/product/addProductManufacturer" class="pull-right">Add new product manufacturer</a>
+                <a href="/admin/product/addProductManufacturer/${product.productId}" class="pull-right">Add new product manufacturer</a>
             </div>
 
             <div class="form-group">

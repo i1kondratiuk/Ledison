@@ -58,12 +58,18 @@
             <div class="form-group">
                 <label for="productManufacturer">Виробник</label>
                 <select id="productManufacturer" name="productManufacturerId" class="selectpicker">
+                    <option value="${product.productManufacturer.productManufacturerId}">
+                            ${product.productManufacturer.productManufacturerName}
+                    </option>
                     <c:forEach items="${productManufacturers}" var="productManufacturer">
-                        <option value="${productManufacturer.productManufacturerId}"> ${productManufacturer.productManufacturerName}
+                        <option value="${productManufacturer.productManufacturerId}">
+                                ${productManufacturer.productManufacturerName}
                         </option>
                     </c:forEach>
                 </select>
-                <a href="/admin/product/addProductManufacturer" class="pull-right">Add new product manufacturer</a>
+                <a href="/admin/product/addProductManufacturer/${product.productId}" class="pull-right">
+                    Add new product manufacturer
+                </a>
             </div>
 
             <div class="form-group">
@@ -102,7 +108,7 @@
 
             <div class="form-group">
                 <label for="recommended">Recommended</label>
-                    <form:checkbox path="recommended" id="recommended"/>
+                <form:checkbox path="recommended" id="recommended"/>
             </div>
 
             <div class="form-group">
