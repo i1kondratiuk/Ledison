@@ -23,13 +23,13 @@ import java.util.List;
 public class AdminProduct {
 
 	@Autowired
+	WarrantyPeriodService warrantyPeriodService;
+	@Autowired
 	private ProductService productService;
 	@Autowired
 	private ProductManufacturerService productManufacturerService;
 	@Autowired
 	private PowerService powerService;
-	@Autowired
-	private WarrantyPeriodService warrantyPeriodService;
 
 	@GetMapping("/addProduct")
 	public String addProduct(Model model) {
@@ -63,19 +63,27 @@ public class AdminProduct {
 	}
 
 	@PostMapping("/addProduct")
-	public String addProductPost(@Valid @ModelAttribute("product") Product product, HttpServletRequest request, BindingResult result) throws IOException {
+	public String addProductPost(@Valid @ModelAttribute("product") Product product,
+	                             HttpServletRequest request,
+	                             BindingResult result) throws IOException {
 
 		if (result.hasErrors()) {
 			return "addProduct";
 		}
 
-		product.setProductManufacturer(productManufacturerService.getProductManufacturerById(Integer.parseInt(request.getParameter("productManufacturerId"))));
-		product.setPower(powerService.getPowerById(Integer.parseInt(request.getParameter("powerId"))));
+		product.setProductManufacturer(
+				productManufacturerService.getProductManufacturerById(
+						Integer.parseInt(request.getParameter("productManufacturerId"))));
+		product.setPower(
+				powerService.getPowerById(
+						Integer.parseInt(request.getParameter("powerId"))));
 		productService.addProduct(product);
 
 		MultipartFile multipartFile = product.getProductImage();
 
-		String homePath = System.getProperty("user.home") + File.separator + "images" + File.separator + product.getProductId() + ".jpg";
+		String homePath = System.getProperty("user.home") +
+				File.separator + "images" +
+				File.separator + product.getProductId() + ".jpg";
 
 		if (multipartFile == null || multipartFile.isEmpty()) {
 		} else {
@@ -112,50 +120,33 @@ public class AdminProduct {
 		}
 		productManufacturerService.addProductManufacturer(productManufacturer);
 
-		return "redirect:/admin/product//editProduct/" + productId;
+		return "redirect:/admin/product/editProduct/" + productId;
 	}
 
-	@GetMapping("/addPower")
-	public String addPower(Model model) {
+	@GetMapping("/addPower/{productId}")
+	public String addPower(@PathVariable("productId") int productId, Model model) {
 		Power power = new Power();
 		model.addAttribute("power", power);
+		model.addAttribute("productId", productId);
 
 		return "addPower";
 	}
 
-	@PostMapping("/addPower")
-	public String addPowerPost(@Valid @ModelAttribute("power") Power power, BindingResult result) {
-
+	@PostMapping("/addPower/{productId}")
+	public String addPowerPost(@Valid @ModelAttribute("power") Power power,
+	                           @PathVariable("productId") int productId,
+	                           BindingResult result) {
 		if (result.hasErrors()) {
 			return "addPower";
 		}
 		powerService.addPower(power);
 
-		return "redirect:/admin/product/addProduct";
-	}
-
-	@GetMapping("/addWarrantyPeriod")
-	public String addWarrantyPeriod(Model model) {
-		WarrantyPeriod warrantyPeriod = new WarrantyPeriod();
-		model.addAttribute("warrantyPeriod", warrantyPeriod);
-
-		return "addWarrantyPeriod";
-	}
-
-	@PostMapping("/addWarrantyPeriod")
-	public String addWarrantyPeriodPost(@Valid @ModelAttribute("warrantyPeriod") WarrantyPeriod warrantyPeriod, BindingResult result) {
-
-		if (result.hasErrors()) {
-			return "addWarrantyPeriod";
-		}
-		warrantyPeriodService.addWarrantyPeriod(warrantyPeriod);
-
-		return "redirect:/admin/product/addProduct";
+		return "redirect:/admin/product/editProduct/" + productId;
 	}
 
 	@GetMapping("/editProduct/{productId}")
 	public String editProduct(@PathVariable("productId") int productId, Model model) {
-		Product product = productService.getProductById(productId);
+		Product product = productService.getProductByIdAndFetchLazyCartItemList(productId);
 		List<ProductManufacturer> productManufacturers = productManufacturerService.getProductManufacturerList();
 		List<Power> powers = powerService.getPowerList();
 		List<WarrantyPeriod> warrantyPeriods = warrantyPeriodService.getWarrantyPeriodList();
@@ -173,19 +164,28 @@ public class AdminProduct {
 	}
 
 	@PostMapping("/editProduct")
-	public String editProductPost(@Valid @ModelAttribute("product") Product product, BindingResult result, HttpServletRequest request) {
+	public String editProductPost(@Valid @ModelAttribute("product") Product product,
+	                              BindingResult result,
+	                              HttpServletRequest request) {
 
 		if (result.hasErrors()) {
 			return "editProduct";
 		}
 
-		product.setProductManufacturer(productManufacturerService.getProductManufacturerById(Integer.parseInt(request.getParameter("productManufacturerId"))));
-		product.setPower(powerService.getPowerById(Integer.parseInt(request.getParameter("powerId"))));
-		product.setWarrantyPeriod(warrantyPeriodService.getWarrantyPeriodById(Integer.parseInt(request.getParameter("warrantyPeriodId"))));
+		product.setProductManufacturer(
+				productManufacturerService.getProductManufacturerById(
+						Integer.parseInt(request.getParameter("productManufacturerId"))));
+		product.setPower(
+				powerService.getPowerById(Integer.parseInt(request.getParameter("powerId"))));
+		product.setWarrantyPeriod(
+				warrantyPeriodService.getWarrantyPeriodById(
+						Integer.parseInt(request.getParameter("warrantyPeriodId"))));
 
 		MultipartFile multipartFile = product.getProductImage();
 
-		String homePath = System.getProperty("user.home") + File.separator + "images" + File.separator + product.getProductId() + ".jpg";
+		String homePath = System.getProperty("user.home") +
+				File.separator + "images" +
+				File.separator + product.getProductId() + ".jpg";
 
 		if (!product.getProductImage().isEmpty()) {
 			File file = new File(homePath);
@@ -210,10 +210,13 @@ public class AdminProduct {
 		Product product = productService.getProductById(productId);
 		productService.deleteProduct(product);
 
-		String homePath = System.getProperty("user.home") + File.separator + "images" + File.separator + product.getProductId() + ".jpg";
+		String homePath = System.getProperty("user.home") +
+				File.separator + "images" +
+				File.separator + product.getProductId() + ".jpg";
 		File file = new File(homePath);
 		file.delete();
 
 		return "redirect:/admin/productInventory";
 	}
+
 }

@@ -58,13 +58,17 @@
             <div class="form-group">
                 <label for="productManufacturer">Виробник</label>
                 <select id="productManufacturer" name="productManufacturerId" class="selectpicker">
-                    <option value="${product.productManufacturer.productManufacturerId}">
+                    <option class="hidden" value="${product.productManufacturer.productManufacturerId}">
                             ${product.productManufacturer.productManufacturerName}
                     </option>
                     <c:forEach items="${productManufacturers}" var="productManufacturer">
-                        <option value="${productManufacturer.productManufacturerId}">
-                                ${productManufacturer.productManufacturerName}
-                        </option>
+                        <c:set var="currentProductManufacturerId" value="${product.productManufacturer.productManufacturerId}"/>
+                        <c:set var="otherProductManufacturerId" value="${productManufacturer.productManufacturerId}"/>
+                        <c:if test="${currentProductManufacturerId ne otherProductManufacturerId}">
+                            <option value="${productManufacturer.productManufacturerId}">
+                                    ${productManufacturer.productManufacturerName}
+                            </option>
+                        </c:if>
                     </c:forEach>
                 </select>
                 <a href="/admin/product/addProductManufacturer/${product.productId}" class="pull-right">
@@ -114,12 +118,20 @@
             <div class="form-group">
                 <label for="power">Потужність, W</label>
                 <select id="power" name="powerId" class="selectpicker">
+                    <option class="hidden" value="${product.power.powerId}">
+                            ${product.power.power}
+                    </option>
                     <c:forEach items="${powers}" var="power">
-                        <option value="${power.powerId}"> ${power.power}
-                        </option>
+                        <c:set var="currentPower" value="${product.power.power}"/>
+                        <c:set var="otherPower" value="${power.power}"/>
+                        <c:if test="${currentPower ne otherPower}">
+                            <option value="${power.powerId}">
+                                    ${power.power}
+                            </option>
+                        </c:if>
                     </c:forEach>
                 </select>
-                <a href="/admin/product/addPower" class="pull-right">Add new power value</a>
+                <a href="/admin/product/addPower/${product.productId}" class="pull-right">Add new power value</a>
             </div>
 
             <div class="form-group">
@@ -146,12 +158,21 @@
             <div class="form-group">
                 <label for="warrantyPeriod">Гарантійний термін, м</label>
                 <select id="warrantyPeriod" name="warrantyPeriodId" class="selectpicker">
+                    <option class="hidden" value="${product.warrantyPeriod.warrantyPeriodId}">
+                            ${product.warrantyPeriod.warrantyPeriod}
+                    </option>
                     <c:forEach items="${warrantyPeriods}" var="warrantyPeriod">
-                        <option value="${warrantyPeriod.warrantyPeriodId}"> ${warrantyPeriod.warrantyPeriod}
-                        </option>
+                        <c:set var="currentWarrantyPeriod" value="${product.warrantyPeriod.warrantyPeriod}"/>
+                        <c:set var="otherWarrantyPeriod" value="${warrantyPeriod.warrantyPeriod}"/>
+                        <c:if test="${currentWarrantyPeriod ne otherWarrantyPeriod}">
+                            <option value="${warrantyPeriod.warrantyPeriodId}">
+                                    ${warrantyPeriod.warrantyPeriod}
+                            </option>
+                        </c:if>
                     </c:forEach>
                 </select>
-                <a href="/admin/product/addWarrantyPeriod" class="pull-right">Add new warranty period value</a>
+                <a href="/admin/product/${product.productId}/warranty/" class="pull-right">Add new warranty
+                    period value</a>
             </div>
 
             <div class="form-group">

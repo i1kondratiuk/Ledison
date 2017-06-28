@@ -10,7 +10,7 @@
             <p class="lead">Fill the below information to add a product manufacturer:</p>
         </div>
 
-        <form:form method="POST" action="/admin/product/addPower" modelAttribute="power">
+        <form:form method="POST" action="/admin/product/addPower/${productId}" modelAttribute="power">
 
             <div class="form-group">
                 <label for="power">Power, W</label>
@@ -19,7 +19,7 @@
             </div>
             <br>
             <input type="submit" value="Submit" class="btn btn-default">
-            <a href="<spring:url value="/admin/product/productInventory" />" class="btn btn-default">Cancel</a>
+            <a href="<spring:url value="/admin/product/editProduct/${productId}" />" class="btn btn-default">Cancel</a>
         </form:form>
         <br>
     </div>

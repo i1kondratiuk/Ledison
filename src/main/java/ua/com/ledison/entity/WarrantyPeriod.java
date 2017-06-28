@@ -16,7 +16,7 @@ public class WarrantyPeriod implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer warrantyPeriodId;
 
-	@Min(value = 0, message = "The warranty period must not be less then zero")
+//	@Min(value = 0, message = "The warranty period must not be less then zero")
 	private int warrantyPeriod;
 
 	@OneToMany(mappedBy = "warrantyPeriod", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
