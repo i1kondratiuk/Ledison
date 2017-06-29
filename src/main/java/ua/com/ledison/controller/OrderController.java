@@ -94,7 +94,7 @@ public class OrderController {
 		customerOrderService.addCustomerOrder(customerOrder);
 		userService.updateUser(user);
 
-		mailService.sendMail(user);
+		mailService.sendMailAboutOrderSuccess(user);
 
 		return "thankCustomer";
 	}

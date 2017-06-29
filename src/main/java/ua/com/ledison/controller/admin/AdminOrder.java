@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import ua.com.ledison.entity.CustomerOrder;
 import ua.com.ledison.entity.OrderStatus;
 import ua.com.ledison.service.CustomerOrderService;
+import ua.com.ledison.service.MailService;
 
-import java.util.Arrays;
 import java.util.List;
 
 @Controller
@@ -19,6 +19,9 @@ public class AdminOrder {
 
 	@Autowired
 	CustomerOrderService customerOrderService;
+
+	@Autowired
+	MailService mailService;
 
 	@GetMapping
 	public String customerManagement(Model model) {
@@ -36,6 +39,8 @@ public class AdminOrder {
 		CustomerOrder customerOrder = customerOrderService.findCustomerOrderById(customerOrderId);
 		customerOrder.setStatus(customerOrderStatus);
 		customerOrderService.updateCustomerOrder(customerOrder);
+
+		mailService.sendMailAboutOrderStatusChanging(customerOrder.getUser(), customerOrder);
 
 		List<CustomerOrder> customerOrders = customerOrderService.getAllOrders();
 
