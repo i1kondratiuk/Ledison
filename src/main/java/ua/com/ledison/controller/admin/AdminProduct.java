@@ -120,6 +120,10 @@ public class AdminProduct {
 		}
 		productManufacturerService.addProductManufacturer(productManufacturer);
 
+		if (productId == 0) {
+            return "redirect:/admin/product/addProduct";
+        }
+
 		return "redirect:/admin/product/editProduct/" + productId;
 	}
 

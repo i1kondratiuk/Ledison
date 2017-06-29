@@ -10,7 +10,7 @@
             <p class="lead">Fill the below information to add a product manufacturer:</p>
         </div>
 
-        <form:form method="POST" action="/admin/product/addProductManufacturer" modelAttribute="productManufacturer">
+        <form:form method="POST" action="/admin/product/addProductManufacturer/${productId}" modelAttribute="productManufacturer">
 
             <div class="form-group">
                 <label for="productManufacturerName">Назва</label>

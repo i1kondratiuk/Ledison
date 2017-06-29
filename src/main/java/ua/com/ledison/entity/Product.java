@@ -47,7 +47,7 @@ public class Product implements Serializable {
     @JsonIgnore
     private Power power;
 
-    @Min(value = 175, message = "The operating voltage must not be less then 175")
+    @Min(value = 100, message = "The operating voltage must not be less then 100")
     @Max(value = 250, message = "The operating voltage must not be more then 250")
     private int operatingVoltage;
 
