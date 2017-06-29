@@ -13,227 +13,246 @@ import java.util.List;
 @Entity
 public class Product implements Serializable {
 
-	private static final long serialVersionUID = -5593112655583906933L;
+    private static final long serialVersionUID = -5593112655583906933L;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int productId;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int productId;
 
-	@NotBlank(message = "The product name must not be empty")
-	private String productName;
+    private String productName;
 
-	@NotBlank(message = "The product category name must not be empty")
-	private String productCategory;
+    private String productModelName;
 
-	@ManyToOne
-	@JoinColumn(name = "productManufacturerId")
-	@JsonIgnore
-	private ProductManufacturer productManufacturer;
+    @NotBlank(message = "The product category name must not be empty")
+    private String productCategory;
 
-	@Min(value = 0, message = "The product price must not be less then zero")
-	private double productPrice;
+    @ManyToOne
+    @JoinColumn(name = "productManufacturerId")
+    @JsonIgnore
+    private ProductManufacturer productManufacturer;
 
-	private String capType;
+    @Min(value = 0, message = "The product price must not be less then zero")
+    private double productPrice;
 
-	private String glowColor;
+    private String capType;
 
-	private String lampShape;
+    private String glowColor;
 
-	private boolean recommended;
+    private String lampShape;
 
-	@ManyToOne
-	@JoinColumn(name = "powerId")
-	@JsonIgnore
-	private Power power;
+    private boolean recommended;
 
-	@Min(value = 175, message = "The operating voltage must not be less then 175")
-	@Max(value = 250, message = "The operating voltage must not be more then 250")
-	private int operatingVoltage;
+    @ManyToOne
+    @JoinColumn(name = "powerId")
+    @JsonIgnore
+    private Power power;
 
-	private String diffuserType;
+    @Min(value = 175, message = "The operating voltage must not be less then 175")
+    @Max(value = 250, message = "The operating voltage must not be more then 250")
+    private int operatingVoltage;
 
-	@Min(value = 0, message = "The service period must not be less then zero")
-	private int serviceLife;
+    private String diffuserType;
 
-	@ManyToOne
-	@JoinColumn(name = "warrantyPeriodId")
-	@JsonIgnore
-	private WarrantyPeriod warrantyPeriod;
+    @Min(value = 0, message = "The service period must not be less then zero")
+    private int serviceLife;
 
-	@Min(value = 0, message = "The product unit must not be less then zero")
-	private int unitsInStock;
+    @ManyToOne
+    @JoinColumn(name = "warrantyPeriodId")
+    @JsonIgnore
+    private WarrantyPeriod warrantyPeriod;
 
-	@Transient
-	private MultipartFile productImage;
+    @Min(value = 0, message = "The product unit must not be less then zero")
+    private int unitsInStock;
 
-	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@JsonIgnore
-	private List<CartItem> cartItemList;
+    @Transient
+    private MultipartFile productImage;
 
-	public void fetchLazyCollection() {
-		if (this.cartItemList != null) {
-			getCartItemList().size();
-		}
-	}
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore
+    private List<CartItem> cartItemList;
 
-	public Product() {
-	}
+    public void fetchLazyCollection() {
+        if (this.cartItemList != null) {
+            getCartItemList().size();
+        }
+    }
 
-	public int getProductId() {
-		return productId;
-	}
+    public Product() {
+    }
 
-	public void setProductId(int productId) {
-		this.productId = productId;
-	}
+    public int getProductId() {
+        return productId;
+    }
 
-	public String getProductName() {
-		return productName;
-	}
+    public void setProductId(int productId) {
+        this.productId = productId;
+    }
 
-	public void setProductName(String productName) {
-		this.productName = productName;
-	}
+    public String getProductName() {
+        return productName;
+    }
 
-	public String getProductCategory() {
-		return productCategory;
-	}
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
 
-	public void setProductCategory(String productCategory) {
-		this.productCategory = productCategory;
-	}
+    public String getProductModelName() {
+        return productModelName;
+    }
 
-	public ProductManufacturer getProductManufacturer() {
-		return productManufacturer;
-	}
+    public void setProductModelName(String productModelName) {
+        this.productModelName = productModelName;
+    }
 
-	public void setProductManufacturer(ProductManufacturer productManufacturer) {
-		this.productManufacturer = productManufacturer;
-	}
+    public void generateProductNameUsingEntityFields() {
+        this.productName =
+                productManufacturer.getProductManufacturerName() + " " +
+                        (productModelName == null ? "" : productModelName) + " " +
+                        capType + " " +
+                        lampShape + " " +
+                        power.getPower() + "W " +
+                        operatingVoltage + "V";
+    }
 
-	public double getProductPrice() {
-		return productPrice;
-	}
+    public String getProductCategory() {
+        return productCategory;
+    }
 
-	public void setProductPrice(double productPrice) {
-		this.productPrice = productPrice;
-	}
+    public void setProductCategory(String productCategory) {
+        this.productCategory = productCategory;
+    }
 
-	public String getCapType() {
-		return capType;
-	}
+    public ProductManufacturer getProductManufacturer() {
+        return productManufacturer;
+    }
 
-	public void setCapType(String capType) {
-		this.capType = capType;
-	}
+    public void setProductManufacturer(ProductManufacturer productManufacturer) {
+        this.productManufacturer = productManufacturer;
+    }
 
-	public String getGlowColor() {
-		return glowColor;
-	}
+    public double getProductPrice() {
+        return productPrice;
+    }
 
-	public void setGlowColor(String glowColor) {
-		this.glowColor = glowColor;
-	}
+    public void setProductPrice(double productPrice) {
+        this.productPrice = productPrice;
+    }
 
-	public String getLampShape() {
-		return lampShape;
-	}
+    public String getCapType() {
+        return capType;
+    }
 
-	public void setLampShape(String lampShape) {
-		this.lampShape = lampShape;
-	}
+    public void setCapType(String capType) {
+        this.capType = capType;
+    }
 
-	public boolean isRecommended() {
-		return recommended;
-	}
+    public String getGlowColor() {
+        return glowColor;
+    }
 
-	public void setRecommended(boolean recommended) {
-		this.recommended = recommended;
-	}
+    public void setGlowColor(String glowColor) {
+        this.glowColor = glowColor;
+    }
 
-	public Power getPower() {
-		return power;
-	}
+    public String getLampShape() {
+        return lampShape;
+    }
 
-	public void setPower(Power power) {
-		this.power = power;
-	}
+    public void setLampShape(String lampShape) {
+        this.lampShape = lampShape;
+    }
 
-	public int getOperatingVoltage() {
-		return operatingVoltage;
-	}
+    public boolean isRecommended() {
+        return recommended;
+    }
 
-	public void setOperatingVoltage(int operatingVoltage) {
-		this.operatingVoltage = operatingVoltage;
-	}
+    public void setRecommended(boolean recommended) {
+        this.recommended = recommended;
+    }
 
-	public String getDiffuserType() {
-		return diffuserType;
-	}
+    public Power getPower() {
+        return power;
+    }
 
-	public void setDiffuserType(String diffuserType) {
-		this.diffuserType = diffuserType;
-	}
+    public void setPower(Power power) {
+        this.power = power;
+    }
 
-	public int getServiceLife() {
-		return serviceLife;
-	}
+    public int getOperatingVoltage() {
+        return operatingVoltage;
+    }
 
-	public void setServiceLife(int serviceLife) {
-		this.serviceLife = serviceLife;
-	}
+    public void setOperatingVoltage(int operatingVoltage) {
+        this.operatingVoltage = operatingVoltage;
+    }
 
-	public WarrantyPeriod getWarrantyPeriod() {
-		return warrantyPeriod;
-	}
+    public String getDiffuserType() {
+        return diffuserType;
+    }
 
-	public void setWarrantyPeriod(WarrantyPeriod warrantyPeriod) {
-		this.warrantyPeriod = warrantyPeriod;
-	}
+    public void setDiffuserType(String diffuserType) {
+        this.diffuserType = diffuserType;
+    }
 
-	public int getUnitsInStock() {
-		return unitsInStock;
-	}
+    public int getServiceLife() {
+        return serviceLife;
+    }
 
-	public void setUnitsInStock(int unitsInStock) {
-		this.unitsInStock = unitsInStock;
-	}
+    public void setServiceLife(int serviceLife) {
+        this.serviceLife = serviceLife;
+    }
 
-	public MultipartFile getProductImage() {
-		return productImage;
-	}
+    public WarrantyPeriod getWarrantyPeriod() {
+        return warrantyPeriod;
+    }
 
-	public void setProductImage(MultipartFile productImage) {
-		this.productImage = productImage;
-	}
+    public void setWarrantyPeriod(WarrantyPeriod warrantyPeriod) {
+        this.warrantyPeriod = warrantyPeriod;
+    }
 
-	public List<CartItem> getCartItemList() {
-		return cartItemList;
-	}
+    public int getUnitsInStock() {
+        return unitsInStock;
+    }
 
-	public void setCartItemList(List<CartItem> cartItemList) {
-		this.cartItemList = cartItemList;
-	}
+    public void setUnitsInStock(int unitsInStock) {
+        this.unitsInStock = unitsInStock;
+    }
 
-	@Override
-	public String toString() {
-		return "Product{" +
-				"productId=" + productId +
-				", productName='" + productName + '\'' +
-				", productCategory='" + productCategory + '\'' +
-				", productManufacturer=" + productManufacturer +
-				", productPrice=" + productPrice +
-				", capType='" + capType + '\'' +
-				", glowColor='" + glowColor + '\'' +
-				", lampShape='" + lampShape + '\'' +
-				", power=" + power +
-				", operatingVoltage='" + operatingVoltage + '\'' +
-				", diffuserType='" + diffuserType + '\'' +
-				", serviceLife=" + serviceLife +
-				", warrantyPeriod=" + warrantyPeriod +
-				", unitInStock=" + unitsInStock +
-				", productImage=" + productImage +
-				", cartItemList=" + cartItemList +
-				'}';
-	}
+    public MultipartFile getProductImage() {
+        return productImage;
+    }
+
+    public void setProductImage(MultipartFile productImage) {
+        this.productImage = productImage;
+    }
+
+    public List<CartItem> getCartItemList() {
+        return cartItemList;
+    }
+
+    public void setCartItemList(List<CartItem> cartItemList) {
+        this.cartItemList = cartItemList;
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "productId=" + productId +
+                ", productName='" + productName + '\'' +
+                ", productCategory='" + productCategory + '\'' +
+                ", productManufacturer=" + productManufacturer +
+                ", productPrice=" + productPrice +
+                ", capType='" + capType + '\'' +
+                ", glowColor='" + glowColor + '\'' +
+                ", lampShape='" + lampShape + '\'' +
+                ", power=" + power +
+                ", operatingVoltage='" + operatingVoltage + '\'' +
+                ", diffuserType='" + diffuserType + '\'' +
+                ", serviceLife=" + serviceLife +
+                ", warrantyPeriod=" + warrantyPeriod +
+                ", unitInStock=" + unitsInStock +
+                ", productImage=" + productImage +
+                ", cartItemList=" + cartItemList +
+                '}';
+    }
 }

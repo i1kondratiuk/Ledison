@@ -39,15 +39,14 @@ public class AdminProduct {
 		List<WarrantyPeriod> warrantyPeriods = warrantyPeriodService.getWarrantyPeriodList();
 		Product product = new Product();
 
-		product.setProductName("Lamp-1");
-		product.setProductPrice(20.1);
-		product.setProductCategory("ledBulbs");
+		product.setProductPrice(50);
+		product.setProductCategory("LEDBulb");
 		product.setCapType(CapType.E27.name());
 		product.setGlowColor(GlowColor.NEUTRAL_WHITE.name());
 		product.setLampShape(LampShape.A60.name());
 		product.setDiffuserType(DiffuserType.FROSTED.name());
 		product.setOperatingVoltage(220);
-		product.setServiceLife(1200);
+		product.setServiceLife(1000);
 		product.setUnitsInStock(10);
 
 		model.addAttribute("product", product);
@@ -77,6 +76,7 @@ public class AdminProduct {
 		product.setPower(
 				powerService.getPowerById(
 						Integer.parseInt(request.getParameter("powerId"))));
+		product.generateProductNameUsingEntityFields();
 		productService.addProduct(product);
 
 		MultipartFile multipartFile = product.getProductImage();
@@ -180,6 +180,8 @@ public class AdminProduct {
 		product.setWarrantyPeriod(
 				warrantyPeriodService.getWarrantyPeriodById(
 						Integer.parseInt(request.getParameter("warrantyPeriodId"))));
+
+		product.generateProductNameUsingEntityFields();
 
 		MultipartFile multipartFile = product.getProductImage();
 
