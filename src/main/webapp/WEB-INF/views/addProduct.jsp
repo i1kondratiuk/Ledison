@@ -120,7 +120,7 @@
                         </option>
                     </c:forEach>
                 </select>
-                <a href="/admin/product/addWarrantyPeriod" class="pull-right">Add new warranty period value</a>
+                <a href="/admin/product/warranty" class="pull-right">Add new warranty period value</a>
             </div>
 
             <div class="form-group">

@@ -171,7 +171,7 @@
                         </c:if>
                     </c:forEach>
                 </select>
-                <a href="/admin/product/${product.productId}/warranty/" class="pull-right">Add new warranty
+                <a href="/admin/product/warranty" class="pull-right">Add new warranty
                     period value</a>
             </div>
 

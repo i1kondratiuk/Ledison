@@ -1,5 +1,7 @@
 package ua.com.ledison.entity;
 
+import ua.com.ledison.validator.WarrantyPeriodAlreadyExists;
+
 import javax.persistence.*;
 import javax.validation.constraints.Min;
 import java.io.Serializable;
@@ -16,7 +18,8 @@ public class WarrantyPeriod implements Serializable {
 	private Integer warrantyPeriodId;
 
 	@Min(value = 0, message = "The warranty period must not be less then zero")
-	private int warrantyPeriod;
+	@WarrantyPeriodAlreadyExists
+	private Integer warrantyPeriod;
 
 	@OneToMany(mappedBy = "warrantyPeriod", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<Product> products = new ArrayList<>();
@@ -24,7 +27,7 @@ public class WarrantyPeriod implements Serializable {
 	public WarrantyPeriod() {
 	}
 
-	public WarrantyPeriod(int warrantyPeriod, List<Product> products) {
+	public WarrantyPeriod(Integer warrantyPeriod, List<Product> products) {
 		this.warrantyPeriod = warrantyPeriod;
 		this.products = products;
 	}
@@ -37,11 +40,11 @@ public class WarrantyPeriod implements Serializable {
 		this.warrantyPeriodId = warrantyPeriodId;
 	}
 
-	public int getWarrantyPeriod() {
+	public Integer getWarrantyPeriod() {
 		return warrantyPeriod;
 	}
 
-	public void setWarrantyPeriod(int warrantyPeriod) {
+	public void setWarrantyPeriod(Integer warrantyPeriod) {
 		this.warrantyPeriod = warrantyPeriod;
 	}
 

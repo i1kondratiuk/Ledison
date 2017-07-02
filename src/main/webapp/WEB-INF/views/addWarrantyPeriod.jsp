@@ -10,7 +10,7 @@
             <p class="lead">Fill the below information to add a product manufacturer:</p>
         </div>
 
-        <form:form method="POST" action="/admin/product/${productId}/warranty/" modelAttribute="warrantyPeriod">
+        <form:form method="POST" action="/admin/product/warranty" modelAttribute="warrantyPeriod">
 
             <div class="form-group">
                 <label for="warrantyPeriod">Warranty Period, m</label>
@@ -19,7 +19,12 @@
             </div>
             <br>
             <input type="submit" value="Submit" class="btn btn-default">
-            <a href="<spring:url value="/admin/product/editProduct/${productId}" />" class="btn btn-default">Cancel</a>
+            <button class="btn btn-default" onclick="goBack()">Go Back</button>
+            <script>
+                function goBack() {
+                    window.history.back();
+                }
+            </script>
         </form:form>
         <br>
     </div>
