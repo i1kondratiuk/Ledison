@@ -39,9 +39,9 @@
 
             <br>
             <div class="form-group">
-                <label for="productName">Назва</label>
-                <form:errors path="productName" cssStyle="color:#ff0000;"/>
-                <form:input path="productName" id="productName" class="form-control"/>
+                <label for="productModelName">Product Model</label>
+                <form:errors path="productModelName" cssStyle="color:#ff0000;"/>
+                <form:input path="productModelName" id="productModelName" class="form-control"/>
             </div>
 
 

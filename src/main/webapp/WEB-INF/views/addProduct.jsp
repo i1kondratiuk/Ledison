@@ -14,13 +14,13 @@
                    enctype="multipart/form-data">
 
             <div class="form-group">
-                <label for="productName">Назва</label>
-                <form:errors path="productName" cssStyle="color:#ff0000;"/>
-                <form:input path="productName" id="productName" class="form-control"/>
+                <label for="productModelName">Model</label>
+                <form:errors path="productModelName" cssStyle="color:#ff0000;"/>
+                <form:input path="productModelName" id="productModelName" class="form-control"/>
             </div>
 
             <div class="form-group">
-                <label for="productCategory">Категорія</label>
+                <label for="productCategory">Category</label>
                 <label class="checkbox-inline">
                     <form:radiobutton path="productCategory" id="productCategory"
                                       value="ledBulbs"/>Світлодіодні лампи</label>
@@ -30,7 +30,7 @@
             </div>
 
             <div class="form-group">
-                <label for="productManufacturer">Виробник</label>
+                <label for="productManufacturer">Manufacturer</label>
                 <select id="productManufacturer" name="productManufacturerId" class="selectpicker">
                     <c:forEach items="${productManufacturers}" var="productManufacturer">
                         <option value="${productManufacturer.productManufacturerId}"> ${productManufacturer.productManufacturerName}
@@ -41,7 +41,7 @@
             </div>
 
             <div class="form-group">
-                <label for="productPrice">Ціна</label>
+                <label for="productPrice">Price</label>
                 <form:errors path="productPrice" cssStyle="color:#ff0000;"/>
                 <form:input path="productPrice" id="productPrice" class="form-control"/>
             </div>
@@ -81,7 +81,7 @@
             </div>
 
             <div class="form-group">
-                <label for="power">Потужність, W</label>
+                <label for="power">Power, W</label>
                 <select id="power" name="powerId" class="selectpicker">
                     <c:forEach items="${powers}" var="power">
                         <option value="${power.powerId}"> ${power.power}
