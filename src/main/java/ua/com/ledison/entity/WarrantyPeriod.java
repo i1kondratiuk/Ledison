@@ -4,6 +4,7 @@ import ua.com.ledison.validator.WarrantyPeriodAlreadyExists;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.Null;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +18,7 @@ public class WarrantyPeriod implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer warrantyPeriodId;
 
+	@Null
 	@Min(value = 0, message = "The warranty period must not be less then zero")
 	@WarrantyPeriodAlreadyExists
 	private Integer warrantyPeriod;
