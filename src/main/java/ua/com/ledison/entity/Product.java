@@ -19,8 +19,9 @@ public class Product implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int productId;
 
-	@NotBlank(message = "The product name must not be empty")
 	private String productName;
+
+	private String productModelName;
 
 	@NotBlank(message = "The product category name must not be empty")
 	private String productCategory;
@@ -46,7 +47,7 @@ public class Product implements Serializable {
 	@JsonIgnore
 	private Power power;
 
-	@Min(value = 100, message = "The operating voltage must not be less then 175")
+	@Min(value = 175, message = "The operating voltage must not be less then 175")
 	@Max(value = 250, message = "The operating voltage must not be more then 250")
 	private int operatingVoltage;
 
@@ -93,6 +94,24 @@ public class Product implements Serializable {
 
 	public void setProductName(String productName) {
 		this.productName = productName;
+	}
+
+	public String getProductModelName() {
+		return productModelName;
+	}
+
+	public void setProductModelName(String productModelName) {
+		this.productModelName = productModelName;
+	}
+
+	public void generateProductNameUsingEntityFields() {
+		this.productName =
+				productManufacturer.getProductManufacturerName() + " " +
+						(productModelName == null ? "" : productModelName) + " " +
+						capType + " " +
+						lampShape + " " +
+						power.getPower() + "W " +
+						operatingVoltage + "V";
 	}
 
 	public String getProductCategory() {
