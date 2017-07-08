@@ -18,7 +18,6 @@ public class WarrantyPeriod implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer warrantyPeriodId;
 
-	@Null
 	@Min(value = 0, message = "The warranty period must not be less then zero")
 	@WarrantyPeriodAlreadyExists
 	private Integer warrantyPeriod;
